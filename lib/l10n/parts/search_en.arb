@@ -1,0 +1,20 @@
+{
+  "@@locale": "en",
+  "searchFieldLabel": "Search",
+  "searchFieldHint": "Deals, events, places, facilities",
+  "searchClearField": "Clear",
+  "searchRecentTitle": "Recent searches",
+  "searchRecentClear": "Clear",
+  "searchRecentRemove": "Remove search",
+  "searchPopularTitle": "Popular tags",
+  "searchTag": "#{tag}",
+  "@searchTag": {"placeholders": {"tag": {"type": "String"}}},
+  "searchTypeOpportunities": "Deals",
+  "searchTypeEvents": "Events",
+  "searchTypePlaces": "Places",
+  "searchTabCount": "{label} · {count}",
+  "@searchTabCount": {"placeholders": {"label": {"type": "String"}, "count": {"type": "int"}}},
+  "searchNoResultTitle": "No results",
+  "searchNoResultMessage": "Nothing found for “{query}”. Try another word or check the popular tags.",
+  "@searchNoResultMessage": {"placeholders": {"query": {"type": "String"}}}
+}

@@ -1,0 +1,422 @@
+{
+  "@@locale": "tr",
+  "svcPoolsTitle": "Havuzlar",
+  "svcPoolPickerLabel": "Havuz seç",
+  "svcPoolSubtitle": "{district} · {type}",
+  "@svcPoolSubtitle": {
+    "placeholders": {
+      "district": {
+        "type": "String"
+      },
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "svcPoolRulesNote": "{minAge}–{guardianUntil} yaş velisiyle, {permissionFrom}–{permissionUntil} yaş veli izin belgesiyle.",
+  "@svcPoolRulesNote": {
+    "placeholders": {
+      "minAge": {
+        "type": "String"
+      },
+      "guardianUntil": {
+        "type": "String"
+      },
+      "permissionFrom": {
+        "type": "String"
+      },
+      "permissionUntil": {
+        "type": "String"
+      }
+    }
+  },
+  "svcPoolSwimNote": "Günlük girişte yüzme bilme onayı istenir.",
+  "svcPoolServicesTitle": "{pool} · hizmetler",
+  "@svcPoolServicesTitle": {
+    "placeholders": {
+      "pool": {
+        "type": "String"
+      }
+    }
+  },
+  "svcUnitSession": "seans",
+  "svcUnitTerm": "dönem",
+  "svcUnitMonthly": "aylık",
+  "svcUnitHourly": "saatlik",
+  "svcPrice": "{amount} ₺",
+  "@svcPrice": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "svcFree": "Ücretsiz",
+  "svcPoolsEmptyTitle": "Bu havuzda şu an hizmet yok",
+  "svcPoolsEmptyMessage": "Başka bir havuz seçebilir ya da daha sonra tekrar bakabilirsin.",
+  "svcWhoLabel": "Kimin için",
+  "svcWhoSelf": "Kendim",
+  "svcWhoChild": "Çocuğum · {name} ({age})",
+  "@svcWhoChild": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "svcWeekPrev": "Önceki hafta",
+  "svcWeekNext": "Sonraki hafta",
+  "svcWeekRange": "{start} – {end}",
+  "@svcWeekRange": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
+  "svcLegendToday": "Bugün",
+  "svcLegendFull": "Dolu",
+  "svcLegendHoliday": "Resmî tatil",
+  "svcLegendClosed": "Bakım / İptal",
+  "svcDayToday": "Bugün",
+  "svcDayHoliday": "Resmî tatil",
+  "svcDayMaintenance": "Bakım",
+  "svcGridLabel": "Haftalık seans takvimi",
+  "svcCellFull": "DOLU",
+  "svcCellCancelled": "İptal",
+  "svcCellClosed": "Kapalı",
+  "svcCellHoliday": "Resmî tatil",
+  "svcCellMaintenance": "Bakım",
+  "svcCellPast": "Geçti",
+  "svcCellCapacity": "{booked}/{capacity}",
+  "@svcCellCapacity": {
+    "placeholders": {
+      "booked": {
+        "type": "String"
+      },
+      "capacity": {
+        "type": "String"
+      }
+    }
+  },
+  "svcCellSemantics": "{day} {time} {label} {status}",
+  "@svcCellSemantics": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      },
+      "label": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "svcSelectPrompt": "Bir seans seç",
+  "svcSelected": "Seçilen: {day} {time} · {label} · {price}",
+  "@svcSelected": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      },
+      "label": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "svcLateJoin": "Geç katılım indirimi %{rate}",
+  "@svcLateJoin": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "svcAddToCart": "Sepete ekle · {minutes} dk ayrılır",
+  "@svcAddToCart": {
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "svcGenderMale": "Bay",
+  "svcGenderFemale": "Bayan",
+  "svcRuleGender": "Bu seans yalnız {gender} katılımcılar için.",
+  "@svcRuleGender": {
+    "placeholders": {
+      "gender": {
+        "type": "String"
+      }
+    }
+  },
+  "svcRuleMinAge": "Bu hizmet için en az {age} yaş gerekli.",
+  "@svcRuleMinAge": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "svcRuleMaxAge": "Bu hizmet {age} yaşa kadar katılımcılar için.",
+  "@svcRuleMaxAge": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "svcRuleGuardian": "{min}–{max} yaş: velisiyle birlikte katılım zorunlu.",
+  "@svcRuleGuardian": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "svcRulePermission": "{min}–{max} yaş: veli izin belgesi girişte istenir.",
+  "@svcRulePermission": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "svcSwimConfirm": "Yüzme bildiğimi onaylıyorum",
+  "svcNoSessionsTitle": "Bu hafta seans yok",
+  "svcNoSessionsMessage": "Sonraki haftaya göz atabilirsin.",
+  "svcCartTitle": "Sepet",
+  "svcHoldActiveTitle": "Kontenjanın ayrıldı",
+  "svcHoldActiveSub": "Ödeme yapılmazsa yer serbest kalır.",
+  "svcHoldLowTitle": "Acele et!",
+  "svcHoldLowSub": "Kontenjanın kısa süre daha ayrılmış durumda.",
+  "svcHoldExpiredTitle": "Süre doldu",
+  "svcHoldExpiredSub": "Kontenjan serbest bırakıldı, seansı yeniden seç.",
+  "svcHoldTimerSemantics": "{title}, kalan süre {time}",
+  "@svcHoldTimerSemantics": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "svcCartItemMeta": "{facility} · {date} · {who}",
+  "@svcCartItemMeta": {
+    "placeholders": {
+      "facility": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      },
+      "who": {
+        "type": "String"
+      }
+    }
+  },
+  "svcDiscountsTitle": "Uygun indirimler",
+  "svcDiscountApproved": "Onaylı · {date} tarihine kadar",
+  "@svcDiscountApproved": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "svcDiscountApprovedNoDate": "Onaylı",
+  "svcDiscountPending": "Onay bekliyor · Profil › İndirim Tanımla",
+  "svcDiscountUnavailable": "Kullanılamaz · Profil › İndirim Tanımla",
+  "svcDiscountRate": "−%{rate}",
+  "@svcDiscountRate": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "svcDiscountNone": "İndirim kullanma",
+  "svcCouponTitle": "Kupon bakiyesi kullan",
+  "svcCouponSub": "Bakiyen {amount} · {source}",
+  "@svcCouponSub": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "svcCouponSubPlain": "Bakiyen {amount}",
+  "@svcCouponSubPlain": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "svcSubtotal": "Ara toplam",
+  "svcDiscountLine": "İndirim",
+  "svcCouponLine": "Kupon",
+  "svcTotal": "Ödenecek",
+  "svcMinus": "−{amount}",
+  "@svcMinus": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "svcSecurePayment": "Sanal POS · 3D Secure ile güvenli ödeme",
+  "svcPayCta": "Ödemeye geç · {amount}",
+  "@svcPayCta": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "svcReselect": "Seansı yeniden seç",
+  "svcCartEmptyTitle": "Sepetin boş",
+  "svcCartEmptyMessage": "Havuz ya da spor okulundan bir seans seçince kontenjanın birkaç dakika senin için ayrılır.",
+  "svcBrowsePools": "Havuzlara göz at",
+  "svcPaySuccess": "Ödemen alındı, başvurun onaylandı.",
+  "svcPayPending": "Ödeme sayfası açıldı. Onaylanınca Başvurularım'da göreceksin.",
+  "svcPayFailed": "Ödeme sayfası açılamadı. Tekrar dener misin?",
+  "svcSportsTitle": "Spor",
+  "svcSportsTabSchools": "Spor Okulları",
+  "svcSportsTabTennis": "Tenis",
+  "svcQuotaLeft": "{count} yer",
+  "@svcQuotaLeft": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "svcQuotaLast": "Son {count}",
+  "@svcQuotaLast": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "svcQuotaFull": "DOLU",
+  "svcQuotaNone": "Grup yok",
+  "svcBranchSemantics": "{name}, {quota}",
+  "@svcBranchSemantics": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "quota": {
+        "type": "String"
+      }
+    }
+  },
+  "svcSportsEmptyTitle": "Bu filtrede grup yok",
+  "svcSportsEmptyMessage": "Başka bir dönem ya da yaş grubu seç.",
+  "svcAppsTitle": "Başvurularım",
+  "svcAppsTabActive": "Aktif · {count}",
+  "@svcAppsTabActive": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "svcAppsTabPast": "Geçmiş",
+  "svcStatusApprovedPaid": "Onaylandı · ödendi",
+  "svcStatusApproved": "Onaylandı",
+  "svcStatusAccepted": "Kabul edildi",
+  "svcStatusPendingPayment": "Ödeme bekliyor · {hours} sa",
+  "@svcStatusPendingPayment": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      }
+    }
+  },
+  "svcStatusPendingPaymentNoTime": "Ödeme bekliyor",
+  "svcStatusWaitlist": "Yedek listede",
+  "svcStatusAttendedBuan": "Katıldın · +{amount} BUAN",
+  "@svcStatusAttendedBuan": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "svcStatusAttended": "Katıldın",
+  "svcStatusCancelledMakeUp": "İptal edildi · raporla telafi kuponu",
+  "svcStatusCancelled": "İptal edildi",
+  "svcStatusRejected": "Reddedildi",
+  "svcStatusUnknown": "Durum güncelleniyor",
+  "svcAppCouponNote": "{amount} bakiye kuponu tanımlandı",
+  "@svcAppCouponNote": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "svcTicketShow": "QR bileti göster",
+  "svcTicketHide": "Bileti gizle",
+  "svcTicketHint": "Turnikede okut",
+  "svcTicketSemantics": "Giriş QR bileti, kod {code}",
+  "@svcTicketSemantics": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "svcActCancel": "İptal",
+  "svcActWithdraw": "Vazgeç",
+  "svcActRequest": "İptal talebi",
+  "svcActPay": "Ödemeyi tamamla",
+  "svcActReapply": "Tekrar başvur",
+  "svcActCoupons": "Kuponlarım",
+  "svcCancelConfirmTitle": "Başvuruyu iptal edelim mi?",
+  "svcCancelConfirmBody": "“{title}” başvurun iptal edilecek. İade ve kupon koşulları kurum kurallarına göre uygulanır.",
+  "@svcCancelConfirmBody": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "svcCancelConfirmYes": "Evet, iptal et",
+  "svcCancelKeep": "Başvurum kalsın",
+  "svcCancelDone": "Başvurun iptal edildi.",
+  "svcAppsEmptyActiveTitle": "Aktif başvurun yok",
+  "svcAppsEmptyActiveMessage": "Havuz seansı, spor okulu ya da etkinliklere başvurduğunda burada görünecek.",
+  "svcAppsEmptyPastTitle": "Henüz geçmiş başvuru yok",
+  "svcAppsEmptyPastMessage": "Katıldığın ve iptal ettiğin başvurular burada listelenir."
+}

@@ -1,0 +1,14 @@
+{
+  "@@locale": "tr",
+  "storyClose": "Hikâyeyi kapat",
+  "storyPrev": "Önceki hikâye",
+  "storyNext": "Sonraki hikâye",
+  "storyProgress": "Hikâye {current} / {total}",
+  "@storyProgress": {"placeholders": {"current": {"type": "int"}, "total": {"type": "int"}}},
+  "storyAgoMinutes": "{count} dk",
+  "@storyAgoMinutes": {"placeholders": {"count": {"type": "int"}}},
+  "storyAgoHours": "{count} sa",
+  "@storyAgoHours": {"placeholders": {"count": {"type": "int"}}},
+  "storyAgoDays": "{count} gün",
+  "@storyAgoDays": {"placeholders": {"count": {"type": "int"}}}
+}

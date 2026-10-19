@@ -1,0 +1,84 @@
+{
+  "@@locale": "tr",
+  "gameTitle": "Oyunlar",
+  "gameTournamentTag": "Haftalık turnuva",
+  "gameTournamentPrize": "İlk {count} kişiye toplam {amount} BUAN",
+  "@gameTournamentPrize": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "gameTournamentJoin": "Katıl",
+  "gameTournamentRank": "Sıran: {rank} / {total}",
+  "@gameTournamentRank": {
+    "placeholders": {
+      "rank": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "gamePlaysLeft": "Bugün {left}/{total} hak",
+  "@gamePlaysLeft": {
+    "placeholders": {
+      "left": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "gameUnlimited": "Sınırsız pratik",
+  "gamePlay": "{title} oyna",
+  "@gamePlay": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "gameNoPlaysLeft": "Bugünkü hakların bitti, yarın yine gel!",
+  "gameComingSoonTitle": "Çok yakında!",
+  "gameComingSoonBody": "“{title}” üzerinde çalışıyoruz. Hazır olunca haber vereceğiz.",
+  "@gameComingSoonBody": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "gameEmptyTitle": "Şu an oyun yok",
+  "gameEmptyBody": "Yeni Bursa oyunları hazırlanıyor. Birazdan tekrar bak!",
+  "gameMemoryMoves": "{count} hamle",
+  "@gameMemoryMoves": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "gameMemoryDone": "Hepsini eşleştirdin!",
+  "gameMemoryAgain": "Tekrar oyna",
+  "gameMemoryCardHidden": "Kapalı kart {index}",
+  "@gameMemoryCardHidden": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "gameSymbolKoza": "Koza",
+  "gameSymbolKilicKalkan": "Kılıç Kalkan",
+  "gameSymbolKaragoz": "Karagöz",
+  "gameSymbolCami": "Ulu Cami",
+  "gameSymbolTeleferik": "Teleferik",
+  "gameSymbolKestane": "Kestane şekeri"
+}

@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "data": {
+    "id": "rwd-giyim",
+    "categoryId": "shopping",
+    "categoryLabel": "Alışveriş",
+    "title": "Giyim çeki 250 ₺",
+    "price": 14000,
+    "tile": 3,
+    "icon": "shirt",
+    "description": "Anlaşmalı giyim mağazalarında geçerli 250 ₺ çek.",
+    "rules": [
+      "Çek 60 gün geçerlidir.",
+      "Takas edilen BUAN iade edilmez, kod devredilemez."
+    ],
+    "redeemInfo": "Mağaza kasasında bu kodu göster.",
+    "stock": 40,
+    "perPersonLimit": 1
+  },
+  "message": null,
+  "errors": []
+}

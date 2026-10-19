@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "personel",
+        "name": "Personel",
+        "requiredDocument": "Personel kimlik kartı"
+      },
+      {
+        "id": "sehit-gazi",
+        "name": "Şehit / Gazi yakını",
+        "requiredDocument": "Şehit/gazi yakını kimlik kartı"
+      },
+      {
+        "id": "engelli",
+        "name": "Engelli",
+        "requiredDocument": "Engelli sağlık kurulu raporu"
+      },
+      {
+        "id": "ogrenci",
+        "name": "Öğrenci",
+        "requiredDocument": "e-Devlet öğrenci belgesi"
+      },
+      {
+        "id": "kardes",
+        "name": "Kardeş",
+        "requiredDocument": "Nüfus kayıt örneği"
+      },
+      {
+        "id": "yoksulluk",
+        "name": "Yoksulluk belgesi",
+        "requiredDocument": "Muhtarlık / SYDV belgesi"
+      }
+    ]
+  },
+  "message": "",
+  "errors": []
+}

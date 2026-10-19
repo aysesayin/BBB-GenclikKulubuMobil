@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "id": "evt-uludag-yuruyus",
+    "title": "Uludağ Doğa Yürüyüşü",
+    "categoryId": "doga-macera",
+    "categoryLabel": "Doğa ve Macera",
+    "startsAt": "2026-10-18T08:30:00",
+    "endsAt": "2026-10-18T14:00:00",
+    "applyDeadline": "2026-10-16T23:59:00",
+    "placeName": "Sarıalan, Uludağ",
+    "placeNote": "Servis: Kent Meydanı 07:15",
+    "lat": 40.1047,
+    "lng": 29.1225,
+    "price": 0,
+    "priceNote": "Ulaşım ve öğle yemeği dahil",
+    "ageMin": 16,
+    "ageMax": 30,
+    "ageNote": "16–17 yaş için veli izin belgesi",
+    "capacity": 50,
+    "attendeeCount": 34,
+    "attendees": [{"initials": "MK", "tone": "tile2"}, {"initials": "ZA", "tone": "tile1"}, {"initials": "ET", "tone": "tile6"}, {"initials": "EY", "tone": "tile3"}, {"initials": "BD", "tone": "tile4"}],
+    "checkInBuan": 300,
+    "quota": {"title": "6 ayda 1 katılım.", "message": "Bu kategoride son katılımın Mart 2026 — hakkın açık. Katılırsan bir sonraki hak Nisan 2027’de.", "eligible": true},
+    "program": "08:30 Sarıalan’da buluşma, 09:00–13:00 rehber eşliğinde 9 km orta zorlukta parkur, 13:30 öğle yemeği. Yürüyüş ayakkabısı ve su şart. Ulaşım belediye servisiyle.",
+    "cover": "mountain",
+    "icon": "mountain",
+    "tone": "tile2",
+    "applicationStatus": "none"
+  },
+  "message": "",
+  "errors": []
+}

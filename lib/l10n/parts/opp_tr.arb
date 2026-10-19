@@ -1,0 +1,224 @@
+{
+  "@@locale": "tr",
+  "oppSearchLabel": "Fırsat ara",
+  "oppWallet": "Cüzdan",
+  "oppWalletCount": "Cüzdan · {count}",
+  "@oppWalletCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "oppWalletSemantics": "Fırsatlarım, {count} aktif kod",
+  "@oppWalletSemantics": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "oppCategoriesLabel": "Kategoriler",
+  "oppFilterNearby": "Yakınımda",
+  "oppFilterNew": "Yeni",
+  "oppFilterEnding": "Bitmek üzere",
+  "oppFilterFavorites": "Favoriler",
+  "oppCount": "{count, plural, =0{Fırsat yok} other{{count} fırsat}}",
+  "@oppCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "oppTypeCode": "İndirim kodu",
+  "oppTypeQr": "QR + 4 hane",
+  "oppTypePnr": "PNR → QR",
+  "oppStockLast": "Son {count} kod",
+  "@oppStockLast": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "oppStockPlenty": "Bol",
+  "oppCardSemantics": "{brand}: {title}. {discount} indirim, {days}, {stock}",
+  "@oppCardSemantics": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      },
+      "title": {
+        "type": "String"
+      },
+      "discount": {
+        "type": "String"
+      },
+      "days": {
+        "type": "String"
+      },
+      "stock": {
+        "type": "String"
+      }
+    }
+  },
+  "oppFavoriteAdd": "Favorilere ekle",
+  "oppFavoriteRemove": "Favorilerden çıkar",
+  "oppFavoriteAdded": "Favorilere eklendi",
+  "oppFavEmptyMessage": "Beğendiğin fırsatlarda kalbe dokun, burada birikip bitmeden önce sana haber versinler.",
+  "oppFavEmptyCta": "Fırsatlara göz at",
+  "oppEmptyMessage": "Bu seçimde şu an fırsat yok. Filtreleri değiştirip tekrar bakabilirsin.",
+  "oppEmptyCta": "Filtreleri temizle",
+  "oppAgeRange": "{min}–{max} yaş",
+  "@oppAgeRange": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "oppStockRemaining": "Kalan kod",
+  "oppStockNote": "Kodlar bitince fırsat otomatik kapanır.",
+  "oppHowTo": "Nasıl kullanılır?",
+  "oppConditions": "Şartlar",
+  "oppValidity": "Geçerlilik",
+  "oppAgeLimit": "Yaş sınırı",
+  "oppAgeMembers": "{min}–{max} yaş arası Gençlik Kulübü üyeleri.",
+  "@oppAgeMembers": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "oppBranch": "Şube",
+  "oppDirections": "Yol tarifi",
+  "oppClaimCta": "Fırsatı Yakala",
+  "oppShowMyCode": "Kodumu göster",
+  "oppSoldOut": "Kodlar tükendi",
+  "oppExpired": "Süresi doldu",
+  "oppShareText": "{brand}: {title} — Gençlik Kulübü’nde yakala: {link}",
+  "@oppShareText": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      },
+      "title": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "oppClaimTitle": "Fırsat senin!",
+  "oppClaimSubQr": "Kasada QR’ı okut ya da 4 haneli kodu söyle",
+  "oppClaimSubCode": "Kodu kopyala, online alışverişte kullan",
+  "oppClaimSubPnr": "PNR kodun QR’a dönüştürüldü",
+  "oppBrightnessFull": "Parlaklık %100",
+  "oppYourCode": "İndirim kodun",
+  "oppCodeSemantics": "Kod: {code}",
+  "@oppCodeSemantics": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "oppCopyCode": "Kodu kopyala",
+  "oppCodeHint": "Online ödeme adımında “İndirim kodu” alanına yapıştır.",
+  "oppScanAtCheckout": "Kasada okut",
+  "oppScanAtEntrance": "Girişte okut",
+  "oppPinLabel": "veya kişisel kodun",
+  "oppPnrLabel": "PNR",
+  "oppQrSemantics": "Kasada okutulacak QR kod",
+  "oppUseWithin": "{time} içinde kullan",
+  "@oppUseWithin": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "oppClaimToast": "Kasada kullanınca hesabına geçer",
+  "oppMyOpportunities": "Fırsatlarım",
+  "oppWalletActive": "Aktif · {count}",
+  "@oppWalletActive": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "oppWalletUsedTab": "Kullanıldı · {count}",
+  "@oppWalletUsedTab": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "oppWalletExpiredTab": "Süresi doldu",
+  "oppWalletUseWithinHours": "{hours} sa içinde kullan",
+  "@oppWalletUseWithinHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "oppWalletValidDays": "{days} gün geçerli",
+  "@oppWalletValidDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "oppWalletUsed": "{date} kullanıldı",
+  "@oppWalletUsed": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "oppWalletUsedEarned": "{date} kullanıldı · {amount} BUAN",
+  "@oppWalletUsedEarned": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "oppWalletExpiredOn": "Süresi {date} doldu",
+  "@oppWalletExpiredOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "oppWalletEmpty": "Bu bölümde henüz kod yok. Bir fırsat yakaladığında burada görünecek.",
+  "oppDateLoc": "{day} {month, select, m1{Ocak’ta} m2{Şubat’ta} m3{Mart’ta} m4{Nisan’da} m5{Mayıs’ta} m6{Haziran’da} m7{Temmuz’da} m8{Ağustos’ta} m9{Eylül’de} m10{Ekim’de} m11{Kasım’da} m12{Aralık’ta} other{}}",
+  "@oppDateLoc": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      },
+      "month": {
+        "type": "String"
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "data": {
+    "id": "plc-genclik-merkezi",
+    "name": "Gençlik Merkezi",
+    "categoryLabel": "Gençlik Merkezi",
+    "district": "Bursa",
+    "kind": "facility",
+    "openNow": true,
+    "statusLabel": "Açık · 21:00’e kadar",
+    "description": "[Tesis açıklaması admin panelinden gelir.] Etüt, atölye ve sosyal etkinlik alanlarıyla gençlere açık merkez.",
+    "lat": 40.1885,
+    "lng": 29.0610,
+    "gallery": [{"tone": "teal"}, {"tone": "pink"}, {"tone": "sun"}],
+    "hours": [{"days": "Pazartesi – Cuma", "hours": "09:00 – 21:00"}, {"days": "Cumartesi", "hours": "10:00 – 18:00"}, {"days": "Pazar", "closed": true}],
+    "amenities": ["Etüt salonu", "Wi-Fi", "Kafe"],
+    "actions": [{"type": "checkin", "title": "Merkeze girişte check-in yap", "buan": 100}],
+    "checkInEnabled": true,
+    "favorite": false
+  },
+  "message": "",
+  "errors": []
+}

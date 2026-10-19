@@ -1,0 +1,52 @@
+{
+  "success": true,
+  "data": {
+    "id": "opp-kafe",
+    "title": "Tüm sıcak içeceklerde öğrenci indirimi",
+    "brand": "[Kafe adı]",
+    "logoText": "KF",
+    "logoUrl": null,
+    "imageUrl": null,
+    "categoryId": "cat-yemek",
+    "discountLabel": "%10",
+    "claimType": "qr",
+    "locationLabel": "650 m",
+    "distanceMeters": 650,
+    "endsAt": "2026-10-19T23:59:00+03:00",
+    "stockRemaining": 6,
+    "stockTotal": 75,
+    "isFavorite": false,
+    "isNew": true,
+    "tone": 6,
+    "categoryName": "Yemek",
+    "bannerUrl": null,
+    "minAge": 16,
+    "maxAge": 30,
+    "buanReward": 100,
+    "steps": [
+      "“Fırsatı Yakala”ya dokun",
+      "Kasada QR’ı okut ya da 4 haneli kodu söyle",
+      "İndirimini al, +100 BUAN kazan"
+    ],
+    "conditions": [
+      "Bir kullanıcı bu fırsattan 1 kez yararlanabilir.",
+      "Diğer kampanyalarla birleştirilemez."
+    ],
+    "validity": [
+      "19 Ekim 2026, 23:59’a kadar.",
+      "Kod alındıktan sonra 48 saat içinde kullanılmalı."
+    ],
+    "branch": {
+      "name": "[Kafe adı] Merkez",
+      "distanceLabel": "650 m",
+      "hours": "Her gün 08:00–23:00",
+      "lat": 40.1885,
+      "lng": 29.061
+    },
+    "eligible": true,
+    "ineligibleReason": null,
+    "isClaimed": false
+  },
+  "message": "ok",
+  "errors": []
+}

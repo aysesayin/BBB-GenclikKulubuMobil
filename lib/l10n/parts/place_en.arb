@@ -1,0 +1,17 @@
+{
+  "@@locale": "en",
+  "placeFavoriteAdd": "Add to favourites",
+  "placeFavoriteRemove": "Remove from favourites",
+  "placeGalleryImage": "Image {index}",
+  "@placeGalleryImage": {"placeholders": {"index": {"type": "int"}}},
+  "placeGallerySemantics": "Gallery, image {index} of {total}",
+  "@placeGallerySemantics": {"placeholders": {"index": {"type": "int"}, "total": {"type": "int"}}},
+  "placeThingsToDo": "Things to do here",
+  "placeHoursTitle": "Opening hours",
+  "placeClosed": "Closed",
+  "placeAmenitiesTitle": "Amenities",
+  "placeDirections": "Get directions",
+  "placeCheckIn": "Check in",
+  "placeDirectionsFailed": "Couldn't open a maps app.",
+  "placeCheckInTitle": "Sign up to check in"
+}

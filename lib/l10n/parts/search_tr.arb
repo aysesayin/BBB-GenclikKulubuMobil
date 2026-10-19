@@ -1,0 +1,20 @@
+{
+  "@@locale": "tr",
+  "searchFieldLabel": "Ara",
+  "searchFieldHint": "Fırsat, etkinlik, yer, tesis",
+  "searchClearField": "Temizle",
+  "searchRecentTitle": "Son aramalar",
+  "searchRecentClear": "Temizle",
+  "searchRecentRemove": "Aramayı sil",
+  "searchPopularTitle": "Popüler etiketler",
+  "searchTag": "#{tag}",
+  "@searchTag": {"placeholders": {"tag": {"type": "String"}}},
+  "searchTypeOpportunities": "Fırsatlar",
+  "searchTypeEvents": "Etkinlikler",
+  "searchTypePlaces": "Yerler",
+  "searchTabCount": "{label} · {count}",
+  "@searchTabCount": {"placeholders": {"label": {"type": "String"}, "count": {"type": "int"}}},
+  "searchNoResultTitle": "Sonuç bulamadık",
+  "searchNoResultMessage": "“{query}” için bir şey çıkmadı. Başka bir kelime dene ya da popüler etiketlere göz at.",
+  "@searchNoResultMessage": {"placeholders": {"query": {"type": "String"}}}
+}

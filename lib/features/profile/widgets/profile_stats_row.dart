@@ -1,0 +1,175 @@
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
+
+import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/widgets.dart';
+import '../../../data/models/profile/profile_stats.dart';
+import '../../../l10n/l10n.dart';
+import 'profile_icons.dart';
+
+/// 3'lü sayaç ızgarası: toplam BUAN (mor), etkinlik (turkuaz), fırsat (pembe).
+class ProfileStatsRow extends StatelessWidget {
+  const ProfileStatsRow({super.key, required this.stats});
+
+  final ProfileStats stats;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.palette;
+    final l = context.l10n;
+    final items = [
+      (stats.totalBuanEarned, l.profileStatBuan, p.purT),
+      (stats.eventsAttended, l.profileStatEvents, p.teal),
+      (stats.opportunitiesUsed, l.profileStatOpportunities, p.pinkT),
+    ];
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (var i = 0; i < items.length; i++) ...[
+              if (i > 0) const SizedBox(width: 10),
+              Expanded(
+                child: _StatTile(value: items[i].$1, label: items[i].$2, color: items[i].$3),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _StatTile extends StatelessWidget {
+  const _StatTile({required this.value, required this.label, required this.color});
+
+  final int value;
+  final String label;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.palette;
+    return MergeSemantics(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
+        decoration: BoxDecoration(color: p.sf, borderRadius: BorderRadius.circular(AppRadii.tile)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: CountUpText(
+                value: value,
+                style: AppTypography.number(22, color: color),
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              style: AppTypography.body(11, weight: FontWeight.w800, color: p.mut, height: 1.2),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// "Rozet vitrinim" kartı: eğik sticker rozetler + "7 rozet" bağlantısı.
+class BadgeShowcase extends StatelessWidget {
+  const BadgeShowcase({super.key, required this.stats, required this.onOpen});
+
+  final ProfileStats stats;
+  final VoidCallback onOpen;
+
+  static const _tilt = [-5.0, 3.0, -2.0, 4.0];
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.palette;
+    final l = context.l10n;
+    return Container(
+      margin: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+      decoration: BoxDecoration(color: p.sf, borderRadius: BorderRadius.circular(AppRadii.lg)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Semantics(
+                  header: true,
+                  child: Text(l.profileBadgesTitle, style: AppTypography.display(18, color: p.ink)),
+                ),
+              ),
+              TextButton(
+                onPressed: onOpen,
+                style: TextButton.styleFrom(
+                  minimumSize: const Size(44, 44),
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  foregroundColor: p.teal,
+                ),
+                child: Text(
+                  l.profileBadgeCount(stats.badgeCount),
+                  style: AppTypography.body(14, weight: FontWeight.w900, color: p.teal),
+                ),
+              ),
+            ],
+          ),
+          if (stats.featuredBadges.isNotEmpty) ...[
+            const SizedBox(height: 4),
+            Wrap(
+              spacing: 14,
+              runSpacing: 10,
+              children: [
+                for (var i = 0; i < stats.featuredBadges.length; i++)
+                  _BadgeSticker(badge: stats.featuredBadges[i], tilt: _tilt[i % _tilt.length], onTap: onOpen),
+              ],
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _BadgeSticker extends StatelessWidget {
+  const _BadgeSticker({required this.badge, required this.tilt, required this.onTap});
+
+  final FeaturedBadge badge;
+  final double tilt;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.palette;
+    final tone = p.tiles[(badge.tone - 1).clamp(0, 5)];
+    return Semantics(
+      button: true,
+      label: badge.name,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Transform.rotate(
+          angle: tilt * math.pi / 180,
+          child: Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: tone,
+              borderRadius: BorderRadius.circular(AppRadii.tile),
+              border: Border.all(color: p.onTile, width: 3),
+              boxShadow: [BoxShadow(color: p.onTile, offset: const Offset(3, 3))],
+            ),
+            alignment: Alignment.center,
+            child: AppIcon(ProfileIcons.badge(badge.icon), size: 30, color: p.onTile, strokeWidth: 2),
+          ),
+        ),
+      ),
+    );
+  }
+}

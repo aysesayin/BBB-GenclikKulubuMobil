@@ -1,0 +1,366 @@
+{
+  "@@locale": "tr",
+  "taskSpinTitle": "Günlük Şans",
+  "taskSpinChanceToday": "Bugün 1 hakkın var",
+  "taskSpinChanceUsed": "Yarın yeni hak",
+  "taskSpinTabWheel": "Çark",
+  "taskSpinTabShake": "Salla Kazan",
+  "taskSpinWheelSemantics": "Şans çarkı",
+  "taskSpinServerNote": "Sonuç sunucuda belirlenir; çark yalnızca gösterir.",
+  "taskSpinCta": "Çevir",
+  "taskSpinSpinning": "Dönüyor…",
+  "taskSpinShakeTitle": "Telefonunu salla!",
+  "taskSpinShakeHint": "Sallayamıyorsan aşağıdaki butonu kullan.",
+  "taskSpinShakeCta": "Sallamadan dene",
+  "taskSpinWinTitle": "Şansın yaver gitti!",
+  "taskSpinWinNote": "Yarın yine gel, serin de devam etsin.",
+  "taskSpinWinCta": "Süper",
+  "taskSpinLockedTitle": "Bugünkü şansını kullandın",
+  "taskSpinLockedWon": "Bugün {amount} kazandın.",
+  "@taskSpinLockedWon": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "taskSpinNextIn": "Yeni hakka {time}",
+  "@taskSpinNextIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "taskWatchTitle": "İzle Kazan",
+  "taskWatchPlay": "Oynat",
+  "taskWatchPause": "Duraklat",
+  "taskWatchKeepGoing": "İzlemeye devam et",
+  "taskWatchWon": "Kazandın!",
+  "taskWatchRule": "%{percent}’ı izleyince BUAN hesabına geçer. İleri sarma kapalıdır.",
+  "@taskWatchRule": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "taskWatchUpNext": "Sıradaki videolar",
+  "taskWatchAvailableIn": "{count, plural, =0{Bugün} =1{Yarın} other{{count} gün sonra}}",
+  "@taskWatchAvailableIn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskWatchDoneBanner": "Tebrikler, video tamam!",
+  "taskWatchToast": "Video tamamlandı",
+  "taskWatchAlreadyDone": "Bu videonun ödülünü aldın",
+  "taskWatchNextIn": "{count, plural, =0{Yeni video bugün geliyor.} =1{Yeni video yarın geliyor.} other{Yeni video {count} gün sonra geliyor.}}",
+  "@taskWatchNextIn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskStepsTitle": "Bir Adım At",
+  "taskStepsRingSemantics": "Bugün {steps} adım, hedef {goal}",
+  "@taskStepsRingSemantics": {
+    "placeholders": {
+      "steps": {
+        "type": "String"
+      },
+      "goal": {
+        "type": "String"
+      }
+    }
+  },
+  "taskStepsOfGoal": "/ {goal} adım",
+  "@taskStepsOfGoal": {
+    "placeholders": {
+      "goal": {
+        "type": "String"
+      }
+    }
+  },
+  "taskStepsKm": "{km} km",
+  "@taskStepsKm": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "taskStepsActive": "{minutes} dk aktif",
+  "@taskStepsActive": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "taskStepsWeek": "Bu hafta",
+  "taskStepsWeekGoal": "Hedefe {done} / {target} gün",
+  "@taskStepsWeekGoal": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "target": {
+        "type": "int"
+      }
+    }
+  },
+  "taskStepsBar": "{day} {steps} adım",
+  "@taskStepsBar": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "steps": {
+        "type": "String"
+      }
+    }
+  },
+  "taskStepsBarDone": "{day} {steps} adım, hedef tamam",
+  "@taskStepsBarDone": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "steps": {
+        "type": "String"
+      }
+    }
+  },
+  "taskStepsSynced": "Adım sayarla eşitlendi · {time}",
+  "@taskStepsSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "taskStepsSyncedNow": "az önce",
+  "taskStepsMinutesAgo": "{count} dk önce",
+  "@taskStepsMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskStepsClaim": "{amount} BUAN’ı al",
+  "@taskStepsClaim": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "taskStepsRemaining": "Hedefe {steps} adım kaldı",
+  "@taskStepsRemaining": {
+    "placeholders": {
+      "steps": {
+        "type": "String"
+      }
+    }
+  },
+  "taskStepsClaimed": "Bugünün ödülü alındı",
+  "taskStepsToast": "Günlük adım hedefi",
+  "taskStepsNoSensorTitle": "Adımlarını göremiyoruz",
+  "taskStepsDeniedBody": "Adım saymak için “Fiziksel etkinlik” iznine ihtiyacımız var. İzni ayarlardan açabilirsin.",
+  "taskStepsUnsupportedBody": "Adım sayara ulaşılamadı. İzin kapalı olabilir ya da bu cihazda adım sayar yok; telefonundan dene.",
+  "taskStepsOpenSettings": "Ayarları aç",
+  "taskQuizTitle": "Cevapla Kazan",
+  "taskQuizProgress": "{title} · Soru {current} / {total}",
+  "@taskQuizProgress": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "taskQuizTimerSemantics": "{seconds} saniye süre",
+  "@taskQuizTimerSemantics": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "taskQuizCorrect": "Doğru",
+  "taskQuizWrong": "Yanlış",
+  "taskQuizFeedbackCorrect": "Doğru! {amount}",
+  "@taskQuizFeedbackCorrect": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "taskQuizFeedbackCorrectInfo": "Doğru! {info} {amount}",
+  "@taskQuizFeedbackCorrectInfo": {
+    "placeholders": {
+      "info": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "taskQuizFeedbackWrong": "Bu sefer olmadı — doğru cevap {answer}. Sıradaki soruda şansın bol!",
+  "@taskQuizFeedbackWrong": {
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
+  "taskQuizTimeUp": "Süre doldu — doğru cevap {answer}.",
+  "@taskQuizTimeUp": {
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
+  "taskQuizNext": "Sonraki soru",
+  "taskQuizFinish": "Sonuçları gör",
+  "taskQuizSummaryTitle": "Quiz bitti!",
+  "taskQuizSummaryScore": "{correct} / {total} doğru",
+  "@taskQuizSummaryScore": {
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "taskQuizSummaryBack": "BUAN’a dön",
+  "taskQuizEmptyTitle": "Bu haftaki soruları bitirdin",
+  "taskQuizEmptyBody": "Haftada {limit} quiz hakkın var. Yeni sorular yakında burada.",
+  "@taskQuizEmptyBody": {
+    "placeholders": {
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "taskQuizToast": "Cevapla Kazan",
+  "taskInviteHeroTitle": "Arkadaşını getir, ikiniz de kazanın",
+  "taskInviteHeroBody": "Arkadaşın kayıt olup doğrulayınca sana {you}, ona {friend} BUAN.",
+  "@taskInviteHeroBody": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "friend": {
+        "type": "String"
+      }
+    }
+  },
+  "taskInviteCodeLabel": "Davet kodun",
+  "taskInviteCopy": "Kodu kopyala",
+  "taskInviteShareWhatsapp": "WhatsApp",
+  "taskInviteShareInstagram": "Instagram",
+  "taskInviteShareOther": "Diğer",
+  "taskInviteShareSubject": "Gençlik Kulübü daveti",
+  "taskInviteShareText": "Bursa Büyükşehir Gençlik Kulübü’ne katıl, {amount} BUAN hediye! Davet kodum: {code} {link}",
+  "@taskInviteShareText": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "taskInviteLimitUsed": "Haftada {limit} davet ödülü · bu haftaki hakkın kullanıldı, yeni hak {day}.",
+  "@taskInviteLimitUsed": {
+    "placeholders": {
+      "limit": {
+        "type": "int"
+      },
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "taskInviteLimitLeft": "Haftada {limit} davet ödülü · bu hafta {left} hakkın kaldı.",
+  "@taskInviteLimitLeft": {
+    "placeholders": {
+      "limit": {
+        "type": "int"
+      },
+      "left": {
+        "type": "int"
+      }
+    }
+  },
+  "taskInviteListTitle": "Davet ettiklerin",
+  "taskInviteStatusRewarded": "{amount} kazandın",
+  "@taskInviteStatusRewarded": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "taskInviteStatusPending": "Doğrulama bekliyor",
+  "taskInviteStatusNotRegistered": "Henüz kayıt olmadı",
+  "taskInviteEmpty": "Henüz kimseyi davet etmedin. Kodunu paylaş, ilk ödül seni bekliyor.",
+  "taskPhotoTitle": "Çek Kazan",
+  "taskIdeaTitle": "Fikrin ile Kazan",
+  "taskPhotoCategory": "Kategori",
+  "taskPhotoNoteLabel": "Kısa not (isteğe bağlı)",
+  "taskPhotoNoteHint": "Ne gördün? Konumu doğru mu?",
+  "taskIdeaNoteLabel": "Fikrin",
+  "taskIdeaNoteHint": "Gençler için şehirde neyi değiştirirdin?",
+  "taskPhotoCamera": "Kamerayla çek",
+  "taskPhotoRetakeCamera": "Kamerayla yeniden çek",
+  "taskPhotoGallery": "Galeriden seç",
+  "taskPhotoEmptyPrompt": "Fotoğraf çek ya da galeriden seç",
+  "taskPhotoLocationAdded": "Konum eklendi",
+  "taskPhotoLocationAdd": "Konum ekle",
+  "taskPhotoLocationLoading": "Konum alınıyor…",
+  "taskPhotoLocationDenied": "Konum izni yok · tekrar dene",
+  "taskPhotoMine": "Gönderilerim",
+  "taskPhotoMineEmpty": "Henüz gönderin yok.",
+  "taskPhotoStatusApproved": "{amount} onaylandı",
+  "@taskPhotoStatusApproved": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "taskPhotoStatusPending": "İnceleniyor",
+  "taskPhotoStatusRejected": "Reddedildi",
+  "taskPhotoSubmit": "Gönder",
+  "taskPhotoSentTitle": "Gönderin incelemeye alındı",
+  "taskPhotoSentBody": "Moderasyondan geçince {amount} hesabına geçer.",
+  "@taskPhotoSentBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "taskPhotoPickError": "Fotoğraf alınamadı. Kamera ve galeri izinlerini kontrol eder misin?"
+}

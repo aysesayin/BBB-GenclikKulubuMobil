@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "data": {
+    "accessToken": "mock-access-usr-demo",
+    "refreshToken": "mock-refresh-usr-demo",
+    "user": {"id": "usr-demo", "firstName": "Ayşe", "lastName": "Su", "avatarUrl": null},
+    "welcome": {
+      "memberNo": "0016 4821",
+      "levelName": "Sv 1 · Çaylak",
+      "checkInCode": "8315",
+      "qrToken": "BBBGK:usr-demo:mock-qr-token",
+      "welcomeBonus": 500,
+      "onboardingBonus": 100,
+      "inviteReward": 2000
+    }
+  },
+  "message": "Hoş geldin!",
+  "errors": []
+}

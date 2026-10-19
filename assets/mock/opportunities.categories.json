@@ -1,0 +1,61 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "cat-ulasim",
+      "label": "Ulaşım",
+      "icon": "bus",
+      "tone": 3
+    },
+    {
+      "id": "cat-eglence",
+      "label": "Eğlence",
+      "icon": "game",
+      "tone": 1
+    },
+    {
+      "id": "cat-yemek",
+      "label": "Yemek",
+      "icon": "food",
+      "tone": 6
+    },
+    {
+      "id": "cat-kitap",
+      "label": "Kitap",
+      "icon": "book",
+      "tone": 4
+    },
+    {
+      "id": "cat-egitim",
+      "label": "Eğitim",
+      "icon": "cap",
+      "tone": 2
+    },
+    {
+      "id": "cat-spor",
+      "label": "Spor",
+      "icon": "ball",
+      "tone": 5
+    },
+    {
+      "id": "cat-teknoloji",
+      "label": "Teknoloji",
+      "icon": "phone",
+      "tone": 3
+    },
+    {
+      "id": "cat-guzellik",
+      "label": "Güzellik",
+      "icon": "sparkle",
+      "tone": 1
+    },
+    {
+      "id": "cat-saglik",
+      "label": "Sağlık",
+      "icon": "health",
+      "tone": 2
+    }
+  ],
+  "message": "ok",
+  "errors": []
+}

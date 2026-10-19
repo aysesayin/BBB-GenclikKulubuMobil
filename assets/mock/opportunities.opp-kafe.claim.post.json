@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "data": {
+    "opportunityId": "opp-kafe",
+    "type": "qr",
+    "code": null,
+    "qr": "GK-CLM-KF-8152-2LP0",
+    "pin": "8152",
+    "expiresAt": "2026-10-18T23:59:00+03:00",
+    "buanReward": 100,
+    "brand": "[Kafe adı]",
+    "logoText": "KF",
+    "title": "Sıcak içecekler · %10"
+  },
+  "message": "Fırsat senin!",
+  "errors": []
+}

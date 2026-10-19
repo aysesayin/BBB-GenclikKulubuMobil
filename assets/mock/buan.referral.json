@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "data": {
+    "code": "AYSE-7K2",
+    "inviterReward": 2000,
+    "inviteeReward": 500,
+    "weeklyLimit": 1,
+    "weeklyUsed": 1,
+    "nextResetAt": "2026-10-19T00:00:00+03:00",
+    "invitees": [
+      {
+        "id": "inv-1",
+        "name": "Mert K.",
+        "initials": "MK",
+        "status": "rewarded",
+        "reward": 2000
+      },
+      {
+        "id": "inv-2",
+        "name": "Selin Ö.",
+        "initials": "SÖ",
+        "status": "pending",
+        "reward": 0
+      },
+      {
+        "id": "inv-3",
+        "name": "Can B.",
+        "initials": "CB",
+        "status": "notRegistered",
+        "reward": 0
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

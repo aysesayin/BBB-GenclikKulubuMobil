@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      { "id": "itm-mihrapli-gunluk", "facilityId": "fac-mihrapli", "title": "Günlük Giriş", "tags": ["Karma seanslar", "Yüzme bilme onayı"], "price": 90, "priceUnit": "session", "tile": 3, "icon": "wave" },
+      { "id": "itm-mihrapli-kurs", "facilityId": "fac-mihrapli", "title": "Yüzme Kursu", "tags": ["6–15 yaş", "Geç katılım indirimi"], "price": 900, "priceUnit": "term", "tile": 6, "icon": "cap" },
+      { "id": "itm-mihrapli-yetiskin", "facilityId": "fac-mihrapli", "title": "Yetişkin Üye", "tags": ["Dönemlik"], "price": 1100, "priceUnit": "term", "tile": 2, "icon": "users" },
+      { "id": "itm-mihrapli-engelli", "facilityId": "fac-mihrapli", "title": "Engelli Saati", "tags": ["Refakatçi ücretsiz", "Belge gerekli"], "price": 0, "priceUnit": "session", "tile": 5, "icon": "users" }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

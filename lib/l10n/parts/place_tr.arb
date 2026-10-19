@@ -1,0 +1,17 @@
+{
+  "@@locale": "tr",
+  "placeFavoriteAdd": "Favorilere ekle",
+  "placeFavoriteRemove": "Favorilerden çıkar",
+  "placeGalleryImage": "Görsel {index}",
+  "@placeGalleryImage": {"placeholders": {"index": {"type": "int"}}},
+  "placeGallerySemantics": "Galeri, görsel {index}/{total}",
+  "@placeGallerySemantics": {"placeholders": {"index": {"type": "int"}, "total": {"type": "int"}}},
+  "placeThingsToDo": "Burada yapabileceklerin",
+  "placeHoursTitle": "Çalışma saatleri",
+  "placeClosed": "Kapalı",
+  "placeAmenitiesTitle": "Olanaklar",
+  "placeDirections": "Yol tarifi al",
+  "placeCheckIn": "Check-in yap",
+  "placeDirectionsFailed": "Harita uygulaması açılamadı.",
+  "placeCheckInTitle": "Check-in yapmak için kayıt ol"
+}

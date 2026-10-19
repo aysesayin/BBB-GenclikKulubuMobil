@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "data": {
+    "id": "plc-millet-gsm",
+    "name": "Millet Gençlik Spor Merkezi",
+    "categoryLabel": "Gençlik Merkezi · Spor",
+    "district": "Osmangazi",
+    "kind": "facility",
+    "openNow": true,
+    "statusLabel": "Açık · 23:00’e kadar",
+    "description": "[Tesis açıklaması admin panelinden gelir.] Kapalı spor salonu, fitness alanı, atölye salonları ve kariyer etkinlikleriyle gençlik ve spor bir arada.",
+    "address": "Millet Bahçesi yanı, Osmangazi / Bursa",
+    "lat": 40.2238,
+    "lng": 29.0052,
+    "gallery": [{"tone": "sun"}, {"tone": "teal"}, {"tone": "pink"}],
+    "hours": [{"days": "Her gün", "hours": "08:00 – 23:00"}],
+    "amenities": ["Spor salonu", "Fitness", "Soyunma odası", "Otopark", "Engelli erişimi"],
+    "actions": [
+      {"type": "checkin", "title": "Salona girişte check-in yap", "buan": 150},
+      {"type": "event", "title": "Kariyer Atölyesi: İlk CV’n · 21 Eki", "targetId": "evt-kariyer-cv"},
+      {"type": "opportunity", "title": "Extrempark’ta %25 gençlik indirimi", "targetId": "opp-extrempark"}
+    ],
+    "checkInEnabled": true,
+    "favorite": false
+  },
+  "message": "",
+  "errors": []
+}

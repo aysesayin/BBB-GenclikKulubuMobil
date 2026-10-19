@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": {
+    "id": "rwd-teleferik",
+    "categoryId": "experience",
+    "categoryLabel": "Deneyim",
+    "title": "Teleferik + sucuk ekmek (Burfaş)",
+    "price": 8000,
+    "tile": 2,
+    "icon": "cable",
+    "description": "Teferrüç–Sarıalan gidiş-dönüş teleferik bileti ve Sarıalan’da Burfaş noktasında sucuk ekmek + ayran.",
+    "rules": [
+      "Kod 30 gün geçerlidir; hava muhalefetinde süre uzar.",
+      "16 yaş altı için veli eşliği gerekir.",
+      "Takas edilen BUAN iade edilmez, kod devredilemez."
+    ],
+    "redeemInfo": "Teferrüç istasyonunda gişeye bu kodu göster.",
+    "stock": 64,
+    "perPersonLimit": 1,
+    "perPersonPeriod": "month",
+    "tag": "Popüler"
+  },
+  "message": null,
+  "errors": []
+}

@@ -1,0 +1,709 @@
+{
+  "success": true,
+  "data": {
+    "terms": [
+      {
+        "id": "trm-guz-2026",
+        "label": "Güz 2026 · Eki–Ara"
+      },
+      {
+        "id": "trm-kis-2027",
+        "label": "Kış 2027 · Oca–Mar"
+      }
+    ],
+    "ageGroups": [
+      {
+        "id": "age-6-9",
+        "label": "6–9 yaş"
+      },
+      {
+        "id": "age-10-14",
+        "label": "10–14 yaş"
+      },
+      {
+        "id": "age-15-18",
+        "label": "15–18 yaş"
+      },
+      {
+        "id": "age-yetiskin",
+        "label": "Yetişkin"
+      }
+    ],
+    "branches": [
+      {
+        "id": "brn-yuzme",
+        "name": "Yüzme",
+        "icon": "yuzme",
+        "tile": 3,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-mihrapli-kurs",
+            "left": 12
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-mihrapli-kurs",
+            "left": 8
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-mihrapli-kurs",
+            "left": 6
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-mihrapli-kurs",
+            "left": 9
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-mihrapli-kurs",
+            "left": 3
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-mihrapli-kurs",
+            "left": 15
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-mihrapli-kurs",
+            "left": 20
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-mihrapli-kurs",
+            "left": 4
+          }
+        ]
+      },
+      {
+        "id": "brn-voleybol",
+        "name": "Voleybol",
+        "icon": "voleybol",
+        "tile": 6,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-voleybol-guz-2026-6-9",
+            "left": 3
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-voleybol-guz-2026-10-14",
+            "left": 15
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-voleybol-guz-2026-15-18",
+            "left": 20
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-voleybol-guz-2026-yetiskin",
+            "left": 4
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-voleybol-kis-2027-6-9",
+            "left": 0
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-voleybol-kis-2027-10-14",
+            "left": 2
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-voleybol-kis-2027-15-18",
+            "left": 0
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-voleybol-kis-2027-yetiskin",
+            "left": 7
+          }
+        ]
+      },
+      {
+        "id": "brn-kort-tenisi",
+        "name": "Kort Tenisi",
+        "icon": "kort-tenisi",
+        "tile": 5,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-kort-tenisi-guz-2026-6-9",
+            "left": 0
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-kort-tenisi-guz-2026-10-14",
+            "left": 2
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-kort-tenisi-guz-2026-15-18",
+            "left": 0
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-kort-tenisi-guz-2026-yetiskin",
+            "left": 7
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-kort-tenisi-kis-2027-6-9",
+            "left": 8
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-kort-tenisi-kis-2027-10-14",
+            "left": 6
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-kort-tenisi-kis-2027-15-18",
+            "left": 9
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-kort-tenisi-kis-2027-yetiskin",
+            "left": 12
+          }
+        ]
+      },
+      {
+        "id": "brn-taekwondo",
+        "name": "Taekwondo",
+        "icon": "taekwondo",
+        "tile": 1,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-taekwondo-guz-2026-6-9",
+            "left": 8
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-taekwondo-guz-2026-10-14",
+            "left": 6
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-taekwondo-guz-2026-15-18",
+            "left": 9
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-taekwondo-guz-2026-yetiskin",
+            "left": 12
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-taekwondo-kis-2027-6-9",
+            "left": 15
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-taekwondo-kis-2027-10-14",
+            "left": 20
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-taekwondo-kis-2027-15-18",
+            "left": 4
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-taekwondo-kis-2027-yetiskin",
+            "left": 3
+          }
+        ]
+      },
+      {
+        "id": "brn-basketbol",
+        "name": "Basketbol",
+        "icon": "basketbol",
+        "tile": 6,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-basketbol-guz-2026-6-9",
+            "left": 15
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-basketbol-guz-2026-10-14",
+            "left": 20
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-basketbol-guz-2026-15-18",
+            "left": 4
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-basketbol-guz-2026-yetiskin",
+            "left": 3
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-basketbol-kis-2027-6-9",
+            "left": 2
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-basketbol-kis-2027-10-14",
+            "left": 0
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-basketbol-kis-2027-15-18",
+            "left": 7
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-basketbol-kis-2027-yetiskin",
+            "left": 0
+          }
+        ]
+      },
+      {
+        "id": "brn-masa-tenisi",
+        "name": "Masa Tenisi",
+        "icon": "masa-tenisi",
+        "tile": 2,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-masa-tenisi-guz-2026-6-9",
+            "left": 2
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-masa-tenisi-guz-2026-10-14",
+            "left": 0
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-masa-tenisi-guz-2026-15-18",
+            "left": 7
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-masa-tenisi-guz-2026-yetiskin",
+            "left": 0
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-masa-tenisi-kis-2027-6-9",
+            "left": 6
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-masa-tenisi-kis-2027-10-14",
+            "left": 9
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-masa-tenisi-kis-2027-15-18",
+            "left": 12
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-masa-tenisi-kis-2027-yetiskin",
+            "left": 8
+          }
+        ]
+      },
+      {
+        "id": "brn-jimnastik",
+        "name": "Jimnastik",
+        "icon": "jimnastik",
+        "tile": 4,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-jimnastik-guz-2026-6-9",
+            "left": 6
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-jimnastik-guz-2026-10-14",
+            "left": 9
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-jimnastik-guz-2026-15-18",
+            "left": 12
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-jimnastik-guz-2026-yetiskin",
+            "left": 8
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-jimnastik-kis-2027-6-9",
+            "left": 20
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-jimnastik-kis-2027-10-14",
+            "left": 4
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-jimnastik-kis-2027-15-18",
+            "left": 3
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-jimnastik-kis-2027-yetiskin",
+            "left": 15
+          }
+        ]
+      },
+      {
+        "id": "brn-satranc",
+        "name": "Satranç",
+        "icon": "satranc",
+        "tile": 3,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-satranc-guz-2026-6-9",
+            "left": 20
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-satranc-guz-2026-10-14",
+            "left": 4
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-satranc-guz-2026-15-18",
+            "left": 3
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-satranc-guz-2026-yetiskin",
+            "left": 15
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-satranc-kis-2027-6-9",
+            "left": 0
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-satranc-kis-2027-10-14",
+            "left": 7
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-satranc-kis-2027-15-18",
+            "left": 0
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-satranc-kis-2027-yetiskin",
+            "left": 2
+          }
+        ]
+      },
+      {
+        "id": "brn-karate",
+        "name": "Karate",
+        "icon": "karate",
+        "tile": 1,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-karate-guz-2026-6-9",
+            "left": 0
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-karate-guz-2026-10-14",
+            "left": 7
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-karate-guz-2026-15-18",
+            "left": 0
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-karate-guz-2026-yetiskin",
+            "left": 2
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-karate-kis-2027-6-9",
+            "left": 9
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-karate-kis-2027-10-14",
+            "left": 12
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-karate-kis-2027-15-18",
+            "left": 8
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-karate-kis-2027-yetiskin",
+            "left": 6
+          }
+        ]
+      },
+      {
+        "id": "brn-gures",
+        "name": "Güreş",
+        "icon": "gures",
+        "tile": 6,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-gures-guz-2026-6-9",
+            "left": 9
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-gures-guz-2026-10-14",
+            "left": 12
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-gures-guz-2026-15-18",
+            "left": 8
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-gures-guz-2026-yetiskin",
+            "left": 6
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-gures-kis-2027-6-9",
+            "left": 4
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-gures-kis-2027-10-14",
+            "left": 3
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-gures-kis-2027-15-18",
+            "left": 15
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-gures-kis-2027-yetiskin",
+            "left": 20
+          }
+        ]
+      },
+      {
+        "id": "brn-judo",
+        "name": "Judo",
+        "icon": "judo",
+        "tile": 5,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-judo-guz-2026-6-9",
+            "left": 4
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-judo-guz-2026-10-14",
+            "left": 3
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-judo-guz-2026-15-18",
+            "left": 15
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-judo-guz-2026-yetiskin",
+            "left": 20
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-judo-kis-2027-6-9",
+            "left": 7
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-judo-kis-2027-10-14",
+            "left": 0
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-judo-kis-2027-15-18",
+            "left": 2
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-judo-kis-2027-yetiskin",
+            "left": 0
+          }
+        ]
+      },
+      {
+        "id": "brn-okculuk",
+        "name": "Okçuluk",
+        "icon": "okculuk",
+        "tile": 4,
+        "offers": [
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-okculuk-guz-2026-6-9",
+            "left": 7
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-okculuk-guz-2026-10-14",
+            "left": 0
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-okculuk-guz-2026-15-18",
+            "left": 2
+          },
+          {
+            "termId": "trm-guz-2026",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-okculuk-guz-2026-yetiskin",
+            "left": 0
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-6-9",
+            "itemId": "itm-okculuk-kis-2027-6-9",
+            "left": 12
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-10-14",
+            "itemId": "itm-okculuk-kis-2027-10-14",
+            "left": 8
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-15-18",
+            "itemId": "itm-okculuk-kis-2027-15-18",
+            "left": 6
+          },
+          {
+            "termId": "trm-kis-2027",
+            "ageGroupId": "age-yetiskin",
+            "itemId": "itm-okculuk-kis-2027-yetiskin",
+            "left": 9
+          }
+        ]
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

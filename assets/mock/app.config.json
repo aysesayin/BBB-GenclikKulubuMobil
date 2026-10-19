@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "data": {
+    "minVersion": "1.0.0",
+    "maintenance": false,
+    "maintenanceMessage": null,
+    "features": {
+      "dailySpin": true,
+      "games": true,
+      "photoReport": true,
+      "walletPass": false
+    },
+    "welcomeBonus": 500,
+    "onboardingBonus": 100,
+    "mascotName": "Buancık"
+  },
+  "message": "",
+  "errors": []
+}

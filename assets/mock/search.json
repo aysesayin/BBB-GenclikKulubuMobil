@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "message": "",
+  "errors": [],
+  "meta": { "page": 1, "pageSize": 50, "total": 16 },
+  "data": {
+    "items": [
+      { "id": "rwd-teleferik", "type": "reward", "title": "Teleferik + sucuk ekmek", "subtitle": "BUAN Pazar · 8.000 BUAN" },
+      { "id": "opp-teleferik", "type": "opportunity", "title": "Teleferik gidiş-dönüş %30", "subtitle": "Burfaş · 9 gün kaldı" },
+      { "id": "opp-burulas", "type": "opportunity", "title": "BursaKart öğrenci abonmanında %25", "subtitle": "Burulaş · 12 gün kaldı" },
+      { "id": "opp-extrempark", "type": "opportunity", "title": "Tırmanma duvarında 1+1", "subtitle": "Extrempark · 5 gün kaldı" },
+      { "id": "opp-kitapduragi", "type": "opportunity", "title": "Kitaplarda %20 öğrenci indirimi", "subtitle": "Kitap Durağı · 31 gün kaldı" },
+      { "id": "opp-dilokulu", "type": "opportunity", "title": "YKS İngilizce kursunda %15", "subtitle": "Dil Okulu · 20 gün kaldı" },
+      { "id": "rwd-oyun-kodu", "type": "reward", "title": "Oyun kodu", "subtitle": "BUAN Pazar · 3.000 BUAN" },
+      { "id": "evt-genclik-kampi", "type": "event", "title": "Teleferikle Uludağ Gezisi", "subtitle": "26 Eki · 34/50 kişi" },
+      { "id": "evt-uludag-yuruyus", "type": "event", "title": "Gün Batımı Fotoğraf Yürüyüşü", "subtitle": "2 Kas · Teferrüç · Teleferik" },
+      { "id": "evt-kariyer-cv", "type": "event", "title": "Kariyer Atölyesi: İlk CV’n", "subtitle": "21 Eki · Millet GSM" },
+      { "id": "evt-zumba", "type": "event", "title": "Açık Hava Zumba", "subtitle": "19 Eki · Kültürpark · Ücretsiz" },
+      { "id": "plc-teferruc", "type": "place", "title": "Teleferik Teferrüç İstasyonu", "subtitle": "Yıldırım · 3,1 km" },
+      { "id": "plc-sarialan", "type": "place", "title": "Teleferik Sarıalan İstasyonu", "subtitle": "Uludağ · 22 km" },
+      { "id": "plc-asik-veysel-gm", "type": "place", "title": "Aşık Veysel Gençlik Merkezi", "subtitle": "Osmangazi · 650 m · Kodlama, Satranç" },
+      { "id": "plc-sehir-tiyatrosu", "type": "place", "title": "Bursa Şehir Tiyatrosu", "subtitle": "Osmangazi · 2,4 km · Tiyatro" },
+      { "id": "plc-millet-gsm", "type": "place", "title": "Millet Gençlik ve Spor Merkezi", "subtitle": "Nilüfer · 4,8 km · Konser" }
+    ]
+  }
+}

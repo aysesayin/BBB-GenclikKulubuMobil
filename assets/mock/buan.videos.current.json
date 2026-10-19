@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "data": {
+    "id": "vid-genclik-kis",
+    "youtubeId": "aqz-KE-bpKQ",
+    "title": "Gençlik merkezlerinde bu kış neler var?",
+    "source": "Belediye videosu",
+    "durationSec": 120,
+    "reward": 1000,
+    "watchedSec": 0,
+    "completed": false,
+    "completeRatio": 0.9,
+    "nextAvailableAt": null,
+    "upNext": [
+      {
+        "id": "vid-spor-okullari",
+        "title": "Bursa’da ücretsiz spor okulları",
+        "availableAt": "2026-10-18T10:00:00+03:00"
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "tck-24817",
+        "number": "24817",
+        "subject": "Havuz soyunma dolabı",
+        "type": "sikayet",
+        "createdAt": "2026-10-12T09:30:00+03:00",
+        "status": "answered"
+      },
+      {
+        "id": "tck-24902",
+        "number": "24902",
+        "subject": "Gece çalışma salonu",
+        "type": "oneri",
+        "createdAt": "2026-10-15T18:10:00+03:00",
+        "status": "inReview"
+      }
+    ]
+  },
+  "message": "",
+  "errors": []
+}

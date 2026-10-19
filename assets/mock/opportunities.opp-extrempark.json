@@ -1,0 +1,53 @@
+{
+  "success": true,
+  "data": {
+    "id": "opp-extrempark",
+    "title": "Tırmanma duvarında 1 alana 1 bedava",
+    "brand": "Extrempark",
+    "logoText": "EXT",
+    "logoUrl": null,
+    "imageUrl": null,
+    "categoryId": "cat-eglence",
+    "discountLabel": "1+1",
+    "claimType": "pnr",
+    "locationLabel": "2,4 km",
+    "distanceMeters": 2400,
+    "endsAt": "2026-10-21T23:59:00+03:00",
+    "stockRemaining": 18,
+    "stockTotal": 200,
+    "isFavorite": false,
+    "isNew": false,
+    "tone": 1,
+    "categoryName": "Eğlence",
+    "bannerUrl": null,
+    "minAge": 16,
+    "maxAge": 30,
+    "buanReward": 100,
+    "steps": [
+      "“Fırsatı Yakala”ya dokun",
+      "Kasada QR veya PNR kodunu göster",
+      "İndirimini al, +100 BUAN kazan"
+    ],
+    "conditions": [
+      "Bir kullanıcı bu fırsattan 1 kez yararlanabilir.",
+      "İkinci giriş aynı gün ve aynı seans için geçerlidir.",
+      "Diğer kampanyalarla birleştirilemez."
+    ],
+    "validity": [
+      "21 Ekim 2026, 23:59’a kadar.",
+      "Kod alındıktan sonra 48 saat içinde kullanılmalı."
+    ],
+    "branch": {
+      "name": "Extrempark Nilüfer",
+      "distanceLabel": "2,4 km",
+      "hours": "Her gün 10:00–22:00",
+      "lat": 40.2156,
+      "lng": 28.98
+    },
+    "eligible": true,
+    "ineligibleReason": null,
+    "isClaimed": false
+  },
+  "message": "ok",
+  "errors": []
+}

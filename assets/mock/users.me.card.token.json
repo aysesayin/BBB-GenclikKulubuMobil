@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "data": {
+    "token": "GKC1.usr-demo.8315.mock",
+    "pin": "8315",
+    "ttlSeconds": 30
+  },
+  "message": "ok",
+  "errors": []
+}

@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "chd-deniz",
+        "displayName": "Deniz S. E.",
+        "initial": "D",
+        "age": 9,
+        "note": "2 aktif başvuru",
+        "mernisVerified": true
+      },
+      {
+        "id": "chd-ela",
+        "displayName": "Ela S. E.",
+        "initial": "E",
+        "age": 12,
+        "note": "Yüzme kursu",
+        "mernisVerified": true
+      }
+    ]
+  },
+  "message": "",
+  "errors": []
+}

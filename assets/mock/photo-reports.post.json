@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "data": {
+    "id": "rep-new",
+    "title": "Yeni gönderi",
+    "createdAt": "2026-10-16T12:00:00+03:00",
+    "typeLabel": "Güzellik",
+    "status": "pending",
+    "statusNote": "İnceleniyor"
+  },
+  "message": null,
+  "errors": []
+}

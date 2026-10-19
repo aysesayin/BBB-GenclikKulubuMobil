@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "data": {
+    "id": "evt-kariyer-cv",
+    "title": "Kariyer Atölyesi: İlk CV’n",
+    "categoryId": "kariyer",
+    "categoryLabel": "Kariyer",
+    "startsAt": "2026-10-21T19:00:00",
+    "endsAt": "2026-10-21T21:00:00",
+    "applyDeadline": "2026-10-20T23:59:00",
+    "placeName": "Millet Gençlik Spor Merkezi",
+    "placeNote": "2. kat · Atölye salonu",
+    "placeId": "plc-millet-gsm",
+    "lat": 40.2238,
+    "lng": 29.0052,
+    "price": 0,
+    "priceNote": "Katılım sertifikası verilir",
+    "ageMin": 18,
+    "ageMax": 29,
+    "capacity": 40,
+    "attendeeCount": 12,
+    "attendees": [{"initials": "SÇ", "tone": "tile1"}, {"initials": "OK", "tone": "tile3"}, {"initials": "DY", "tone": "tile6"}],
+    "checkInBuan": 200,
+    "program": "19:00 tanışma, 19:15 iyi bir CV’nin 6 parçası, 20:00 birebir CV okuma, 20:45 LinkedIn profili ipuçları. Dizüstü bilgisayarını getirirsen birlikte düzenleyelim.",
+    "cover": "generic",
+    "icon": "briefcase",
+    "tone": "tile1",
+    "applicationStatus": "none"
+  },
+  "message": "",
+  "errors": []
+}

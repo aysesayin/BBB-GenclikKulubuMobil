@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "data": {
+    "level": 3,
+    "name": "Kâşif",
+    "nextName": "Efsane",
+    "pointsToNext": 7550,
+    "progress": 0.62,
+    "tiers": [
+      "Çaylak",
+      "Gezgin",
+      "Kâşif",
+      "Efsane",
+      "Bursa Elçisi"
+    ]
+  },
+  "message": null,
+  "errors": []
+}

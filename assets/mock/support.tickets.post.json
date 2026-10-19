@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "data": {
+    "id": "tck-25010",
+    "number": "25010",
+    "subject": "Yeni talebin",
+    "type": "talep",
+    "createdAt": "2026-10-16T12:00:00+03:00",
+    "status": "received"
+  },
+  "message": "Talebin alındı.",
+  "errors": []
+}

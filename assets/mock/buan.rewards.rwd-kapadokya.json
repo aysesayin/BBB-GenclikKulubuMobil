@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": {
+    "id": "rwd-kapadokya",
+    "categoryId": "travel",
+    "categoryLabel": "Seyahat",
+    "title": "Kapadokya kültür turu",
+    "price": 40000,
+    "tile": 1,
+    "icon": "cable",
+    "description": "Rehber eşliğinde 2 günlük Kapadokya kültür turu; ulaşım ve konaklama dahil.",
+    "rules": [
+      "Tur tarihi kayıt sonrası bildirilir.",
+      "18 yaş altı için veli izni gerekir.",
+      "Takas edilen BUAN iade edilmez, kod devredilemez."
+    ],
+    "redeemInfo": "Tur kaydın için bu kodu Gençlik Kulübü masasında göster.",
+    "firstN": 20,
+    "firstNLeft": 7,
+    "perPersonLimit": 1,
+    "featured": true
+  },
+  "message": null,
+  "errors": []
+}

@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "data": {
+    "days": 7,
+    "bonusDay": 10,
+    "bonusAmount": 500,
+    "week": [
+      {
+        "date": "2026-10-12T00:00:00",
+        "done": true,
+        "today": false
+      },
+      {
+        "date": "2026-10-13T00:00:00",
+        "done": true,
+        "today": false
+      },
+      {
+        "date": "2026-10-14T00:00:00",
+        "done": true,
+        "today": false
+      },
+      {
+        "date": "2026-10-15T00:00:00",
+        "done": true,
+        "today": false
+      },
+      {
+        "date": "2026-10-16T00:00:00",
+        "done": true,
+        "today": true
+      },
+      {
+        "date": "2026-10-17T00:00:00",
+        "done": false,
+        "today": false
+      },
+      {
+        "date": "2026-10-18T00:00:00",
+        "done": false,
+        "today": false
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

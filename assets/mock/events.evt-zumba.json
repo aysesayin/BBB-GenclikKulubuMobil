@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "data": {
+    "id": "evt-zumba",
+    "title": "Parkta Zumba",
+    "categoryId": "zumba",
+    "categoryLabel": "Zumba",
+    "startsAt": "2026-10-17T10:00:00",
+    "endsAt": "2026-10-17T11:30:00",
+    "placeName": "Merinos Parkı açık hava sahnesi",
+    "placeNote": "Yağmurda Merinos AKKM fuayesi",
+    "lat": 40.1953,
+    "lng": 29.0452,
+    "price": 0,
+    "ageMin": 15,
+    "ageMax": 30,
+    "capacity": 80,
+    "attendeeCount": 46,
+    "attendees": [{"initials": "İB", "tone": "tile6"}, {"initials": "NA", "tone": "tile2"}, {"initials": "KT", "tone": "tile1"}, {"initials": "ŞE", "tone": "tile3"}, {"initials": "AG", "tone": "tile5"}],
+    "checkInBuan": 150,
+    "program": "10:00 ısınma, 10:15–11:15 eğitmen eşliğinde Zumba, 11:15 esneme. Rahat kıyafet ve su yeterli; mat gerekmez.",
+    "cover": "generic",
+    "icon": "music",
+    "tone": "tile6",
+    "applicationStatus": "none"
+  },
+  "message": "",
+  "errors": []
+}

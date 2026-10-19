@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "data": {
+    "balance": 12450,
+    "pending": 2000
+  },
+  "message": null,
+  "errors": []
+}

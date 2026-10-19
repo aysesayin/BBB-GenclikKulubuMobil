@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "data": {
+    "opportunityId": "opp-burulas",
+    "type": "qr",
+    "code": null,
+    "qr": "GK-CLM-BRL-4729-7Q2M",
+    "pin": "4729",
+    "expiresAt": "2026-10-18T23:59:00+03:00",
+    "buanReward": 100,
+    "brand": "Burulaş",
+    "logoText": "BRL",
+    "title": "Öğrenci aylık abonmanı · %25"
+  },
+  "message": "Fırsat senin!",
+  "errors": []
+}

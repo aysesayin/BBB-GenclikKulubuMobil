@@ -1,0 +1,14 @@
+{
+  "@@locale": "en",
+  "storyClose": "Close story",
+  "storyPrev": "Previous story",
+  "storyNext": "Next story",
+  "storyProgress": "Story {current} of {total}",
+  "@storyProgress": {"placeholders": {"current": {"type": "int"}, "total": {"type": "int"}}},
+  "storyAgoMinutes": "{count} min",
+  "@storyAgoMinutes": {"placeholders": {"count": {"type": "int"}}},
+  "storyAgoHours": "{count} h",
+  "@storyAgoHours": {"placeholders": {"count": {"type": "int"}}},
+  "storyAgoDays": "{count, plural, =1{1 day} other{{count} days}}",
+  "@storyAgoDays": {"placeholders": {"count": {"type": "int"}}}
+}

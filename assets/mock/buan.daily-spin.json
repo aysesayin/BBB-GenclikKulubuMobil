@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "data": {
+    "available": true,
+    "nextSpinAt": null,
+    "lastAmount": null,
+    "slices": [
+      {
+        "id": "s1",
+        "amount": 10
+      },
+      {
+        "id": "s2",
+        "amount": 50
+      },
+      {
+        "id": "s3",
+        "amount": 25
+      },
+      {
+        "id": "s4",
+        "amount": 200
+      },
+      {
+        "id": "s5",
+        "amount": 10
+      },
+      {
+        "id": "s6",
+        "amount": 100
+      },
+      {
+        "id": "s7",
+        "amount": 25
+      },
+      {
+        "id": "s8",
+        "amount": 75
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

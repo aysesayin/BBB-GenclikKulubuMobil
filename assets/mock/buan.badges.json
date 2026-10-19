@@ -1,0 +1,146 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "bdg-ilk-adim",
+        "title": "İlk Adım",
+        "icon": "step",
+        "tile": 5,
+        "earned": true,
+        "description": "İlk görevini tamamladın",
+        "condition": "",
+        "earnedAt": "2026-09-02T10:00:00"
+      },
+      {
+        "id": "bdg-seri-7",
+        "title": "7 Gün Seri",
+        "icon": "flame",
+        "tile": 6,
+        "earned": true,
+        "description": "",
+        "condition": "",
+        "earnedAt": "2026-10-16T09:00:00"
+      },
+      {
+        "id": "bdg-kultur",
+        "title": "Kültür Avcısı",
+        "icon": "museum",
+        "tile": 4,
+        "earned": true,
+        "description": "3 müzeye check-in",
+        "condition": ""
+      },
+      {
+        "id": "bdg-firsatci",
+        "title": "Fırsatçı",
+        "icon": "tag",
+        "tile": 1,
+        "earned": true,
+        "description": "5 fırsat kullandın",
+        "condition": ""
+      },
+      {
+        "id": "bdg-merakli",
+        "title": "Meraklı",
+        "icon": "quiz",
+        "tile": 3,
+        "earned": true,
+        "description": "10 quiz cevapladın",
+        "condition": ""
+      },
+      {
+        "id": "bdg-sosyal",
+        "title": "Sosyal Kelebek",
+        "icon": "users",
+        "tile": 2,
+        "earned": true,
+        "description": "2 arkadaşını davet ettin",
+        "condition": ""
+      },
+      {
+        "id": "bdg-kamp",
+        "title": "Kamp Ateşi",
+        "icon": "campfire",
+        "tile": 6,
+        "earned": true,
+        "description": "Gençlik kampına katıldın",
+        "condition": ""
+      },
+      {
+        "id": "bdg-merkez",
+        "title": "Gençlik Merkezi Fatihi",
+        "icon": "building",
+        "tile": 1,
+        "earned": false,
+        "description": "",
+        "condition": "7 / 10 merkez"
+      },
+      {
+        "id": "bdg-uludag",
+        "title": "Uludağ Zirvesi",
+        "icon": "mountain",
+        "tile": 1,
+        "earned": false,
+        "description": "",
+        "condition": "Uludağ etkinliğine katıl"
+      },
+      {
+        "id": "bdg-seri-30",
+        "title": "30 Gün Seri",
+        "icon": "flame",
+        "tile": 1,
+        "earned": false,
+        "description": "",
+        "condition": "23 gün kaldı"
+      },
+      {
+        "id": "bdg-gonullu",
+        "title": "Gönül Dostu",
+        "icon": "heart",
+        "tile": 1,
+        "earned": false,
+        "description": "",
+        "condition": "Gönüllü ol"
+      },
+      {
+        "id": "bdg-su",
+        "title": "Su Perisi",
+        "icon": "waves",
+        "tile": 1,
+        "earned": false,
+        "description": "",
+        "condition": "10 havuz girişi · 4/10"
+      },
+      {
+        "id": "bdg-lig",
+        "title": "Lig Şampiyonu",
+        "icon": "trophy",
+        "tile": 1,
+        "earned": false,
+        "description": "",
+        "condition": "Haftayı 1. bitir"
+      },
+      {
+        "id": "bdg-sehir-gozu",
+        "title": "Şehir Gözü",
+        "icon": "camera",
+        "tile": 1,
+        "earned": false,
+        "description": "",
+        "condition": "5 Çek Kazan onayı"
+      },
+      {
+        "id": "bdg-elci",
+        "title": "Bursa Elçisi",
+        "icon": "star",
+        "tile": 1,
+        "earned": false,
+        "description": "",
+        "condition": "Son seviyeye ulaş"
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

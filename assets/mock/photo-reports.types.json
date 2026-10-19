@@ -1,0 +1,81 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "beauty",
+        "label": "Güzellik",
+        "reward": 500,
+        "requiresPhoto": true,
+        "categories": [
+          {
+            "id": "view",
+            "label": "Manzara"
+          },
+          {
+            "id": "historic",
+            "label": "Tarihî yapı"
+          },
+          {
+            "id": "street-art",
+            "label": "Sokak sanatı"
+          },
+          {
+            "id": "nature",
+            "label": "Doğa"
+          }
+        ]
+      },
+      {
+        "id": "issue",
+        "label": "Sorun",
+        "reward": 500,
+        "requiresPhoto": true,
+        "categories": [
+          {
+            "id": "road",
+            "label": "Yol / kaldırım"
+          },
+          {
+            "id": "lighting",
+            "label": "Aydınlatma"
+          },
+          {
+            "id": "cleaning",
+            "label": "Temizlik"
+          },
+          {
+            "id": "park",
+            "label": "Park / oyun alanı"
+          }
+        ]
+      },
+      {
+        "id": "idea",
+        "label": "Fikir",
+        "reward": 250,
+        "requiresPhoto": false,
+        "categories": [
+          {
+            "id": "youth",
+            "label": "Gençlik"
+          },
+          {
+            "id": "transport",
+            "label": "Ulaşım"
+          },
+          {
+            "id": "environment",
+            "label": "Çevre"
+          },
+          {
+            "id": "culture",
+            "label": "Kültür-sanat"
+          }
+        ]
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

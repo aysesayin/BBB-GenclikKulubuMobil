@@ -1,0 +1,20 @@
+{
+  "@@locale": "tr",
+  "notifTitle": "Bildirimler",
+  "notifReadAll": "Tümünü okundu yap",
+  "notifCategorySemantics": "Kategori",
+  "notifCatEarn": "Kazanım",
+  "notifCatOpportunity": "Fırsat",
+  "notifCatEvent": "Etkinlik",
+  "notifCatReservation": "Rezervasyon",
+  "notifCatAnnouncement": "Duyuru",
+  "notifGroupToday": "Bugün",
+  "notifGroupYesterday": "Dün",
+  "notifGroupThisWeek": "Bu hafta",
+  "notifGroupEarlier": "Daha önce",
+  "notifNew": "Yeni",
+  "notifMeta": "{time} · {category}",
+  "@notifMeta": {"placeholders": {"time": {"type": "String"}, "category": {"type": "String"}}},
+  "notifEmptyTitle": "Hepsi bu kadar",
+  "notifEmptyMessage": "Bu kategoride bildirim yok. Yeni bir şey olunca ilk sen duyacaksın."
+}

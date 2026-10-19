@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "data": {
+    "date": "2026-10-16",
+    "goal": 8000,
+    "reward": 750,
+    "steps": 8120,
+    "claimed": true,
+    "weeklyTargetDays": 6,
+    "awarded": 750,
+    "week": [
+      {
+        "date": "2026-10-10",
+        "steps": 9120
+      },
+      {
+        "date": "2026-10-11",
+        "steps": 8410
+      },
+      {
+        "date": "2026-10-12",
+        "steps": 5300
+      },
+      {
+        "date": "2026-10-13",
+        "steps": 10200
+      },
+      {
+        "date": "2026-10-14",
+        "steps": 8050
+      },
+      {
+        "date": "2026-10-15",
+        "steps": 3900
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

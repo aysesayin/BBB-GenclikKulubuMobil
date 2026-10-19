@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "data": {
+    "id": "chd-yeni",
+    "displayName": "Can S. E.",
+    "initial": "C",
+    "age": 7,
+    "note": "Yeni eklendi",
+    "mernisVerified": true
+  },
+  "message": "Çocuk MERNİS ile doğrulandı.",
+  "errors": []
+}

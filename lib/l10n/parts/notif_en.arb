@@ -1,0 +1,20 @@
+{
+  "@@locale": "en",
+  "notifTitle": "Notifications",
+  "notifReadAll": "Mark all as read",
+  "notifCategorySemantics": "Category",
+  "notifCatEarn": "Earnings",
+  "notifCatOpportunity": "Deal",
+  "notifCatEvent": "Event",
+  "notifCatReservation": "Booking",
+  "notifCatAnnouncement": "News",
+  "notifGroupToday": "Today",
+  "notifGroupYesterday": "Yesterday",
+  "notifGroupThisWeek": "This week",
+  "notifGroupEarlier": "Earlier",
+  "notifNew": "New",
+  "notifMeta": "{time} · {category}",
+  "@notifMeta": {"placeholders": {"time": {"type": "String"}, "category": {"type": "String"}}},
+  "notifEmptyTitle": "That's all",
+  "notifEmptyMessage": "No notifications in this category. You'll be the first to know when something happens."
+}

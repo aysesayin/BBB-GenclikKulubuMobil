@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {"id": "int-spor", "label": "Spor", "icon": "ball", "tile": 3},
+      {"id": "int-muzik", "label": "Müzik", "icon": "music", "tile": 1},
+      {"id": "int-teknoloji", "label": "Teknoloji", "icon": "tech", "tile": 4},
+      {"id": "int-doga", "label": "Doğa & Kamp", "icon": "tent", "tile": 2},
+      {"id": "int-sanat", "label": "Sanat", "icon": "art", "tile": 6},
+      {"id": "int-kariyer", "label": "Kariyer", "icon": "career", "tile": 5},
+      {"id": "int-oyun", "label": "Oyun", "icon": "game", "tile": 1},
+      {"id": "int-yemek", "label": "Yemek", "icon": "food", "tile": 6},
+      {"id": "int-gezi", "label": "Gezi", "icon": "travel", "tile": 3},
+      {"id": "int-gonullu", "label": "Gönüllülük", "icon": "heart", "tile": 2}
+    ]
+  },
+  "message": "",
+  "errors": []
+}

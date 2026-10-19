@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "data": {
+    "id": "trn-42",
+    "title": "Bursa Bilgi Turnuvası",
+    "gameId": "game-bursa-bilgi",
+    "totalPrize": 5000,
+    "winnerCount": 10,
+    "endsAt": "2026-10-19T23:59:00+03:00",
+    "rank": 37,
+    "participants": 1284
+  },
+  "message": null,
+  "errors": []
+}

@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "data": {
+    "id": "usr-demo",
+    "firstName": "Ayşe",
+    "lastName": "Su",
+    "tcknMasked": "1234*****90",
+    "memberNo": "0016 4821",
+    "level": 3,
+    "levelName": "Kâşif",
+    "phoneMasked": "0532 *** ** 90",
+    "emailMasked": "a***e@ornek.com",
+    "avatarUrl": null,
+    "passwordChangedAt": "2026-07-12T10:00:00+03:00",
+    "buanBalance": 12450,
+    "streak": 7
+  },
+  "message": "",
+  "errors": []
+}

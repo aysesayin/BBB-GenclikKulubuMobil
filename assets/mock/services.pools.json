@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      { "id": "fac-fethiye", "name": "Fethiye", "district": "Nilüfer", "typeLabel": "Olimpik", "tile": 3 },
+      { "id": "fac-mihrapli", "name": "Mihraplı", "district": "Osmangazi", "typeLabel": "Yarı olimpik", "tile": 2 },
+      { "id": "fac-gursu", "name": "Gürsu", "district": "Gürsu", "typeLabel": "Kapalı", "tile": 4 },
+      { "id": "fac-kestel", "name": "Kestel", "district": "Kestel", "typeLabel": "Kapalı", "tile": 6 }
+    ],
+    "ageRules": { "minAge": 6, "guardianUntil": 15, "permissionUntil": 17 },
+    "dailySwimConfirmation": true
+  },
+  "message": null,
+  "errors": []
+}
