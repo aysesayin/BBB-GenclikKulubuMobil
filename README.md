@@ -33,6 +33,18 @@ Flavor'lar: `ENV=dev|staging|prod`, `MOCK=true|false`. Tüm adresler yalnız `li
 Demo (mock) girişi: T.C. Kimlik No `10000000146` + herhangi bir şifre (`yanlis123` hatalı şifre durumunu gösterir).
 Kayıt akışında SMS kodu `481926`.
 
+## Web test sürümü
+
+- Herkese açık adres: https://aysesayin.github.io/BBB-GenclikKulubuMobil/ (`gh-pages` dalı, demo veri).
+- Yeniden yayınlamak için:
+
+```bash
+flutter build web --release --dart-define=MOCK=true --no-web-resources-cdn --pwa-strategy=none --base-href /BBB-GenclikKulubuMobil/ -o build/web_pages
+```
+
+  Sonra `build/web_pages` içeriğini (`.nojekyll` dahil, `canvaskit/skwasm*` hariç) `gh-pages` dalına gönderin.
+- Belediye ağı `*.netlify.app` adreslerini engelliyor; GitHub Pages ağ içinden de açılıyor.
+
 ## Kalite
 
 ```bash
