@@ -1,0 +1,78 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "tns-ozel-ders",
+        "itemId": "itm-tenis-ozel-ders",
+        "name": "Özel ders",
+        "subtitle": "Antrenörle birebir · 60 dk",
+        "tile": 5,
+        "ageGroupIds": []
+      },
+      {
+        "id": "tns-acik-kort",
+        "itemId": "itm-tenis-acik-kort",
+        "name": "Açık kort",
+        "subtitle": "Sert zemin · saatlik",
+        "tile": 2,
+        "ageGroupIds": []
+      },
+      {
+        "id": "tns-kapali-kort",
+        "itemId": "itm-tenis-kapali-kort",
+        "name": "Kapalı kort",
+        "subtitle": "Kış dönemi · saatlik",
+        "tile": 3,
+        "ageGroupIds": []
+      },
+      {
+        "id": "tns-toprak-kort",
+        "itemId": "itm-tenis-toprak-kort",
+        "name": "Toprak kort",
+        "subtitle": "Mayıs–Ekim · saatlik",
+        "tile": 6,
+        "ageGroupIds": []
+      },
+      {
+        "id": "tns-yetiskin-kursu",
+        "itemId": "itm-tenis-yetiskin-kursu",
+        "name": "Yetişkin kursu",
+        "subtitle": "Haftada 2 · 8 hafta",
+        "tile": 4,
+        "ageGroupIds": [
+          "age-yetiskin"
+        ]
+      },
+      {
+        "id": "tns-takim-altyapi",
+        "itemId": "itm-tenis-takim-altyapi",
+        "name": "Takım alt yapı",
+        "subtitle": "Seçmeyle · 8–14 yaş",
+        "tile": 1,
+        "ageGroupIds": [
+          "age-6-9",
+          "age-10-14"
+        ]
+      },
+      {
+        "id": "tns-pickleball",
+        "itemId": "itm-tenis-pickleball",
+        "name": "Pickleball",
+        "subtitle": "Başlangıç grubu",
+        "tile": 5,
+        "ageGroupIds": []
+      },
+      {
+        "id": "tns-kort-kirasi",
+        "itemId": "itm-tenis-kort-kirasi",
+        "name": "Kort kirası",
+        "subtitle": "Arkadaşlarınla · 4 kişiye kadar",
+        "tile": 3,
+        "ageGroupIds": []
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

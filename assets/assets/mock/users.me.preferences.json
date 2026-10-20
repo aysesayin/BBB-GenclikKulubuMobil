@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "data": {
+    "opportunities": true,
+    "events": true,
+    "streakReminder": true,
+    "announcements": false,
+    "achievements": true,
+    "language": "tr"
+  },
+  "message": "",
+  "errors": []
+}

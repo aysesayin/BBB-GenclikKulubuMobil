@@ -1,0 +1,113 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "clm-1001",
+        "opportunityId": "opp-extrempark",
+        "brand": "Extrempark",
+        "logoText": "EXT",
+        "discountLabel": "1+1",
+        "title": "Tırmanma duvarı 1 alana 1 bedava",
+        "tone": 1,
+        "status": "active",
+        "expiresAt": "2026-10-18T10:00:00+03:00",
+        "claim": {
+          "opportunityId": "opp-extrempark",
+          "type": "pnr",
+          "code": null,
+          "qr": "GK-PNR-K7Q2M8",
+          "pin": "K7Q2M8",
+          "expiresAt": "2026-10-18T10:00:00+03:00",
+          "buanReward": 100,
+          "brand": "Extrempark",
+          "logoText": "EXT",
+          "title": "Tırmanma duvarı · 1+1"
+        }
+      },
+      {
+        "id": "clm-1002",
+        "opportunityId": "opp-burulas",
+        "brand": "Burulaş",
+        "logoText": "BRL",
+        "discountLabel": "%25",
+        "title": "Öğrenci aylık abonmanı",
+        "tone": 3,
+        "status": "active",
+        "expiresAt": "2026-10-28T23:59:00+03:00",
+        "claim": {
+          "opportunityId": "opp-burulas",
+          "type": "qr",
+          "code": null,
+          "qr": "GK-CLM-BRL-4729-7Q2M",
+          "pin": "4729",
+          "expiresAt": "2026-10-28T23:59:00+03:00",
+          "buanReward": 100,
+          "brand": "Burulaş",
+          "logoText": "BRL",
+          "title": "Öğrenci aylık abonmanı · %25"
+        }
+      },
+      {
+        "id": "clm-1003",
+        "opportunityId": "opp-kitapduragi",
+        "brand": "Kitap Durağı",
+        "logoText": "KD",
+        "discountLabel": "%20",
+        "title": "Tüm kitaplarda öğrenci indirimi",
+        "tone": 6,
+        "status": "active",
+        "expiresAt": "2026-11-16T23:59:00+03:00",
+        "claim": {
+          "opportunityId": "opp-kitapduragi",
+          "type": "code",
+          "code": "KD-20OGR-58",
+          "qr": null,
+          "pin": null,
+          "expiresAt": "2026-11-16T23:59:00+03:00",
+          "buanReward": 100,
+          "brand": "Kitap Durağı",
+          "logoText": "KD",
+          "title": "Tüm kitaplarda · %20"
+        }
+      },
+      {
+        "id": "clm-0991",
+        "opportunityId": "opp-teleferik",
+        "brand": "Burfaş · Teleferik",
+        "logoText": "TLF",
+        "discountLabel": "%30",
+        "title": "Teleferik gidiş-dönüş",
+        "tone": 2,
+        "status": "used",
+        "usedAt": "2026-10-12T14:20:00+03:00",
+        "buanEarned": 100
+      },
+      {
+        "id": "clm-0987",
+        "opportunityId": "opp-kafe",
+        "brand": "[Kafe adı]",
+        "logoText": "KF",
+        "discountLabel": "%10",
+        "title": "Sıcak içeceklerde indirim",
+        "tone": 6,
+        "status": "used",
+        "usedAt": "2026-10-03T09:10:00+03:00",
+        "buanEarned": 100
+      },
+      {
+        "id": "clm-0950",
+        "opportunityId": "opp-sinema",
+        "brand": "[Sinema]",
+        "logoText": "SNM",
+        "discountLabel": "%40",
+        "title": "Hafta içi film bileti",
+        "tone": 4,
+        "status": "expired",
+        "expiresAt": "2026-09-28T23:59:00+03:00"
+      }
+    ]
+  },
+  "message": "ok",
+  "errors": []
+}

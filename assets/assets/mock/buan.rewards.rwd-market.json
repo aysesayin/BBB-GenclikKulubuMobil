@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "data": {
+    "id": "rwd-market",
+    "categoryId": "shopping",
+    "categoryLabel": "Alışveriş",
+    "title": "Market hediye çeki 150 ₺",
+    "price": 9000,
+    "tile": 6,
+    "icon": "bag",
+    "description": "Anlaşmalı marketlerde geçerli 150 ₺ hediye çeki.",
+    "rules": [
+      "Çek 60 gün geçerlidir.",
+      "Alkol ve tütün ürünlerinde kullanılamaz.",
+      "Takas edilen BUAN iade edilmez, kod devredilemez."
+    ],
+    "redeemInfo": "Kasada bu kodu göster.",
+    "stock": 300,
+    "perPersonLimit": 2,
+    "perPersonPeriod": "month"
+  },
+  "message": null,
+  "errors": []
+}

@@ -1,0 +1,82 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "apl-fethiye-gunluk",
+        "title": "Fethiye Havuzu · Bayan Günlük Giriş",
+        "subtitle": "Cum 16 Eki · 18:00–19:00 · Kendim",
+        "status": "approved",
+        "paid": true,
+        "ticket": {
+          "qrToken": "BBGK-APL-FETHIYE-5271",
+          "code": "5271"
+        },
+        "canCancel": true,
+        "cancelKind": "request",
+        "sourceType": "service",
+        "sourceId": "itm-fethiye-gunluk",
+        "tile": 3,
+        "icon": "wave"
+      },
+      {
+        "id": "apl-uludag",
+        "title": "Uludağ Doğa Yürüyüşü",
+        "subtitle": "Paz 18 Eki · 08:30 · Sarıalan",
+        "status": "accepted",
+        "quotaNote": "Doğa ve Macera kotası: 6 ayda 1 · sonraki hak Nisan 2027",
+        "ticket": {
+          "qrToken": "BBGK-APL-ULUDAG-8834",
+          "code": "8834"
+        },
+        "canCancel": true,
+        "cancelKind": "withdraw",
+        "sourceType": "event",
+        "sourceId": "evt-uludag-yuruyus",
+        "tile": 2,
+        "icon": "mountain"
+      },
+      {
+        "id": "apl-mihrapli-kurs",
+        "title": "Yüzme Kursu · Güz 2026",
+        "subtitle": "Deniz (9) · Mihraplı · Sal–Per 17:00",
+        "status": "pendingPayment",
+        "paymentDueAt": "2026-10-17T14:00:00",
+        "note": "Geç katılım indirimi uygulandı: %25",
+        "canCancel": true,
+        "cancelKind": "cancel",
+        "sourceType": "service",
+        "sourceId": "itm-mihrapli-kurs",
+        "tile": 6,
+        "icon": "cap"
+      },
+      {
+        "id": "apl-kariyer",
+        "title": "Kariyer Atölyesi: Mülakat",
+        "subtitle": "2 Eyl · Millet GSM",
+        "status": "attended",
+        "earnedBuan": 300,
+        "canCancel": false,
+        "sourceType": "event",
+        "sourceId": "evt-kariyer-cv",
+        "tile": 1,
+        "icon": "cap"
+      },
+      {
+        "id": "apl-gursu",
+        "title": "Gürsu Havuzu · Karma",
+        "subtitle": "28 Ağu · 14:00",
+        "status": "cancelled",
+        "medicalMakeUp": true,
+        "couponAmount": 30,
+        "canCancel": false,
+        "sourceType": "service",
+        "sourceId": "itm-kapali-gunluk",
+        "tile": 3,
+        "icon": "wave"
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

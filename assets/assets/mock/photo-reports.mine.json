@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "rep-1",
+        "title": "Tophane’de gün batımı",
+        "createdAt": "2026-10-12T18:20:00+03:00",
+        "typeLabel": "Güzellik",
+        "status": "approved",
+        "reward": 500
+      },
+      {
+        "id": "rep-2",
+        "title": "Kırık bank, Kültürpark",
+        "createdAt": "2026-10-14T11:05:00+03:00",
+        "typeLabel": "Sorun",
+        "status": "pending",
+        "statusNote": "Belediyeye iletildi"
+      },
+      {
+        "id": "rep-3",
+        "title": "Bulanık fotoğraf",
+        "createdAt": "2026-10-09T09:40:00+03:00",
+        "typeLabel": "Güzellik",
+        "status": "rejected",
+        "statusNote": "Görsel net değil"
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

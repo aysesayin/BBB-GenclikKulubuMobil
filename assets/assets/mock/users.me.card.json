@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "data": {
+    "firstName": "Ayşe",
+    "lastName": "Su",
+    "memberNo": "0016 4821",
+    "level": 3,
+    "levelName": "Kâşif",
+    "maskedTckn": "1234*****90"
+  },
+  "message": "ok",
+  "errors": []
+}

@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "mov-1",
+        "title": "Telafi kuponu tanımlandı",
+        "date": "2026-08-29T10:00:00+03:00",
+        "kind": "amount",
+        "value": 30
+      },
+      {
+        "id": "mov-2",
+        "title": "Kamp ödemesinde kullanıldı",
+        "date": "2026-09-20T10:00:00+03:00",
+        "kind": "percent",
+        "value": -15
+      },
+      {
+        "id": "mov-3",
+        "title": "Kupon eklendi · GENC15",
+        "date": "2026-09-18T10:00:00+03:00",
+        "kind": "percent",
+        "value": 15
+      }
+    ]
+  },
+  "message": "",
+  "errors": []
+}

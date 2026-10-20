@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "data": {
+    "correctOptionId": "c",
+    "awarded": 100,
+    "explanation": null
+  },
+  "message": null,
+  "errors": []
+}

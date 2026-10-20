@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "data": {
+    "id": "plc-fethiye-spor",
+    "name": "Fethiye Spor Kompleksi",
+    "categoryLabel": "Spor · Havuz",
+    "district": "Nilüfer",
+    "kind": "facility",
+    "openNow": true,
+    "statusLabel": "Açık · 23:00’e kadar",
+    "description": "[Tesis açıklaması admin panelinden gelir.] Yarı olimpik kapalı havuz, tenis kortları ve spor okulları.",
+    "address": "Fethiye Mah., Nilüfer / Bursa",
+    "lat": 40.2129,
+    "lng": 28.9861,
+    "gallery": [{"tone": "teal"}, {"tone": "sun"}],
+    "hours": [{"days": "Pazartesi – Cumartesi", "hours": "07:00 – 23:00"}, {"days": "Pazar", "hours": "09:00 – 20:00"}],
+    "amenities": ["Kapalı havuz", "Tenis kortu", "Soyunma odası", "Otopark"],
+    "actions": [
+      {"type": "checkin", "title": "Havuz girişinde check-in yap", "buan": 150},
+      {"type": "task", "title": "Bu ay 4 kez yüz", "buan": 400}
+    ],
+    "checkInEnabled": true,
+    "favorite": false
+  },
+  "message": "",
+  "errors": []
+}

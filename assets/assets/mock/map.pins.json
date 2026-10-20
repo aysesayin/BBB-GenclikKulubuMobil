@@ -1,0 +1,50 @@
+{
+  "success": true,
+  "data": {
+    "categories": [
+      {"id": "tiyatro", "label": "Tiyatro", "color": "hotFill"},
+      {"id": "sosyal", "label": "Sosyal", "color": "cta"},
+      {"id": "spor", "label": "Spor", "color": "secondary"},
+      {"id": "kultur", "label": "Kültür", "color": "buanFill"},
+      {"id": "galeri", "label": "Galeri", "color": "primary"},
+      {"id": "genclik-merkezi", "label": "Gençlik Merkezi", "color": "teal"}
+    ],
+    "pins": [
+      {"id": "pin-sehir-tiyatrosu", "layer": "places", "name": "Bursa Şehir Tiyatrosu", "lat": 40.1921, "lng": 29.0566, "categoryId": "tiyatro", "subtitle": "Tiyatro · Osmangazi · 1,2 km", "status": "Bugün 19:30 oyun var", "tone": "tile1", "icon": "theatre", "targetId": "plc-sehir-tiyatrosu"},
+      {"id": "pin-asik-veysel", "layer": "places", "name": "Aşık Veysel Gençlik Merkezi", "lat": 40.2108, "lng": 29.0398, "categoryId": "genclik-merkezi", "subtitle": "Gençlik Merkezi · 650 m", "status": "Açık · 22:00’ye kadar", "tone": "tile3", "icon": "youth", "targetId": "plc-asik-veysel-gm"},
+      {"id": "pin-millet-gsm", "layer": "places", "name": "Millet Gençlik Spor Merkezi", "lat": 40.2238, "lng": 29.0052, "categoryId": "genclik-merkezi", "subtitle": "Gençlik Merkezi · Spor · 3,4 km", "status": "Açık · 23:00’e kadar", "tone": "tile3", "icon": "youth", "targetId": "plc-millet-gsm"},
+      {"id": "pin-muradiye-gm", "layer": "places", "name": "Muradiye Hüsnü Züber Gençlik Merkezi", "lat": 40.1897, "lng": 29.0459, "categoryId": "genclik-merkezi", "subtitle": "Gençlik Merkezi · Muradiye · 1,4 km", "status": "Açık · 21:00’e kadar", "tone": "tile3", "icon": "youth", "targetId": "plc-muradiye-gm"},
+      {"id": "pin-vatan-gm", "layer": "places", "name": "Vatan Gençlik Merkezi", "lat": 40.1995, "lng": 29.0785, "categoryId": "genclik-merkezi", "subtitle": "Gençlik Merkezi · Osmangazi · 2,1 km", "status": "Açık · 21:00’e kadar", "tone": "tile3", "icon": "youth", "targetId": "plc-vatan-gm"},
+      {"id": "pin-yildirim-gm", "layer": "places", "name": "Yıldırım Gençlik Merkezi", "lat": 40.1868, "lng": 29.1047, "categoryId": "genclik-merkezi", "subtitle": "Gençlik Merkezi · Yıldırım · 3,8 km", "status": "Açık · 21:00’e kadar", "tone": "tile3", "icon": "youth", "targetId": "plc-yildirim-gm"},
+      {"id": "pin-muhsin-gm", "layer": "places", "name": "Muhsin Yazıcıoğlu Gençlik Merkezi", "lat": 40.2041, "lng": 29.1118, "categoryId": "genclik-merkezi", "subtitle": "Gençlik Merkezi · Yıldırım · 4,6 km", "status": "Kapalı · yarın 09:00’da açılır", "statusTone": "warn", "tone": "tile3", "icon": "youth", "targetId": "plc-muhsin-yazicioglu-gm"},
+      {"id": "pin-gorukle-gm", "layer": "places", "name": "Görükle Gençlik Merkezi", "lat": 40.2275, "lng": 28.8662, "categoryId": "genclik-merkezi", "subtitle": "Gençlik Merkezi · Nilüfer · 16 km", "status": "Açık · 22:00’ye kadar", "tone": "tile3", "icon": "youth", "targetId": "plc-gorukle-gm"},
+      {"id": "pin-mudanya-gm", "layer": "places", "name": "Mudanya Gençlik Merkezi", "lat": 40.3752, "lng": 28.8831, "categoryId": "genclik-merkezi", "subtitle": "Gençlik Merkezi · Mudanya · 28 km", "status": "Açık · 21:00’e kadar", "tone": "tile3", "icon": "youth", "targetId": "plc-mudanya-gm"},
+      {"id": "pin-gemlik-gm", "layer": "places", "name": "Gemlik Gençlik Merkezi", "lat": 40.4318, "lng": 29.1563, "categoryId": "genclik-merkezi", "subtitle": "Gençlik Merkezi · Gemlik · 30 km", "status": "Açık · 21:00’e kadar", "tone": "tile3", "icon": "youth", "targetId": "plc-gemlik-gm"},
+      {"id": "pin-inegol-gm", "layer": "places", "name": "İnegöl Gençlik Merkezi", "lat": 40.0781, "lng": 29.5128, "categoryId": "genclik-merkezi", "subtitle": "Gençlik Merkezi · İnegöl · 40 km", "status": "Açık · 21:00’e kadar", "tone": "tile3", "icon": "youth", "targetId": "plc-inegol-gm"},
+      {"id": "pin-fethiye-spor", "layer": "places", "name": "Fethiye Spor Kompleksi", "lat": 40.2129, "lng": 28.9861, "categoryId": "spor", "subtitle": "Spor · Havuz · 2,8 km", "status": "Açık · 23:00’e kadar", "tone": "tile5", "icon": "sport", "targetId": "plc-fethiye-spor"},
+      {"id": "pin-merinos-stadyum", "layer": "places", "name": "Merinos Atatürk Stadyumu", "lat": 40.1979, "lng": 29.0412, "categoryId": "spor", "subtitle": "Spor · Stadyum · 1,9 km", "status": "Etkinlik günlerinde açık", "tone": "tile5", "icon": "sport", "targetId": "plc-merinos-stadyumu"},
+      {"id": "pin-kozahan", "layer": "places", "name": "Kozahan", "lat": 40.1838, "lng": 29.0641, "categoryId": "kultur", "subtitle": "Kültür · Tarihî çarşı · 1,6 km", "status": "Açık · 20:00’ye kadar", "tone": "tile4", "icon": "museum", "targetId": "plc-kozahan"},
+      {"id": "pin-ulu-cami", "layer": "places", "name": "Ulu Cami", "lat": 40.1842, "lng": 29.0616, "categoryId": "kultur", "subtitle": "Kültür · Tarihî yapı · 1,5 km", "status": "Ziyarete açık", "tone": "tile4", "icon": "museum", "targetId": "plc-ulu-cami"},
+      {"id": "pin-tayyare", "layer": "places", "name": "Tayyare Kültür Merkezi", "lat": 40.1856, "lng": 29.0593, "categoryId": "kultur", "subtitle": "Kültür · Sahne · 1,3 km", "status": "Bugün 20:00 konser", "tone": "tile4", "icon": "museum", "targetId": "plc-tayyare-km"},
+      {"id": "pin-tophane-galeri", "layer": "places", "name": "Tophane Sanat Galerisi", "lat": 40.1868, "lng": 29.0556, "categoryId": "galeri", "subtitle": "Galeri · Osmangazi · 1,1 km", "status": "Açık · 19:00’a kadar", "tone": "tile4", "icon": "gallery", "targetId": "plc-tophane-galeri"},
+      {"id": "pin-kent-meydani", "layer": "places", "name": "Kent Meydanı Gençlik Noktası", "lat": 40.1985, "lng": 29.0601, "categoryId": "sosyal", "subtitle": "Sosyal · Buluşma noktası · 800 m", "status": "Her gün açık", "tone": "tile6", "icon": "youth", "targetId": "plc-kent-meydani"},
+
+      {"id": "pin-evt-arduino", "layer": "events", "name": "Arduino ile ilk robotun", "lat": 40.2108, "lng": 29.0398, "categoryId": "sosyal", "subtitle": "22 Eki · Aşık Veysel GM", "status": "DOLU · bekleme listesi", "statusTone": "warn", "color": "primary", "tone": "tile3", "icon": "calendar", "targetId": "evt-arduino-robot"},
+      {"id": "pin-evt-kariyer", "layer": "events", "name": "Kariyer Atölyesi: İlk CV’n", "lat": 40.2238, "lng": 29.0052, "categoryId": "sosyal", "subtitle": "21 Eki · Millet GSM", "status": "12/40 kontenjan", "color": "cta", "tone": "tile6", "icon": "calendar", "targetId": "evt-kariyer-cv"},
+      {"id": "pin-evt-zumba", "layer": "events", "name": "Parkta Zumba", "lat": 40.1953, "lng": 29.0452, "categoryId": "spor", "subtitle": "17 Eki · Merinos Parkı", "status": "46/80 kontenjan", "tone": "tile5", "icon": "calendar", "targetId": "evt-zumba"},
+      {"id": "pin-evt-uludag", "layer": "events", "name": "Uludağ Doğa Yürüyüşü", "lat": 40.1047, "lng": 29.1225, "categoryId": "spor", "subtitle": "18 Eki · Sarıalan", "status": "34/50 kontenjan", "tone": "tile2", "icon": "calendar", "targetId": "evt-uludag-yuruyus"},
+      {"id": "pin-evt-tayyare", "layer": "events", "name": "Gençlik Konseri", "lat": 40.1856, "lng": 29.0593, "categoryId": "kultur", "subtitle": "20 Eki · Tayyare KM", "status": "120/300 kontenjan", "tone": "tile4", "icon": "calendar", "targetId": "evt-zumba"},
+      {"id": "pin-evt-kozahan", "layer": "events", "name": "Kozahan Fotoğraf Yürüyüşü", "lat": 40.1838, "lng": 29.0641, "categoryId": "kultur", "subtitle": "19 Eki · Kozahan", "status": "18/25 kontenjan", "tone": "tile4", "icon": "calendar", "targetId": "evt-zumba"},
+      {"id": "pin-evt-tiyatro", "layer": "events", "name": "Gençlere Prova Ziyareti", "lat": 40.1921, "lng": 29.0566, "categoryId": "tiyatro", "subtitle": "23 Eki · Şehir Tiyatrosu", "status": "Son 4 kişi", "statusTone": "warn", "tone": "tile1", "icon": "calendar", "targetId": "evt-zumba"},
+
+      {"id": "pin-opp-kitap", "layer": "opportunities", "name": "Kitap Durağı %20", "lat": 40.1880, "lng": 29.0602, "categoryId": "sosyal", "subtitle": "Kitap · 1,1 km", "status": "31 gün kaldı", "color": "hotFill", "tone": "tile1", "icon": "tag", "targetId": "opp-kitapduragi"},
+      {"id": "pin-opp-kafe", "layer": "opportunities", "name": "[Kafe adı] %10", "lat": 40.1902, "lng": 29.0645, "categoryId": "sosyal", "subtitle": "Yemek · 650 m", "status": "3 gün kaldı · son 6 kod", "statusTone": "warn", "color": "hotFill", "tone": "tile6", "icon": "tag", "targetId": "opp-kafe"},
+      {"id": "pin-opp-teleferik", "layer": "opportunities", "name": "Teleferik gençlik bileti", "lat": 40.1752, "lng": 29.0901, "categoryId": "spor", "subtitle": "Ulaşım · Teferrüç · 3 km", "status": "12 gün kaldı", "color": "hotFill", "tone": "tile4", "icon": "tag", "targetId": "opp-teleferik"},
+      {"id": "pin-opp-extrempark", "layer": "opportunities", "name": "Extrempark %25", "lat": 40.2342, "lng": 29.0108, "categoryId": "spor", "subtitle": "Macera · 5 km", "status": "20 gün kaldı", "color": "hotFill", "tone": "tile5", "icon": "tag", "targetId": "opp-extrempark"},
+      {"id": "pin-opp-burulas", "layer": "opportunities", "name": "BURULAŞ öğrenci kart", "lat": 40.1985, "lng": 29.0601, "categoryId": "sosyal", "subtitle": "Ulaşım · Kent Meydanı", "status": "Süresiz", "color": "hotFill", "tone": "tile3", "icon": "tag", "targetId": "opp-burulas"},
+      {"id": "pin-opp-dil", "layer": "opportunities", "name": "Dil okulu %15", "lat": 40.2101, "lng": 28.9922, "categoryId": "kultur", "subtitle": "Eğitim · 2,6 km", "status": "45 gün kaldı", "color": "hotFill", "tone": "tile4", "icon": "tag", "targetId": "opp-dilokulu"}
+    ]
+  },
+  "message": "",
+  "errors": []
+}

@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "message": "",
+  "errors": [],
+  "data": {
+    "id": "sto-genclik-kampi",
+    "author": "Gençlik Kulübü",
+    "authorInitials": "GK",
+    "publishedAt": "2026-10-16T08:00:00",
+    "slides": [
+      { "id": "sld-kamp", "tag": "Kamp", "title": "Gençlik Kampı kayıtları açıldı!", "body": "Orhaneli Göknükbelen’de 3 gün doğa, ateş başı sohbet ve oryantiring. Kontenjan 60 kişi.", "ctaLabel": "Detaya git", "link": { "type": "event", "id": "evt-genclik-kampi" }, "theme": "teal" },
+      { "id": "sld-kitap", "tag": "Yeni fırsat", "title": "Kitaplarda %20 öğrenci indirimi", "body": "Kitap Durağı’nın tüm şubelerinde, kasada QR kodunu göster yeter.", "ctaLabel": "Fırsatı yakala", "link": { "type": "opportunity", "id": "opp-kitapduragi" }, "theme": "buan" },
+      { "id": "sld-atolye", "tag": "Duyuru", "title": "Kış dönemi atölyeleri başlıyor", "body": "Kodlama, dil, müzik ve tasarım atölyeleri 20 gençlik merkezinde.", "ctaLabel": "Etkinliklere bak", "link": { "type": "events" }, "theme": "fresh" }
+    ]
+  }
+}

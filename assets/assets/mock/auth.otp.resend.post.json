@@ -1,0 +1,6 @@
+{
+  "success": true,
+  "data": {"maskedPhone": "0532 *** ** 90", "resendIn": 45, "length": 6},
+  "message": "",
+  "errors": []
+}

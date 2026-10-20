@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "message": "",
+  "errors": [],
+  "meta": { "page": 1, "pageSize": 30, "total": 7 },
+  "data": {
+    "items": [
+      { "id": "ntf-1", "category": "earn", "title": "+750 BUAN hesabında", "body": "Bugün 8.000 adımı geçtin, serin 7 gün oldu.", "createdAt": "2026-10-16T09:12:00", "unread": true, "icon": "coin", "tone": 4, "link": { "type": "history" } },
+      { "id": "ntf-2", "category": "opportunity", "title": "Extrempark 1+1 bitmek üzere", "body": "Son 5 gün, 18 kod kaldı.", "createdAt": "2026-10-16T08:30:00", "unread": true, "icon": "tag", "tone": 1, "link": { "type": "opportunity", "id": "opp-extrempark" } },
+      { "id": "ntf-3", "category": "earn", "title": "Serin tehlikede değil", "body": "Bugünkü görevini yaptın, yarın görüşürüz.", "createdAt": "2026-10-16T08:01:00", "unread": true, "icon": "flame", "tone": 6, "link": { "type": "buan" } },
+      { "id": "ntf-4", "category": "reservation", "title": "Fethiye Havuzu rezervasyonun onaylandı", "body": "Cmt 10:00 · Bay Günlük Giriş · QR biletin hazır.", "createdAt": "2026-10-15T18:45:00", "unread": false, "icon": "ticket", "tone": 3, "link": { "type": "applications" } },
+      { "id": "ntf-5", "category": "event", "title": "Uludağ Doğa Yürüyüşü’ne kabul edildin", "body": "18 Ekim 08:30, Sarıalan buluşma noktası.", "createdAt": "2026-10-15T14:20:00", "unread": false, "icon": "calendar", "tone": 2, "link": { "type": "event", "id": "evt-uludag-yuruyus" } },
+      { "id": "ntf-6", "category": "announcement", "title": "Gençlik merkezlerinde kış dönemi kayıtları", "body": "Kodlama, dil ve müzik atölyeleri açıldı.", "createdAt": "2026-10-12T11:00:00", "unread": false, "icon": "megaphone", "tone": 5, "link": { "type": "story", "id": "sto-duyuru" } },
+      { "id": "ntf-7", "category": "earn", "title": "Yeni rozet: Kültür Avcısı", "body": "3 farklı müzeye check-in yaptın.", "createdAt": "2026-10-12T10:00:00", "unread": false, "icon": "coin", "tone": 4, "link": { "type": "badges" } }
+    ]
+  }
+}

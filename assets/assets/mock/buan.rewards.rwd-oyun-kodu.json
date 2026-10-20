@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "data": {
+    "id": "rwd-oyun-kodu",
+    "categoryId": "digital",
+    "categoryLabel": "Dijital Kod",
+    "title": "Dijital oyun cüzdan kodu 100 ₺",
+    "price": 6500,
+    "tile": 4,
+    "icon": "game",
+    "description": "Popüler oyun mağazalarında geçerli 100 ₺ değerinde dijital cüzdan kodu.",
+    "rules": [
+      "Kod 90 gün içinde kullanılmalıdır.",
+      "Takas edilen BUAN iade edilmez, kod devredilemez."
+    ],
+    "redeemInfo": "Kodu oyun mağazasında “Kod kullan” alanına gir.",
+    "stock": 120,
+    "perPersonLimit": 1,
+    "perPersonPeriod": "month"
+  },
+  "message": null,
+  "errors": []
+}

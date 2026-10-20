@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "data": {
+    "orderId": "ord-demo-1",
+    "paymentUrl": "https://sanalpos.ORNEK.bursa.bel.tr/3d/ord-demo-1",
+    "status": "pending3ds"
+  },
+  "message": null,
+  "errors": []
+}

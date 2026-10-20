@@ -1,0 +1,52 @@
+{
+  "success": true,
+  "data": {
+    "id": "opp-teleferik",
+    "title": "Teleferik gidiş-dönüş biletinde indirim",
+    "brand": "Burfaş · Teleferik",
+    "logoText": "TLF",
+    "logoUrl": null,
+    "imageUrl": null,
+    "categoryId": "cat-eglence",
+    "discountLabel": "%30",
+    "claimType": "qr",
+    "locationLabel": "3,1 km",
+    "distanceMeters": 3100,
+    "endsAt": "2026-10-25T23:59:00+03:00",
+    "stockRemaining": 120,
+    "stockTotal": 267,
+    "isFavorite": false,
+    "isNew": false,
+    "tone": 2,
+    "categoryName": "Eğlence",
+    "bannerUrl": null,
+    "minAge": 16,
+    "maxAge": 30,
+    "buanReward": 100,
+    "steps": [
+      "“Fırsatı Yakala”ya dokun",
+      "Kasada QR’ı okut ya da 4 haneli kodu söyle",
+      "İndirimini al, +100 BUAN kazan"
+    ],
+    "conditions": [
+      "Bir kullanıcı bu fırsattan 1 kez yararlanabilir.",
+      "Diğer kampanyalarla birleştirilemez."
+    ],
+    "validity": [
+      "25 Ekim 2026, 23:59’a kadar.",
+      "Kod alındıktan sonra 48 saat içinde kullanılmalı."
+    ],
+    "branch": {
+      "name": "Teleferik Teferrüç İstasyonu",
+      "distanceLabel": "3,1 km",
+      "hours": "Her gün 10:00–19:00",
+      "lat": 40.1765,
+      "lng": 29.0855
+    },
+    "eligible": true,
+    "ineligibleReason": null,
+    "isClaimed": false
+  },
+  "message": "ok",
+  "errors": []
+}

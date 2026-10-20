@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "data": {
+    "opportunityId": "opp-teleferik",
+    "type": "qr",
+    "code": null,
+    "qr": "GK-CLM-TLF-3061-9XK1",
+    "pin": "3061",
+    "expiresAt": "2026-10-18T23:59:00+03:00",
+    "buanReward": 100,
+    "brand": "Burfaş · Teleferik",
+    "logoText": "TLF",
+    "title": "Teleferik gidiş-dönüş · %30"
+  },
+  "message": "Fırsat senin!",
+  "errors": []
+}

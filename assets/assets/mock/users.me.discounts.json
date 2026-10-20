@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "dsc-ogrenci",
+        "typeId": "ogrenci",
+        "typeName": "Öğrenci indirimi",
+        "status": "approved",
+        "rate": 50,
+        "submittedAt": "2026-09-01T10:00:00+03:00",
+        "validUntil": "2027-06-30",
+        "rejectReason": null
+      },
+      {
+        "id": "dsc-kardes",
+        "typeId": "kardes",
+        "typeName": "Kardeş indirimi",
+        "status": "pending",
+        "rate": 20,
+        "submittedAt": "2026-10-14T10:00:00+03:00",
+        "validUntil": null,
+        "rejectReason": null
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

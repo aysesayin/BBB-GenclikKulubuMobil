@@ -1,0 +1,50 @@
+{
+  "success": true,
+  "message": "",
+  "errors": [],
+  "data": {
+    "user": { "firstName": "Ayşe", "lastName": "Su" },
+    "wallet": { "balance": 12450, "streak": 7 },
+    "unreadCount": 3,
+    "blocks": ["stories", "tasks", "banners", "shortcuts", "deals", "events", "nearby", "league"],
+    "stories": [
+      { "id": "sto-yeni-firsat", "label": "Yeni Fırsat", "icon": "tag", "tone": 1, "seen": false },
+      { "id": "sto-genclik-kampi", "label": "Gençlik Kampı", "icon": "tent", "tone": 2, "seen": false },
+      { "id": "sto-konser", "label": "Konser", "icon": "music", "tone": 6, "seen": false },
+      { "id": "sto-duyuru", "label": "Duyuru", "icon": "megaphone", "tone": 3, "seen": true },
+      { "id": "sto-uludag", "label": "Uludağ", "icon": "mountain", "tone": 4, "seen": true }
+    ],
+    "tasks": [
+      { "id": "tsk-steps", "title": "Bir Adım At", "subtitle": "6.240 / 8.000 adım", "points": 750, "progress": 0.78, "icon": "steps", "accent": "green", "link": { "type": "steps" } },
+      { "id": "tsk-watch", "title": "İzle Kazan", "subtitle": "Yeni video · 2 dk", "points": 1000, "progress": 0.05, "icon": "play", "accent": "teal", "link": { "type": "watchEarn" } },
+      { "id": "tsk-quiz", "title": "Cevapla Kazan", "subtitle": "Bu hafta 1 / 2", "points": 100, "progress": 0.5, "icon": "question", "accent": "pink", "link": { "type": "quiz" } }
+    ],
+    "banners": [
+      { "id": "bnr-teleferik", "kicker": "BUAN PAZAR", "title": "Teleferik + sucuk ekmek seni bekliyor", "ctaLabel": "8.000 BUAN ile al", "theme": "buan", "link": { "type": "reward", "id": "rwd-teleferik" } },
+      { "id": "bnr-kamp", "kicker": "ETKİNLİK", "title": "Gençlik Kampı kayıtları açıldı", "ctaLabel": "Yerini ayırt", "theme": "teal", "link": { "type": "event", "id": "evt-genclik-kampi" } },
+      { "id": "bnr-extrempark", "kicker": "FIRSAT", "title": "Extrempark'ta 1 alana 1 bedava", "ctaLabel": "Fırsatı yakala", "theme": "green", "link": { "type": "opportunity", "id": "opp-extrempark" } },
+      { "id": "bnr-sans", "kicker": "GÜNLÜK ŞANS", "title": "Çarkı çevir, BUAN kazan", "ctaLabel": "Hemen çevir", "theme": "night", "link": { "type": "dailySpin" } }
+    ],
+    "shortcuts": [
+      { "id": "sc-harita", "label": "Harita", "icon": "map", "tone": 2, "link": { "type": "map" } },
+      { "id": "sc-etkinlik", "label": "Etkinlikler", "icon": "calendar", "tone": 1, "link": { "type": "events" } },
+      { "id": "sc-havuz", "label": "Havuzlar", "icon": "pool", "tone": 3, "link": { "type": "pools" } },
+      { "id": "sc-spor", "label": "Spor Okulları", "icon": "ball", "tone": 6, "link": { "type": "sportsSchools" } },
+      { "id": "sc-tenis", "label": "Tenis", "icon": "tennis", "tone": 5, "link": { "type": "sportsSchools" } },
+      { "id": "sc-gm", "label": "Gençlik Merkezleri", "icon": "building", "tone": 4, "link": { "type": "place", "id": "plc-asik-veysel-gm" } },
+      { "id": "sc-oyun", "label": "Oyunlar", "icon": "game", "tone": 1, "link": { "type": "games" } },
+      { "id": "sc-anket", "label": "Anketler", "icon": "poll", "tone": 2, "link": { "type": "quiz" } }
+    ],
+    "deals": [
+      { "id": "opp-burulas", "brand": "Burulaş", "logo": "BRL", "badge": "%25", "title": "BursaKart öğrenci aylık abonmanda indirim", "daysLeft": 12, "tone": 3 },
+      { "id": "opp-extrempark", "brand": "Extrempark", "logo": "EXT", "badge": "1+1", "title": "Tırmanma duvarında 1 alana 1 bedava", "daysLeft": 5, "tone": 1 },
+      { "id": "opp-kitapduragi", "brand": "Kitap Durağı", "logo": "KD", "badge": "%20", "title": "Tüm kitaplarda öğrenci indirimi", "daysLeft": 31, "tone": 6 }
+    ],
+    "events": [
+      { "id": "evt-uludag-yuruyus", "title": "Uludağ Doğa Yürüyüşü", "startsAt": "2026-10-18T08:30:00", "place": "Sarıalan", "capacity": 50, "filled": 34, "tone": 2 },
+      { "id": "evt-kariyer-cv", "title": "Kariyer Atölyesi: İlk CV’n", "startsAt": "2026-10-21T19:00:00", "place": "Millet GSM", "capacity": 40, "filled": 12, "tone": 1 }
+    ],
+    "nearby": { "placeId": "plc-asik-veysel-gm", "label": "Aşık Veysel GM", "distanceMeters": 650, "moreCount": 6 },
+    "league": { "tier": "Gümüş", "rank": 14, "secondsLeft": 223200, "progress": 0.72, "pointsToPromotion": 820 }
+  }
+}

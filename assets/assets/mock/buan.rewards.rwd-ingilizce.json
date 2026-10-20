@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "data": {
+    "id": "rwd-ingilizce",
+    "categoryId": "education",
+    "categoryLabel": "Eğitim",
+    "title": "İngilizce kursu (A2)",
+    "price": 22000,
+    "tile": 4,
+    "icon": "lang",
+    "description": "A2 seviyesinde 12 haftalık İngilizce kursu.",
+    "rules": [
+      "Seviye tespit sınavı gerekir.",
+      "Takas edilen BUAN iade edilmez, kod devredilemez."
+    ],
+    "redeemInfo": "Kurs merkezinde bu kodu göster.",
+    "stock": 10,
+    "perPersonLimit": 1
+  },
+  "message": null,
+  "errors": []
+}

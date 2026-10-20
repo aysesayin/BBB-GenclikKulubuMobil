@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "game-bursa-bilgi",
+        "title": "Bursa Bilgi Yarışması",
+        "description": "10 soru, 15’er saniye. Ne kadar Bursalısın?",
+        "kind": "quiz",
+        "reward": 100,
+        "playsPerDay": 3,
+        "playsLeft": 2
+      },
+      {
+        "id": "game-nerede-bu",
+        "title": "Nerede Bu?",
+        "description": "Fotoğraftaki Bursa köşesini haritada bul.",
+        "kind": "whereIsIt",
+        "reward": 150,
+        "playsPerDay": 1,
+        "playsLeft": 1
+      },
+      {
+        "id": "game-hafiza",
+        "title": "Hafıza Kartları",
+        "description": "Bursa simgelerini eşleştir: Koza, Kılıç Kalkan, Karagöz…",
+        "kind": "memory",
+        "reward": 80,
+        "playsPerDay": null,
+        "playsLeft": 0
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {"id": "plc-asik-veysel-gm", "name": "Aşık Veysel Gençlik Merkezi", "lat": 40.2108, "lng": 29.0398, "categoryLabel": "Gençlik Merkezi", "statusLabel": "Açık · 22:00’ye kadar", "openNow": true, "tone": "tile3", "icon": "youth", "distanceMeters": 650},
+      {"id": "plc-sehir-tiyatrosu", "name": "Bursa Şehir Tiyatrosu", "lat": 40.1921, "lng": 29.0566, "categoryLabel": "Tiyatro", "statusLabel": "Bugün 19:30 oyun var", "openNow": true, "tone": "tile1", "icon": "theatre", "distanceMeters": 1200},
+      {"id": "plc-muradiye-gm", "name": "Muradiye Hüsnü Züber Gençlik Merkezi", "lat": 40.1897, "lng": 29.0459, "categoryLabel": "Gençlik Merkezi", "statusLabel": "Açık · 21:00’e kadar", "openNow": true, "tone": "tile3", "icon": "youth", "distanceMeters": 1400},
+      {"id": "plc-kozahan", "name": "Kozahan", "lat": 40.1838, "lng": 29.0641, "categoryLabel": "Kültür", "statusLabel": "Açık · 20:00’ye kadar", "openNow": true, "tone": "tile4", "icon": "museum", "distanceMeters": 1600},
+      {"id": "plc-merinos-stadyumu", "name": "Merinos Atatürk Stadyumu", "lat": 40.1979, "lng": 29.0412, "categoryLabel": "Spor", "statusLabel": "Etkinlik günlerinde açık", "openNow": false, "tone": "tile5", "icon": "sport", "distanceMeters": 1900},
+      {"id": "plc-vatan-gm", "name": "Vatan Gençlik Merkezi", "lat": 40.1995, "lng": 29.0785, "categoryLabel": "Gençlik Merkezi", "statusLabel": "Açık · 21:00’e kadar", "openNow": true, "tone": "tile3", "icon": "youth", "distanceMeters": 2100},
+      {"id": "plc-fethiye-spor", "name": "Fethiye Spor Kompleksi", "lat": 40.2129, "lng": 28.9861, "categoryLabel": "Spor · Havuz", "statusLabel": "Açık · 23:00’e kadar", "openNow": true, "tone": "tile5", "icon": "sport", "distanceMeters": 2800},
+      {"id": "plc-millet-gsm", "name": "Millet Gençlik Spor Merkezi", "lat": 40.2238, "lng": 29.0052, "categoryLabel": "Gençlik Merkezi · Spor", "statusLabel": "Açık · 23:00’e kadar", "openNow": true, "tone": "tile3", "icon": "youth", "distanceMeters": 3400}
+    ]
+  },
+  "message": "",
+  "errors": []
+}

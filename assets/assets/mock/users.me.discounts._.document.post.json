@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "data": {
+    "documentId": "doc-demo",
+    "status": "uploaded"
+  },
+  "message": "Belge yüklendi.",
+  "errors": []
+}

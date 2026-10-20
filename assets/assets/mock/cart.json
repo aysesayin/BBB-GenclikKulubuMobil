@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "crt-1",
+        "itemId": "itm-fethiye-gunluk",
+        "sessionId": "ses-fethiye-2026-10-16-18",
+        "title": "Bayan Günlük Giriş",
+        "facilityName": "Fethiye Havuzu",
+        "start": "2026-10-16T18:00:00",
+        "participantName": "Ayşe Su",
+        "forSelf": true,
+        "price": 100,
+        "tile": 3,
+        "icon": "wave"
+      }
+    ],
+    "expiresAt": "2026-10-16T15:05:00Z",
+    "serverTime": "2026-10-16T15:00:00Z",
+    "holdMinutes": 5
+  },
+  "message": null,
+  "errors": []
+}

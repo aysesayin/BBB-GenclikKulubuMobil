@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "data": {
+    "balance": 30,
+    "items": [
+      {
+        "id": "cpn-telafi-gursu",
+        "title": "Telafi kuponu",
+        "kind": "amount",
+        "value": 30,
+        "source": "Gürsu Havuzu iptali · sağlık raporu",
+        "code": null,
+        "expiresAt": "2026-12-31T23:59:00+03:00",
+        "used": false,
+        "usedAt": null
+      },
+      {
+        "id": "cpn-genc15",
+        "title": "Gençlik kampı kuponu",
+        "kind": "percent",
+        "value": 15,
+        "source": "Kampanya",
+        "code": "GENC15",
+        "expiresAt": "2026-11-30T23:59:00+03:00",
+        "used": true,
+        "usedAt": "2026-09-20T10:00:00+03:00"
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

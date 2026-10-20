@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "data": {
+    "id": "plc-sehir-tiyatrosu",
+    "name": "Bursa Şehir Tiyatrosu",
+    "categoryLabel": "Tiyatro",
+    "district": "Osmangazi",
+    "kind": "place",
+    "openNow": true,
+    "statusLabel": "Açık · Gişe 21:00’e kadar",
+    "description": "[Mekân açıklaması admin panelinden gelir.] Sezon boyunca yetişkin ve çocuk oyunları, söyleşiler ve gençlere özel prova ziyaretleri.",
+    "address": "Çekirge Cd., Osmangazi / Bursa",
+    "lat": 40.1921,
+    "lng": 29.0566,
+    "gallery": [{"tone": "pink"}, {"tone": "teal"}, {"tone": "sun"}],
+    "hours": [{"days": "Salı – Pazar", "hours": "10:00 – 21:00"}, {"days": "Pazartesi", "closed": true}],
+    "amenities": ["Engelli erişimi", "Kafeterya", "Vestiyer", "Otopark"],
+    "actions": [
+      {"type": "checkin", "title": "Oyun girişinde check-in yap", "buan": 300},
+      {"type": "opportunity", "title": "Öğrenci biletinde [indirim oranı]", "targetId": "opp-kitapduragi"},
+      {"type": "event", "title": "Gençlere prova ziyareti · 23 Eki", "targetId": "evt-zumba"}
+    ],
+    "checkInEnabled": true,
+    "favorite": false
+  },
+  "message": "",
+  "errors": []
+}

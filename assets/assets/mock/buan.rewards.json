@@ -1,0 +1,196 @@
+{
+  "success": true,
+  "data": {
+    "categories": [
+      {
+        "id": "digital",
+        "label": "Dijital Kod"
+      },
+      {
+        "id": "shopping",
+        "label": "Alışveriş"
+      },
+      {
+        "id": "experience",
+        "label": "Deneyim"
+      },
+      {
+        "id": "education",
+        "label": "Eğitim"
+      },
+      {
+        "id": "travel",
+        "label": "Seyahat"
+      }
+    ],
+    "items": [
+      {
+        "id": "rwd-teleferik",
+        "categoryId": "experience",
+        "categoryLabel": "Deneyim",
+        "title": "Teleferik + sucuk ekmek (Burfaş)",
+        "price": 8000,
+        "tile": 2,
+        "icon": "cable",
+        "description": "Teferrüç–Sarıalan gidiş-dönüş teleferik bileti ve Sarıalan’da Burfaş noktasında sucuk ekmek + ayran.",
+        "rules": [
+          "Kod 30 gün geçerlidir; hava muhalefetinde süre uzar.",
+          "16 yaş altı için veli eşliği gerekir.",
+          "Takas edilen BUAN iade edilmez, kod devredilemez."
+        ],
+        "redeemInfo": "Teferrüç istasyonunda gişeye bu kodu göster.",
+        "stock": 64,
+        "perPersonLimit": 1,
+        "perPersonPeriod": "month",
+        "tag": "Popüler"
+      },
+      {
+        "id": "rwd-oyun-kodu",
+        "categoryId": "digital",
+        "categoryLabel": "Dijital Kod",
+        "title": "Dijital oyun cüzdan kodu 100 ₺",
+        "price": 6500,
+        "tile": 4,
+        "icon": "game",
+        "description": "Popüler oyun mağazalarında geçerli 100 ₺ değerinde dijital cüzdan kodu.",
+        "rules": [
+          "Kod 90 gün içinde kullanılmalıdır.",
+          "Takas edilen BUAN iade edilmez, kod devredilemez."
+        ],
+        "redeemInfo": "Kodu oyun mağazasında “Kod kullan” alanına gir.",
+        "stock": 120,
+        "perPersonLimit": 1,
+        "perPersonPeriod": "month"
+      },
+      {
+        "id": "rwd-market",
+        "categoryId": "shopping",
+        "categoryLabel": "Alışveriş",
+        "title": "Market hediye çeki 150 ₺",
+        "price": 9000,
+        "tile": 6,
+        "icon": "bag",
+        "description": "Anlaşmalı marketlerde geçerli 150 ₺ hediye çeki.",
+        "rules": [
+          "Çek 60 gün geçerlidir.",
+          "Alkol ve tütün ürünlerinde kullanılamaz.",
+          "Takas edilen BUAN iade edilmez, kod devredilemez."
+        ],
+        "redeemInfo": "Kasada bu kodu göster.",
+        "stock": 300,
+        "perPersonLimit": 2,
+        "perPersonPeriod": "month"
+      },
+      {
+        "id": "rwd-kitap",
+        "categoryId": "shopping",
+        "categoryLabel": "Alışveriş",
+        "title": "Kitap çeki 200 ₺",
+        "price": 10000,
+        "tile": 1,
+        "icon": "book",
+        "description": "Anlaşmalı kitapçılarda geçerli 200 ₺ kitap çeki.",
+        "rules": [
+          "Çek 60 gün geçerlidir.",
+          "Takas edilen BUAN iade edilmez, kod devredilemez."
+        ],
+        "redeemInfo": "Kitapçı kasasında bu kodu göster.",
+        "perPersonLimit": 2
+      },
+      {
+        "id": "rwd-giyim",
+        "categoryId": "shopping",
+        "categoryLabel": "Alışveriş",
+        "title": "Giyim çeki 250 ₺",
+        "price": 14000,
+        "tile": 3,
+        "icon": "shirt",
+        "description": "Anlaşmalı giyim mağazalarında geçerli 250 ₺ çek.",
+        "rules": [
+          "Çek 60 gün geçerlidir.",
+          "Takas edilen BUAN iade edilmez, kod devredilemez."
+        ],
+        "redeemInfo": "Mağaza kasasında bu kodu göster.",
+        "stock": 40,
+        "perPersonLimit": 1
+      },
+      {
+        "id": "rwd-yks",
+        "categoryId": "education",
+        "categoryLabel": "Eğitim",
+        "title": "YKS hazırlık kursu (1 dönem)",
+        "price": 30000,
+        "tile": 5,
+        "icon": "cap",
+        "description": "Gençlik merkezlerinde 1 dönemlik YKS hazırlık kursu kaydı.",
+        "rules": [
+          "Kayıt dönemi başlangıcında geçerlidir.",
+          "Devam zorunluluğu vardır.",
+          "Takas edilen BUAN iade edilmez, kod devredilemez."
+        ],
+        "redeemInfo": "Gençlik merkezi kayıt masasında bu kodu göster.",
+        "firstN": 15,
+        "firstNLeft": 4,
+        "perPersonLimit": 1,
+        "tag": "Son 4"
+      },
+      {
+        "id": "rwd-ingilizce",
+        "categoryId": "education",
+        "categoryLabel": "Eğitim",
+        "title": "İngilizce kursu (A2)",
+        "price": 22000,
+        "tile": 4,
+        "icon": "lang",
+        "description": "A2 seviyesinde 12 haftalık İngilizce kursu.",
+        "rules": [
+          "Seviye tespit sınavı gerekir.",
+          "Takas edilen BUAN iade edilmez, kod devredilemez."
+        ],
+        "redeemInfo": "Kurs merkezinde bu kodu göster.",
+        "stock": 10,
+        "perPersonLimit": 1
+      },
+      {
+        "id": "rwd-ogle-yemegi",
+        "categoryId": "experience",
+        "categoryLabel": "Deneyim",
+        "title": "Başkanla öğle yemeği",
+        "price": 25000,
+        "tile": 6,
+        "icon": "lunch",
+        "description": "Büyükşehir Belediye Başkanı ile gençlerle buluşma öğle yemeği.",
+        "rules": [
+          "Tarih belediye tarafından bildirilir.",
+          "Kimlik kontrolü yapılır.",
+          "Takas edilen BUAN iade edilmez, kod devredilemez."
+        ],
+        "redeemInfo": "Tarih ve yer SMS ile bildirilecek.",
+        "limitNote": "Ayda 5 kişi",
+        "perPersonLimit": 1
+      },
+      {
+        "id": "rwd-kapadokya",
+        "categoryId": "travel",
+        "categoryLabel": "Seyahat",
+        "title": "Kapadokya kültür turu",
+        "price": 40000,
+        "tile": 1,
+        "icon": "cable",
+        "description": "Rehber eşliğinde 2 günlük Kapadokya kültür turu; ulaşım ve konaklama dahil.",
+        "rules": [
+          "Tur tarihi kayıt sonrası bildirilir.",
+          "18 yaş altı için veli izni gerekir.",
+          "Takas edilen BUAN iade edilmez, kod devredilemez."
+        ],
+        "redeemInfo": "Tur kaydın için bu kodu Gençlik Kulübü masasında göster.",
+        "firstN": 20,
+        "firstNLeft": 7,
+        "perPersonLimit": 1,
+        "featured": true
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

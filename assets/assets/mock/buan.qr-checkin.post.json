@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "data": {
+    "placeId": "plc-asik-veysel-gm",
+    "placeName": "Aşık Veysel Gençlik Merkezi",
+    "headline": "Aşık Veysel Gençlik Merkezi’ne check-in yaptın!",
+    "buan": 300,
+    "badgeHint": "“Gençlik Merkezi Fatihi” rozetine 3 merkez kaldı."
+  },
+  "message": "Check-in tamam",
+  "errors": []
+}

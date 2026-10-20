@@ -1,0 +1,214 @@
+{
+  "success": true,
+  "data": {
+    "groups": [
+      {
+        "id": "daily",
+        "title": "Günlük",
+        "note": "Gece 00:00’da yenilenir",
+        "tasks": [
+          {
+            "id": "tsk-steps",
+            "type": "steps",
+            "title": "Bir Adım At",
+            "subtitle": "8.000 adım hedefi · 6.240 adım",
+            "points": 750,
+            "tile": 5,
+            "rules": [
+              "Günde 8.000 adıma ulaşınca 750 BUAN kazanırsın.",
+              "Adımlar sağlık uygulamasından okunur; günlük üst limit uygulanır."
+            ],
+            "progress": 0.78,
+            "frequency": "Günde 1"
+          },
+          {
+            "id": "tsk-watch",
+            "type": "watch",
+            "title": "İzle Kazan",
+            "subtitle": "2 günde 1 video · 2 dk",
+            "points": 1000,
+            "tile": 3,
+            "rules": [
+              "Videoyu en az %90 izlemelisin.",
+              "İleri sarma kapalıdır; arka planda süre sayılmaz."
+            ],
+            "frequency": "2 günde 1"
+          },
+          {
+            "id": "tsk-spin",
+            "type": "spin",
+            "title": "Günlük Şans",
+            "subtitle": "Çarkı çevir, sürpriz BUAN kazan",
+            "points": 10,
+            "tile": 6,
+            "rules": [
+              "Günde 1 kez çevirebilirsin.",
+              "Sonuç sunucuda belirlenir."
+            ],
+            "pointsMax": 200,
+            "frequency": "Günde 1"
+          }
+        ]
+      },
+      {
+        "id": "weekly",
+        "title": "Haftalık",
+        "note": "Pazartesi yenilenir",
+        "tasks": [
+          {
+            "id": "tsk-quiz",
+            "type": "quiz",
+            "title": "Cevapla Kazan",
+            "subtitle": "Mini anket ve quiz · haftada 2",
+            "points": 100,
+            "tile": 1,
+            "rules": [
+              "Her doğru cevap için 100 BUAN.",
+              "Haftada en fazla 2 kez."
+            ],
+            "progress": 0.5,
+            "frequency": "Haftada 2"
+          },
+          {
+            "id": "tsk-idea",
+            "type": "idea",
+            "title": "Fikrin ile Kazan",
+            "subtitle": "Şehir için fikrini paylaş · seçilirse bonus",
+            "points": 250,
+            "tile": 6,
+            "rules": [
+              "Haftada 1 fikir gönderebilirsin.",
+              "Panel onayından sonra 250 BUAN yüklenir.",
+              "Seçilen fikirlere ek bonus verilir."
+            ],
+            "frequency": "Haftada 1"
+          },
+          {
+            "id": "tsk-invite",
+            "type": "invite",
+            "title": "Davet Et Kazan",
+            "subtitle": "1 arkadaşın doğrulama bekliyor",
+            "points": 2000,
+            "tile": 4,
+            "rules": [
+              "Arkadaşın kaydını doğrulayınca 2.000 BUAN kazanırsın.",
+              "Haftada 1 davet ödüllendirilir."
+            ],
+            "status": "pending",
+            "frequency": "Haftada 1"
+          }
+        ]
+      },
+      {
+        "id": "once",
+        "title": "Tek Seferlik",
+        "note": "",
+        "tasks": [
+          {
+            "id": "tsk-volunteer",
+            "type": "volunteer",
+            "title": "Gönül Dostu Ol",
+            "subtitle": "Gönüllülük başvurusu · panel onayı",
+            "points": 5000,
+            "tile": 2,
+            "rules": [
+              "Gönüllülük başvurun panelde onaylanınca 5.000 BUAN yüklenir.",
+              "Yalnız 1 kez kazanılır."
+            ],
+            "frequency": "1 kez"
+          },
+          {
+            "id": "tsk-biko-staj",
+            "type": "biko",
+            "title": "BİKO ile Staj",
+            "subtitle": "Staj başvurusu · BİKO",
+            "points": 3000,
+            "tile": 3,
+            "rules": [
+              "BİKO üzerinden staj başvurusu onaylanınca 3.000 BUAN.",
+              "Yalnız 1 kez kazanılır."
+            ],
+            "status": "done",
+            "frequency": "1 kez"
+          },
+          {
+            "id": "tsk-biko-is",
+            "type": "biko",
+            "title": "BİKO ile İş",
+            "subtitle": "İş başvurusu · BİKO",
+            "points": 3000,
+            "tile": 3,
+            "rules": [
+              "BİKO üzerinden iş başvurusu onaylanınca 3.000 BUAN.",
+              "Yalnız 1 kez kazanılır."
+            ],
+            "minAge": 18,
+            "frequency": "1 kez"
+          },
+          {
+            "id": "tsk-follow",
+            "type": "follow",
+            "title": "Takip Et Kazan",
+            "subtitle": "Resmî sosyal hesaplar · 12 haftada 1",
+            "points": 1500,
+            "tile": 1,
+            "rules": [
+              "Resmî sosyal medya hesaplarını takip et.",
+              "12 haftada 1 kez kazanılır."
+            ],
+            "status": "locked",
+            "lock": "limit",
+            "availableAt": "2026-12-29T00:00:00",
+            "frequency": "12 haftada 1"
+          }
+        ]
+      },
+      {
+        "id": "campaign",
+        "title": "Özel Kampanyalar",
+        "note": "Etkinlik başına 1",
+        "tasks": [
+          {
+            "id": "tsk-qr",
+            "type": "qr",
+            "title": "QR Okut Kazan",
+            "subtitle": "Gençlik merkezi, kıraathane, seminer",
+            "points": 300,
+            "tile": 4,
+            "rules": [
+              "Etkinlik alanındaki QR kodu okut.",
+              "Her etkinlik için 1 kez; BUAN değeri panelden belirlenir."
+            ]
+          },
+          {
+            "id": "tsk-photo",
+            "type": "photo",
+            "title": "Çek Kazan",
+            "subtitle": "Şehrin güzelliklerini ya da sorunlarını çek",
+            "points": 500,
+            "tile": 2,
+            "rules": [
+              "Fotoğrafın moderasyondan geçince BUAN yüklenir.",
+              "BUAN değeri panelden belirlenir."
+            ]
+          },
+          {
+            "id": "tsk-opportunity",
+            "type": "useOpportunity",
+            "title": "Fırsat Kullan Kazan",
+            "subtitle": "Her fırsat için 1 kez",
+            "points": 100,
+            "tile": 1,
+            "rules": [
+              "Bir fırsatı kullandığında 100 BUAN kazanırsın.",
+              "Her fırsat için 1 kez."
+            ],
+            "frequency": "Fırsat başına 1"
+          }
+        ]
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

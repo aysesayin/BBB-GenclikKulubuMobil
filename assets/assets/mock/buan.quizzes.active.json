@@ -1,0 +1,126 @@
+{
+  "success": true,
+  "data": {
+    "id": "quiz-bursa-bilgi-42",
+    "title": "Bursa Bilgi",
+    "reward": 100,
+    "timeLimitSec": 15,
+    "weeklyLimit": 2,
+    "remainingThisWeek": 2,
+    "availableAgainAt": null,
+    "questions": [
+      {
+        "id": "q1",
+        "text": "Ulu Cami’nin çatısında kaç kubbe vardır?",
+        "options": [
+          {
+            "id": "a",
+            "label": "12"
+          },
+          {
+            "id": "b",
+            "label": "16"
+          },
+          {
+            "id": "c",
+            "label": "20"
+          },
+          {
+            "id": "d",
+            "label": "24"
+          }
+        ]
+      },
+      {
+        "id": "q2",
+        "text": "Bursa’nın simgesi olan gölge oyunu karakterleri hangileridir?",
+        "options": [
+          {
+            "id": "a",
+            "label": "Nasreddin – Hoca"
+          },
+          {
+            "id": "c",
+            "label": "Hacivat – Karagöz"
+          },
+          {
+            "id": "b",
+            "label": "Keloğlan – Dev"
+          },
+          {
+            "id": "d",
+            "label": "Pinokyo – Gepetto"
+          }
+        ]
+      },
+      {
+        "id": "q3",
+        "text": "Uludağ’a çıkan teleferik hattı kaç istasyonludur?",
+        "options": [
+          {
+            "id": "a",
+            "label": "2"
+          },
+          {
+            "id": "b",
+            "label": "3"
+          },
+          {
+            "id": "c",
+            "label": "4"
+          },
+          {
+            "id": "d",
+            "label": "6"
+          }
+        ]
+      },
+      {
+        "id": "q4",
+        "text": "Bursa hangi devletin ilk başkentidir?",
+        "options": [
+          {
+            "id": "a",
+            "label": "Selçuklu"
+          },
+          {
+            "id": "b",
+            "label": "Bizans"
+          },
+          {
+            "id": "c",
+            "label": "Osmanlı"
+          },
+          {
+            "id": "d",
+            "label": "Roma"
+          }
+        ]
+      },
+      {
+        "id": "q5",
+        "text": "İpek böceğinin ördüğü yapıya ne ad verilir?",
+        "options": [
+          {
+            "id": "a",
+            "label": "Kozalak"
+          },
+          {
+            "id": "b",
+            "label": "Kovan"
+          },
+          {
+            "id": "c",
+            "label": "Koza"
+          },
+          {
+            "id": "d",
+            "label": "Yumak"
+          }
+        ]
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

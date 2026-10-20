@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "data": {
+    "id": "rwd-kitap",
+    "categoryId": "shopping",
+    "categoryLabel": "Alışveriş",
+    "title": "Kitap çeki 200 ₺",
+    "price": 10000,
+    "tile": 1,
+    "icon": "book",
+    "description": "Anlaşmalı kitapçılarda geçerli 200 ₺ kitap çeki.",
+    "rules": [
+      "Çek 60 gün geçerlidir.",
+      "Takas edilen BUAN iade edilmez, kod devredilemez."
+    ],
+    "redeemInfo": "Kitapçı kasasında bu kodu göster.",
+    "perPersonLimit": 2
+  },
+  "message": null,
+  "errors": []
+}

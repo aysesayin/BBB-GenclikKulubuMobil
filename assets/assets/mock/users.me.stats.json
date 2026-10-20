@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "totalBuanEarned": 24350,
+    "eventsAttended": 9,
+    "opportunitiesUsed": 7,
+    "badgeCount": 7,
+    "featuredBadges": [
+      {
+        "id": "bdg-seri-7",
+        "name": "7 Gün Seri",
+        "icon": "flame",
+        "tone": 6
+      },
+      {
+        "id": "bdg-kultur-avcisi",
+        "name": "Kültür Avcısı",
+        "icon": "museum",
+        "tone": 4
+      },
+      {
+        "id": "bdg-kamp-atesi",
+        "name": "Kamp Ateşi",
+        "icon": "camp",
+        "tone": 2
+      }
+    ],
+    "pendingPayments": 1,
+    "openSurveys": 2
+  },
+  "message": "",
+  "errors": []
+}

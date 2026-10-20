@@ -1,0 +1,52 @@
+{
+  "success": true,
+  "data": {
+    "id": "opp-kitapduragi",
+    "title": "Tüm kitaplarda öğrenci indirimi",
+    "brand": "Kitap Durağı",
+    "logoText": "KD",
+    "logoUrl": null,
+    "imageUrl": null,
+    "categoryId": "cat-kitap",
+    "discountLabel": "%20",
+    "claimType": "code",
+    "locationLabel": "1,1 km",
+    "distanceMeters": 1100,
+    "endsAt": "2026-11-16T23:59:00+03:00",
+    "stockRemaining": 380,
+    "stockTotal": 500,
+    "isFavorite": false,
+    "isNew": false,
+    "tone": 6,
+    "categoryName": "Kitap",
+    "bannerUrl": null,
+    "minAge": 16,
+    "maxAge": 30,
+    "buanReward": 100,
+    "steps": [
+      "“Fırsatı Yakala”ya dokun",
+      "Online ödemede “İndirim kodu” alanına yapıştır",
+      "İndirimini al, +100 BUAN kazan"
+    ],
+    "conditions": [
+      "Bir kullanıcı bu fırsattan 1 kez yararlanabilir.",
+      "Diğer kampanyalarla birleştirilemez."
+    ],
+    "validity": [
+      "16 Kasım 2026, 23:59’a kadar.",
+      "Kod alındıktan sonra 48 saat içinde kullanılmalı."
+    ],
+    "branch": {
+      "name": "Kitap Durağı Görükle",
+      "distanceLabel": "1,1 km",
+      "hours": "Her gün 09:00–21:00",
+      "lat": 40.2262,
+      "lng": 28.873
+    },
+    "eligible": true,
+    "ineligibleReason": null,
+    "isClaimed": false
+  },
+  "message": "ok",
+  "errors": []
+}

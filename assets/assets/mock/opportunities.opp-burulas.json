@@ -1,0 +1,52 @@
+{
+  "success": true,
+  "data": {
+    "id": "opp-burulas",
+    "title": "BursaKart öğrenci aylık abonmanında indirim",
+    "brand": "Burulaş",
+    "logoText": "BRL",
+    "logoUrl": null,
+    "imageUrl": null,
+    "categoryId": "cat-ulasim",
+    "discountLabel": "%25",
+    "claimType": "qr",
+    "locationLabel": "Tüm şehir",
+    "distanceMeters": null,
+    "endsAt": "2026-10-28T23:59:00+03:00",
+    "stockRemaining": 40,
+    "stockTotal": 133,
+    "isFavorite": true,
+    "isNew": false,
+    "tone": 3,
+    "categoryName": "Ulaşım",
+    "bannerUrl": null,
+    "minAge": 16,
+    "maxAge": 30,
+    "buanReward": 100,
+    "steps": [
+      "“Fırsatı Yakala”ya dokun",
+      "Kasada QR’ı okut ya da 4 haneli kodu söyle",
+      "İndirimini al, +100 BUAN kazan"
+    ],
+    "conditions": [
+      "Bir kullanıcı bu fırsattan 1 kez yararlanabilir.",
+      "Diğer kampanyalarla birleştirilemez."
+    ],
+    "validity": [
+      "28 Ekim 2026, 23:59’a kadar.",
+      "Kod alındıktan sonra 48 saat içinde kullanılmalı."
+    ],
+    "branch": {
+      "name": "Burulaş Kart Merkezi · Kent Meydanı",
+      "distanceLabel": "4,0 km",
+      "hours": "Hafta içi 08:00–18:00",
+      "lat": 40.195,
+      "lng": 29.06
+    },
+    "eligible": true,
+    "ineligibleReason": null,
+    "isClaimed": false
+  },
+  "message": "ok",
+  "errors": []
+}

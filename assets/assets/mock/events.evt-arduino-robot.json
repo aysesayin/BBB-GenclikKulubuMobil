@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "id": "evt-arduino-robot",
+    "title": "Arduino ile ilk robotun",
+    "categoryId": "teknik",
+    "categoryLabel": "Teknik",
+    "startsAt": "2026-10-22T18:00:00",
+    "endsAt": "2026-10-22T20:30:00",
+    "applyDeadline": "2026-10-21T23:59:00",
+    "placeName": "Aşık Veysel Gençlik Merkezi",
+    "placeNote": "Maker atölyesi",
+    "placeId": "plc-asik-veysel-gm",
+    "lat": 40.2108,
+    "lng": 29.0398,
+    "price": 0,
+    "priceNote": "Malzeme kiti atölyede verilir",
+    "ageMin": 14,
+    "ageMax": 22,
+    "capacity": 20,
+    "attendeeCount": 20,
+    "attendees": [{"initials": "BY", "tone": "tile3"}, {"initials": "EK", "tone": "tile1"}, {"initials": "AT", "tone": "tile6"}, {"initials": "SD", "tone": "tile2"}, {"initials": "GÖ", "tone": "tile4"}],
+    "checkInBuan": 250,
+    "program": "18:00 temel elektronik, 18:45 ilk devre, 19:30 engelden kaçan robotu programlama. Kodlama bilmen gerekmiyor.",
+    "cover": "generic",
+    "icon": "chip",
+    "tone": "tile3",
+    "waitlistOpen": true,
+    "applicationStatus": "none"
+  },
+  "message": "",
+  "errors": []
+}

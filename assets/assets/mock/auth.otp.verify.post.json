@@ -1,0 +1,6 @@
+{
+  "success": true,
+  "data": {"verificationToken": "mock-otp-token"},
+  "message": "",
+  "errors": []
+}

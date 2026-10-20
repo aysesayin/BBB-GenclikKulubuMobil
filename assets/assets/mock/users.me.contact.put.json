@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "data": {
+    "challengeId": "chl-demo-contact",
+    "maskedTarget": "",
+    "expiresIn": 120,
+    "codeLength": 6
+  },
+  "message": "Doğrulama kodu gönderildi.",
+  "errors": []
+}

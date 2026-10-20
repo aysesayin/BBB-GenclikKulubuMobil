@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "data": {
+    "id": "rwd-ogle-yemegi",
+    "categoryId": "experience",
+    "categoryLabel": "Deneyim",
+    "title": "Başkanla öğle yemeği",
+    "price": 25000,
+    "tile": 6,
+    "icon": "lunch",
+    "description": "Büyükşehir Belediye Başkanı ile gençlerle buluşma öğle yemeği.",
+    "rules": [
+      "Tarih belediye tarafından bildirilir.",
+      "Kimlik kontrolü yapılır.",
+      "Takas edilen BUAN iade edilmez, kod devredilemez."
+    ],
+    "redeemInfo": "Tarih ve yer SMS ile bildirilecek.",
+    "limitNote": "Ayda 5 kişi",
+    "perPersonLimit": 1
+  },
+  "message": null,
+  "errors": []
+}

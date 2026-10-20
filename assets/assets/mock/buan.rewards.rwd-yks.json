@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": {
+    "id": "rwd-yks",
+    "categoryId": "education",
+    "categoryLabel": "Eğitim",
+    "title": "YKS hazırlık kursu (1 dönem)",
+    "price": 30000,
+    "tile": 5,
+    "icon": "cap",
+    "description": "Gençlik merkezlerinde 1 dönemlik YKS hazırlık kursu kaydı.",
+    "rules": [
+      "Kayıt dönemi başlangıcında geçerlidir.",
+      "Devam zorunluluğu vardır.",
+      "Takas edilen BUAN iade edilmez, kod devredilemez."
+    ],
+    "redeemInfo": "Gençlik merkezi kayıt masasında bu kodu göster.",
+    "firstN": 15,
+    "firstNLeft": 4,
+    "perPersonLimit": 1,
+    "tag": "Son 4"
+  },
+  "message": null,
+  "errors": []
+}

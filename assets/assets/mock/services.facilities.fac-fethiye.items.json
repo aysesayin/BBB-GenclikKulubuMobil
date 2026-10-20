@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      { "id": "itm-fethiye-gunluk", "facilityId": "fac-fethiye", "title": "Günlük Giriş", "tags": ["Bay / Bayan seansları", "Yüzme bilme onayı"], "price": 100, "priceUnit": "session", "tile": 3, "icon": "wave" },
+      { "id": "itm-fethiye-yetiskin", "facilityId": "fac-fethiye", "title": "Yetişkin Üye", "tags": ["Dönemlik", "Geç katılım indirimi"], "price": 1200, "priceUnit": "term", "tile": 2, "icon": "users" },
+      { "id": "itm-fethiye-kurs", "facilityId": "fac-fethiye", "title": "Yüzme Kursu", "tags": ["6–15 yaş", "Seviye testi"], "price": 900, "priceUnit": "term", "tile": 6, "icon": "cap" },
+      { "id": "itm-fethiye-altyapi", "facilityId": "fac-fethiye", "title": "Alt Yapı", "tags": ["Kulüp seçmesi", "7–14 yaş"], "price": 600, "priceUnit": "monthly", "tile": 1, "icon": "wave" },
+      { "id": "itm-fethiye-teknik", "facilityId": "fac-fethiye", "title": "Teknik Kurs", "tags": ["Yetişkin", "İleri seviye"], "price": 1000, "priceUnit": "term", "tile": 4, "icon": "cap" },
+      { "id": "itm-fethiye-engelli", "facilityId": "fac-fethiye", "title": "Engelli Saati", "tags": ["Refakatçi ücretsiz", "Belge gerekli"], "price": 0, "priceUnit": "session", "tile": 5, "icon": "users" }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

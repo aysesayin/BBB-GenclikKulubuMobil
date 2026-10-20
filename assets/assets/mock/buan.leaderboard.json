@@ -1,0 +1,248 @@
+{
+  "success": true,
+  "data": {
+    "scope": "global",
+    "tierName": "Gümüş",
+    "promoteTo": "Altın",
+    "relegateTo": "Bronz",
+    "promoteCount": 10,
+    "relegateCount": 3,
+    "seasonEndsAt": "2026-10-19T02:00:00",
+    "entries": [
+      {
+        "rank": 1,
+        "userId": "usr-001",
+        "name": "Mert K.",
+        "initials": "MK",
+        "points": 6840,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-osmangazi"
+      },
+      {
+        "rank": 2,
+        "userId": "usr-002",
+        "name": "Zeynep A.",
+        "initials": "ZA",
+        "points": 6210,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-nilufer"
+      },
+      {
+        "rank": 3,
+        "userId": "usr-003",
+        "name": "Emre T.",
+        "initials": "ET",
+        "points": 5980,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-osmangazi"
+      },
+      {
+        "rank": 4,
+        "userId": "usr-004",
+        "name": "Elif Y.",
+        "initials": "EY",
+        "points": 5420,
+        "isMe": false,
+        "isFriend": true,
+        "districtId": "dst-osmangazi"
+      },
+      {
+        "rank": 5,
+        "userId": "usr-005",
+        "name": "Burak D.",
+        "initials": "BD",
+        "points": 5100,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-osmangazi"
+      },
+      {
+        "rank": 6,
+        "userId": "usr-006",
+        "name": "Selin Ö.",
+        "initials": "SÖ",
+        "points": 4870,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-nilufer"
+      },
+      {
+        "rank": 7,
+        "userId": "usr-007",
+        "name": "Can B.",
+        "initials": "CB",
+        "points": 4600,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-nilufer"
+      },
+      {
+        "rank": 8,
+        "userId": "usr-008",
+        "name": "Deniz Ç.",
+        "initials": "DÇ",
+        "points": 4410,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-osmangazi"
+      },
+      {
+        "rank": 9,
+        "userId": "usr-009",
+        "name": "İrem G.",
+        "initials": "İG",
+        "points": 4200,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-osmangazi"
+      },
+      {
+        "rank": 10,
+        "userId": "usr-010",
+        "name": "Oğuz Ş.",
+        "initials": "OŞ",
+        "points": 3940,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-osmangazi"
+      },
+      {
+        "rank": 11,
+        "userId": "usr-011",
+        "name": "Ece U.",
+        "initials": "EU",
+        "points": 3810,
+        "isMe": false,
+        "isFriend": true,
+        "districtId": "dst-osmangazi"
+      },
+      {
+        "rank": 12,
+        "userId": "usr-012",
+        "name": "Kaan İ.",
+        "initials": "Kİ",
+        "points": 3600,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-osmangazi"
+      },
+      {
+        "rank": 13,
+        "userId": "usr-013",
+        "name": "Nisan P.",
+        "initials": "NP",
+        "points": 3350,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-osmangazi"
+      },
+      {
+        "rank": 14,
+        "userId": "usr-demo",
+        "name": "Ayşe S.",
+        "initials": "AS",
+        "points": 3120,
+        "isMe": true,
+        "isFriend": false,
+        "districtId": "dst-nilufer"
+      },
+      {
+        "rank": 15,
+        "userId": "usr-015",
+        "name": "Arda M.",
+        "initials": "AM",
+        "points": 2900,
+        "isMe": false,
+        "isFriend": false,
+        "districtId": "dst-osmangazi"
+      }
+    ],
+    "me": {
+      "rank": 14,
+      "userId": "usr-demo",
+      "name": "Ayşe S.",
+      "initials": "AS",
+      "points": 3120,
+      "isMe": true,
+      "isFriend": false,
+      "districtId": "dst-nilufer"
+    },
+    "pointsToPromotion": 820,
+    "districtId": "dst-nilufer",
+    "districts": [
+      {
+        "id": "dst-nilufer",
+        "name": "Nilüfer"
+      },
+      {
+        "id": "dst-osmangazi",
+        "name": "Osmangazi"
+      },
+      {
+        "id": "dst-yildirim",
+        "name": "Yıldırım"
+      },
+      {
+        "id": "dst-gemlik",
+        "name": "Gemlik"
+      },
+      {
+        "id": "dst-gursu",
+        "name": "Gürsu"
+      },
+      {
+        "id": "dst-inegol",
+        "name": "İnegöl"
+      },
+      {
+        "id": "dst-iznik",
+        "name": "İznik"
+      },
+      {
+        "id": "dst-karacabey",
+        "name": "Karacabey"
+      },
+      {
+        "id": "dst-kestel",
+        "name": "Kestel"
+      },
+      {
+        "id": "dst-mudanya",
+        "name": "Mudanya"
+      },
+      {
+        "id": "dst-mustafakemalpasa",
+        "name": "Mustafakemalpaşa"
+      },
+      {
+        "id": "dst-orhangazi",
+        "name": "Orhangazi"
+      },
+      {
+        "id": "dst-orhaneli",
+        "name": "Orhaneli"
+      },
+      {
+        "id": "dst-buyukorhan",
+        "name": "Büyükorhan"
+      },
+      {
+        "id": "dst-harmancik",
+        "name": "Harmancık"
+      },
+      {
+        "id": "dst-keles",
+        "name": "Keles"
+      },
+      {
+        "id": "dst-yenisehir",
+        "name": "Yenişehir"
+      }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

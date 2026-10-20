@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "id": "evt-genclik-kampi",
+    "title": "Gençlik Kampı · Göknükbelen",
+    "categoryId": "genclik-kampi",
+    "categoryLabel": "Gençlik Kampı",
+    "startsAt": "2026-10-24T09:00:00",
+    "endsAt": "2026-10-26T17:00:00",
+    "applyDeadline": "2026-10-20T23:59:00",
+    "placeName": "Orhaneli Göknükbelen Kampı",
+    "placeNote": "Servis: Kent Meydanı 08:00",
+    "lat": 39.9612,
+    "lng": 28.9498,
+    "price": 0,
+    "priceNote": "Konaklama, yemek ve ulaşım belediyeden",
+    "ageMin": 18,
+    "ageMax": 25,
+    "ageNote": "Kimlik ve sağlık beyanı istenir",
+    "capacity": 60,
+    "attendeeCount": 57,
+    "attendees": [{"initials": "HK", "tone": "tile5"}, {"initials": "RÖ", "tone": "tile1"}, {"initials": "TU", "tone": "tile3"}, {"initials": "ME", "tone": "tile6"}, {"initials": "CS", "tone": "tile2"}],
+    "checkInBuan": 500,
+    "quota": {"title": "6 ayda 1 katılım.", "message": "Gençlik kampına her 6 ayda bir katılabilirsin. Hak durumun başvuru sırasında kontrol edilir.", "eligible": true},
+    "program": "Cuma 09:00 hareket, kamp ateşi ve tanışma; Cumartesi doğa yürüyüşü, okçuluk ve oryantiring; Pazar kahvaltı sonrası atölyeler, 17:00 dönüş.",
+    "cover": "generic",
+    "icon": "tent",
+    "tone": "tile5",
+    "applicationStatus": "none"
+  },
+  "message": "",
+  "errors": []
+}

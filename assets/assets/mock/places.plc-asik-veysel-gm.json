@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "data": {
+    "id": "plc-asik-veysel-gm",
+    "name": "Aşık Veysel Gençlik Merkezi",
+    "categoryLabel": "Gençlik Merkezi",
+    "district": "Osmangazi",
+    "kind": "facility",
+    "openNow": true,
+    "statusLabel": "Açık · 22:00’ye kadar",
+    "description": "[Tesis açıklaması admin panelinden gelir.] Etüt salonu, maker atölyesi, müzik odası ve kafe ile 15–29 yaş gençlere açık buluşma noktası.",
+    "address": "Aşık Veysel Mah., Osmangazi / Bursa",
+    "lat": 40.2108,
+    "lng": 29.0398,
+    "gallery": [{"tone": "teal"}, {"tone": "sun"}, {"tone": "pink"}],
+    "hours": [{"days": "Pazartesi – Cuma", "hours": "09:00 – 22:00"}, {"days": "Cumartesi – Pazar", "hours": "10:00 – 20:00"}],
+    "amenities": ["Etüt salonu", "Maker atölyesi", "Wi-Fi", "Kafe", "Engelli erişimi"],
+    "actions": [
+      {"type": "checkin", "title": "Merkeze girişte check-in yap", "buan": 100},
+      {"type": "event", "title": "Arduino ile ilk robotun · 22 Eki", "targetId": "evt-arduino-robot"},
+      {"type": "task", "title": "Haftada 3 gün etüt görevi", "buan": 250}
+    ],
+    "checkInEnabled": true,
+    "favorite": false
+  },
+  "message": "",
+  "errors": []
+}

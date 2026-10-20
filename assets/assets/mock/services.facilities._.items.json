@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      { "id": "itm-kapali-gunluk", "facilityId": "", "title": "Günlük Giriş", "tags": ["Bay / Bayan seansları", "Yüzme bilme onayı"], "price": 80, "priceUnit": "session", "tile": 3, "icon": "wave" },
+      { "id": "itm-kapali-kurs", "facilityId": "", "title": "Yüzme Kursu", "tags": ["6–15 yaş", "Seviye testi"], "price": 850, "priceUnit": "term", "tile": 6, "icon": "cap" },
+      { "id": "itm-kapali-yetiskin", "facilityId": "", "title": "Yetişkin Üye", "tags": ["Dönemlik", "Geç katılım indirimi"], "price": 1000, "priceUnit": "term", "tile": 2, "icon": "users" },
+      { "id": "itm-kapali-engelli", "facilityId": "", "title": "Engelli Saati", "tags": ["Refakatçi ücretsiz", "Belge gerekli"], "price": 0, "priceUnit": "session", "tile": 5, "icon": "users" }
+    ]
+  },
+  "message": null,
+  "errors": []
+}

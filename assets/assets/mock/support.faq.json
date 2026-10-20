@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "faq-buan-expiry",
+        "question": "BUAN’larım ne zaman sona erer?",
+        "answer": "Geçerlilik süresi admin panelinden belirlenir; BUAN › Geçmiş ekranında her kazanımın yanında görünür. [SSS metni panelden gelir]"
+      },
+      {
+        "id": "faq-code-issue",
+        "question": "Fırsat kodunu kullanamadım, ne yapmalıyım?",
+        "answer": "Fırsatlarım’dan ilgili kodu aç ve “Sorun bildir”e dokun; talebin firmayla birlikte incelenir."
+      },
+      {
+        "id": "faq-cancel",
+        "question": "Rezervasyonumu nasıl iptal ederim?",
+        "answer": "Başvurularım’da seansa dokun, “İptal talebi” seç. İade ve kupon kuralları [panelden gelir]."
+      }
+    ]
+  },
+  "message": "",
+  "errors": []
+}
