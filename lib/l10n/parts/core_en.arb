@@ -57,5 +57,11 @@
   "rewardToastSemantics": "{label}, you earned {amount} BUAN",
   "mascotName": "Buancık",
   "ageLocked": "This content is for ages {min}–{max}",
-  "placeholderComingSoon": "This screen is being prepared"
+  "placeholderComingSoon": "This screen is being prepared",
+  "easyModeTitle": "Easy Mode",
+  "easyModeSubtitle": "Large text, simple screens, no animations",
+  "easyModeOnToast": "Easy Mode is on",
+  "commonComingSoon": "Coming soon",
+  "commonSeeMore": "See more",
+  "commonCall": "Call"
 }

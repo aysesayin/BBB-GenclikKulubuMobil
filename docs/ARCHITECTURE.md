@@ -133,3 +133,10 @@ Başkasının yarım dosyası build_runner'da hata verebilir; yalnız kendi dosy
 `lib/l10n/parts/core_*.arb`, `lib/l10n/arb/*`, `lib/l10n/generated/*`, başka özelliklerin klasörleri.
 Çekirdekte bir değişiklik gerekiyorsa yerel çözüm yapın ve teslim notunda önerin.
 `flutter run` / `flutter build` çalıştırmayın (görsel kontrol entegrasyonda yapılır).
+
+## Kolay Mod (ileri yaş / sade arayüz)
+
+`context.easyMode` (lib/core/theme/ui_prefs_controller.dart) true iken: yazı ölçeği 1.2, `context.reduceMotion` true,
+`context.touchTarget` 56. Her özellik kendi ekranında şunları uygular: hikâye/karusel/dekoratif blob gizlenir,
+yatay kaydırmalı listeler dikey tek sütuna döner, en fazla 4 ana eylem büyük kartlarla gösterilir, ikincil menü
+satırları "Daha fazla" altına alınır, sayılar ve CTA'lar büyür. Ayarlar → Görünüm'de anahtar var (profile özelliği).

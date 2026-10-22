@@ -10,6 +10,8 @@ abstract final class Routes {
   static const login = '/login';
   static const summit = '/summit';
   static const permissions = '/permissions';
+  static const prePermission = '/izin-oncesi'; // bildirim ön-izin açıklaması
+  static const firstDay = '/ilk-gun'; // kayıt sonrası ilk gün kontrol listesi
   static String registerWithReferral(String code) => '$register?ref=${Uri.encodeQueryComponent(code)}';
 
   // Sekmeler (alt navigasyon)
@@ -31,6 +33,7 @@ abstract final class Routes {
 
   // D · Kartım
   static const qrScan = '/qr-okut';
+  static const turnstile = '/kartim/turnike'; // tam ekran QR + 4 hane (gişe modu)
 
   // E · BUAN (sekme içinde: pazar, lig, rozetler, geçmiş; diğerleri tam ekran)
   static const market = '/buan/pazar';
@@ -44,6 +47,7 @@ abstract final class Routes {
   static const quiz = '/buan/quiz';
   static const invite = '/buan/davet';
   static const photoReport = '/buan/cek';
+  static String task(String id) => '/buan/gorev/$id'; // genel görev detayı (takip et, gönül dostu, BİKO…)
 
   // F · Oyunlar (Keşfet sekmesi içinde)
   static const games = '/kesfet/oyunlar';
@@ -67,6 +71,7 @@ abstract final class Routes {
   static const children = '/profil/cocuk';
   static const coupons = '/profil/kuponlar'; // sekme içinde
   static const support = '/profil/destek';
+  static const deleteRequested = '/profil/hesap-silme-talebi'; // KVKK talep sonucu
 
   // Deep link
   static const inviteDeepLink = '/davet/:code';
@@ -75,6 +80,9 @@ abstract final class Routes {
   static const protectedPrefixes = <String>[
     myOpportunities,
     qrScan,
+    turnstile,
+    firstDay,
+    deleteRequested,
     cart,
     applications,
     settings,
@@ -96,5 +104,5 @@ abstract final class Routes {
   }
 
   /// Giriş akışındaki yollar (oturum gerektirmez, alt navigasyon yok).
-  static const onboardingPaths = <String>[splash, onboarding, welcome, interests, register, login, summit, permissions];
+  static const onboardingPaths = <String>[splash, onboarding, welcome, interests, register, login, summit, permissions, prePermission, firstDay];
 }

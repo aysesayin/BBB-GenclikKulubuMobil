@@ -24,13 +24,37 @@
   "commonUnread": "Okunmadı",
   "buanUnit": "BUAN",
   "buanAmount": "{amount} BUAN",
-  "@buanAmount": {"placeholders": {"amount": {"type": "String"}}},
+  "@buanAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "buanBalanceSemantics": "BUAN bakiyen {amount}",
-  "@buanBalanceSemantics": {"placeholders": {"amount": {"type": "String"}}},
+  "@buanBalanceSemantics": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "streakSemantics": "Serin {days} gün",
-  "@streakSemantics": {"placeholders": {"days": {"type": "int"}}},
+  "@streakSemantics": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "daysLeft": "{count, plural, =0{Bugün bitiyor} other{{count} gün kaldı}}",
-  "@daysLeft": {"placeholders": {"count": {"type": "int"}}},
+  "@daysLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "tabExplore": "Keşfet",
   "tabOpportunities": "Fırsatlar",
   "tabCard": "Kartım",
@@ -56,13 +80,43 @@
   "guestPerkBuan": "Görev yap, BUAN biriktir, ödül kap",
   "guestPerkApply": "Havuz ve etkinliklere başvur",
   "guestRegister": "Kayıt ol, {amount} BUAN kap",
-  "@guestRegister": {"placeholders": {"amount": {"type": "String"}}},
+  "@guestRegister": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "guestLogin": "Giriş yap",
   "guestKeepBrowsing": "Gezmeye devam",
   "rewardToastSemantics": "{label}, {amount} BUAN kazandın",
-  "@rewardToastSemantics": {"placeholders": {"label": {"type": "String"}, "amount": {"type": "String"}}},
+  "@rewardToastSemantics": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "mascotName": "Buancık",
   "ageLocked": "Bu içerik {min}–{max} yaş için",
-  "@ageLocked": {"placeholders": {"min": {"type": "int"}, "max": {"type": "int"}}},
-  "placeholderComingSoon": "Bu ekran hazırlanıyor"
+  "@ageLocked": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "placeholderComingSoon": "Bu ekran hazırlanıyor",
+  "easyModeTitle": "Kolay Mod",
+  "easyModeSubtitle": "Büyük yazı, sade ekranlar, animasyon yok",
+  "easyModeOnToast": "Kolay Mod açık",
+  "commonComingSoon": "Yakında",
+  "commonSeeMore": "Daha fazla",
+  "commonCall": "Ara"
 }

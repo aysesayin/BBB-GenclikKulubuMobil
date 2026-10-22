@@ -16,6 +16,7 @@ import '../session/session_controller.dart';
 import '../storage/cache_store.dart';
 import '../storage/secure_storage.dart';
 import '../theme/theme_controller.dart';
+import '../theme/ui_prefs_controller.dart';
 import 'modules/buan_module.dart';
 import 'modules/buan_tasks_module.dart';
 import 'modules/events_module.dart';
@@ -35,6 +36,7 @@ Future<void> setupLocator() async {
     ..registerSingleton<CacheStore>(cache)
     ..registerSingleton<SecureStorage>(SecureStorage())
     ..registerSingleton<ThemeController>(ThemeController(cache))
+    ..registerSingleton<UiPrefsController>(UiPrefsController(cache))
     ..registerSingleton<AnalyticsService>(DebugAnalyticsService())
     ..registerSingleton<ConnectivityService>(ConnectivityService());
   sl.registerSingleton<SessionController>(SessionController(secure: sl(), cache: cache));
