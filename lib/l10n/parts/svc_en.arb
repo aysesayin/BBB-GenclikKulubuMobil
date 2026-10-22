@@ -127,5 +127,20 @@
   "svcAppsEmptyActiveTitle": "No active applications",
   "svcAppsEmptyActiveMessage": "Pool sessions, sports schools and events you apply for will show up here.",
   "svcAppsEmptyPastTitle": "No past applications yet",
-  "svcAppsEmptyPastMessage": "Applications you attended or cancelled are listed here."
+  "svcAppsEmptyPastMessage": "Applications you attended or cancelled are listed here.",
+  "svcLegendIneligible": "Not eligible",
+  "svcCellIneligible": "Not eligible",
+  "svcCellWaitlisted": "Waitlist #{position}",
+  "svcWaitlistSheetTitle": "This session is full",
+  "svcWaitlistSheetBody": "{day} {time} · {label}. If a spot opens up you'll be notified in order.",
+  "svcWaitlistJoin": "Join the waitlist",
+  "svcWaitlistPosition": "You're #{position} on the waitlist",
+  "svcIneligibleSheetTitle": "You can't join this session",
+  "svcIneligibleSheetBody": "{day} {time} · {label}",
+  "svcIneligibleHint": "Pick another participant or look for an eligible session.",
+  "svcDayPrev": "Previous day",
+  "svcDayNext": "Next day",
+  "svcEasyNoSessionsDay": "No sessions on this day",
+  "svcAcceptedCards": "Accepted cards",
+  "svcCardBrands": "Visa|Mastercard|Troy"
 }

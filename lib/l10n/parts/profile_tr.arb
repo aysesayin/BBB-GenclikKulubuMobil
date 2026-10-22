@@ -225,5 +225,20 @@
   "profileLegalPrivacy": "Gizlilik Sözleşmesi",
   "profileLegalKvkk": "KVKK Aydınlatma Metni",
   "profileLegalConsent": "Açık Rıza Metni",
-  "profileLegalHealth": "Sağlık Beyanı"
+  "profileLegalHealth": "Sağlık Beyanı",
+  "profileEasyModeHint": "Yazılar büyür, ekranlar sadeleşir.",
+  "profileStatDistrictRank": "İlçe sıralaman",
+  "profileStatRankValue": "{rank}.",
+  "@profileStatRankValue": {"placeholders": {"rank": {"type": "int"}}},
+  "profileStatRankSemantics": "İlçede {rank}. sıradasın, lig tablosunu aç",
+  "@profileStatRankSemantics": {"placeholders": {"rank": {"type": "int"}}},
+  "profileSectionContactEasy": "İLETİŞİM",
+  "profileSectionAppearanceEasy": "GÖRÜNÜM",
+  "profileDeleteRequestedTitle": "Talebin alındı",
+  "profileDeleteRequestedBody": "{no} numaralı silme talebin KVKK kapsamında 30 gün içinde sonuçlandırılır. Bu süre {date} tarihine kadar sürer; fikrini değiştirirsen destek ekibine yazabilirsin.",
+  "@profileDeleteRequestedBody": {"placeholders": {"no": {"type": "String"}, "date": {"type": "String"}}},
+  "profileDeleteRequestedBodyShort": "{no} numaralı silme talebin KVKK kapsamında 30 gün içinde sonuçlandırılır; fikrini değiştirirsen destek ekibine yazabilirsin.",
+  "@profileDeleteRequestedBodyShort": {"placeholders": {"no": {"type": "String"}}},
+  "profileDeleteRequestedEmail": "Kayıtlı e-posta adresine bilgilendirme gönderdik.",
+  "profileDeleteRequestedNote": "Süreç tamamlanana kadar hesabın kapalı kalır."
 }

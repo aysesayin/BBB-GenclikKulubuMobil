@@ -7,7 +7,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../../l10n/l10n.dart';
 import '../../opportunities/widgets/ticket_parts.dart';
 
-/// Dinamik QR paneli: halka geri sayım, 180 px QR, büyük 4 haneli kod.
+/// Dinamik QR paneli: halka geri sayım, 180 px QR, büyük 4 haneli kod ([large] → 56 px, Kolay Mod).
 /// Ekran okuyucuda "Kodu sesli oku" özel eylemi kodu hane hane duyurur.
 class CardQrPanel extends StatelessWidget {
   const CardQrPanel({
@@ -18,6 +18,7 @@ class CardQrPanel extends StatelessWidget {
     required this.ring,
     required this.offline,
     required this.loading,
+    this.large = false,
     this.onRetry,
   });
 
@@ -25,6 +26,9 @@ class CardQrPanel extends StatelessWidget {
   final int secondsLeft;
   final double ring;
   final bool offline, loading;
+
+  /// Kolay Mod: 4 haneli kod 56 px.
+  final bool large;
   final VoidCallback? onRetry;
 
   void _readAloud(BuildContext context) {
@@ -82,7 +86,12 @@ class CardQrPanel extends StatelessWidget {
               Semantics(
                 label: l.cardPinSemantics(spellOut(code)),
                 excludeSemantics: true,
-                child: PinBoxes(parts: code.split(''), minWidth: 52, height: 60, fontSize: 34, radius: 16),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: large
+                      ? PinBoxes(parts: code.split(''), minWidth: 68, height: 84, fontSize: 56, radius: 20)
+                      : PinBoxes(parts: code.split(''), minWidth: 52, height: 60, fontSize: 34, radius: 16),
+                ),
               ),
             ],
           ],

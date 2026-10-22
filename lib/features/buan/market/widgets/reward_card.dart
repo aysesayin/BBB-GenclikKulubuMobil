@@ -41,10 +41,13 @@ class RewardPriceChip extends StatelessWidget {
 
 /// 2 sütunlu pazar ızgarasındaki ödül kartı.
 class RewardCard extends StatelessWidget {
-  const RewardCard({super.key, required this.reward, required this.affordable, required this.onTap});
+  const RewardCard({super.key, required this.reward, required this.affordable, required this.onTap, this.missing = 0});
 
   final BuanReward reward;
   final bool affordable;
+
+  /// Bakiye yetmiyorsa eksik BUAN ("1.250 BUAN daha"); 0 → gösterilmez.
+  final int missing;
   final VoidCallback onTap;
 
   @override
@@ -55,7 +58,7 @@ class RewardCard extends StatelessWidget {
     final semantics = l.buanMarketCardSemantics(
       reward.title,
       Fmt.number(reward.price),
-      [if (note.isNotEmpty) note, if (!affordable) l.buanMarketNotAffordable].join(', '),
+      [if (note.isNotEmpty) note, if (!affordable) l.buanMarketNotAffordable, if (!affordable && missing > 0) l.buanMarketMissing(Fmt.number(missing))].join(', '),
     );
     return AppCard(
       onTap: onTap,
@@ -90,6 +93,16 @@ class RewardCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
                     RewardPriceChip(price: reward.price, affordable: affordable),
+                    if (!affordable && missing > 0) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        l.buanMarketMissing(Fmt.number(missing)),
+                        maxLines: 1,
+                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTypography.number(11, weight: FontWeight.w800, color: p.pinkT),
+                      ),
+                    ],
                     if (note.isNotEmpty) ...[
                       const SizedBox(height: 6),
                       Text(

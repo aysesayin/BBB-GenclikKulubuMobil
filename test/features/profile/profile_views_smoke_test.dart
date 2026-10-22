@@ -5,6 +5,7 @@ import 'package:bbb_genclik_kulubu_app/core/storage/cache_store.dart';
 import 'package:bbb_genclik_kulubu_app/core/storage/secure_storage.dart';
 import 'package:bbb_genclik_kulubu_app/core/theme/app_theme.dart';
 import 'package:bbb_genclik_kulubu_app/core/theme/theme_controller.dart';
+import 'package:bbb_genclik_kulubu_app/core/theme/ui_prefs_controller.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/app/app_config.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/profile/account_settings.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/profile/child_profile.dart';
@@ -64,6 +65,7 @@ void main() {
           totalBuanEarned: 24350,
           eventsAttended: 9,
           opportunitiesUsed: 7,
+          districtRank: 14,
           badgeCount: 7,
           pendingPayments: 1,
           openSurveys: 2,
@@ -142,6 +144,7 @@ void main() {
         providers: [
           ChangeNotifierProvider<SessionController>.value(value: _FakeSession(cache, guest: guest)),
           ChangeNotifierProvider<ThemeController>(create: (_) => ThemeController(cache)),
+          ChangeNotifierProvider<UiPrefsController>(create: (_) => UiPrefsController(cache)),
         ],
         child: MaterialApp(
           theme: dark ? AppTheme.dark : AppTheme.light,
@@ -211,6 +214,13 @@ void main() {
     await tapText(tester, 'KVKK Aydınlatma Metni');
     expect(find.text('Metin'), findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('profil: Fırsatlarım satırı yok, ilçe sırası karosu var', (tester) async {
+    await pump(tester, const ProfileView());
+    expect(find.text('Fırsatlarım'), findsNothing);
+    expect(find.text('14.'), findsOneWidget);
+    expect(find.text('İlçe sıralaman'), findsOneWidget);
   });
 
   testWidgets('profil: çıkış onay sayfası', (tester) async {

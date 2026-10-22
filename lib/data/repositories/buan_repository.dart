@@ -20,6 +20,9 @@ abstract interface class BuanRepository {
   Future<ApiResult<BuanLevel>> level();
   Future<ApiResult<BuanStreak>> streak();
   Future<ApiResult<List<BuanTaskGroup>>> tasks();
+
+  /// Akışı olmayan görevler için beyan (`declared: true`) ya da başvuru.
+  Future<ApiResult<TaskCompleteResult>> completeTask(String id, {bool declared = false});
   Future<ApiResult<BuanTransactionPage>> transactions({BuanTxFilter filter = BuanTxFilter.all, String? cursor});
   Future<ApiResult<BuanMarket>> market();
   Future<ApiResult<BuanReward>> reward(String id);
@@ -52,6 +55,10 @@ class BuanRepositoryImpl implements BuanRepository {
 
   @override
   Future<ApiResult<List<BuanTaskGroup>>> tasks() => _service.tasks();
+
+  @override
+  Future<ApiResult<TaskCompleteResult>> completeTask(String id, {bool declared = false}) =>
+      _service.completeTask(id, declared: declared);
 
   @override
   Future<ApiResult<BuanTransactionPage>> transactions({BuanTxFilter filter = BuanTxFilter.all, String? cursor}) =>

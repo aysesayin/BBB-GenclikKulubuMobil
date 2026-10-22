@@ -4,7 +4,7 @@ import '../../../core/session/session_controller.dart';
 import '../permission_gateway.dart';
 
 /// A8 · İzin kartı destesi. Her kart "İzin Ver" (sağa fırlar → OS istemi) ya da
-/// "Şimdi değil" (sola fırlar). Bitince "Hazırsın!" → Keşfet.
+/// "Şimdi değil" (sola fırlar). Bitince "Hazırsın!" → İlk günün listesi.
 class PermissionsViewModel extends BaseViewModel {
   PermissionsViewModel(this._gateway, this._session);
 
@@ -55,10 +55,10 @@ class PermissionsViewModel extends BaseViewModel {
     notify();
   }
 
-  /// "Şehre çık": onboarding tamamlandı → Keşfet.
+  /// "Şehre çık": onboarding tamamlandı → İlk günün kontrol listesi.
   Future<String> finish() async {
     // TODO(varsayım): İzin tercihleri /users/me/preferences'a profil özelliği yazacak; burada yalnız OS izni istenir.
     await _session.markOnboardingSeen();
-    return Routes.home;
+    return Routes.firstDay;
   }
 }

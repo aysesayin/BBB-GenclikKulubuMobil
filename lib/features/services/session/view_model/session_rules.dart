@@ -48,3 +48,22 @@ List<RuleIssue> evaluateRules({required ItemRules rules, required Participant pa
   }
   return out;
 }
+
+/// Denetlenecek kişi: çocuk seçiliyse çocuk; "kendim" seçiliyse profil değerleri
+/// ([SessionWeek.viewerAge] / [SessionWeek.viewerGender]) katılımcı kaydını tamamlar.
+/// TODO(varsayım): Profil yaş/cinsiyet kaynağı `/users/me`; şimdilik seans yanıtıyla gelir.
+Participant viewerFor(SessionWeek week, Participant participant) {
+  if (participant.relation == Relation.child) return participant;
+  return participant.copyWith(
+    age: week.viewerAge ?? participant.age,
+    gender: week.viewerGender == Gender.unknown ? participant.gender : week.viewerGender,
+  );
+}
+
+/// Hücreyi kilitleyen ilk engelleyici kural (cinsiyet / yaş sınırı); yoksa null.
+RuleIssue? blockingIssue({required SessionWeek week, required Participant participant, required SessionSlot slot}) {
+  for (final i in evaluateRules(rules: week.rules, participant: viewerFor(week, participant), slot: slot)) {
+    if (i.blocking) return i;
+  }
+  return null;
+}

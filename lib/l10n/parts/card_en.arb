@@ -14,7 +14,6 @@
   "cardTokenError": "Couldn’t get a code right now",
   "cardScanCta": "Scan QR",
   "cardAddToWallet": "Add to wallet",
-  "cardWalletSoon": "Adding to your phone wallet is coming soon.",
   "cardGuestTitle": "Your digital card is waiting",
   "cardGuestMessage": "Sign up to get your card here: scan your QR at centres, check in at events and earn BUAN.",
   "cardGuestCta": "Create my card",
@@ -39,5 +38,15 @@
   "cardCameraDenied": "Camera permission is needed to scan QR codes.",
   "cardCameraUnsupported": "The camera isn’t available on this device. You can pick a QR image from the gallery.",
   "cardCameraError": "Couldn’t open the camera.",
-  "cardOpenSettings": "Open settings"
+  "cardOpenSettings": "Open settings",
+  "cardShowAtGate": "Show at the gate",
+  "cardFlipSemantics": "Flip the card: {side}",
+  "cardFlipFront": "front",
+  "cardFlipBack": "back, QR and code",
+  "cardFlipHint": "Tap to flip",
+  "cardBackTitle": "Check-in QR",
+  "cardTurnstileTitle": "Turnstile mode",
+  "cardTurnstileHint": "Hold the QR to the reader or say the code",
+  "cardTurnstileAutoClose": "Closes by itself in {minutes} min",
+  "cardTurnstileSeconds": "{seconds} s"
 }

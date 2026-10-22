@@ -57,6 +57,7 @@ class ApiEndpoints {
   static const sendOtp = '/auth/otp/send'; // kayıtta ilk SMS kodu
   static const biometricLogin = '/auth/biometric'; // cihaz anahtarıyla giriş (Face ID / parmak izi)
   static const parentConsent = '/auth/parent-consent'; // 16–17 yaş veli onay bağlantısı
+  static const firstDay = '/auth/first-day'; // kayıt sonrası "İlk günün" görev listesi
 
   // Profil
   static const me = '/users/me';
@@ -91,6 +92,7 @@ class ApiEndpoints {
   static String claimOpportunity(String id) => '/opportunities/$id/claim';
   static String favoriteOpportunity(String id) => '/opportunities/$id/favorite';
   static const myOpportunities = '/opportunities/mine';
+  static String rateOpportunity(String id) => '/opportunities/$id/rating';
 
   // Etkinlikler & Yerler
   static const events = '/events';
@@ -113,6 +115,7 @@ class ApiEndpoints {
   static const tennisProducts = '/services/tennis-products';
   static String serviceItems(String facilityId) => '/services/facilities/$facilityId/items';
   static String sessions(String itemId) => '/services/items/$itemId/sessions'; // ?from=&to=
+  static String waitlistSession(String itemId) => '/services/items/$itemId/waitlist'; // POST {sessionId}
   static const cart = '/cart';
   static const cartHold = '/cart/hold'; // 5 dk kontenjan rezervasyonu
   static String cartItem(String id) => '/cart/items/$id';
@@ -164,4 +167,6 @@ class ApiEndpoints {
   static const legalTexts = '/app/legal';
   static String legalText(String key) => '/app/legal/$key';
   static const deviceToken = '/devices/token';
+  // TODO(varsayım): BİKO (Bursa İstihdam Koordinasyon Ofisi) dış sitesi; kurumsal adres netleşince değişebilir.
+  static const bikoUrl = 'https://biko.bursa.bel.tr'; // BİKO ile Staj / İş görevi (url_launcher, dış tarayıcı)
 }

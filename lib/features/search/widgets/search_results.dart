@@ -12,10 +12,14 @@ import '../../../data/models/search/search_result.dart';
 import '../../../l10n/l10n.dart';
 import '../../home/widgets/home_icons.dart';
 import '../view_model/search_view_model.dart';
+import 'search_empty.dart';
 
 /// Sorgu varken: sekme çipleri + gruplu sonuçlar (150 ms fade).
 class SearchResultsPane extends StatelessWidget {
-  const SearchResultsPane({super.key});
+  const SearchResultsPane({super.key, required this.onPick});
+
+  /// Öneri / etiket dokunuşu: alanı doldurur ve arar.
+  final ValueChanged<String> onPick;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +27,11 @@ class SearchResultsPane extends StatelessWidget {
     final state = vm.results;
     final Widget body = switch (state) {
       ViewError(:final error) => ErrorStateView(error: error, onRetry: () => vm.submit(vm.query)),
-      ViewSuccess(:final data) when data.isEmpty => EmptyState(
-        title: context.l10n.searchNoResultTitle,
-        message: context.l10n.searchNoResultMessage(vm.query.trim()),
+      ViewSuccess(:final data) when data.isEmpty => SearchEmptyResults(
+        query: vm.query.trim(),
+        suggestion: vm.suggestion,
+        popular: vm.popular,
+        onPick: onPick,
       ),
       ViewSuccess() || ViewLoading(previous: _?) => _ResultList(vm: vm),
       _ => const _ResultsSkeleton(),

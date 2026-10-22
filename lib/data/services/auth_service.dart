@@ -4,6 +4,7 @@ import '../../core/network/app_exception.dart';
 import '../../core/network/dio_client.dart';
 import '../models/auth/auth_requests.dart';
 import '../models/auth/auth_session.dart';
+import '../models/auth/first_day_task.dart';
 import '../models/auth/otp_challenge.dart';
 
 /// Mock modundaki demo değerleri (tasarım notları): OTP 481926, hatalı şifre "yanlis123".
@@ -78,5 +79,12 @@ class AuthService {
         ApiEndpoints.parentConsent,
         body: {'tckn': tckn, 'birthDate': birthDate, 'parentPhone': parentPhone},
         parse: Json.ignore,
+      );
+
+  /// Kayıt sonrası "İlk günün" görevleri (başlık, ödül ve hedef yol API'den).
+  Future<ApiResult<List<FirstDayTask>>> firstDayTasks() => _client.get(
+        ApiEndpoints.firstDay,
+        parse: (d) => Json.list(d, FirstDayTask.fromJson),
+        cacheKey: 'firstDay',
       );
 }

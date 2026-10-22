@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/utils/haptics.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/models/map/map_pin.dart';
@@ -18,6 +19,7 @@ class MapTopBar extends StatelessWidget {
     required this.onNearby,
     required this.onLayer,
     required this.onCategory,
+    this.showCategories = false,
   });
 
   final MapLayer layer;
@@ -27,10 +29,15 @@ class MapTopBar extends StatelessWidget {
   final ValueChanged<MapLayer> onLayer;
   final ValueChanged<String> onCategory;
 
+  /// Çipler ikinci satır olarak yalnız katman seçildikten sonra görünür (Kolay Mod: hiç).
+  final bool showCategories;
+
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
     final l = context.l10n;
+    final easy = context.easyMode;
+    final chips = showCategories && !easy && categories.isNotEmpty;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -38,15 +45,15 @@ class MapTopBar extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              AppIconButton(icon: AppIcons.back, semanticLabel: l.commonBack, onPressed: onBack, size: 48, background: p.sf, shadow: true),
+              AppIconButton(icon: AppIcons.back, semanticLabel: l.commonBack, onPressed: onBack, size: easy ? 56 : 48, background: p.sf, shadow: true),
               const SizedBox(width: 8),
-              Expanded(child: _NearbyPill(onTap: onNearby)),
+              Expanded(child: _NearbyPill(onTap: onNearby, easy: easy)),
             ],
           ),
         ),
         const SizedBox(height: 10),
         Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: _LayerSegment(layer: layer, onChanged: onLayer)),
-        if (categories.isNotEmpty) ...[
+        if (chips) ...[
           const SizedBox(height: 10),
           SizedBox(
             height: 46,
@@ -69,31 +76,40 @@ class MapTopBar extends StatelessWidget {
 }
 
 class _NearbyPill extends StatelessWidget {
-  const _NearbyPill({required this.onTap});
+  const _NearbyPill({required this.onTap, required this.easy});
 
   final VoidCallback onTap;
+
+  /// Kolay Mod: 56 px, dolgulu "liste" düğmesi görünümü.
+  final bool easy;
 
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
+    final label = easy ? context.l10n.mapEasyNearbyCta : context.l10n.mapNearbyPlaces;
     return Semantics(
       button: true,
       child: Material(
-        color: p.sf,
-        borderRadius: BorderRadius.circular(24),
+        color: easy ? p.onTile : p.sf,
+        borderRadius: BorderRadius.circular(28),
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(28),
           child: Container(
-            height: 48,
+            height: easy ? 56 : 48,
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(24), boxShadow: p.cardShadow),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(28), boxShadow: p.cardShadow),
             child: Row(
               children: [
-                AppIcon(AppIcons.search, size: 20, color: p.mut),
+                AppIcon(easy ? AppIcons.pin : AppIcons.search, size: easy ? 24 : 20, color: easy ? p.paper : p.mut),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: Text(context.l10n.mapNearbyPlaces, maxLines: 1, overflow: TextOverflow.ellipsis, style: AppTypography.body(15, color: p.mut)),
+                  child: Text(
+                    label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: easy ? AppTypography.body(17, weight: FontWeight.w900, color: p.paper) : AppTypography.body(15, color: p.mut),
+                  ),
                 ),
               ],
             ),

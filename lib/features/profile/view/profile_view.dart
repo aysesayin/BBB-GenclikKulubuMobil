@@ -7,12 +7,14 @@ import '../../../core/di/locator.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/session/session_controller.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/repositories/profile_repository.dart';
 import '../../../l10n/l10n.dart';
 import '../view_model/profile_view_model.dart';
 import '../widgets/confirm_sheet.dart';
 import '../widgets/document_picker.dart';
+import '../widgets/easy_profile_menu.dart';
 import '../widgets/guest_profile.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_icons.dart';
@@ -22,6 +24,8 @@ import '../widgets/profile_stats_row.dart';
 import '../widgets/profile_ui.dart';
 
 /// I1 · Profil sekmesi. Misafirde kayıt çağrılı varyant gösterilir.
+/// Kolay Mod: avatar + ad, ardından en fazla 5 büyük satır; sayaçlar ve rozet vitrini gizli,
+/// kalan menü "Daha fazla" altında.
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
 
@@ -39,6 +43,7 @@ class _MemberBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<ProfileViewModel>();
+    final easy = context.easyMode;
     return Scaffold(
       body: ProfileBackdrop(
         child: ViewStateBuilder<ProfileOverview>(
@@ -53,9 +58,17 @@ class _MemberBody extends StatelessWidget {
                 ProfileTopBar(onSettings: () => context.push(Routes.settings)),
                 if (offline) const OfflineBanner(margin: EdgeInsets.fromLTRB(16, 8, 16, 8)),
                 ProfileHeader(user: data.user, avatarBusy: vm.avatarBusy, onEditAvatar: () => _editAvatar(context)),
-                ProfileStatsRow(stats: data.stats),
-                BadgeShowcase(stats: data.stats, onOpen: () => context.push(Routes.badges)),
-                ProfileMenu(label: context.l10n.profileMenuLabel, items: _items(context, data)),
+                if (easy)
+                  EasyProfileMenu(
+                    label: context.l10n.profileMenuLabel,
+                    primary: _easyItems(context, data),
+                    secondary: _moreItems(context, data),
+                  )
+                else ...[
+                  ProfileStatsRow(stats: data.stats, onRank: () => context.push(Routes.league)),
+                  BadgeShowcase(stats: data.stats, onOpen: () => context.push(Routes.badges)),
+                  ProfileMenu(label: context.l10n.profileMenuLabel, items: _items(context, data)),
+                ],
               ],
             ),
           ),
@@ -64,43 +77,112 @@ class _MemberBody extends StatelessWidget {
     );
   }
 
+  /// Tam menü (normal mod). "Fırsatlarım" burada değil; Fırsatlar sekmesinde yaşar.
   List<ProfileMenuItem> _items(BuildContext context, ProfileOverview data) {
     final p = context.palette;
     final l = context.l10n;
-    VoidCallback go(String route) =>
-        () => context.push(route);
     final s = data.stats;
     return [
-      ProfileMenuItem(
-        label: l.profileMenuApplications,
-        icon: ProfileIcons.applications,
-        tile: p.tile3,
-        badge: s.pendingPayments > 0 ? l.profilePendingPayments(s.pendingPayments) : null,
-        onTap: go(Routes.applications),
-      ),
-      ProfileMenuItem(label: l.profileMenuOpportunities, icon: AppIcons.tag, tile: p.tile2, onTap: go(Routes.myOpportunities)),
-      ProfileMenuItem(label: l.profileMenuCoupons, icon: ProfileIcons.coupon, tile: p.tile6, onTap: go(Routes.coupons)),
-      ProfileMenuItem(label: l.profileMenuDiscounts, icon: ProfileIcons.percent, tile: p.tile5, onTap: go(Routes.discounts)),
-      ProfileMenuItem(label: l.profileMenuChildren, icon: ProfileIcons.child, tile: p.tile1, onTap: go(Routes.children)),
+      _applications(context, data),
+      ProfileMenuItem(label: l.profileMenuCoupons, icon: ProfileIcons.coupon, tile: p.tile6, onTap: _go(context, Routes.coupons)),
+      ProfileMenuItem(label: l.profileMenuDiscounts, icon: ProfileIcons.percent, tile: p.tile5, onTap: _go(context, Routes.discounts)),
+      ProfileMenuItem(label: l.profileMenuChildren, icon: ProfileIcons.child, tile: p.tile1, onTap: _go(context, Routes.children)),
       ProfileMenuItem(
         label: l.profileMenuSurveys,
         icon: AppIcons.poll,
         tile: p.tile2,
         badge: s.openSurveys > 0 ? l.profileOpenSurveys(s.openSurveys) : null,
-        onTap: go(Routes.quiz),
+        onTap: _go(context, Routes.quiz),
       ),
-      ProfileMenuItem(label: l.profileMenuSupport, icon: ProfileIcons.chat, tile: p.tile4, onTap: go(Routes.support)),
-      ProfileMenuItem(label: l.profileMenuSettings, icon: ProfileIcons.sliders, tile: p.tile3, onTap: go(Routes.settings)),
-      ProfileMenuItem(label: l.profileMenuLegal, icon: ProfileIcons.document, tile: p.sf2, iconColor: p.ink, onTap: go(Routes.support)),
-      ProfileMenuItem(
-        label: l.profileMenuLogout,
-        icon: ProfileIcons.logout,
-        tile: p.pinkS,
-        iconColor: p.pinkT,
-        foreground: p.pinkT,
-        onTap: () => _logout(context),
-      ),
+      _support(context),
+      _settings(context),
+      _legal(context),
+      _logout(context),
     ];
+  }
+
+  /// Kolay Mod ana satırları: Başvurularım, Kuponlarım, Ayarlar, Destek, Çıkış.
+  List<ProfileMenuItem> _easyItems(BuildContext context, ProfileOverview data) {
+    final p = context.palette;
+    final l = context.l10n;
+    return [
+      _applications(context, data),
+      ProfileMenuItem(label: l.profileMenuCoupons, icon: ProfileIcons.coupon, tile: p.tile6, onTap: _go(context, Routes.coupons)),
+      _settings(context),
+      _support(context),
+      _logout(context),
+    ];
+  }
+
+  /// Kolay Mod "Daha fazla" satırları.
+  List<ProfileMenuItem> _moreItems(BuildContext context, ProfileOverview data) {
+    final p = context.palette;
+    final l = context.l10n;
+    final s = data.stats;
+    return [
+      ProfileMenuItem(label: l.profileMenuDiscounts, icon: ProfileIcons.percent, tile: p.tile5, onTap: _go(context, Routes.discounts)),
+      ProfileMenuItem(label: l.profileMenuChildren, icon: ProfileIcons.child, tile: p.tile1, onTap: _go(context, Routes.children)),
+      ProfileMenuItem(
+        label: l.profileMenuSurveys,
+        icon: AppIcons.poll,
+        tile: p.tile2,
+        badge: s.openSurveys > 0 ? l.profileOpenSurveys(s.openSurveys) : null,
+        onTap: _go(context, Routes.quiz),
+      ),
+      _legal(context),
+    ];
+  }
+
+  VoidCallback _go(BuildContext context, String route) =>
+      () => context.push(route);
+
+  ProfileMenuItem _applications(BuildContext context, ProfileOverview data) {
+    final l = context.l10n;
+    final pending = data.stats.pendingPayments;
+    return ProfileMenuItem(
+      label: l.profileMenuApplications,
+      icon: ProfileIcons.applications,
+      tile: context.palette.tile3,
+      badge: pending > 0 ? l.profilePendingPayments(pending) : null,
+      onTap: _go(context, Routes.applications),
+    );
+  }
+
+  ProfileMenuItem _support(BuildContext context) => ProfileMenuItem(
+    label: context.l10n.profileMenuSupport,
+    icon: ProfileIcons.chat,
+    tile: context.palette.tile4,
+    onTap: _go(context, Routes.support),
+  );
+
+  ProfileMenuItem _settings(BuildContext context) => ProfileMenuItem(
+    label: context.l10n.profileMenuSettings,
+    icon: ProfileIcons.sliders,
+    tile: context.palette.tile3,
+    onTap: _go(context, Routes.settings),
+  );
+
+  ProfileMenuItem _legal(BuildContext context) {
+    final p = context.palette;
+    return ProfileMenuItem(
+      label: context.l10n.profileMenuLegal,
+      icon: ProfileIcons.document,
+      tile: p.sf2,
+      iconColor: p.ink,
+      onTap: _go(context, Routes.support),
+    );
+  }
+
+  ProfileMenuItem _logout(BuildContext context) {
+    final p = context.palette;
+    return ProfileMenuItem(
+      label: context.l10n.profileMenuLogout,
+      icon: ProfileIcons.logout,
+      tile: p.pinkS,
+      iconColor: p.pinkT,
+      foreground: p.pinkT,
+      onTap: () => _signOut(context),
+    );
   }
 
   Future<void> _editAvatar(BuildContext context) async {
@@ -113,7 +195,7 @@ class _MemberBody extends StatelessWidget {
     showProfileSnack(context, error == null ? l.profileAvatarUpdated : errorMessageOf(context, error));
   }
 
-  Future<void> _logout(BuildContext context) async {
+  Future<void> _signOut(BuildContext context) async {
     final l = context.l10n;
     final ok = await showConfirmSheet(
       context,

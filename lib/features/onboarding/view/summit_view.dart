@@ -263,7 +263,15 @@ class _Ctas extends StatelessWidget {
           onPressed: () => context.push(Routes.invite),
         ),
         const SizedBox(height: 10),
-        AppButton(label: l.onbSummitStart, onPressed: () => context.go(Routes.permissions)),
+        AppButton(label: l.onbSummitStart, onPressed: () => context.go(Routes.prePermission)),
+        const SizedBox(height: 10),
+        Text(
+          l.onbSummitProfileNote,
+          textAlign: TextAlign.center,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: AppTypography.body(13, weight: FontWeight.w800, color: p.onNight.withValues(alpha: .8)),
+        ),
       ],
     );
   }

@@ -6,6 +6,7 @@ import '../../../core/network/api_result.dart';
 import '../../../data/models/map/map_pin.dart';
 import '../../../data/repositories/map_repository.dart';
 import '../location/location_provider.dart';
+import '../utils/pin_clustering.dart';
 
 /// G3 · Katmanlı harita: Yerler / Etkinlikler / Fırsatlar + kategori çipleri + pin önizlemesi.
 ///
@@ -40,6 +41,13 @@ class MapViewModel extends BaseViewModel {
 
   List<MapCategory> _categories = const [];
   List<MapCategory> get categories => _categories;
+
+  /// Kategori çipleri varsayılan gizli; katman segmentine ilk dokunuşta (ya da rota ile
+  /// kategori geldiyse) açılır.
+  bool _categoriesRevealed = false;
+  bool get showCategories => _categoriesRevealed || _categoryId != null;
+
+  static const _distance = Distance();
 
   int _request = 0;
 
@@ -92,6 +100,10 @@ class MapViewModel extends BaseViewModel {
   }
 
   void setLayer(MapLayer layer) {
+    if (!_categoriesRevealed) {
+      _categoriesRevealed = true;
+      notify();
+    }
     if (layer == _layer) return;
     _layer = layer;
     _selectedId = null;
@@ -103,6 +115,27 @@ class MapViewModel extends BaseViewModel {
     _categoryId = _categoryId == id ? null : id;
     if (selectedPin == null) _selectedId = null;
     load();
+  }
+
+  /// Kullanıcının (yoksa Bursa merkezinin) en yakınındaki [count] yer pini — alt şerit.
+  List<MapPin> nearestPlaces({int count = 3}) {
+    final list = (_data?.pins ?? const <MapPin>[]).where((p) => p.layer == MapLayer.places).toList()
+      ..sort((a, b) => distanceTo(a).compareTo(distanceTo(b)));
+    return list.length <= count ? list : list.sublist(0, count);
+  }
+
+  /// Konuma (yoksa Bursa merkezine) uzaklık, metre.
+  int distanceTo(MapPin pin) => _distance.as(LengthUnit.Meter, _userLocation ?? bursaCenter, LatLng(pin.lat, pin.lng)).round();
+
+  /// Şeritten seçim: pin başka katmandaysa katman da değişir.
+  void focusPin(MapPin pin) {
+    if (pin.layer != _layer) {
+      _layer = pin.layer;
+      _selectedId = pin.id;
+      load();
+      return;
+    }
+    selectPin(pin.id);
   }
 
   void selectPin(String? id) {

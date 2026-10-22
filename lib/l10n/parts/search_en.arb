@@ -16,5 +16,8 @@
   "@searchTabCount": {"placeholders": {"label": {"type": "String"}, "count": {"type": "int"}}},
   "searchNoResultTitle": "No results",
   "searchNoResultMessage": "Nothing found for “{query}”. Try another word or check the popular tags.",
-  "@searchNoResultMessage": {"placeholders": {"query": {"type": "String"}}}
+  "@searchNoResultMessage": {"placeholders": {"query": {"type": "String"}}},
+  "searchDidYouMean": "Did you mean?",
+  "searchDidYouMeanSemantics": "Did you mean: {suggestion}",
+  "@searchDidYouMeanSemantics": {"placeholders": {"suggestion": {"type": "String"}}}
 }

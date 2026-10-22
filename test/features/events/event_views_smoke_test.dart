@@ -46,7 +46,8 @@ void main() {
               placeName: 'Sarıalan buluşma noktası',
               capacity: 50,
               attendeeCount: 34,
-              tags: const ['16–30 yaş', 'Check-in +300 BUAN'],
+              tags: const ['16–30 yaş'],
+              checkInBuan: 300,
               icon: 'mountain',
               tone: 'tile2',
             ),
@@ -117,6 +118,12 @@ void main() {
       expect(find.text('Uludağ Doğa Yürüyüşü'), findsOneWidget);
       expect(find.text('34/50'), findsOneWidget);
       expect(find.text('DOLU'), findsOneWidget);
+      expect(find.text('Check-in’de +300'), findsOneWidget);
+      expect(find.bySemanticsLabel('Sonraki hafta'), findsOneWidget);
+      expect(find.bySemanticsLabel('Önceki hafta'), findsOneWidget);
+      await tester.tap(find.bySemanticsLabel('Sonraki hafta'));
+      await tester.pump(const Duration(milliseconds: 400));
+      expect(tester.takeException(), isNull);
 
       await tester.ensureVisible(find.text('Kariyer'));
       await tester.pump();
@@ -124,6 +131,14 @@ void main() {
       await tester.pump();
       expect(find.text('Uludağ Doğa Yürüyüşü'), findsNothing);
       expect(find.text('Arduino ile ilk robotun'), findsOneWidget);
+    });
+
+    testWidgets('liste Kolay Mod ${size.width.toInt()}: tek sütun, 72 px gün kutuları', (tester) async {
+      await pumpDiscoverScreen(tester, const EventListView(), size: size, dark: dark, easyMode: true);
+      expect(find.text('Uludağ Doğa Yürüyüşü'), findsOneWidget);
+      final tile = tester.getSize(find.ancestor(of: find.text('${today.day}'), matching: find.byType(AnimatedContainer)).first);
+      expect(tile.width, 72);
+      expect(tester.takeException(), isNull);
     });
 
     testWidgets('detay ${size.width.toInt()} ${dark ? 'koyu' : 'açık'} taşmadan çizilir', (tester) async {

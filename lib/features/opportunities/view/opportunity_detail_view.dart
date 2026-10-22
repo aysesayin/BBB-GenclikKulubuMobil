@@ -209,24 +209,27 @@ class _CtaBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (reason != null) ...[
+            // Uygun değil (yaş vb.): pembe uyarı bandı doğrudan CTA'nın üstünde.
             Semantics(
               liveRegion: true,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppIcon(AppIcons.lock, size: 16, color: p.mut, strokeWidth: 2.4),
-                  const SizedBox(width: 6),
-                  Flexible(
-                    child: Text(
-                      reason,
-                      textAlign: TextAlign.center,
-                      style: AppTypography.body(13, weight: FontWeight.w800, color: p.mut),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                decoration: BoxDecoration(color: p.pinkS, borderRadius: BorderRadius.circular(AppRadii.md)),
+                child: Row(
+                  children: [
+                    AppIcon(AppIcons.lock, size: 18, color: p.pinkT, strokeWidth: 2.4),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        reason,
+                        style: AppTypography.body(14, weight: FontWeight.w800, height: 1.3, color: p.pinkT),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 10),
           ],
           AppButton(label: label, busy: vm.claiming, onPressed: onPressed, semanticLabel: reason == null ? null : '$label, $reason'),
         ],

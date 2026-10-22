@@ -6,6 +6,7 @@ import '../../core/network/api_result.dart';
 import '../../core/network/dio_client.dart';
 import '../models/profile/account_settings.dart';
 import '../models/profile/child_profile.dart';
+import '../models/profile/delete_request.dart';
 import '../models/profile/discount.dart';
 import '../models/profile/profile_stats.dart';
 import '../models/profile/user_profile.dart';
@@ -79,8 +80,11 @@ class ProfileService {
     parse: Json.ignore,
   );
 
-  Future<ApiResult<void>> requestDeletion({String? reason}) =>
-      _client.post(ApiEndpoints.deleteAccount, body: {'reason': ?reason}, parse: Json.ignore);
+  Future<ApiResult<DeleteRequestReceipt>> requestDeletion({String? reason}) => _client.post(
+    ApiEndpoints.deleteAccount,
+    body: {'reason': ?reason},
+    parse: (d) => DeleteRequestReceipt.fromJson(Json.map(d)),
+  );
 
   Future<ApiResult<void>> logout() => _client.post(ApiEndpoints.logout, parse: Json.ignore);
 }

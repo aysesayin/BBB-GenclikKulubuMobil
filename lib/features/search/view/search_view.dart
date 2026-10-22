@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../core/di/locator.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/repositories/search_repository.dart';
 import '../../../l10n/l10n.dart';
@@ -59,7 +60,7 @@ class _BodyState extends State<_Body> {
       body: Column(
         children: [
           _SearchBar(controller: _controller, hasQuery: hasQuery, onClear: _clear),
-          Expanded(child: hasQuery ? const SearchResultsPane() : SearchSuggestions(onPick: _pick)),
+          Expanded(child: hasQuery ? SearchResultsPane(onPick: _pick) : SearchSuggestions(onPick: _pick)),
         ],
       ),
     );
@@ -86,11 +87,11 @@ class _SearchBar extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(
             child: Container(
-              height: 50,
+              height: context.easyMode ? 56 : 50,
               padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
               decoration: BoxDecoration(
                 color: p.sf,
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(28),
                 border: Border.all(color: p.teal, width: 2),
               ),
               child: Row(

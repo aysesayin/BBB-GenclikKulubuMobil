@@ -26,6 +26,14 @@ class BuanService {
   Future<ApiResult<List<BuanTaskGroup>>> tasks() =>
       _client.get(ApiEndpoints.buanTasks, parse: (d) => Json.list(Json.map(d)['groups'], BuanTaskGroup.fromJson), cacheKey: 'buan.tasks');
 
+  /// Genel görev beyanı / başvurusu (Takip Et, Gönül Dostu). Sonuç panel onayına bağlıdır.
+  Future<ApiResult<TaskCompleteResult>> completeTask(String id, {required bool declared}) => _client.post(
+    ApiEndpoints.completeTask(id),
+    body: {'declared': declared},
+    headers: {'Idempotency-Key': 'task-$id'},
+    parse: (d) => TaskCompleteResult.fromJson(Json.map(d)),
+  );
+
   Future<ApiResult<BuanTransactionPage>> transactions({required BuanTxFilter filter, String? cursor}) => _client.get(
     ApiEndpoints.buanTransactions,
     query: {'type': filter.name, 'cursor': ?cursor},

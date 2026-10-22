@@ -16,10 +16,9 @@ import '../widgets/poster_title.dart';
 import '../widgets/story_chrome.dart';
 import '../widgets/story_city_scene.dart';
 import '../widgets/story_coin_scene.dart';
-import '../widgets/story_coupon_scene.dart';
 import '../widgets/tilt.dart';
 
-/// A2 · Hikâye onboarding (3 × 6 sn).
+/// A2 · Hikâye onboarding (2 × 6 sn: şehir → coin). İlk hikâyede "Hemen Başla" kısayolu.
 class StoryView extends StatelessWidget {
   const StoryView({super.key});
 
@@ -90,20 +89,18 @@ class _BodyState extends State<_Body> with SingleTickerProviderStateMixin {
     final top = MediaQuery.paddingOf(context).top;
     final (Color ink, Color hl, Color blobA, Color blobB) = switch (i) {
       0 => (p.ink, p.teal, p.mint, p.sky),
-      1 => (p.onTile, p.pinkT, p.tile1, p.tile2),
       _ => (p.onBuan, p.onBuan, p.glow, p.coinMark),
     };
     final lines = [
       (l.onbStoryEyebrow1, l.onbStory1Line1, l.onbStory1Line2, l.onbStory1Sub),
       (l.onbStoryEyebrow2, l.onbStory2Line1, l.onbStory2Line2, l.onbStory2Sub),
-      (l.onbStoryEyebrow3, l.onbStory3Line1, l.onbStory3Line2, l.onbStory3Sub),
     ][i];
-    final track = i == 2 ? p.onBuan.withValues(alpha: .35) : ink.withValues(alpha: p.isDark && i == 0 ? .28 : .18);
+    final track = i == 1 ? p.onBuan.withValues(alpha: .35) : ink.withValues(alpha: p.isDark ? .28 : .18);
 
     return Scaffold(
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        decoration: BoxDecoration(color: i == 1 ? p.tile6 : (i == 0 ? p.bg : null), gradient: i == 2 ? p.buanGradient : null),
+        decoration: BoxDecoration(color: i == 0 ? p.bg : null, gradient: i == 1 ? p.buanGradient : null),
         child: TiltBuilder(
           builder: (context, tilt, _) => Stack(
             children: [
@@ -165,34 +162,29 @@ class _BodyState extends State<_Body> with SingleTickerProviderStateMixin {
 
   Widget _scene(StoryViewModel vm, Offset parallax) {
     final l = context.l10n;
-    final p = context.palette;
     final bottom = MediaQuery.paddingOf(context).bottom;
     return switch (vm.index) {
-      0 => Align(
-        alignment: Alignment.topCenter,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Transform.translate(
-            offset: parallax,
-            child: StoryCityScene(bonusPin: vm.bonus),
-          ),
-        ),
-      ),
-      1 => Column(
-        children: [
-          const SizedBox(height: 30),
-          StoryCouponScene(flung: vm.flungCoupon, onFling: vm.flingCoupon),
-          const Spacer(),
-          LoopMotion(
-            duration: const Duration(milliseconds: 800),
-            builder: (_, t, child) => Transform.scale(scale: 1 + .08 * Curves.easeInOut.transform(t), child: child),
-            child: Text(
-              l.onbCouponHint,
-              style: AppTypography.body(14, weight: FontWeight.w900, color: p.onTile),
+      // Harita kartı küçük ekranlarda ölçeklenir; "Hemen Başla" her zaman görünür.
+      0 => LayoutBuilder(
+        builder: (_, c) => Column(
+          children: [
+            Expanded(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  width: c.maxWidth - 40,
+                  height: 330,
+                  child: Transform.translate(offset: parallax, child: StoryCityScene(bonusPin: vm.bonus)),
+                ),
+              ),
             ),
-          ),
-          SizedBox(height: 40 + bottom),
-        ],
+            Padding(
+              padding: EdgeInsets.fromLTRB(24, 12, 24, 40 + bottom),
+              child: AppButton(label: l.onbStoryStartNow, onPressed: () => context.go(Routes.welcome)),
+            ),
+          ],
+        ),
       ),
       _ => Column(
         children: [

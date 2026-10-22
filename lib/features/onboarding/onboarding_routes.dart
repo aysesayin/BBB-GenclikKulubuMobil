@@ -5,8 +5,10 @@ import '../../core/router/routes.dart';
 import '../auth/view/login_view.dart';
 import '../auth/view/register_view.dart';
 import '../splash/view/splash_view.dart';
+import 'view/first_day_view.dart';
 import 'view/interests_view.dart';
 import 'view/permissions_view.dart';
+import 'view/pre_permission_view.dart';
 import 'view/story_view.dart';
 import 'view/summit_view.dart';
 import 'view/welcome_view.dart';
@@ -21,7 +23,9 @@ final List<RouteBase> onboardingRoutes = [
   _route(Routes.register, (s) => RegisterView(referralCode: s.uri.queryParameters['ref'])),
   _route(Routes.login, (s) => LoginView(from: s.uri.queryParameters['from'])),
   _route(Routes.summit, (_) => const SummitView()),
+  _route(Routes.prePermission, (_) => const PrePermissionView()),
   _route(Routes.permissions, (_) => const PermissionsView()),
+  _route(Routes.firstDay, (_) => const FirstDayView()),
 ];
 
 GoRoute _route(String path, Widget Function(GoRouterState state) build) => GoRoute(

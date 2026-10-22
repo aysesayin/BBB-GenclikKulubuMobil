@@ -12,6 +12,9 @@ abstract final class OppIcons {
   static const sun =
       'M12 8a4 4 0 1 0 0 8 4 4 0 1 0 0-8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4';
 
+  /// Puanlama yıldızı (5 köşeli, dolu/boş).
+  static const star = 'M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z';
+
   /// Kategori ikon anahtarı (API `icon`) → yol.
   static String byKey(String key) => switch (key) {
     'bus' => AppIcons.bus,

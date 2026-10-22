@@ -13,7 +13,6 @@ import '../../../l10n/l10n.dart';
 import '../view_model/event_list_view_model.dart';
 import '../widgets/day_strip.dart';
 import '../widgets/event_card.dart';
-import '../widgets/event_format.dart';
 
 /// G1 · Etkinlik listesi (Keşfet sekmesi içinde, alt navigasyon görünür).
 class EventListView extends StatelessWidget {
@@ -51,13 +50,6 @@ class _Body extends StatelessWidget {
                 onPressed: () => context.push(Routes.map),
               ),
             ],
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-            child: Text(
-              EventFormat.monthYear(context, vm.monthAnchor),
-              style: AppTypography.body(14, weight: FontWeight.w900, color: p.mut),
-            ),
           ),
           DayStrip(days: vm.days, isSelected: vm.isSelectedDay, hasEvents: vm.hasEventsOn, onPick: vm.selectDay),
           Expanded(

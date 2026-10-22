@@ -17,7 +17,7 @@ import 'register_form.dart';
 
 export 'register_form.dart' show TcknStatus;
 
-enum RegisterStep { identity, contact, otp, emergency, agreements, verification, underAge }
+enum RegisterStep { identity, contact, otp, agreements, verification, underAge }
 
 enum OtpState { idle, verifying, wrong, ok }
 
@@ -25,9 +25,10 @@ enum VerifyStatus { idle, running, verified, failed }
 
 enum UnderAgeKind { needsParent, tooYoung }
 
-/// A5 · "Uludağ'a tırmanış" kayıt akışı: tek soru / ekran, rota
+/// A5 · "Uludağ'a tırmanış" kayıt akışı: tek soru / ekran, 5 durak
 /// Tophane → Ulu Cami → Kozahan → Teleferik → Zirve.
-/// Kimlik → İletişim → SMS kodu → Acil durum → Sözleşmeler → MERNİS + kayıt.
+/// Kimlik → Cep telefonu → SMS kodu → Sözleşmeler → MERNİS + kayıt.
+/// E-posta ve acil durum kişisi kayıtta sorulmaz; Zirve'de profilden tamamlanması hatırlatılır.
 class RegisterViewModel extends BaseViewModel with RegisterForm {
   RegisterViewModel(
     this._auth,
@@ -62,8 +63,8 @@ class RegisterViewModel extends BaseViewModel with RegisterForm {
   RegisterStep get step => _step;
   int get stopIndex => switch (_step) {
         RegisterStep.identity || RegisterStep.underAge => 0,
-        RegisterStep.contact || RegisterStep.otp => 1,
-        RegisterStep.emergency => 2,
+        RegisterStep.contact => 1,
+        RegisterStep.otp => 2,
         RegisterStep.agreements => 3,
         RegisterStep.verification => 4,
       };
@@ -135,13 +136,10 @@ class RegisterViewModel extends BaseViewModel with RegisterForm {
         }
         return _go(RegisterStep.contact);
       case RegisterStep.contact:
-        if (phoneIssue != null || emailIssue != null) return notify();
+        if (phoneIssue != null) return notify();
         if (await _sendOtp(resend: false)) _go(RegisterStep.otp);
       case RegisterStep.otp:
         await verifyOtp();
-      case RegisterStep.emergency:
-        if (emergencyNameIssue != null || emergencyPhoneIssue != null) return notify();
-        _go(RegisterStep.agreements);
       case RegisterStep.agreements:
         if (!allRequiredAccepted) return notify();
         _go(RegisterStep.verification);
@@ -158,8 +156,8 @@ class RegisterViewModel extends BaseViewModel with RegisterForm {
     final prev = switch (_step) {
       RegisterStep.identity => null,
       RegisterStep.underAge || RegisterStep.contact => RegisterStep.identity,
-      RegisterStep.otp || RegisterStep.emergency => RegisterStep.contact,
-      RegisterStep.agreements => RegisterStep.emergency,
+      // Sözleşmelerden geri: numara değişebilir, kod yeniden gönderilir.
+      RegisterStep.otp || RegisterStep.agreements => RegisterStep.contact,
       RegisterStep.verification => _verify == VerifyStatus.failed ? RegisterStep.agreements : RegisterStep.verification,
     };
     if (prev == null) return false;
@@ -223,7 +221,7 @@ class RegisterViewModel extends BaseViewModel with RegisterForm {
         _timer?.cancel();
         notify();
         await Future<void>.delayed(otpAdvance);
-        if (!isDisposed && _step == RegisterStep.otp) _go(RegisterStep.emergency);
+        if (!isDisposed && _step == RegisterStep.otp) _go(RegisterStep.agreements);
       case Failure(:final error):
         _otpState = error is ValidationException ? OtpState.wrong : OtpState.idle;
         if (error is! ValidationException) _error = error;
@@ -244,8 +242,6 @@ class RegisterViewModel extends BaseViewModel with RegisterForm {
       tckn: tckn,
       birthDate: birthIso,
       phone: phone11,
-      email: email,
-      emergencyContact: EmergencyContact(name: emergencyName, phone: emergencyPhone),
       otpToken: _otpToken ?? '',
       acceptedConsents: acceptedKeys,
       explicitConsent: explicitConsent,

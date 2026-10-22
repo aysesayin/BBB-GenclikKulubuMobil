@@ -31,6 +31,9 @@ abstract interface class OpportunityRepository {
   Future<ApiResult<void>> setFavorite(String id, {required bool value});
   Future<ApiResult<ClaimResult>> claim(String id);
   Future<ApiResult<List<WalletItem>>> mine();
+
+  /// Kullanılan fırsatı puanla (1–5 yıldız + isteğe bağlı yorum) → BUAN ödülü.
+  Future<ApiResult<RatingResult>> rate(String id, {required int stars, String? comment});
 }
 
 class OpportunityRepositoryImpl implements OpportunityRepository {
@@ -76,4 +79,8 @@ class OpportunityRepositoryImpl implements OpportunityRepository {
 
   @override
   Future<ApiResult<List<WalletItem>>> mine() => _service.mine();
+
+  @override
+  Future<ApiResult<RatingResult>> rate(String id, {required int stars, String? comment}) =>
+      _service.rate(id, stars: stars, comment: comment);
 }

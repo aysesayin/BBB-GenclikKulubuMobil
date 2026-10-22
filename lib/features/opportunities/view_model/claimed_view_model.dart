@@ -21,6 +21,15 @@ class ClaimedViewModel extends LoadableViewModel<ClaimResult> {
   bool _copied = false;
   bool get copied => _copied;
 
+  /// Kod kasada kullanıldı (cüzdan durumu `used`). Mock modunda "Kullandım" ile simüle edilir;
+  /// gerçek akışta sunucu bildirimi / cüzdan yenilemesiyle gelir.
+  // TODO(varsayım): kullanıldı bilgisi push/cüzdan yenilemesinden gelecek; şimdilik yalnız demo butonu.
+  bool _used = false;
+  bool get used => _used;
+
+  /// Puanlama sayfası bir kez açılır.
+  bool _ratingShown = false;
+
   @override
   Future<void> load() async {
     if (state is ViewSuccess<ClaimResult>) return;
@@ -45,5 +54,19 @@ class ClaimedViewModel extends LoadableViewModel<ClaimResult> {
   void markCopied() {
     _copied = true;
     notify();
+  }
+
+  /// Kullanıldı işareti → görünüm puanlama sayfasını açar (bir kez).
+  void markUsed() {
+    if (_used) return;
+    _used = true;
+    notify();
+  }
+
+  /// true → puanlama açılmalı (ilk çağrıda); sonraki çağrılarda false.
+  bool takeRatingPrompt() {
+    if (!_used || _ratingShown) return false;
+    _ratingShown = true;
+    return true;
   }
 }

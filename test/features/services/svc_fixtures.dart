@@ -50,6 +50,7 @@ SessionWeek sessionWeek({bool swim = true, List<SessionDay>? days, List<SessionS
         slot('s-thu-10', DateTime(2026, 10, 15, 10)),
         slot('s-sat-10-full', DateTime(2026, 10, 17, 10), booked: 60),
         slot('s-mon-08', DateTime(2026, 10, 12, 8)),
+        slot('s-sat-14', DateTime(2026, 10, 17, 14)),
       ],
 );
 

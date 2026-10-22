@@ -96,6 +96,7 @@ abstract final class Routes {
     quiz,
     invite,
     photoReport,
+    '/buan/gorev/',
   ];
 
   static bool isProtected(String location) {

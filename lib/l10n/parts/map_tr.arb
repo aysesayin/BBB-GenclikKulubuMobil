@@ -26,5 +26,10 @@
   "mapDistanceKm": "{km} km",
   "@mapDistanceKm": {"placeholders": {"km": {"type": "String"}}},
   "mapDirectionsFailed": "Harita uygulaması açılamadı.",
-  "mapLayerEmpty": "Bu bölgede gösterilecek nokta yok."
+  "mapLayerEmpty": "Bu bölgede gösterilecek nokta yok.",
+  "mapNearestTitle": "En yakın yerler",
+  "mapNearestSemantics": "{name}, {category}, {distance}. Haritada göstermek için dokun",
+  "@mapNearestSemantics": {"placeholders": {"name": {"type": "String"}, "category": {"type": "String"}, "distance": {"type": "String"}}},
+  "mapCategoriesHint": "Kategoriye göre süzmek için bir katman seç",
+  "mapEasyNearbyCta": "Yakınımdaki yerler listesi"
 }

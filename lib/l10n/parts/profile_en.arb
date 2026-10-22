@@ -202,5 +202,20 @@
   "profileLegalPrivacy": "Privacy agreement",
   "profileLegalKvkk": "KVKK information notice",
   "profileLegalConsent": "Explicit consent text",
-  "profileLegalHealth": "Health declaration"
+  "profileLegalHealth": "Health declaration",
+  "profileEasyModeHint": "Text gets bigger, screens get simpler.",
+  "profileStatDistrictRank": "District rank",
+  "profileStatRankValue": "#{rank}",
+  "@profileStatRankValue": {"placeholders": {"rank": {"type": "int"}}},
+  "profileStatRankSemantics": "You are ranked {rank} in your district, open the league table",
+  "@profileStatRankSemantics": {"placeholders": {"rank": {"type": "int"}}},
+  "profileSectionContactEasy": "CONTACT",
+  "profileSectionAppearanceEasy": "APPEARANCE",
+  "profileDeleteRequestedTitle": "Request received",
+  "profileDeleteRequestedBody": "Your deletion request {no} is resolved within 30 days under KVKK. The process runs until {date}; if you change your mind, write to the support team.",
+  "@profileDeleteRequestedBody": {"placeholders": {"no": {"type": "String"}, "date": {"type": "String"}}},
+  "profileDeleteRequestedBodyShort": "Your deletion request {no} is resolved within 30 days under KVKK; if you change your mind, write to the support team.",
+  "@profileDeleteRequestedBodyShort": {"placeholders": {"no": {"type": "String"}}},
+  "profileDeleteRequestedEmail": "We sent a confirmation to your registered e-mail address.",
+  "profileDeleteRequestedNote": "Your account stays closed until the process is complete."
 }

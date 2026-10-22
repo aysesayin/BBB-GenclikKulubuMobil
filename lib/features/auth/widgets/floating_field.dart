@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 
 /// 62 px "floating label" alan: odakta/doluyken etiket 16 → 12 px yukarı kayar (200 ms).
 /// Çerçeve: odakta turkuaz, hatada koyu kırmızı.
+/// Kolay Mod: etiket kaymaz, 16 px olarak kutunun üstünde sabit durur.
 class FloatingField extends StatefulWidget {
   const FloatingField({
     super.key,
@@ -58,7 +60,8 @@ class _FloatingFieldState extends State<FloatingField> {
     final p = context.palette;
     final up = _focus.hasFocus || _ctrl.text.isNotEmpty;
     final border = widget.error ? p.errorText : (_focus.hasFocus ? p.primary : p.line);
-    return GestureDetector(
+    final easy = context.easyMode;
+    final box = GestureDetector(
       onTap: _focus.requestFocus,
       child: AnimatedContainer(
         duration: AppDurations.fast,
@@ -70,7 +73,8 @@ class _FloatingFieldState extends State<FloatingField> {
         ),
         child: Stack(
           children: [
-            AnimatedPositioned(
+            if (!easy)
+              AnimatedPositioned(
               duration: AppDurations.fast,
               curve: const Cubic(.2, .8, .2, 1),
               left: 16,
@@ -86,7 +90,7 @@ class _FloatingFieldState extends State<FloatingField> {
             Positioned(
               left: 14,
               right: widget.suffix == null ? 14 : 58,
-              bottom: 6,
+              bottom: easy ? 14 : 6,
               child: Semantics(
                 label: widget.label,
                 child: TextField(
@@ -111,6 +115,18 @@ class _FloatingFieldState extends State<FloatingField> {
           ],
         ),
       ),
+    );
+    if (!easy) return box;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ExcludeSemantics(
+          child: Text(widget.label, style: AppTypography.body(16, weight: FontWeight.w900, color: widget.error ? p.errorText : p.mut)),
+        ),
+        const SizedBox(height: 8),
+        box,
+      ],
     );
   }
 }

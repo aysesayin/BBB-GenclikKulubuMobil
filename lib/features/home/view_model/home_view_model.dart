@@ -53,10 +53,16 @@ class HomeViewModel extends LoadableViewModel<HomeFeed> {
   };
 
   /// Panelin sırası; bilinmeyen/yinelenen anahtarlar atılır, verisi boş bloklar gizlenir.
+  /// `league.nearPromotion` ise lig kartı "Bugünün Görevleri"nin hemen ardına (görev yoksa en başa) alınır.
   static List<HomeBlock> blocksOf(HomeFeed f) {
     final byName = {for (final b in HomeBlock.values) b.name: b};
     final ordered = f.blocks.isEmpty ? defaultOrder : f.blocks.map((k) => byName[k]).whereType<HomeBlock>().toSet().toList();
-    return ordered.where((b) => _hasData(f, b)).toList();
+    final visible = ordered.where((b) => _hasData(f, b)).toList();
+    if (f.league?.nearPromotion ?? false) {
+      visible.remove(HomeBlock.league);
+      visible.insert(visible.indexOf(HomeBlock.tasks) + 1, HomeBlock.league);
+    }
+    return visible;
   }
 
   static bool _hasData(HomeFeed f, HomeBlock b) => switch (b) {

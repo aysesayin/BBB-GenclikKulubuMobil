@@ -30,6 +30,12 @@ void main() {
     expect(OpportunityDetail.fromJson(Json.map(data('opportunities.opp-dilokulu.json'))).eligible, isFalse);
   });
 
+  test('puanlama', () {
+    final r = RatingResult.fromJson(Json.map(data('opportunities._.rating.post.json')));
+    expect(r.buanReward, 100);
+    expect(r.label, isNotEmpty);
+  });
+
   test('cüzdan', () {
     final mine = Json.list(data('opportunities.mine.json'), WalletItem.fromJson);
     expect(mine.where((w) => w.status == WalletStatus.active).every((w) => w.claim != null), isTrue);

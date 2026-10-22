@@ -7,8 +7,11 @@ import 'package:mocktail/mocktail.dart';
 
 class MockOpportunityRepository extends Mock implements OpportunityRepository {}
 
-/// Testlerde sabit "bugün": 16 Ekim 2026.
-final testNow = DateTime(2026, 10, 16, 12);
+/// Testlerde "bugün" öğlen (widget testleri gerçek saati kullandığı için sabit tarih değil).
+final testNow = () {
+  final n = DateTime.now();
+  return DateTime(n.year, n.month, n.day, 12);
+}();
 
 Opportunity opp(
   String id, {

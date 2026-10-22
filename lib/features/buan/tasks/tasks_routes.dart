@@ -15,5 +15,10 @@ final List<RouteBase> buanTaskBranchRoutes = [
   GoRoute(parentNavigatorKey: rootNavigatorKey, path: 'adim', builder: (_, _) => const StepsView()),
   GoRoute(parentNavigatorKey: rootNavigatorKey, path: 'quiz', builder: (_, _) => const QuizView()),
   GoRoute(parentNavigatorKey: rootNavigatorKey, path: 'davet', builder: (_, _) => const InviteView()),
-  GoRoute(parentNavigatorKey: rootNavigatorKey, path: 'cek', builder: (_, _) => const PhotoReportView()),
+  // `?tur=idea` → "Fikir" sekmesi açık başlar (genel görev detayından).
+  GoRoute(
+    parentNavigatorKey: rootNavigatorKey,
+    path: 'cek',
+    builder: (_, state) => PhotoReportView(initialTypeId: state.uri.queryParameters['tur']),
+  ),
 ];

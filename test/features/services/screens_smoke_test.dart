@@ -5,6 +5,8 @@ import 'package:bbb_genclik_kulubu_app/core/di/locator.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/api_result.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/dio_client.dart';
 import 'package:bbb_genclik_kulubu_app/core/theme/app_theme.dart';
+import 'package:bbb_genclik_kulubu_app/core/theme/ui_prefs_controller.dart';
+import 'package:bbb_genclik_kulubu_app/core/widgets/widgets.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/services/application.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/services/facility.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/services/session.dart';
@@ -16,13 +18,16 @@ import 'package:bbb_genclik_kulubu_app/features/services/applications/view/appli
 import 'package:bbb_genclik_kulubu_app/features/services/pool/view/pools_view.dart';
 import 'package:bbb_genclik_kulubu_app/features/services/session/view/session_view.dart';
 import 'package:bbb_genclik_kulubu_app/features/services/sports_school/view/sports_school_view.dart';
+import 'package:bbb_genclik_kulubu_app/features/services/widgets/service_row_card.dart';
 import 'package:bbb_genclik_kulubu_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:provider/provider.dart';
 
+import '../events/discover_test_app.dart';
 import 'svc_fixtures.dart';
 
 Object? _data(String name) => (jsonDecode(File('assets/mock/$name').readAsStringSync()) as Map)['data'];
@@ -68,22 +73,26 @@ void main() {
 
   tearDown(sl.reset);
 
-  Future<void> pump(WidgetTester tester, Widget child, double width) async {
+  Future<void> pump(WidgetTester tester, Widget child, double width, {bool easy = false}) async {
     tester.view.physicalSize = Size(width * 3, 800 * 3);
     tester.view.devicePixelRatio = 3;
     addTearDown(tester.view.reset);
+    final prefs = await testUiPrefs(easyMode: easy);
     await tester.pumpWidget(
-      MaterialApp(
-        theme: AppTheme.light,
-        locale: const Locale('tr'),
-        supportedLocales: AppLocalizations.supportedLocales,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        home: child,
+      ChangeNotifierProvider<UiPrefsController>.value(
+        value: prefs,
+        child: MaterialApp(
+          theme: AppTheme.light,
+          locale: const Locale('tr'),
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: child,
+        ),
       ),
     );
     for (var i = 0; i < 4; i++) {
@@ -113,6 +122,31 @@ void main() {
       await tester.pump(const Duration(milliseconds: 300));
       await tester.pump(const Duration(milliseconds: 300));
       expect(find.text('Özel ders'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Seans Kolay Mod @$width: tek gün + büyük gün düğmeleri', (tester) async {
+      await pump(tester, const SessionView(itemId: 'itm-fethiye-gunluk'), width, easy: true);
+      expect(find.text('Fethiye Havuzu'), findsOneWidget);
+      expect(find.bySemanticsLabel('Sonraki gün'), findsOneWidget);
+      expect(find.bySemanticsLabel('Önceki gün'), findsOneWidget);
+      expect(find.text('Haftalık seans takvimi'), findsNothing);
+      expect(find.bySemanticsLabel('Sonraki hafta'), findsNothing);
+      await tester.tap(find.bySemanticsLabel('Sonraki gün'));
+      for (var i = 0; i < 3; i++) {
+        await tester.pump(const Duration(milliseconds: 200));
+      }
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Havuzlar / Spor Kolay Mod @$width: 64 px satırlar', (tester) async {
+      await pump(tester, const PoolsView(), width, easy: true);
+      expect(find.text('Günlük Giriş'), findsOneWidget);
+      final tile = tester.getSize(find.byType(IconTile).first);
+      expect(tile.width, 64);
+      await pump(tester, const SportsSchoolView(), width, easy: true);
+      expect(find.text('Yüzme'), findsOneWidget);
+      expect(find.byType(ServiceRowCard), findsWidgets);
       expect(tester.takeException(), isNull);
     });
 

@@ -65,10 +65,16 @@ abstract class Opportunity with _$Opportunity {
 }
 
 /// Kategori karosu (`GET /opportunities/categories`). [icon] → `OppIcons.byKey`.
+/// [usageRank] küçükten büyüğe sıralanır (en çok kullanılan önce).
 @freezed
 abstract class OpportunityCategory with _$OpportunityCategory {
-  const factory OpportunityCategory({required String id, required String label, @Default('grid') String icon, @Default(6) int tone}) =
-      _OpportunityCategory;
+  const factory OpportunityCategory({
+    required String id,
+    required String label,
+    @Default('grid') String icon,
+    @Default(6) int tone,
+    @Default(0) int usageRank,
+  }) = _OpportunityCategory;
 
   factory OpportunityCategory.fromJson(Map<String, dynamic> json) => _$OpportunityCategoryFromJson(json);
 }

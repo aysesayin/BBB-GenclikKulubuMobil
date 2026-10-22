@@ -5,6 +5,8 @@
     "title": "Yüzme Kursu · Güz 2026",
     "facilityName": "Mihraplı Havuzu",
     "holdMinutes": 5,
+    "viewerAge": 19,
+    "viewerGender": "female",
     "rules": {
       "requiresSwimConfirmation": false,
       "ageRules": {

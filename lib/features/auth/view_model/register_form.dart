@@ -6,8 +6,9 @@ import '../../../data/models/auth/auth_requests.dart';
 
 enum TcknStatus { incomplete, valid, invalid }
 
-/// Kayıt formunun düz alanları (kimlik, iletişim, acil durum, sözleşmeler,
-/// veli telefonu) ve doğrulamaları. Akış mantığı [RegisterViewModel]'de.
+/// Kayıt formunun düz alanları (kimlik, cep telefonu, sözleşmeler, veli telefonu)
+/// ve doğrulamaları. E-posta ve acil durum kişisi kayıtta sorulmaz (profilden
+/// tamamlanır). Akış mantığı [RegisterViewModel]'de.
 mixin RegisterForm on BaseViewModel {
   static String digits(String v) => v.replaceAll(RegExp(r'\D'), '');
 
@@ -46,40 +47,16 @@ mixin RegisterForm on BaseViewModel {
     notify();
   }
 
-  // ---- İletişim ----
-  String _phone = '', _email = '';
+  // ---- İletişim (yalnız cep telefonu) ----
+  String _phone = '';
   String get phone => _phone;
-  String get email => _email;
 
   /// 11 haneli (0 ile başlayan) cep telefonu.
   String get phone11 => _phone.length == 10 ? '0$_phone' : _phone;
   ValidationIssue? get phoneIssue => Validators.phone(_phone);
-  ValidationIssue? get emailIssue => Validators.email(_email);
 
   void setPhone(String v) {
     _phone = digits(v);
-    notify();
-  }
-
-  void setEmail(String v) {
-    _email = v.trim();
-    notify();
-  }
-
-  // ---- Acil durum ----
-  String _emName = '', _emPhone = '';
-  String get emergencyName => _emName;
-  String get emergencyPhone => _emPhone;
-  ValidationIssue? get emergencyNameIssue => Validators.required(_emName);
-  ValidationIssue? get emergencyPhoneIssue => Validators.phone(_emPhone);
-
-  void setEmergencyName(String v) {
-    _emName = v.trim();
-    notify();
-  }
-
-  void setEmergencyPhone(String v) {
-    _emPhone = digits(v);
     notify();
   }
 

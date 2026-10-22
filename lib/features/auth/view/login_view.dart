@@ -6,6 +6,7 @@ import '../../../core/di/locator.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/session/session_controller.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/utils/haptics.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/repositories/auth_repository.dart';
@@ -18,6 +19,7 @@ import '../view_model/login_view_model.dart';
 import '../widgets/login_form.dart';
 
 /// A6 · Giriş yap: üst %45 morflanan blob'lar + kinetik başlık, alttan kayan form.
+/// Kolay Mod: blob ve kinetik başlık yerine düz başlık, 56 px dokunma hedefleri.
 class LoginView extends StatelessWidget {
   const LoginView({super.key, this.from});
 
@@ -40,6 +42,7 @@ class _Body extends StatelessWidget {
     final mq = MediaQuery.of(context);
     final keyboard = mq.viewInsets.bottom;
     final reduce = context.reduceMotion;
+    final easy = context.easyMode;
     void done() {
       final dest = context.read<LoginViewModel>().destination ?? Routes.home;
       context.go(dest);
@@ -51,9 +54,11 @@ class _Body extends StatelessWidget {
         decoration: BoxDecoration(gradient: p.heroGradient),
         child: Stack(
           children: [
-            Positioned(left: -80, top: -60, child: MorphBlob(size: 280, color: p.blob, opacity: .85, period: const Duration(seconds: 9))),
-            Positioned(right: -90, top: 90, child: MorphBlob(size: 240, color: p.mint, opacity: .85, seed: 3, period: const Duration(seconds: 11))),
-            Positioned(left: 120, top: 230, child: MorphBlob(size: 160, color: p.sky, opacity: .8, seed: 6, period: const Duration(seconds: 7))),
+            if (!easy) ...[
+              Positioned(left: -80, top: -60, child: MorphBlob(size: 280, color: p.blob, opacity: .85, period: const Duration(seconds: 9))),
+              Positioned(right: -90, top: 90, child: MorphBlob(size: 240, color: p.mint, opacity: .85, seed: 3, period: const Duration(seconds: 11))),
+              Positioned(left: 120, top: 230, child: MorphBlob(size: 160, color: p.sky, opacity: .8, seed: 6, period: const Duration(seconds: 7))),
+            ],
             Positioned.fill(child: ColoredBox(color: p.night.withValues(alpha: p.isDark ? .42 : .4))),
             Positioned(
               top: mq.padding.top + 4,
@@ -63,6 +68,7 @@ class _Body extends StatelessWidget {
                 semanticLabel: l.commonBack,
                 color: p.onNight,
                 iconSize: 24,
+                size: context.touchTarget,
                 onPressed: () => context.popOr(Routes.welcome),
               ),
             ),
@@ -70,7 +76,9 @@ class _Body extends StatelessWidget {
               left: 24,
               right: 16,
               top: mq.padding.top + 68,
-              child: PosterTitle(lines: [l.authLoginLine1, l.authLoginLine2], size: 80, color: p.onNight, highlight: p.onNight, from: const Offset(60, 0), stagger: const Duration(milliseconds: 120)),
+              child: easy
+                  ? Semantics(header: true, child: Text(l.authLoginEasyTitle, style: AppTypography.display(36, color: p.onNight)))
+                  : PosterTitle(lines: [l.authLoginLine1, l.authLoginLine2], size: 80, color: p.onNight, highlight: p.onNight, from: const Offset(60, 0), stagger: const Duration(milliseconds: 120)),
             ),
             Positioned(
               left: 0,

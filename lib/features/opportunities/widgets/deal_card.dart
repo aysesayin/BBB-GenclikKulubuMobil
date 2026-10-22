@@ -2,14 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/utils/haptics.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/models/opportunities/opportunity.dart';
 import '../../../l10n/l10n.dart';
 import 'opp_style.dart';
 
-/// C1 fırsat kartı: 1050×360 görsel alanı, indirim + tip rozeti, logo karosu,
-/// kalan gün, stok çubuğu (+ metin) ve favori kalbi.
+/// C1 fırsat kartı: 1050×360 görsel alanı (indirim rozeti sol üst, favori kalbi sağ üst,
+/// tip rozeti sağ alt), logo karosu, "12 gün kaldı · Son 40 kod" tek satır + ince stok çubuğu.
+/// Kolay Mod: başlık 18 px.
 class DealCard extends StatelessWidget {
   const DealCard({super.key, required this.deal, required this.now, required this.onTap, required this.onFavorite});
 
@@ -22,9 +24,11 @@ class DealCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = context.palette;
     final l = context.l10n;
+    final easy = context.easyMode;
     final days = deal.daysLeft(now);
     final urgent = deal.isEndingSoon(now);
     final stock = l.stockLabel(deal);
+    final meta = l.oppMetaLine(l.daysLeft(days), stock);
     return Stack(
       children: [
         AppCard(
@@ -49,49 +53,42 @@ class DealCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 12),
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 30),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                deal.locationLabel.isEmpty ? deal.brand : '${deal.brand} · ${deal.locationLabel}',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTypography.body(12, weight: FontWeight.w800, color: p.mut),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                deal.title,
-                                style: AppTypography.body(16, weight: FontWeight.w800, height: 1.25, color: p.ink),
-                              ),
-                              const SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  DaysLeftLabel(days: days, urgent: urgent),
-                                  const SizedBox(width: 10),
-                                  Expanded(
-                                    child: AppProgressBar(
-                                      value: deal.stockRatio,
-                                      color: deal.isLowStock ? p.hotFill : p.primary,
-                                      semanticsValue: stock,
-                                    ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              deal.locationLabel.isEmpty ? deal.brand : '${deal.brand} · ${deal.locationLabel}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTypography.body(12, weight: FontWeight.w800, color: p.mut),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              deal.title,
+                              style: AppTypography.body(easy ? 18 : 16, weight: FontWeight.w800, height: 1.25, color: p.ink),
+                            ),
+                            const SizedBox(height: 8),
+                            Row(
+                              children: [
+                                AppIcon(AppIcons.clock, size: 14, color: urgent ? p.pinkT : p.mut, strokeWidth: 2.4),
+                                const SizedBox(width: 4),
+                                Flexible(
+                                  child: Text(
+                                    meta,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppTypography.body(easy ? 14 : 12, weight: FontWeight.w800, color: urgent ? p.pinkT : p.mut),
                                   ),
-                                  const SizedBox(width: 10),
-                                  // Stok metni öncelikli (tasarımda nowrap); dar ekranda yine de kısalır.
-                                  Flexible(
-                                    flex: 2,
-                                    child: Text(
-                                      stock,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: AppTypography.body(12, weight: FontWeight.w800, color: p.mut),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            AppProgressBar(
+                              value: deal.stockRatio,
+                              color: deal.isLowStock ? p.hotFill : p.primary,
+                              semanticsValue: stock,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -103,8 +100,8 @@ class DealCard extends StatelessWidget {
         ),
         Positioned(
           right: 10,
-          bottom: 50,
-          child: FavoriteButton(active: deal.isFavorite, onTap: onFavorite),
+          top: 10,
+          child: FavoriteButton(active: deal.isFavorite, onTap: onFavorite, background: p.paper),
         ),
       ],
     );
@@ -136,7 +133,7 @@ class DealImage extends StatelessWidget {
           Positioned(left: 14, top: 14, child: TagBadge(label: deal.discountLabel, fontSize: 15, radius: 12)),
           Positioned(
             right: 14,
-            top: 14,
+            bottom: 12,
             child: TagBadge(
               label: context.l10n.claimTypeLabel(deal.claimType),
               fontSize: 11,
@@ -150,7 +147,7 @@ class DealImage extends StatelessWidget {
   }
 }
 
-/// 44 px kalp butonu; dolu → sıcak pembe.
+/// 44 px kalp butonu; dolu → sıcak pembe. [background] → beyaz daire (görsel üstünde).
 class FavoriteButton extends StatelessWidget {
   const FavoriteButton({super.key, required this.active, required this.onTap, this.background, this.activeColor});
 
@@ -178,7 +175,11 @@ class FavoriteButton extends StatelessWidget {
           child: Container(
             width: 44,
             height: 44,
-            decoration: BoxDecoration(color: background, shape: BoxShape.circle),
+            decoration: BoxDecoration(
+              color: background,
+              shape: BoxShape.circle,
+              boxShadow: background == null ? null : [BoxShadow(color: p.onTile.withValues(alpha: .15), blurRadius: 8, offset: const Offset(0, 2))],
+            ),
             alignment: Alignment.center,
             child: AnimatedSwitcher(
               duration: AppDurations.fast,

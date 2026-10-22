@@ -26,5 +26,10 @@
   "mapDistanceKm": "{km} km",
   "@mapDistanceKm": {"placeholders": {"km": {"type": "String"}}},
   "mapDirectionsFailed": "Couldn't open a maps app.",
-  "mapLayerEmpty": "Nothing to show in this area."
+  "mapLayerEmpty": "Nothing to show in this area.",
+  "mapNearestTitle": "Nearest places",
+  "mapNearestSemantics": "{name}, {category}, {distance}. Tap to show on the map",
+  "@mapNearestSemantics": {"placeholders": {"name": {"type": "String"}, "category": {"type": "String"}, "distance": {"type": "String"}}},
+  "mapCategoriesHint": "Pick a layer to filter by category",
+  "mapEasyNearbyCta": "List of places near me"
 }

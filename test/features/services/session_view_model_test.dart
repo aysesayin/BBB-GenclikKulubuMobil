@@ -24,6 +24,9 @@ void main() {
     ),
   ).thenAnswer((_) async => Success(w));
 
+  void stubWaitlist(ApiResult<WaitlistResult> r) =>
+      when(() => repo.joinWaitlist(any(), sessionId: any(named: 'sessionId'))).thenAnswer((_) async => r);
+
   void stubHold(ApiResult<CartHold> r) => when(
     () => cart.hold(
       itemId: any(named: 'itemId'),
@@ -89,13 +92,42 @@ void main() {
   });
 
   group('kurallar', () {
-    test('cinsiyet uyuşmazlığı engeller', () async {
+    test('cinsiyet uyuşmazlığı hücreyi kilitler: seçilemez, neden döner', () async {
       final vm = build();
       await vm.load();
       final sat = vm.days[5];
-      vm.select(vm.slotAt(sat.date, 1080)!, sat); // Bay seansı, katılımcı kadın
-      expect(vm.issues.single.kind, RuleIssueKind.gender);
+      final male = vm.slotAt(sat.date, 1080)!; // Bay seansı, katılımcı kadın
+      expect(vm.kindOf(male, sat), CellKind.ineligible);
+      expect(vm.ineligibilityOf(male)?.kind, RuleIssueKind.gender);
+      vm.select(male, sat);
+      expect(vm.selectedSlot, isNull);
       expect(vm.canAdd, isFalse);
+      // Çocuk (erkek) seçilince aynı hücre açılır.
+      vm.selectParticipant('chd-deniz');
+      expect(vm.kindOf(male, sat), CellKind.open);
+    });
+
+    test('profil yaş/cinsiyeti (viewerAge/viewerGender) "kendim" için katılımcı kaydını geçersiz kılar', () async {
+      stubWeek(sessionWeek().copyWith(viewerAge: 19, viewerGender: Gender.male));
+      final vm = build();
+      await vm.load();
+      final sat = vm.days[5];
+      expect(vm.kindOf(vm.slotAt(sat.date, 1080)!, sat), CellKind.open); // Bay seansı artık uygun
+      final fri = vm.days[4];
+      expect(vm.kindOf(vm.slotAt(fri.date, 1080)!, fri), CellKind.ineligible); // Bayan seansı kilitli
+      vm.selectParticipant('chd-deniz'); // çocukta profil değeri kullanılmaz
+      expect(vm.kindOf(vm.slotAt(fri.date, 1080)!, fri), CellKind.ineligible);
+      expect(vm.ineligibilityOf(vm.slotAt(fri.date, 1080)!)?.kind, RuleIssueKind.gender);
+    });
+
+    test('katılımcı değişince kilitlenen seçim temizlenir', () async {
+      final vm = build();
+      await vm.load();
+      final fri = vm.days[4];
+      vm.select(vm.slotAt(fri.date, 1080)!, fri); // Bayan seansı, kadın katılımcı
+      expect(vm.selectedSlot, isNotNull);
+      vm.selectParticipant('chd-deniz'); // erkek çocuk → uygun değil
+      expect(vm.selectedSlot, isNull);
     });
 
     test('yüzme onayı olmadan eklenemez; onayla etkinleşir', () async {
@@ -125,9 +157,68 @@ void main() {
       final vm = build();
       await vm.load();
       final sat = vm.days[5];
-      vm.select(vm.slotAt(sat.date, 1080)!, sat);
+      vm.select(vm.slotAt(sat.date, 840)!, sat); // karma seans
+      expect(vm.issues, isEmpty);
       vm.selectParticipant('chd-deniz');
+      expect(vm.selectedSlot, isNotNull);
       expect(vm.issues.map((i) => i.kind), [RuleIssueKind.guardian]);
+    });
+  });
+
+  group('bekleme listesi', () {
+    test('dolu seans → POST waitlist, sıra hücrede tutulur', () async {
+      stubWaitlist(const Success(WaitlistResult(position: 3)));
+      final vm = build();
+      await vm.load();
+      final sat = vm.days[5];
+      final full = vm.slotAt(sat.date, 600)!;
+      expect(vm.kindOf(full, sat), CellKind.full);
+      expect(vm.waitlistPositionOf(full.id), isNull);
+      expect(await vm.joinWaitlist(full), 3);
+      expect(vm.waitlistPositionOf(full.id), 3);
+      expect(vm.joiningWaitlist, isFalse);
+      verify(() => repo.joinWaitlist('itm-fethiye-gunluk', sessionId: 's-sat-10-full')).called(1);
+    });
+
+    test('açık ya da uygun olmayan seans bekleme listesine alınmaz', () async {
+      stubWaitlist(const Success(WaitlistResult(position: 1)));
+      final vm = build();
+      await vm.load();
+      expect(await vm.joinWaitlist(vm.slotAt(vm.days[4].date, 1080)!), isNull); // açık
+      stubWeek(sessionWeek(slots: [slot('m-full', DateTime(2026, 10, 17, 18), gender: Gender.male, booked: 60)]));
+      await vm.load();
+      expect(await vm.joinWaitlist(vm.slotAt(vm.days[5].date, 1080)!), isNull); // dolu ama cinsiyet uymuyor
+      verifyNever(() => repo.joinWaitlist(any(), sessionId: any(named: 'sessionId')));
+    });
+
+    test('sunucu hatası takeError ile döner', () async {
+      stubWaitlist(const Failure(NetworkException()));
+      final vm = build();
+      await vm.load();
+      final sat = vm.days[5];
+      expect(await vm.joinWaitlist(vm.slotAt(sat.date, 600)!), isNull);
+      expect(vm.takeError(), isA<NetworkException>());
+    });
+  });
+
+  group('Kolay Mod gün gezinme', () {
+    test('bugünden başlar, geriye gitmez, hafta sonunda sonraki haftaya geçer', () async {
+      final vm = build();
+      await vm.load();
+      expect(vm.focusDay, DateTime(2026, 10, 16));
+      expect(vm.canGoPrevDay, isFalse);
+      expect(vm.slotsOn(vm.focusDay).map((s) => s.id), ['s-fri-18-f']);
+      await vm.prevDay();
+      expect(vm.focusDay, DateTime(2026, 10, 16));
+      await vm.nextDay();
+      await vm.nextDay();
+      expect(vm.focusDay, DateTime(2026, 10, 18));
+      await vm.nextDay();
+      expect(vm.weekStart, DateTime(2026, 10, 19));
+      expect(vm.focusDay, DateTime(2026, 10, 19));
+      await vm.prevDay();
+      expect(vm.weekStart, DateTime(2026, 10, 12));
+      expect(vm.focusDay, DateTime(2026, 10, 18));
     });
   });
 

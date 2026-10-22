@@ -25,6 +25,9 @@ void main() {
     final daily = SessionWeek.fromJson(Json.map(_data('services.items.itm-fethiye-gunluk.sessions.json')));
     expect(daily.slots.where((s) => s.status == SlotStatus.holiday), isNotEmpty);
     expect(daily.participants.map((p) => p.relation), [Relation.self, Relation.child]);
+    expect(daily.viewerAge, 19);
+    expect(daily.viewerGender, Gender.female);
+    expect(WaitlistResult.fromJson(Json.map(_data('services.items._.waitlist.post.json'))).position, 3);
     SessionWeek.fromJson(Json.map(_data('services.items.itm-mihrapli-kurs.sessions.json')));
     SessionWeek.fromJson(Json.map(_data('services.items._.sessions.json')));
     expect(SportsCatalog.fromJson(Json.map(_data('services.sports-branches.json'))).branches, hasLength(12));

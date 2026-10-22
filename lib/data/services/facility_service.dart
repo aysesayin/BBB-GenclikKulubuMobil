@@ -26,6 +26,13 @@ class FacilityService {
         parse: (d) => SessionWeek.fromJson(Json.map(d)),
       );
 
+  /// Dolu seans için bekleme listesine giriş.
+  Future<ApiResult<WaitlistResult>> joinWaitlist(String itemId, {required String sessionId}) => _client.post(
+        ApiEndpoints.waitlistSession(itemId),
+        body: {'sessionId': sessionId},
+        parse: (d) => WaitlistResult.fromJson(Json.map(d)),
+      );
+
   Future<ApiResult<SportsCatalog>> sportsCatalog() => _client.get(
         ApiEndpoints.sportsBranches,
         parse: (d) => SportsCatalog.fromJson(Json.map(d)),

@@ -5,6 +5,7 @@ import '../../../../core/base/view_state.dart';
 import '../../../../core/network/api_result.dart';
 import '../../../../core/network/app_exception.dart';
 import '../../../../data/models/profile/account_settings.dart';
+import '../../../../data/models/profile/delete_request.dart';
 import '../../../../data/models/profile/user_profile.dart';
 import '../../../../data/repositories/profile_repository.dart';
 import 'biometric_login.dart';
@@ -113,9 +114,6 @@ class SettingsViewModel extends LoadableViewModel<SettingsData> {
     if (result case Success(data: final user)) _emit(data.copyWith(user: user));
   }
 
-  /// KVKK hesap silme talebi. null → başarı.
-  Future<AppException?> requestDeletion() async => switch (await _repo.requestDeletion()) {
-    Success() => null,
-    Failure(:final error) => error,
-  };
+  /// KVKK hesap silme talebi; başarıda makbuz döner.
+  Future<ApiResult<DeleteRequestReceipt>> requestDeletion() => _repo.requestDeletion();
 }

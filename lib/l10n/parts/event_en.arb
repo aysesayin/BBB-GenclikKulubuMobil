@@ -38,5 +38,7 @@
   "eventShareText": "{title} at Bursa Youth Club: {link}",
   "@eventShareText": {"placeholders": {"title": {"type": "String"}, "link": {"type": "String"}}},
   "eventOpenPlace": "{name}, open place details",
-  "@eventOpenPlace": {"placeholders": {"name": {"type": "String"}}}
+  "@eventOpenPlace": {"placeholders": {"name": {"type": "String"}}},
+  "eventStripPrevWeek": "Previous week",
+  "eventStripNextWeek": "Next week"
 }

@@ -27,12 +27,20 @@ class ProfileMenuItem {
 }
 
 /// "Hesap menüsü" kartı: 58 px satırlar, 36 px ikon karosu, chevron.
+/// [large] (Kolay Mod): 64 px satır, 18 px etiket, 44 px ikon karosu.
 class ProfileMenu extends StatelessWidget {
-  const ProfileMenu({super.key, required this.label, required this.items, this.margin = const EdgeInsets.fromLTRB(20, 16, 20, 28)});
+  const ProfileMenu({
+    super.key,
+    required this.label,
+    required this.items,
+    this.margin = const EdgeInsets.fromLTRB(20, 16, 20, 28),
+    this.large = false,
+  });
 
   final String label;
   final List<ProfileMenuItem> items;
   final EdgeInsetsGeometry margin;
+  final bool large;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +56,7 @@ class ProfileMenu extends StatelessWidget {
           child: ColoredBox(
             color: p.sf,
             child: Column(
-              children: [for (var i = 0; i < items.length; i++) _Row(item: items[i], divider: i < items.length - 1)],
+              children: [for (var i = 0; i < items.length; i++) _Row(item: items[i], divider: i < items.length - 1, large: large)],
             ),
           ),
         ),
@@ -58,10 +66,10 @@ class ProfileMenu extends StatelessWidget {
 }
 
 class _Row extends StatelessWidget {
-  const _Row({required this.item, required this.divider});
+  const _Row({required this.item, required this.divider, required this.large});
 
   final ProfileMenuItem item;
-  final bool divider;
+  final bool divider, large;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +80,7 @@ class _Row extends StatelessWidget {
       child: InkWell(
         onTap: item.onTap,
         child: Container(
-          constraints: const BoxConstraints(minHeight: 58),
+          constraints: BoxConstraints(minHeight: large ? 64 : 58),
           padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             border: divider ? Border(bottom: BorderSide(color: p.line)) : null,
@@ -80,11 +88,11 @@ class _Row extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                width: 36,
-                height: 36,
+                width: large ? 44 : 36,
+                height: large ? 44 : 36,
                 decoration: BoxDecoration(color: item.tile, borderRadius: BorderRadius.circular(AppRadii.sm)),
                 alignment: Alignment.center,
-                child: AppIcon(item.icon, size: 20, color: item.iconColor ?? p.onTile, strokeWidth: 2.2),
+                child: AppIcon(item.icon, size: large ? 24 : 20, color: item.iconColor ?? p.onTile, strokeWidth: 2.2),
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -92,7 +100,7 @@ class _Row extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Text(
                     item.label,
-                    style: AppTypography.body(15, weight: FontWeight.w800, color: fg),
+                    style: AppTypography.body(large ? 18 : 15, weight: FontWeight.w800, color: fg),
                   ),
                 ),
               ),

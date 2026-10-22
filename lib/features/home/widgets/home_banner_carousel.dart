@@ -11,7 +11,7 @@ import '../../../l10n/l10n.dart';
 import '../home_links.dart';
 
 /// Banner karuseli: oran 1.75 (yükseklik = (genişlik − 40) / 1.75), noktalar,
-/// otomatik ilerleme ("Hareketi azalt" açıkken kapalı).
+/// otomatik ilerleme ("Hareketi azalt" açıkken kapalı). Her banner kendi `tone` vurgusunu taşır.
 class HomeBannerCarousel extends StatefulWidget {
   const HomeBannerCarousel({super.key, required this.banners});
 
@@ -116,11 +116,12 @@ class _BannerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
-    final (bg, b1, b2, fg) = switch (banner.theme) {
-      'teal' => (p.isDark ? p.tealS : p.teal, p.tealB, p.cta, p.paper),
-      'green' => (p.isDark ? p.grnS : p.grnT, p.coinMark, p.cta, p.paper),
-      'night' => (p.night, p.buanFill, p.cta, p.onNight),
-      _ => (p.buanFill, p.coinMark, p.cta, p.onBuan),
+    // Ton: zemin · iki blob · metin · CTA zemin/metin.
+    final (bg, b1, b2, fg, ctaBg, ctaFg) = switch (banner.tone) {
+      'spin' => (p.cta, p.ctaShadow, p.yelS, p.onCta, p.onCta, p.cta),
+      'event' => (p.isDark ? p.tealS : p.teal, p.grn, p.tealB, p.paper, p.cta, p.onCta),
+      'opportunity' => (p.isDark ? p.pinkS : p.pinkT, p.pink, p.cta, p.paper, p.cta, p.onCta),
+      _ => (p.buanFill, p.coinMark, p.cta, p.onBuan, p.cta, p.onCta),
     };
     final w = p.paper.hex;
     final art =
@@ -180,11 +181,11 @@ class _BannerCard extends StatelessWidget {
                             height: 34,
                             padding: const EdgeInsets.symmetric(horizontal: 14),
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(color: p.cta, borderRadius: BorderRadius.circular(17)),
+                            decoration: BoxDecoration(color: ctaBg, borderRadius: BorderRadius.circular(17)),
                             child: Text(
                               cta,
                               maxLines: 1,
-                              style: AppTypography.body(13, weight: FontWeight.w900, color: p.onCta),
+                              style: AppTypography.body(13, weight: FontWeight.w900, color: ctaFg),
                             ),
                           ),
                       ],

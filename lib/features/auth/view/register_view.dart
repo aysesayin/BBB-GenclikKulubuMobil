@@ -6,6 +6,7 @@ import '../../../core/di/locator.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/session/session_controller.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/utils/haptics.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/repositories/app_repository.dart';
@@ -94,6 +95,8 @@ class _RegisterBodyState extends State<RegisterBody> {
     final pad = MediaQuery.paddingOf(context);
     final names = RegisterRouteBar.stopNames(context);
     final reduce = context.reduceMotion;
+    final easy = context.easyMode;
+    final touch = context.touchTarget;
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) {
@@ -103,7 +106,7 @@ class _RegisterBodyState extends State<RegisterBody> {
         backgroundColor: p.bg,
         body: Stack(
           children: [
-            Positioned(right: -120, top: -90, child: MorphBlob(size: 300, color: p.mint, opacity: .6, seed: 2)),
+            if (!easy) Positioned(right: -120, top: -90, child: MorphBlob(size: 300, color: p.mint, opacity: .6, seed: 2)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -111,18 +114,18 @@ class _RegisterBodyState extends State<RegisterBody> {
                   padding: EdgeInsets.fromLTRB(8, pad.top + 2, 16, 0),
                   child: Row(
                     children: [
-                      AppIconButton(icon: AppIcons.back, semanticLabel: l.commonBack, iconSize: 24, onPressed: _back),
+                      AppIconButton(icon: AppIcons.back, semanticLabel: l.commonBack, iconSize: 24, size: touch, onPressed: _back),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
                           l.authRegStop(vm.stopIndex + 1, RegisterViewModel.stopCount, names[vm.stopIndex]),
-                          style: AppTypography.body(13, weight: FontWeight.w900, color: p.mut),
+                          style: AppTypography.body(easy ? 15 : 13, weight: FontWeight.w900, color: p.mut),
                         ),
                       ),
                       if (vm.step != RegisterStep.verification)
                         TextButton(
                           onPressed: _guest,
-                          style: TextButton.styleFrom(minimumSize: const Size(44, 44), foregroundColor: p.teal),
+                          style: TextButton.styleFrom(minimumSize: Size(touch, touch), foregroundColor: p.teal),
                           child: Text(l.authRegLater, style: AppTypography.body(14, weight: FontWeight.w900, color: p.teal)),
                         ),
                     ],
@@ -164,7 +167,6 @@ class _RegisterBodyState extends State<RegisterBody> {
         RegisterStep.identity => const IdentityStep(),
         RegisterStep.contact => const ContactStep(),
         RegisterStep.otp => const OtpStep(),
-        RegisterStep.emergency => const EmergencyStep(),
         RegisterStep.agreements => const AgreementsStep(),
         RegisterStep.verification => const VerificationScene(),
         RegisterStep.underAge => UnderAgeStep(onGuest: _guest),

@@ -5,55 +5,64 @@
       "id": "cat-ulasim",
       "label": "Ulaşım",
       "icon": "bus",
-      "tone": 3
+      "tone": 3,
+      "usageRank": 1
     },
     {
       "id": "cat-eglence",
       "label": "Eğlence",
       "icon": "game",
-      "tone": 1
+      "tone": 1,
+      "usageRank": 3
     },
     {
       "id": "cat-yemek",
       "label": "Yemek",
       "icon": "food",
-      "tone": 6
+      "tone": 6,
+      "usageRank": 2
     },
     {
       "id": "cat-kitap",
       "label": "Kitap",
       "icon": "book",
-      "tone": 4
+      "tone": 4,
+      "usageRank": 5
     },
     {
       "id": "cat-egitim",
       "label": "Eğitim",
       "icon": "cap",
-      "tone": 2
+      "tone": 2,
+      "usageRank": 4
     },
     {
       "id": "cat-spor",
       "label": "Spor",
       "icon": "ball",
-      "tone": 5
+      "tone": 5,
+      "usageRank": 6
     },
     {
       "id": "cat-teknoloji",
       "label": "Teknoloji",
       "icon": "phone",
-      "tone": 3
+      "tone": 3,
+      "usageRank": 7
     },
     {
       "id": "cat-guzellik",
       "label": "Güzellik",
       "icon": "sparkle",
-      "tone": 1
+      "tone": 1,
+      "usageRank": 9
     },
     {
       "id": "cat-saglik",
       "label": "Sağlık",
       "icon": "health",
-      "tone": 2
+      "tone": 2,
+      "usageRank": 8
     }
   ],
   "message": "ok",

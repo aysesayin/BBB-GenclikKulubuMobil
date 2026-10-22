@@ -49,7 +49,7 @@ class SearchSuggestions extends StatelessWidget {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: [for (var i = 0; i < vm.popular.length; i++) _TagChip(label: vm.popular[i], index: i, onTap: () => onPick(vm.popular[i]))],
+            children: [for (var i = 0; i < vm.popular.length; i++) SearchTagChip(label: vm.popular[i], index: i, onTap: () => onPick(vm.popular[i]))],
           ),
         ],
       ],
@@ -107,8 +107,8 @@ class _RecentRow extends StatelessWidget {
 }
 
 /// Sticker etiket: pastel zemin, 2 px ink çerçeve, hafif eğim.
-class _TagChip extends StatelessWidget {
-  const _TagChip({required this.label, required this.index, required this.onTap});
+class SearchTagChip extends StatelessWidget {
+  const SearchTagChip({super.key, required this.label, required this.index, required this.onTap});
 
   final String label;
   final int index;

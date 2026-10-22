@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/models/notifications/app_notification.dart';
 import '../../../l10n/l10n.dart';
@@ -8,7 +9,7 @@ import '../../home/home_links.dart';
 import '../../home/widgets/home_icons.dart';
 
 /// Bildirim satırı: ikon karosu + başlık + açıklama + "zaman · kategori".
-/// Okunmamış → sarımsı zemin + nokta + "Yeni" metni (yalnız renk değil).
+/// Okunmamış → sarımsı zemin + nokta + "Yeni" metni (yalnız renk değil). Kolay Mod: satır ≥ 56 px.
 class NotificationTile extends StatelessWidget {
   const NotificationTile({super.key, required this.item, required this.meta, required this.onTap});
 
@@ -31,7 +32,8 @@ class NotificationTile extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(20),
           onTap: onTap,
-          child: Padding(
+          child: Container(
+            constraints: BoxConstraints(minHeight: context.easyMode ? 56 : 0),
             padding: const EdgeInsets.all(12),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

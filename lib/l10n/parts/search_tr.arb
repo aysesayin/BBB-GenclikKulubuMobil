@@ -14,7 +14,10 @@
   "searchTypePlaces": "Yerler",
   "searchTabCount": "{label} · {count}",
   "@searchTabCount": {"placeholders": {"label": {"type": "String"}, "count": {"type": "int"}}},
-  "searchNoResultTitle": "Sonuç bulamadık",
+  "searchNoResultTitle": "Sonuç yok",
   "searchNoResultMessage": "“{query}” için bir şey çıkmadı. Başka bir kelime dene ya da popüler etiketlere göz at.",
-  "@searchNoResultMessage": {"placeholders": {"query": {"type": "String"}}}
+  "@searchNoResultMessage": {"placeholders": {"query": {"type": "String"}}},
+  "searchDidYouMean": "Bunu mu demek istedin?",
+  "searchDidYouMeanSemantics": "Bunu mu demek istedin: {suggestion}",
+  "@searchDidYouMeanSemantics": {"placeholders": {"suggestion": {"type": "String"}}}
 }

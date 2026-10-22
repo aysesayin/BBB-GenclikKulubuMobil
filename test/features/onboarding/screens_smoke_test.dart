@@ -2,6 +2,7 @@ import 'package:bbb_genclik_kulubu_app/core/network/api_result.dart';
 import 'package:bbb_genclik_kulubu_app/core/router/routes.dart';
 import 'package:bbb_genclik_kulubu_app/core/session/session_controller.dart';
 import 'package:bbb_genclik_kulubu_app/core/theme/app_theme.dart';
+import 'package:bbb_genclik_kulubu_app/core/theme/ui_prefs_controller.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/app/app_config.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/auth/interest_option.dart';
 import 'package:bbb_genclik_kulubu_app/data/repositories/app_repository.dart';
@@ -10,6 +11,8 @@ import 'package:bbb_genclik_kulubu_app/data/repositories/interests_repository.da
 import 'package:bbb_genclik_kulubu_app/features/auth/biometric_authenticator.dart';
 import 'package:bbb_genclik_kulubu_app/features/onboarding/onboarding_routes.dart';
 import 'package:bbb_genclik_kulubu_app/features/onboarding/permission_gateway.dart';
+import 'package:bbb_genclik_kulubu_app/features/onboarding/widgets/marquee.dart';
+import 'package:bbb_genclik_kulubu_app/features/onboarding/widgets/motion.dart';
 import 'package:bbb_genclik_kulubu_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,6 +21,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:provider/provider.dart';
 
 import 'fakes.dart';
 
@@ -42,6 +46,9 @@ void main() {
     when(() => auth.onboardingBonusHeld).thenReturn(true);
     when(auth.holdOnboardingBonus).thenAnswer((_) async {});
     when(() => auth.lastRegistration).thenReturn(demoSession);
+    when(auth.firstDayTasks).thenAnswer((_) async => const Success(firstDayTasks));
+    when(() => auth.isFirstDayDone(any())).thenReturn(false);
+    when(() => auth.markFirstDayDone(any())).thenAnswer((_) async {});
     final interests = MockInterestsRepository();
     when(() => interests.held).thenReturn(const {});
     when(interests.options).thenAnswer(
@@ -65,10 +72,11 @@ void main() {
 
   tearDown(sl.reset);
 
-  Future<void> pumpAt(WidgetTester tester, String location, Size size, {bool reduce = true}) async {
+  Future<void> pumpAt(WidgetTester tester, String location, Size size, {bool reduce = true, bool easy = false}) async {
     tester.view.physicalSize = size * 3;
     tester.view.devicePixelRatio = 3;
     addTearDown(tester.view.reset);
+    final prefs = await testPrefs(easy: easy);
     final router = GoRouter(
       initialLocation: location,
       routes: [
@@ -77,20 +85,23 @@ void main() {
       ],
     );
     await tester.pumpWidget(
-      MaterialApp.router(
-        theme: AppTheme.light,
-        locale: const Locale('tr'),
-        supportedLocales: AppLocalizations.supportedLocales,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        routerConfig: router,
-        builder: (c, child) => MediaQuery(
-          data: MediaQuery.of(c).copyWith(disableAnimations: reduce),
-          child: child!,
+      withPrefs(
+        prefs,
+        MaterialApp.router(
+          theme: AppTheme.light,
+          locale: const Locale('tr'),
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          routerConfig: router,
+          builder: (c, child) => MediaQuery(
+            data: MediaQuery.of(c).copyWith(disableAnimations: reduce || easy),
+            child: child!,
+          ),
         ),
       ),
     );
@@ -99,7 +110,17 @@ void main() {
   }
 
   const sizes = [Size(393, 852), Size(360, 800)];
-  const paths = [Routes.onboarding, Routes.welcome, Routes.interests, Routes.login, Routes.summit, Routes.permissions, Routes.register];
+  const paths = [
+    Routes.onboarding,
+    Routes.welcome,
+    Routes.interests,
+    Routes.login,
+    Routes.summit,
+    Routes.prePermission,
+    Routes.permissions,
+    Routes.firstDay,
+    Routes.register,
+  ];
 
   for (final size in sizes) {
     for (final path in paths) {
@@ -120,6 +141,25 @@ void main() {
       await tester.pumpWidget(const SizedBox());
     });
   }
+
+  for (final path in [Routes.welcome, Routes.login, Routes.register]) {
+    testWidgets('$path Kolay Mod: marquee / blob / kinetik başlık yok', (tester) async {
+      await pumpAt(tester, path, sizes.last, easy: true);
+      expect(tester.takeException(), isNull);
+      expect(find.byType(Marquee), findsNothing);
+      expect(find.byType(MorphBlob), findsNothing);
+      expect(tester.element(find.byType(Scaffold).first).read<UiPrefsController>().easyMode, isTrue);
+    });
+  }
+
+  testWidgets('İlk günün: 3 görev, toplam 2.600, dokununca tamamlandı', (tester) async {
+    await pumpAt(tester, Routes.firstDay, sizes.first);
+    await tester.pump(const Duration(milliseconds: 300));
+    final l = AppLocalizations.of(tester.element(find.byType(Scaffold).first));
+    expect(find.text(l.onbFirstDayHeader(3, '2.600')), findsOneWidget);
+    expect(find.text('QR okut'), findsOneWidget);
+    expect(find.text(l.onbFirstDayProgress(0, 3)), findsOneWidget);
+  });
 
   testWidgets('splash → oturum + yapılandırma → karşılama', (tester) async {
     await pumpAt(tester, Routes.splash, sizes.first);

@@ -43,5 +43,11 @@
   "homeLeagueSubtitle": "You're #{rank} · season ends in {days}d {hours}h",
   "@homeLeagueSubtitle": {"placeholders": {"rank": {"type": "int"}, "days": {"type": "int"}, "hours": {"type": "int"}}},
   "homeLeaguePromotion": "{amount} BUAN to the promotion zone",
-  "@homeLeaguePromotion": {"placeholders": {"amount": {"type": "String"}}}
+  "@homeLeaguePromotion": {"placeholders": {"amount": {"type": "String"}}},
+  "homeEasyDeals": "Deals",
+  "homeEasyCard": "My Card",
+  "homeEasyEvents": "Events",
+  "homeEasyPools": "Pools",
+  "homeEasyMore": "More",
+  "homeEasyLess": "Less"
 }

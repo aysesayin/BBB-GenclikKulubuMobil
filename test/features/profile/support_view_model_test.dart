@@ -1,6 +1,7 @@
 import 'package:bbb_genclik_kulubu_app/core/base/view_state.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/api_result.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/app_exception.dart';
+import 'package:bbb_genclik_kulubu_app/data/models/profile/delete_request.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/profile/support.dart';
 import 'package:bbb_genclik_kulubu_app/features/profile/support/view_model/support_view_model.dart';
 import 'package:bbb_genclik_kulubu_app/features/profile/view_model/picked_document.dart';
@@ -99,8 +100,8 @@ void main() {
   });
 
   test('KVKK silme talebi', () async {
-    when(() => profile.requestDeletion()).thenAnswer((_) async => const Success(null));
-    expect(await vm.requestDeletion(), isNull);
+    when(() => profile.requestDeletion()).thenAnswer((_) async => Success(demoReceipt));
+    expect(await vm.requestDeletion(), isA<Success<DeleteRequestReceipt>>());
     verify(() => profile.requestDeletion()).called(1);
   });
 }

@@ -2,6 +2,7 @@ import '../../../../core/base/base_view_model.dart';
 import '../../../../core/base/view_state.dart';
 import '../../../../core/network/api_result.dart';
 import '../../../../core/network/app_exception.dart';
+import '../../../../data/models/profile/delete_request.dart';
 import '../../../../data/models/profile/support.dart';
 import '../../../../data/repositories/profile_repository.dart';
 import '../../../../data/repositories/support_repository.dart';
@@ -139,9 +140,6 @@ class SupportViewModel extends LoadableViewModel<SupportData> {
     }
   }
 
-  /// KVKK hesap silme talebi. null → başarı.
-  Future<AppException?> requestDeletion() async => switch (await _profile.requestDeletion()) {
-    Success() => null,
-    Failure(:final error) => error,
-  };
+  /// KVKK hesap silme talebi; başarıda makbuz döner.
+  Future<ApiResult<DeleteRequestReceipt>> requestDeletion() => _profile.requestDeletion();
 }

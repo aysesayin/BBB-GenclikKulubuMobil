@@ -45,6 +45,30 @@ void main() {
     await disposeApp(tester);
   });
 
+  testWidgets('kart çevirme: dokununca arka yüz (QR + kod) görünür, tekrar dokununca ön yüz', (tester) async {
+    await pumpTestApp(tester, session: await testSession(member: true), routes: routes, initial: Routes.card);
+    expect(find.text('Çevirmek için dokun'), findsOneWidget);
+    expect(find.text('Check-in QR'), findsNothing);
+    await tester.tap(find.text('Ayşe Su'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.text('Check-in QR'), findsOneWidget);
+    expect(find.text('Ayşe Su'), findsNothing);
+    await tester.tap(find.text('Check-in QR'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.text('Ayşe Su'), findsOneWidget);
+    await disposeApp(tester);
+  });
+
+  testWidgets('eylemler: Gişede göster + pasif "Yakında" çipi; Kolay Mod alt alta', (tester) async {
+    await pumpTestApp(tester, session: await testSession(member: true), routes: routes, initial: Routes.card, easyMode: true);
+    expect(find.text('Gişede göster'), findsOneWidget);
+    expect(find.text('Yakında'), findsOneWidget);
+    expect(find.bySemanticsLabel('Cüzdana ekle, Yakında'), findsOneWidget);
+    await disposeApp(tester);
+  });
+
   testWidgets('misafir: yumuşak duvar, veri istenmez', (tester) async {
     await pumpTestApp(tester, session: await testSession(member: false), routes: routes, initial: Routes.card);
     expect(find.text('Dijital kartın seni bekliyor'), findsOneWidget);

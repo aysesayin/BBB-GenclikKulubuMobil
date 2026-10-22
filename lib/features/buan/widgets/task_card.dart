@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/utils/formatters.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/models/buan/buan_task.dart';
@@ -24,8 +25,8 @@ String buanTaskLockLabel(AppLocalizations l, BuanTask t, {DateTime? now}) {
   return l.buanEarnStatusLocked;
 }
 
-/// Görev kartı: 52 px karo · başlık · alt metin · durum rozeti (+ ilerleme) ·
-/// sabit genişlikli puan rozeti (asla satır kırmaz).
+/// Görev kartı: 52 px karo · başlık · alt metin; altında durum rozeti + puan rozeti satırı;
+/// ilerleme çubuğu kendi satırında. 360 px'te hiçbir şey kırılmaz / kesilmez.
 class TaskCard extends StatelessWidget {
   const TaskCard({super.key, required this.task, required this.onTap});
 
@@ -36,6 +37,7 @@ class TaskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = context.palette;
     final l = context.l10n;
+    final easy = context.easyMode;
     final (String label, String icon, Color bg, Color fg) = switch (task.status) {
       BuanTaskStatus.available => (l.buanEarnStatusAvailable, BuanIcons.arrowRight, p.tealS, p.teal),
       BuanTaskStatus.pending => (l.buanEarnStatusPending, AppIcons.clock, p.yelS, p.warningText),
@@ -43,59 +45,69 @@ class TaskCard extends StatelessWidget {
       BuanTaskStatus.locked => (buanTaskLockLabel(l, task), AppIcons.lock, p.sf2, p.mut),
     };
     final dim = task.isDone || task.isLocked;
+    final showProgress = task.progress != null && !dim;
     return Opacity(
       opacity: dim ? .75 : 1,
       child: AppCard(
         onTap: onTap,
         padding: const EdgeInsets.all(12),
         semanticLabel: l.buanEarnCardSemantics(task.title, task.subtitle, label),
-        child: Row(
-          children: [
-            ExcludeSemantics(
-              child: IconTile(icon: BuanIcons.task(task.type), color: buanTile(p, task.tile), size: 52, radius: 18, iconSize: 26),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: ExcludeSemantics(
-                child: Column(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: easy ? 72 : 0),
+          child: ExcludeSemantics(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      task.title,
-                      style: AppTypography.body(15, weight: FontWeight.w900, height: 1.2, color: p.ink),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      task.subtitle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTypography.body(12, color: p.mut),
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        _StatusPill(label: label, icon: icon, bg: bg, fg: fg),
-                        if (task.progress != null && !dim) ...[
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: AppProgressBar(value: task.progress!, color: p.primary),
+                    IconTile(icon: BuanIcons.task(task.type), color: buanTile(p, task.tile), size: 52, radius: 18, iconSize: 26),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            task.title,
+                            style: AppTypography.body(easy ? 17 : 15, weight: FontWeight.w900, height: 1.2, color: p.ink),
+                          ),
+                          if (task.subtitle.isNotEmpty) ...[
+                            const SizedBox(height: 4),
+                            Text(
+                              task.subtitle,
+                              maxLines: easy ? 3 : 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTypography.body(easy ? 14 : 12, color: p.mut),
+                            ),
+                          ],
+                          const SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Flexible(child: _StatusPill(label: label, icon: icon, bg: bg, fg: fg)),
+                              const SizedBox(width: 8),
+                              TaskPointsBadge(task: task),
+                            ],
                           ),
                         ],
-                      ],
+                      ),
                     ),
                   ],
                 ),
-              ),
+                if (showProgress) ...[
+                  const SizedBox(height: 10),
+                  AppProgressBar(value: task.progress!, color: p.primary),
+                ],
+              ],
             ),
-            const SizedBox(width: 12),
-            TaskPointsBadge(task: task),
-          ],
+          ),
         ),
       ),
     );
   }
 }
 
+/// Durum rozeti: dar ekranda uzun kilit metni sığmazsa küçülür, asla satır kırmaz.
 class _StatusPill extends StatelessWidget {
   const _StatusPill({required this.label, required this.icon, required this.bg, required this.fg});
 
@@ -104,21 +116,20 @@ class _StatusPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    height: 22,
+    height: 24,
     padding: const EdgeInsets.symmetric(horizontal: 8),
-    decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(11)),
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        AppIcon(icon, size: 12, color: fg, strokeWidth: 3),
-        const SizedBox(width: 4),
-        Text(
-          label,
-          maxLines: 1,
-          softWrap: false,
-          style: AppTypography.body(11, weight: FontWeight.w900, color: fg),
-        ),
-      ],
+    decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(12)),
+    child: FittedBox(
+      fit: BoxFit.scaleDown,
+      alignment: Alignment.centerLeft,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AppIcon(icon, size: 12, color: fg, strokeWidth: 3),
+          const SizedBox(width: 4),
+          Text(label, maxLines: 1, softWrap: false, style: AppTypography.body(11, weight: FontWeight.w900, color: fg)),
+        ],
+      ),
     ),
   );
 }

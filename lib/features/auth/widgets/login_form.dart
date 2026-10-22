@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../core/router/routes.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/utils/haptics.dart';
 import '../../../core/utils/validators.dart';
 import '../../../core/widgets/widgets.dart';
@@ -32,6 +33,7 @@ class LoginForm extends StatelessWidget {
       LoginMethod.email => (l.authEmailLabel, TextInputType.emailAddress, [AutofillHints.email], <TextInputFormatter>[]),
     };
     final pwError = vm.error == LoginError.wrongPassword || vm.error == LoginError.passwordRequired || vm.error == LoginError.locked;
+    final touch = context.touchTarget;
 
     Future<void> submit() async {
       FocusScope.of(context).unfocus();
@@ -83,6 +85,7 @@ class LoginForm extends StatelessWidget {
                 icon: vm.obscure ? OnbIcons.eye : OnbIcons.eyeOff,
                 semanticLabel: vm.obscure ? l.authShowPassword : l.authHidePassword,
                 color: p.mut,
+                size: touch,
                 onPressed: vm.toggleObscure,
               ),
             ),
@@ -92,7 +95,7 @@ class LoginForm extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () => _forgot(context, vm),
-              style: TextButton.styleFrom(minimumSize: const Size(44, 40), foregroundColor: p.teal),
+              style: TextButton.styleFrom(minimumSize: Size(touch, touch - 4), foregroundColor: p.teal),
               child: Text(l.authForgot, style: AppTypography.body(14, weight: FontWeight.w900, color: p.teal)),
             ),
           ),
@@ -121,7 +124,7 @@ class LoginForm extends StatelessWidget {
               Text(l.authNoAccount, style: AppTypography.body(14, color: p.mut)),
               TextButton(
                 onPressed: () => context.push(Routes.interests),
-                style: TextButton.styleFrom(minimumSize: const Size(44, 44), padding: const EdgeInsets.symmetric(horizontal: 6)),
+                style: TextButton.styleFrom(minimumSize: Size(touch, touch), padding: const EdgeInsets.symmetric(horizontal: 6)),
                 child: Text(l.authRegisterLink, style: AppTypography.body(14, weight: FontWeight.w900, color: p.teal)),
               ),
             ],

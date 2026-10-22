@@ -155,7 +155,7 @@ class _WheelBody extends StatelessWidget {
           child: Column(
             children: [
               if (!locked)
-                Text(l.taskSpinServerNote, textAlign: TextAlign.center, style: onNight)
+                Text(l.taskSpinDailyNote, textAlign: TextAlign.center, style: onNight)
               else ...[
                 Semantics(
                   header: true,

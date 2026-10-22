@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/base/view_state.dart';
 import '../../../core/di/locator.dart';
-import '../../../core/router/routes.dart';
 import '../../../core/session/session_controller.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/models/card/digital_card.dart';
 import '../../../data/repositories/card_repository.dart';
 import '../../../l10n/l10n.dart';
 import '../utils/brightness_boost.dart';
 import '../view_model/card_view_model.dart';
+import '../widgets/card_actions.dart';
+import '../widgets/card_flip.dart';
 import '../widgets/card_guest_wall.dart';
-import '../widgets/card_icons.dart';
 import '../widgets/card_qr_panel.dart';
 import '../widgets/holo_card.dart';
 
-/// D1 · Kartım sekmesi. Misafirde yumuşak duvar; üyede kart + dinamik QR.
+/// D1 · Kartım sekmesi. Misafirde yumuşak duvar; üyede çevrilebilir kart + dinamik QR.
+/// Kolay Mod: 56 px kod, tam genişlik alt alta butonlar.
 class CardView extends StatelessWidget {
   const CardView({super.key});
 
@@ -42,6 +43,7 @@ class _BodyState extends State<_Body> with WidgetsBindingObserver {
   bool _visible = false;
   bool _bright = false;
   bool _resumed = true;
+  bool _flipped = false;
 
   @override
   void initState() {
@@ -89,6 +91,7 @@ class _BodyState extends State<_Body> with WidgetsBindingObserver {
     final vm = context.watch<CardViewModel>();
     final p = context.palette;
     final l = context.l10n;
+    final easy = context.easyMode;
     final bottom = AppSpacing.tabBarHeight + MediaQuery.paddingOf(context).bottom;
     final card = vm.card.dataOrNull;
     final cardOffline = vm.card is ViewError || (vm.card is ViewSuccess<DigitalCard> && (vm.card as ViewSuccess<DigitalCard>).fromCache);
@@ -102,7 +105,7 @@ class _BodyState extends State<_Body> with WidgetsBindingObserver {
           children: [
             TabScreenHeader(
               title: l.tabCard,
-              trailing: [if (_bright) _BrightChip(label: l.cardBrightnessUp)],
+              trailing: [if (_bright) BrightChip(label: l.cardBrightnessUp)],
             ),
             if (vm.offline || cardOffline) const OfflineBanner(margin: EdgeInsets.fromLTRB(20, 12, 20, 0)),
             Padding(
@@ -115,15 +118,29 @@ class _BodyState extends State<_Body> with WidgetsBindingObserver {
                 _ when card == null => const Shimmer(
                   child: AspectRatio(aspectRatio: 1 / .595, child: SkeletonBox(radius: 26)),
                 ),
-                _ => HoloCard(
-                  live: vm.active,
-                  name: card.fullName,
-                  memberNo: card.memberNo,
-                  levelLabel: l.cardLevelBadge(card.level, card.levelName),
-                  semanticLabel: l.cardSemantics(card.fullName, card.memberNo, card.levelName),
+                _ => FlipCard(
+                  flipped: _flipped,
+                  onTap: () => setState(() => _flipped = !_flipped),
+                  front: HoloCard(
+                    live: vm.active && !_flipped,
+                    name: card.fullName,
+                    memberNo: card.memberNo,
+                    levelLabel: l.cardLevelBadge(card.level, card.levelName),
+                    semanticLabel: l.cardSemantics(card.fullName, card.memberNo, card.levelName),
+                  ),
+                  back: CardBackFace(token: vm.token?.token, pin: vm.pin, secondsLeft: vm.secondsLeft, ring: vm.ringValue),
                 ),
               },
             ),
+            if (card != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
+                  l.cardFlipHint,
+                  textAlign: TextAlign.center,
+                  style: AppTypography.body(12, weight: FontWeight.w800, color: p.mut),
+                ),
+              ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
               child: CardQrPanel(
@@ -133,61 +150,16 @@ class _BodyState extends State<_Body> with WidgetsBindingObserver {
                 ring: vm.ringValue,
                 offline: vm.offline,
                 loading: vm.tokenLoading,
+                large: easy,
                 onRetry: vm.refreshToken,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 12,
-                    child: AppButton.buan(label: l.cardScanCta, icon: CardIcons.scan, fontSize: 16, onPressed: () => context.push(Routes.qrScan)),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    flex: 10,
-                    child: AppButton(
-                      label: l.cardAddToWallet,
-                      icon: AppIcons.wallet,
-                      variant: AppButtonVariant.outlineInk,
-                      fontSize: 15,
-                      // TODO(varsayım): Apple/Google Wallet pass'i backend'den (.pkpass / JWT) gelecek; şimdilik bilgi notu.
-                      onPressed: () => ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l.cardWalletSoon))),
-                    ),
-                  ),
-                ],
-              ),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(20, 16, 20, 0),
+              child: CardActions(),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _BrightChip extends StatelessWidget {
-  const _BrightChip({required this.label});
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    final p = context.palette;
-    return Container(
-      height: 32,
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      decoration: BoxDecoration(color: p.sf2, borderRadius: BorderRadius.circular(16)),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AppIcon(CardIcons.sun, size: 16, color: p.mut, strokeWidth: 2.4),
-          const SizedBox(width: 6),
-          Text(
-            label,
-            style: AppTypography.body(12, weight: FontWeight.w900, color: p.mut),
-          ),
-        ],
       ),
     );
   }

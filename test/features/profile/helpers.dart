@@ -1,5 +1,6 @@
 import 'package:bbb_genclik_kulubu_app/core/session/session_controller.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/profile/account_settings.dart';
+import 'package:bbb_genclik_kulubu_app/data/models/profile/delete_request.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/profile/profile_stats.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/profile/support.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/profile/user_profile.dart';
@@ -44,10 +45,14 @@ const demoStats = ProfileStats(
   totalBuanEarned: 24350,
   eventsAttended: 9,
   opportunitiesUsed: 7,
+  districtRank: 14,
   badgeCount: 7,
   pendingPayments: 1,
   openSurveys: 2,
 );
+
+/// Mock `users.me.delete-request.post.json` ile aynı makbuz.
+final demoReceipt = DeleteRequestReceipt(requestId: 'del-demo', requestNo: 'KVKK-2026-048213', processUntil: DateTime(2026, 11, 21));
 
 /// Algoritmaya uygun örnek TCKN.
 const validTckn = '10000000146';

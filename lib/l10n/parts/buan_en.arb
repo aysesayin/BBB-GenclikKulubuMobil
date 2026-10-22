@@ -10,11 +10,8 @@
   "buanTabLeague": "League",
   "buanTabBadges": "Badges",
   "buanLevelChip": "Lv {level} · {name}",
-  "buanLevelToNext": "{amount} to {name}",
-  "buanLevelProgress": "Level progress",
   "buanStreakLabel": "Daily streak",
   "buanStreakTitle": "{count}-day streak",
-  "buanStreakBonus": "+{amount} bonus on day {day}",
   "buanStreakDayDone": "{day} completed",
   "buanStreakDayPending": "{day} pending",
   "buanEarnStatusAvailable": "Available",
@@ -33,7 +30,6 @@
   "buanEarnSheetDone": "You've completed this task, the BUAN is in your wallet.",
   "buanEarnSheetSoon": "You'll soon be able to complete this task in the app. For now, check the rules.",
   "buanEarnSheetOpportunities": "Browse deals",
-  "buanEarnSheetOk": "OK",
   "buanEarnEmptyTitle": "No tasks right now",
   "buanEarnEmptyMessage": "New tasks arrive at midnight. Meanwhile, check out the market.",
   "buanMarketTitle": "BUAN Market",
@@ -95,7 +91,7 @@
   "buanBadgesProgress": "Badge progress: {earned} / {total}",
   "buanBadgesLocked": "Locked · {condition}",
   "buanBadgesEarnedSemantics": "{title}, earned. {detail}",
-  "buanBadgesLockedSemantics": "{title}, locked. {condition}",
+  "buanBadgesLockedSemantics": "{title}. Locked · {condition}",
   "buanBadgesEmptyTitle": "Badges on the way",
   "buanBadgesEmptyMessage": "Your badge collection grows here as you complete tasks.",
   "buanHistoryTitle": "My Transactions",
@@ -109,5 +105,45 @@
   "buanHistorySpendSemantics": "Spent {amount} BUAN",
   "buanHistoryEmptyTitle": "No transactions yet",
   "buanHistoryEmptyMessage": "Your earnings and redemptions will show up here.",
-  "buanHistoryEmptyCta": "Go to tasks"
+  "buanHistoryEmptyCta": "Go to tasks",
+  "buanStreakCompact": "{count}-day streak",
+  "@buanStreakCompact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "buanHeroCollapsedSemantics": "BUAN balance {amount}",
+  "@buanHeroCollapsedSemantics": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "buanMarketMissing": "{amount} more BUAN",
+  "@buanMarketMissing": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "buanEasyMoreLabel": "Other BUAN sections",
+  "buanTaskDetailSteps": "How it works",
+  "buanTaskDetailStatusLabel": "Status",
+  "buanTaskPendingState": "Awaiting panel approval",
+  "buanTaskPendingHint": "Your declaration is checked by the panel; BUAN is credited once approved.",
+  "buanTaskFollowCta": "I followed, declare",
+  "buanTaskFollowHint": "Follow the official accounts, then send your declaration.",
+  "buanTaskVolunteerCta": "Apply",
+  "buanTaskBikoCta": "Go to BİKO",
+  "buanTaskBikoHint": "Applications are made on the BİKO site; the result is matched automatically.",
+  "buanTaskBikoFail": "Could not open the BİKO site. Try again later.",
+  "buanTaskIdeaCta": "Send your idea",
+  "buanTaskNotFoundTitle": "Task not found",
+  "buanTaskNotFoundMessage": "This task is no longer listed. Tasks refresh at midnight.",
+  "buanTaskDeclaredToast": "Declaration received",
+  "buanTaskAppliedToast": "Application received"
 }

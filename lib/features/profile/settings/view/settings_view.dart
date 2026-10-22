@@ -6,6 +6,7 @@ import '../../../../core/di/locator.dart';
 import '../../../../core/network/app_exception.dart';
 import '../../../../core/storage/cache_store.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/ui_prefs_controller.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../../data/models/profile/account_settings.dart';
 import '../../../../data/repositories/profile_repository.dart';
@@ -13,14 +14,15 @@ import '../../../../l10n/l10n.dart';
 import '../../widgets/delete_account_section.dart';
 import '../../widgets/list_skeleton.dart';
 import '../../widgets/profile_ui.dart';
-import '../../widgets/theme_mode_selector.dart';
 import '../view_model/biometric_login.dart';
 import '../view_model/settings_view_model.dart';
+import '../widgets/appearance_card.dart';
 import '../widgets/contact_change_sheet.dart';
 import '../widgets/password_change_sheet.dart';
 import '../widgets/settings_rows.dart';
 
-/// I2 · Hesap ayarları (tam ekran).
+/// I2 · Hesap ayarları (tam ekran). Kolay Mod'da dört sade bölüm (İletişim, Bildirimler,
+/// Görünüm, Hesap) ve 64 px satırlar; içerik aynıdır.
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
 
@@ -109,8 +111,8 @@ class _Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.read<SettingsViewModel>();
-    final p = context.palette;
     final l = context.l10n;
+    final easy = context.easyMode;
     final prefs = data.prefs;
     final bioOn = context.select<SettingsViewModel, bool>((v) => v.biometricEnabled);
     final bioKind = context.select<SettingsViewModel, BiometricKind?>((v) => v.biometricKind);
@@ -124,11 +126,14 @@ class _Content extends StatelessWidget {
       }),
     );
 
+    Widget section(String label, {bool first = false}) =>
+        CapsLabel(label, padding: EdgeInsets.fromLTRB(24, first ? 18 : (easy ? 28 : 22), 24, easy ? 10 : 8));
+
     return ListView(
       padding: EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom + 32),
       children: [
         if (offline) const OfflineBanner(),
-        CapsLabel(l.profileSectionContact, padding: const EdgeInsets.fromLTRB(24, 18, 24, 8)),
+        section(easy ? l.profileSectionContactEasy : l.profileSectionContact, first: true),
         DividedCard(
           children: [
             SettingsActionRow(
@@ -157,7 +162,7 @@ class _Content extends StatelessWidget {
             ),
           ],
         ),
-        CapsLabel(l.profileSectionNotifications, padding: const EdgeInsets.fromLTRB(24, 22, 24, 8)),
+        section(l.profileSectionNotifications),
         DividedCard(
           children: [
             toggle(
@@ -177,32 +182,14 @@ class _Content extends StatelessWidget {
             toggle(l.profileNotifAchievements, l.profileNotifAchievementsSub, prefs.achievements, (pr, v) => pr.copyWith(achievements: v)),
           ],
         ),
-        CapsLabel(l.profileSectionAppearance, padding: const EdgeInsets.fromLTRB(24, 22, 24, 8)),
-        Container(
-          margin: AppSpacing.screenPadding,
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(color: p.sf, borderRadius: BorderRadius.circular(AppRadii.lg)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const ThemeModeSelector(),
-              const SizedBox(height: 14),
-              LabeledSegment(
-                label: l.profileLanguage,
-                child: SegmentedTabs(
-                  labels: [l.profileLanguageTr, l.profileLanguageEn],
-                  index: prefs.language == 'en' ? 1 : 0,
-                  onChanged: (i) => vm.setLanguage(i == 1 ? 'en' : 'tr').then((e) {
-                    if (context.mounted) _report(context, e);
-                  }),
-                ),
-              ),
-              const SizedBox(height: 14),
-              Text(l.profileTextSizeNote, style: AppTypography.body(12, color: p.mut)),
-            ],
-          ),
+        section(easy ? l.profileSectionAppearanceEasy : l.profileSectionAppearance),
+        AppearanceCard(
+          languageIndex: prefs.language == 'en' ? 1 : 0,
+          onLanguage: (i) => vm.setLanguage(i == 1 ? 'en' : 'tr').then((e) {
+            if (context.mounted) _report(context, e);
+          }),
         ),
-        CapsLabel(l.profileSectionAccount, padding: const EdgeInsets.fromLTRB(24, 22, 24, 8)),
+        section(l.profileSectionAccount),
         Padding(
           padding: AppSpacing.screenPadding,
           child: DeleteAccountSection(onRequest: vm.requestDeletion),

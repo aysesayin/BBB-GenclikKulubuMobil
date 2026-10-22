@@ -114,6 +114,32 @@ void main() {
     verify(() => repo.clearRecent()).called(1);
   });
 
+  test('boş sonuç → "Bunu mu demek istedin" önerisi (popüler etiket ya da başlık sözcüğü)', () async {
+    final vm = SearchViewModel(repo);
+    await vm.init();
+    expect(vm.suggestion, isNull);
+    await vm.submit('Telefrik');
+    expect(vm.results, isA<ViewSuccess<List<SearchResult>>>());
+    expect(vm.countFor(SearchTab.all), 0);
+    expect(vm.suggestion, 'Teleferik');
+    await vm.submit('Tiyatro');
+    expect(vm.countFor(SearchTab.all), 1);
+    expect(vm.suggestion, isNull, reason: 'sonuç varken öneri yok');
+    await vm.submit('zzzzzzzz');
+    expect(vm.suggestion, isNull, reason: 'yakın aday yok');
+  });
+
+  test('suggestionFor: normalize içerme ve Levenshtein eşiği', () {
+    const c = ['Teleferik', 'Konser', 'Kamp', 'Uludağ'];
+    expect(SearchViewModel.suggestionFor('tele', c), 'Teleferik');
+    expect(SearchViewModel.suggestionFor('KONSR', c), 'Konser');
+    expect(SearchViewModel.suggestionFor('kamb', c), 'Kamp');
+    expect(SearchViewModel.suggestionFor('uludag', c), 'Uludağ');
+    expect(SearchViewModel.suggestionFor('ab', c), isNull, reason: '< 3 harf');
+    expect(SearchViewModel.suggestionFor('Konser', c), isNull, reason: 'birebir aynı aday önerilmez');
+    expect(SearchViewModel.levenshtein('kitten', 'sitting'), 3);
+  });
+
   test('ödül de "Fırsatlar" sekmesine düşer', () {
     expect(SearchViewModel.tabOf(SearchResultType.reward), SearchTab.opportunities);
     expect(SearchViewModel.filter(_items, 'TELEFERİK').length, 4);

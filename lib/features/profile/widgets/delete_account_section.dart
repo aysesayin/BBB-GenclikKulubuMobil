@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../core/network/app_exception.dart';
+import '../../../core/network/api_result.dart';
+import '../../../core/router/routes.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../../data/models/profile/delete_request.dart';
 import '../../../l10n/l10n.dart';
 import 'confirm_sheet.dart';
 import 'profile_ui.dart';
 
 /// KVKK hesap silme talebi: pembe çerçeveli buton + açıklama. Onay sheet'i sonrası [onRequest]
-/// çağrılır (null → başarı).
+/// çağrılır; başarıda makbuzla [Routes.deleteRequested] ekranına geçilir, hatada snackbar.
 class DeleteAccountSection extends StatefulWidget {
   const DeleteAccountSection({super.key, required this.onRequest});
 
-  final Future<AppException?> Function() onRequest;
+  final Future<ApiResult<DeleteRequestReceipt>> Function() onRequest;
 
   @override
   State<DeleteAccountSection> createState() => _DeleteAccountSectionState();
@@ -32,10 +35,15 @@ class _DeleteAccountSectionState extends State<DeleteAccountSection> {
     );
     if (!ok || !mounted) return;
     setState(() => _busy = true);
-    final error = await widget.onRequest();
+    final result = await widget.onRequest();
     if (!mounted) return;
     setState(() => _busy = false);
-    showProfileSnack(context, error == null ? l.profileDeleteDone : errorMessageOf(context, error));
+    switch (result) {
+      case Success(:final data):
+        context.go(Routes.deleteRequested, extra: data);
+      case Failure(:final error):
+        showProfileSnack(context, errorMessageOf(context, error));
+    }
   }
 
   @override

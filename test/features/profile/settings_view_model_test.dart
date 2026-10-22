@@ -2,6 +2,7 @@ import 'package:bbb_genclik_kulubu_app/core/base/view_state.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/api_result.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/app_exception.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/profile/account_settings.dart';
+import 'package:bbb_genclik_kulubu_app/data/models/profile/delete_request.dart';
 import 'package:bbb_genclik_kulubu_app/features/profile/settings/view_model/biometric_login.dart';
 import 'package:bbb_genclik_kulubu_app/features/profile/settings/view_model/settings_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -87,11 +88,11 @@ void main() {
     expect(await vm.toggleBiometric(on: true, reason: 'r'), BiometricToggleResult.unavailable);
   });
 
-  test('silme talebi sonucu iletilir', () async {
-    when(() => repo.requestDeletion()).thenAnswer((_) async => const Success(null));
-    expect(await vm.requestDeletion(), isNull);
+  test('silme talebi makbuzu / hatası iletilir', () async {
+    when(() => repo.requestDeletion()).thenAnswer((_) async => Success(demoReceipt));
+    expect((await vm.requestDeletion() as Success<DeleteRequestReceipt>).data.requestNo, 'KVKK-2026-048213');
     when(() => repo.requestDeletion()).thenAnswer((_) async => const Failure(ConflictException()));
-    expect(await vm.requestDeletion(), isA<ConflictException>());
+    expect((await vm.requestDeletion() as Failure).error, isA<ConflictException>());
   });
 
   test('refreshUser maskeli özetleri tazeler', () async {

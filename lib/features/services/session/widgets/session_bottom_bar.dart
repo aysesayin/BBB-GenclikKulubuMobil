@@ -7,6 +7,7 @@ import '../../../../l10n/l10n.dart';
 import '../../widgets/services_icons.dart';
 import '../../widgets/svc_format.dart';
 import '../view_model/session_view_model.dart';
+import 'session_cell_sheet.dart';
 
 /// Alt şerit: kural uyarıları, yüzme bilme onayı, seçim özeti ve "Sepete ekle".
 class SessionBottomBar extends StatelessWidget {
@@ -62,14 +63,7 @@ class _IssueRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
-    final l = context.l10n;
-    final text = switch (issue.kind) {
-      RuleIssueKind.gender => l.svcRuleGender(issue.gender == Gender.male ? l.svcGenderMale : l.svcGenderFemale),
-      RuleIssueKind.minAge => l.svcRuleMinAge('${issue.min}'),
-      RuleIssueKind.maxAge => l.svcRuleMaxAge('${issue.max}'),
-      RuleIssueKind.guardian => l.svcRuleGuardian('${issue.min}', '${issue.max}'),
-      RuleIssueKind.permission => l.svcRulePermission('${issue.min}', '${issue.max}'),
-    };
+    final text = ruleIssueText(context, issue);
     final (bg, fg) = issue.blocking ? (p.pinkS, p.pinkT) : (p.yelS, p.warningText);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),

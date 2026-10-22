@@ -11,9 +11,10 @@ import 'session_rules.dart';
 
 export 'session_rules.dart';
 
-enum CellKind { open, selected, full, cancelled, maintenance, holiday, past, empty }
+enum CellKind { open, selected, full, ineligible, cancelled, maintenance, holiday, past, empty }
 
-/// H2 · Haftalık seans ızgarası: hafta gezinme, kimin için, seçim + kural uyarıları, 5 dk rezerv.
+/// H2 · Haftalık seans ızgarası: hafta gezinme, kimin için, seçim + kural uyarıları, 5 dk rezerv,
+/// dolu seans için bekleme listesi, uygun olmayan (yaş/cinsiyet) hücreler, Kolay Mod gün gezinme.
 class SessionViewModel extends LoadableViewModel<SessionWeek> {
   SessionViewModel(
     this._repo,
@@ -25,6 +26,7 @@ class SessionViewModel extends LoadableViewModel<SessionWeek> {
   })  : _now = now ?? DateTime.now,
         _pollInterval = pollInterval {
     _weekStart = mondayOf(_now());
+    _focusDay = _day(_now());
   }
 
   final FacilityRepository _repo;
@@ -34,13 +36,19 @@ class SessionViewModel extends LoadableViewModel<SessionWeek> {
   final Duration? _pollInterval;
 
   late DateTime _weekStart;
+  late DateTime _focusDay;
   bool _initialLoad = true;
   String? _participantId;
   String? _selectedId;
   bool _swimConfirmed = false;
   bool _adding = false;
+  bool _joiningWaitlist = false;
   AppException? _actionError;
   Timer? _poll;
+
+  /// Bu oturumda girilen bekleme listeleri (seans id → sıra).
+  /// TODO(varsayım): Sunucu seans yanıtında `waitlistPosition` döndürene kadar yalnız yerel tutulur.
+  final Map<String, int> _waitlist = {};
 
   static DateTime mondayOf(DateTime d) => DateTime(d.year, d.month, d.day).subtract(Duration(days: d.weekday - 1));
   static DateTime _day(DateTime d) => DateTime(d.year, d.month, d.day);
@@ -49,6 +57,7 @@ class SessionViewModel extends LoadableViewModel<SessionWeek> {
   DateTime get weekEnd => _weekStart.add(const Duration(days: 6));
   bool get canGoPrev => _weekStart.isAfter(mondayOf(_now()));
   bool get adding => _adding;
+  bool get joiningWaitlist => _joiningWaitlist;
   bool get swimConfirmed => _swimConfirmed;
   bool get requiresSwim => state.dataOrNull?.rules.requiresSwimConfirmation ?? false;
 
@@ -61,7 +70,10 @@ class SessionViewModel extends LoadableViewModel<SessionWeek> {
     final week = state.dataOrNull;
     if (week == null || isDisposed) return;
     // Sunucu istenen haftayı döndürmediyse (ör. mock) ilk açılışta verinin haftasına geç.
-    if (_initialLoad && days.isEmpty && week.days.isNotEmpty) _weekStart = mondayOf(week.days.first.date);
+    if (_initialLoad && days.isEmpty && week.days.isNotEmpty) {
+      _weekStart = mondayOf(week.days.first.date);
+      _focusDay = _day(week.days.first.date);
+    }
     _initialLoad = false;
     if (!week.participants.any((p) => p.id == _participantId)) {
       _participantId = week.participants.isEmpty ? null : week.participants.first.id;
@@ -97,6 +109,11 @@ class SessionViewModel extends LoadableViewModel<SessionWeek> {
     return null;
   }
 
+  /// Bir günün seansları, saate göre sıralı (Kolay Mod tek gün görünümü).
+  List<SessionSlot> slotsOn(DateTime day) =>
+      [for (final s in state.dataOrNull?.slots ?? const <SessionSlot>[]) if (_day(s.start) == _day(day)) s]
+        ..sort((a, b) => a.start.compareTo(b.start));
+
   bool isToday(DateTime d) => _day(d) == _day(_now());
 
   CellKind kindOf(SessionSlot? slot, SessionDay day) {
@@ -107,12 +124,23 @@ class SessionViewModel extends LoadableViewModel<SessionWeek> {
       SlotStatus.maintenance => CellKind.maintenance,
       SlotStatus.cancelled => CellKind.cancelled,
       _ when day.status == DayStatus.maintenance || day.status == DayStatus.closed => CellKind.maintenance,
-      _ when slot.isFull => CellKind.full,
       _ when !slot.start.isAfter(_now()) => CellKind.past,
+      _ when ineligibilityOf(slot) != null => CellKind.ineligible,
+      _ when slot.isFull => CellKind.full,
       _ when slot.id == _selectedId => CellKind.selected,
       _ => CellKind.open,
     };
   }
+
+  /// Seçili katılımcı (kendim → profil yaş/cinsiyetiyle) için engelleyici kural; yoksa null.
+  RuleIssue? ineligibilityOf(SessionSlot slot) {
+    final week = state.dataOrNull, p = participant;
+    if (week == null || p == null) return null;
+    return blockingIssue(week: week, participant: p, slot: slot);
+  }
+
+  /// Bekleme listesindeki sıra (bu oturumda girildiyse).
+  int? waitlistPositionOf(String slotId) => _waitlist[slotId];
 
   // ---- Seçim ----
   List<Participant> get participants => state.dataOrNull?.participants ?? const [];
@@ -134,6 +162,7 @@ class SessionViewModel extends LoadableViewModel<SessionWeek> {
   void selectParticipant(String id) {
     if (id == _participantId) return;
     _participantId = id;
+    if (selectedSlot case final s? when ineligibilityOf(s) != null) _selectedId = null;
     notify();
   }
 
@@ -152,14 +181,16 @@ class SessionViewModel extends LoadableViewModel<SessionWeek> {
   List<RuleIssue> get issues {
     final week = state.dataOrNull, p = participant, s = selectedSlot;
     if (week == null || p == null || s == null) return const [];
-    return evaluateRules(rules: week.rules, participant: p, slot: s);
+    return evaluateRules(rules: week.rules, participant: viewerFor(week, p), slot: s);
   }
 
   bool get canAdd =>
       selectedSlot != null && participant != null && !_adding && !issues.any((i) => i.blocking) && (!requiresSwim || _swimConfirmed);
 
+  // ---- Hafta / gün gezinme ----
   Future<void> nextWeek() async {
     _weekStart = _weekStart.add(const Duration(days: 7));
+    _focusDay = _weekStart;
     _selectedId = null;
     await load();
   }
@@ -167,8 +198,34 @@ class SessionViewModel extends LoadableViewModel<SessionWeek> {
   Future<void> prevWeek() async {
     if (!canGoPrev) return;
     _weekStart = _weekStart.subtract(const Duration(days: 7));
+    _focusDay = weekEnd;
     _selectedId = null;
     await load();
+  }
+
+  /// Kolay Mod: tek seferde gösterilen gün (haftanın içinde kalır).
+  DateTime get focusDay => _focusDay.isBefore(_weekStart) || _focusDay.isAfter(weekEnd) ? _weekStart : _focusDay;
+
+  SessionDay get focusSessionDay =>
+      days.where((d) => _day(d.date) == focusDay).firstOrNull ?? SessionDay(date: focusDay, status: DayStatus.closed);
+
+  bool get canGoPrevDay => focusDay.isAfter(_day(_now()));
+
+  Future<void> nextDay() async {
+    final n = focusDay.add(const Duration(days: 1));
+    if (n.isAfter(weekEnd)) return nextWeek();
+    _focusDay = n;
+    _selectedId = null;
+    notify();
+  }
+
+  Future<void> prevDay() async {
+    if (!canGoPrevDay) return;
+    final n = focusDay.subtract(const Duration(days: 1));
+    if (n.isBefore(_weekStart)) return prevWeek();
+    _focusDay = n;
+    _selectedId = null;
+    notify();
   }
 
   /// Tek seferlik eylem hatası (snackbar).
@@ -195,6 +252,20 @@ class SessionViewModel extends LoadableViewModel<SessionWeek> {
     }
     notify();
     return true;
+  }
+
+  /// POST /services/items/{id}/waitlist → sıra numarası; başarısızsa [takeError].
+  Future<int?> joinWaitlist(SessionSlot slot) async {
+    if (_joiningWaitlist || !slot.isFull || ineligibilityOf(slot) != null) return null;
+    _joiningWaitlist = true;
+    notify();
+    final r = await _repo.joinWaitlist(itemId, sessionId: slot.id);
+    if (isDisposed) return null;
+    _joiningWaitlist = false;
+    if (r case Success(:final data)) _waitlist[slot.id] = data.position;
+    if (r case Failure(:final error)) _actionError = error;
+    notify();
+    return r.dataOrNull?.position;
   }
 
   // ---- Canlı kontenjan ----

@@ -6,6 +6,7 @@ import '../../../../core/base/base_view.dart';
 import '../../../../core/di/locator.dart';
 import '../../../../core/router/routes.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/ui_prefs_controller.dart';
 import '../../../../core/utils/haptics.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../../data/models/buan/buan_reward.dart';
@@ -77,6 +78,7 @@ class _Content extends StatelessWidget {
     final featured = vm.featured;
     final items = vm.visibleItems;
     final bottom = AppSpacing.tabBarHeight + MediaQuery.paddingOf(context).bottom;
+    final easy = context.easyMode;
     return RefreshIndicator(
       onRefresh: vm.refresh,
       child: ListView(
@@ -114,6 +116,20 @@ class _Content extends StatelessWidget {
                 onCta: vm.clearFilters,
               ),
             )
+          else if (easy)
+            // Kolay Mod: tek sütun, büyük kartlar.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 14, 20, 0),
+              child: Column(
+                children: [
+                  for (final r in items)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: SizedBox(height: 230, child: _card(context, vm, r)),
+                    ),
+                ],
+              ),
+            )
           else
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 14, 20, 0),
@@ -142,7 +158,7 @@ class _Content extends StatelessWidget {
   }
 
   Widget _card(BuildContext context, MarketViewModel vm, BuanReward r) =>
-      RewardCard(reward: r, affordable: vm.canAfford(r), onTap: () => _open(context, r));
+      RewardCard(reward: r, affordable: vm.canAfford(r), missing: (r.price - vm.balance).clamp(0, r.price), onTap: () => _open(context, r));
 }
 
 class _AffordableSwitch extends StatelessWidget {

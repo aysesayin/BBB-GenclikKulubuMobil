@@ -6,6 +6,7 @@ import '../../../../core/base/base_view.dart';
 import '../../../../core/di/locator.dart';
 import '../../../../core/router/routes.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/ui_prefs_controller.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../../data/models/services/session.dart';
 import '../../../../data/repositories/cart_repository.dart';
@@ -15,6 +16,7 @@ import '../../widgets/services_icons.dart';
 import '../../widgets/svc_format.dart';
 import '../view_model/session_view_model.dart';
 import '../widgets/session_bottom_bar.dart';
+import '../widgets/session_day_pager.dart';
 import '../widgets/session_grid.dart';
 
 /// H2 · Seans takvimi (tam ekran): `/seans/:itemId`.
@@ -47,6 +49,7 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<SessionViewModel>();
     final p = context.palette;
+    final easy = context.easyMode;
     final week = vm.state.dataOrNull;
     return Scaffold(
       backgroundColor: p.bg,
@@ -65,12 +68,14 @@ class _Body extends StatelessWidget {
                 children: [
                   if (offline) const OfflineBanner(),
                   if (vm.participants.length > 1) _WhoTabs(vm: vm),
-                  _WeekNav(vm: vm),
+                  if (!easy) _WeekNav(vm: vm),
                   const _Legend(),
                   Expanded(
-                    child: vm.rowMinutes.isEmpty
-                        ? EmptyState(title: context.l10n.svcNoSessionsTitle, message: context.l10n.svcNoSessionsMessage)
-                        : SessionGrid(vm: vm),
+                    child: easy
+                        ? SessionDayPager(vm: vm)
+                        : vm.rowMinutes.isEmpty
+                            ? EmptyState(title: context.l10n.svcNoSessionsTitle, message: context.l10n.svcNoSessionsMessage)
+                            : SessionGrid(vm: vm),
                   ),
                 ],
               ),
@@ -199,6 +204,7 @@ class _Legend extends StatelessWidget {
         children: [
           item(p.tealS, l.svcLegendToday, border: p.teal),
           item(p.pinkS, l.svcLegendFull),
+          item(p.sf, l.svcLegendIneligible, border: p.line),
           item(p.yelS, l.svcLegendHoliday),
           item(p.sf2, l.svcLegendClosed),
         ],

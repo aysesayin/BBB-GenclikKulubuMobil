@@ -3,14 +3,16 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/router/routes.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/models/home/home_feed.dart';
 import '../../../l10n/l10n.dart';
 import '../view_model/home_view_model.dart';
 
-/// Keşfet başlığı: avatar · selam + ad · BUAN çipi · seri çipi · zil.
+/// Keşfet başlığı: avatar · selam + ad (Expanded) · BUAN çipi · zil.
+/// Seri çipi BUAN sekmesinde yaşar; 360 px'te sığmadığı için başlıkta yok.
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key, required this.feed, required this.greeting, this.topInset});
+  const HomeHeader({super.key, required this.feed, required this.greeting, this.topInset, this.large = false});
 
   final HomeFeed feed;
   final HomeGreeting greeting;
@@ -18,11 +20,14 @@ class HomeHeader extends StatelessWidget {
   /// null → güvenli alan + 12 (tasarım 56 px).
   final double? topInset;
 
+  /// Kolay Mod: büyük selam (16 / 28 px).
+  final bool large;
+
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
     final l = context.l10n;
-    // TODO(varsayım): Misafirde (user null) ad yerine "Gezgin" gösterilir, BUAN/seri çipleri gizlenir.
+    // TODO(varsayım): Misafirde (user null) ad yerine "Gezgin" gösterilir, BUAN çipi gizlenir.
     final user = feed.user;
     final wallet = feed.wallet;
     final hello = switch (greeting) {
@@ -48,25 +53,23 @@ class HomeHeader extends StatelessWidget {
                     hello,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTypography.body(13, color: p.mut),
+                    style: AppTypography.body(large ? 16 : 13, color: p.mut),
                   ),
                   Text(
                     user?.firstName ?? l.homeGuestName,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTypography.display(22, color: p.ink),
+                    style: AppTypography.display(large ? 28 : 22, color: p.ink),
                   ),
                 ],
               ),
             ),
           ),
           if (wallet != null) ...[
-            const SizedBox(width: 12),
+            const SizedBox(width: 10),
             BuanBalanceChip(balance: wallet.balance, onTap: () => context.go(Routes.buan)),
-            const SizedBox(width: 12),
-            StreakChip(days: wallet.streak, onTap: () => context.go(Routes.buan)),
           ],
-          const SizedBox(width: 12),
+          const SizedBox(width: 10),
           AppIconButton(
             icon: AppIcons.bell,
             semanticLabel: l.homeNotificationsSemantics(feed.unreadCount),
@@ -113,7 +116,7 @@ class _Avatar extends StatelessWidget {
   }
 }
 
-/// "Fırsat, etkinlik, yer ara…" — dokununca Arama ekranı açılır.
+/// "Fırsat, etkinlik, yer ara…" — dokununca Arama ekranı açılır. Kolay Mod: 56 px.
 class HomeSearchField extends StatelessWidget {
   const HomeSearchField({super.key});
 
@@ -121,6 +124,7 @@ class HomeSearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = context.palette;
     final hint = context.l10n.homeSearchHint;
+    final h = context.easyMode ? 56.0 : 48.0;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
       child: Semantics(
@@ -130,9 +134,9 @@ class HomeSearchField extends StatelessWidget {
         child: GestureDetector(
           onTap: () => context.push(Routes.search),
           child: Container(
-            height: 48,
+            height: h,
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(color: p.sf, borderRadius: BorderRadius.circular(24), boxShadow: p.cardShadow),
+            decoration: BoxDecoration(color: p.sf, borderRadius: BorderRadius.circular(h / 2), boxShadow: p.cardShadow),
             child: Row(
               children: [
                 AppIcon(AppIcons.search, size: 20, color: p.mut),

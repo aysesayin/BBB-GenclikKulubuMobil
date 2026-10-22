@@ -158,6 +158,54 @@ void main() {
     expect(vm.visiblePins, hasLength(2));
   });
 
+  test('kategori çipleri segmente ilk dokunuşta ya da rota kategorisiyle açılır', () async {
+    stubPins(Success(_data));
+    await vm.load();
+    expect(vm.showCategories, isFalse);
+    vm.setLayer(MapLayer.places); // aynı katman: yeniden istemez ama çipleri açar
+    expect(vm.showCategories, isTrue);
+    verify(() => repo.pins(layer: MapLayer.places, categoryId: null, bounds: null)).called(1);
+
+    final routed = MapViewModel(repo, location, initialCategory: 'spor');
+    expect(routed.showCategories, isTrue);
+  });
+
+  test('en yakın yerler: yalnız yer katmanı, konuma göre sıralı, en çok 3', () async {
+    final far = MapPinsData(
+      categories: _data.categories,
+      pins: [
+        ..._data.pins,
+        const MapPin(id: 'gemlik', layer: MapLayer.places, name: 'Gemlik', lat: 40.4318, lng: 29.1563),
+        const MapPin(id: 'millet', layer: MapLayer.places, name: 'Millet', lat: 40.2238, lng: 29.0052),
+      ],
+    );
+    stubPins(Success(far));
+    await vm.load();
+    final nearest = vm.nearestPlaces();
+    expect(nearest, hasLength(3));
+    expect(nearest.map((p) => p.layer).toSet(), {MapLayer.places});
+    expect(nearest.map((p) => p.id), ['tiyatro', 'fethiye', 'millet']); // Bursa merkezine göre
+    expect(vm.distanceTo(nearest.first), lessThan(vm.distanceTo(nearest.last)));
+
+    when(() => location.current()).thenAnswer((_) async => const LocationResult(LocationStatus.ok, LatLng(40.43, 29.15)));
+    await vm.locate();
+    expect(vm.nearestPlaces().first.id, 'gemlik');
+  });
+
+  test('şeritten odaklama pini seçer; başka katmandaysa katmanı değiştirir', () async {
+    stubPins(Success(_data));
+    await vm.load();
+    vm.focusPin(_data.pins[1]);
+    expect(vm.selectedPin?.id, 'fethiye');
+
+    vm.setLayer(MapLayer.events);
+    await pumpEventQueue();
+    vm.focusPin(_data.pins[0]); // yer pini, katman etkinlik
+    await pumpEventQueue();
+    expect(vm.layer, MapLayer.places);
+    expect(vm.selectedPin?.id, 'tiyatro');
+  });
+
   test('konum izni varsa kullanıcı konumu kaydedilir', () async {
     when(() => location.current()).thenAnswer((_) async => const LocationResult(LocationStatus.ok, LatLng(40.2, 29.0)));
     final r = await vm.locate();

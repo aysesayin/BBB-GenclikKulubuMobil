@@ -5,6 +5,8 @@
     "title": "Günlük Giriş",
     "facilityName": "Fethiye Havuzu",
     "holdMinutes": 5,
+    "viewerAge": 19,
+    "viewerGender": "female",
     "rules": {
       "requiresSwimConfirmation": true,
       "ageRules": {

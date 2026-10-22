@@ -4,12 +4,16 @@ import 'package:provider/provider.dart';
 import '../../../../core/base/base_view.dart';
 import '../../../../core/di/locator.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/ui_prefs_controller.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../../data/models/services/sports.dart';
 import '../../../../data/repositories/facility_repository.dart';
 import '../../../../l10n/l10n.dart';
 import '../../tennis/view_model/tennis_view_model.dart';
 import '../../tennis/widgets/tennis_list.dart';
+import '../../widgets/service_row_card.dart';
+import '../../widgets/services_icons.dart';
+import '../../widgets/svc_format.dart';
 import '../../widgets/svc_navigation.dart';
 import '../view_model/sports_school_view_model.dart';
 import '../widgets/branch_card.dart';
@@ -37,6 +41,7 @@ class _Body extends StatelessWidget {
     final vm = context.watch<SportsSchoolViewModel>();
     final p = context.palette;
     final l = context.l10n;
+    final easy = context.easyMode;
     return Scaffold(
       backgroundColor: p.bg,
       body: Column(
@@ -66,7 +71,11 @@ class _Body extends StatelessWidget {
                   ]),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
-                    child: vm.tab == 0 ? _BranchGrid(tiles: vm.branches) : TennisList(ageGroupId: vm.ageGroupId),
+                    child: vm.tab == 1
+                        ? TennisList(ageGroupId: vm.ageGroupId)
+                        : easy
+                            ? _BranchRows(tiles: vm.branches)
+                            : _BranchGrid(tiles: vm.branches),
                   ),
                 ],
               ),
@@ -104,6 +113,44 @@ class _BranchGrid extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+}
+
+/// Kolay Mod: 3 sütunlu ızgara yerine 64 px karolu dikey satırlar.
+class _BranchRows extends StatelessWidget {
+  const _BranchRows({required this.tiles});
+
+  final List<BranchTile> tiles;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.palette;
+    if (tiles.isEmpty) {
+      return SizedBox(height: 360, child: EmptyState(title: context.l10n.svcSportsEmptyTitle, message: context.l10n.svcSportsEmptyMessage));
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        for (final t in tiles) ...[
+          Builder(builder: (context) {
+            final (quota, color) = BranchCard.quotaOf(context, t);
+            return Opacity(
+              opacity: t.offer == null ? .6 : 1,
+              child: ServiceRowCard(
+                icon: SvcIcons.of(t.branch.icon),
+                tileColor: SvcFmt.tile(p, t.branch.tile),
+                title: t.branch.name,
+                subtitle: quota,
+                semanticLabel: context.l10n.svcBranchSemantics(t.branch.name, quota),
+                onTap: t.offer == null ? () {} : () => openSessions(context, t.offer!.itemId),
+                trailing: Text(quota, style: AppTypography.body(13, weight: FontWeight.w900, color: color)),
+              ),
+            );
+          }),
+          const SizedBox(height: 10),
+        ],
+      ],
     );
   }
 }

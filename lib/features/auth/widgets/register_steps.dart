@@ -80,7 +80,7 @@ class IdentityStep extends StatelessWidget {
   }
 }
 
-/// 2 · Ulu Cami — cep telefonu (+90) ve e-posta.
+/// 2 · Ulu Cami — yalnız cep telefonu (+90). E-posta profilden tamamlanır.
 class ContactStep extends StatelessWidget {
   const ContactStep({super.key});
 
@@ -107,21 +107,9 @@ class ContactStep extends StatelessWidget {
             keyboardType: TextInputType.phone,
             autofillHints: const [AutofillHints.telephoneNumberNational],
             inputFormatters: const [PhoneGroupFormatter()],
-            textInputAction: TextInputAction.next,
+            textInputAction: TextInputAction.done,
             error: show && vm.phoneIssue != null ? issueText(context, vm.phoneIssue!) : null,
             onChanged: vm.setPhone,
-          ),
-          const SizedBox(height: 18),
-          BigField(
-            label: l.authEmailLabel,
-            height: 64,
-            radius: 20,
-            initial: vm.email,
-            keyboardType: TextInputType.emailAddress,
-            autofillHints: const [AutofillHints.email],
-            textInputAction: TextInputAction.done,
-            error: show && vm.emailIssue != null ? issueText(context, vm.emailIssue!) : null,
-            onChanged: vm.setEmail,
           ),
           const SizedBox(height: 18),
           StepNote(l.authContactHint, size: 13),
@@ -131,7 +119,7 @@ class ContactStep extends StatelessWidget {
   }
 }
 
-/// 2b · SMS kodu — 6 kutu, SMS autofill (one-time-code), yanlışta sallanma.
+/// 3 · Kozahan — SMS kodu: 6 kutu, SMS autofill (one-time-code), yanlışta sallanma.
 class OtpStep extends StatelessWidget {
   const OtpStep({super.key});
 
@@ -206,46 +194,6 @@ class OtpStep extends StatelessWidget {
               style: AppTypography.number(14, weight: FontWeight.w800, color: left > 0 ? p.mut : p.teal),
             ),
           ),
-        ),
-      ],
-    );
-  }
-}
-
-/// 3 · Kozahan — acil durum kişisi.
-class EmergencyStep extends StatelessWidget {
-  const EmergencyStep({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final l = context.l10n;
-    final vm = context.watch<RegisterViewModel>();
-    final show = vm.showIssues;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        StepTitle(l.authRegEmergencyTitle, size: 38),
-        const SizedBox(height: 18),
-        StepNote(l.authEmergencySub),
-        const SizedBox(height: 18),
-        BigField(
-          label: l.authEmergencyName,
-          initial: vm.emergencyName,
-          capitalization: TextCapitalization.words,
-          autofillHints: const [AutofillHints.name],
-          textInputAction: TextInputAction.next,
-          error: show && vm.emergencyNameIssue != null ? issueText(context, vm.emergencyNameIssue!) : null,
-          onChanged: vm.setEmergencyName,
-        ),
-        const SizedBox(height: 18),
-        BigField(
-          label: l.authEmergencyPhone,
-          initial: vm.emergencyPhone,
-          hint: l.authPhoneHint,
-          keyboardType: TextInputType.phone,
-          inputFormatters: const [PhoneGroupFormatter(leadingZero: true)],
-          error: show && vm.emergencyPhoneIssue != null ? issueText(context, vm.emergencyPhoneIssue!) : null,
-          onChanged: vm.setEmergencyPhone,
         ),
       ],
     );

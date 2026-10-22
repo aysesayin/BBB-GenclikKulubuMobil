@@ -4,6 +4,7 @@ import 'package:bbb_genclik_kulubu_app/core/session/session_controller.dart';
 import 'package:bbb_genclik_kulubu_app/core/storage/cache_store.dart';
 import 'package:bbb_genclik_kulubu_app/core/storage/secure_storage.dart';
 import 'package:bbb_genclik_kulubu_app/core/theme/app_theme.dart';
+import 'package:bbb_genclik_kulubu_app/core/theme/ui_prefs_controller.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/app/app_config.dart';
 import 'package:bbb_genclik_kulubu_app/data/repositories/app_repository.dart';
 import 'package:bbb_genclik_kulubu_app/l10n/l10n.dart';
@@ -38,6 +39,7 @@ Future<void> pumpTestApp(
   required List<RouteBase> routes,
   required String initial,
   ThemeData? theme,
+  bool easyMode = false,
 }) async {
   tester.view
     ..physicalSize = const Size(393 * 3, 852 * 3)
@@ -47,10 +49,13 @@ Future<void> pumpTestApp(
   addTearDown(router.dispose);
   final appRepo = _MockAppRepo();
   when(() => appRepo.current).thenReturn(const AppConfig());
+  final prefs = UiPrefsController(await CacheStore.create());
+  if (easyMode) await prefs.setEasyMode(true);
   await tester.pumpWidget(
     MultiProvider(
       providers: [
         ChangeNotifierProvider<SessionController>.value(value: session),
+        ChangeNotifierProvider<UiPrefsController>.value(value: prefs),
         Provider<AppRepository>.value(value: appRepo),
       ],
       child: MaterialApp.router(

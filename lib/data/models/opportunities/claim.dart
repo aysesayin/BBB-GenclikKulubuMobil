@@ -65,3 +65,12 @@ abstract class WalletItem with _$WalletItem {
 
   factory WalletItem.fromJson(Map<String, dynamic> json) => _$WalletItemFromJson(json);
 }
+
+/// `POST /opportunities/{id}/rating` → "Fırsat Kullan Kazan" ödülü.
+/// [label] sunucunun toast başlığı; yoksa l10n `oppRatingToast`.
+@freezed
+abstract class RatingResult with _$RatingResult {
+  const factory RatingResult({@Default('') String opportunityId, @Default(0) int buanReward, String? label}) = _RatingResult;
+
+  factory RatingResult.fromJson(Map<String, dynamic> json) => _$RatingResultFromJson(json);
+}

@@ -8,20 +8,32 @@ import '../../../data/models/profile/profile_stats.dart';
 import '../../../l10n/l10n.dart';
 import 'profile_icons.dart';
 
-/// 3'lü sayaç ızgarası: toplam BUAN (mor), etkinlik (turkuaz), fırsat (pembe).
+/// Sayaç ızgarası: toplam BUAN (mor), etkinlik (turkuaz), fırsat (pembe) ve ilçe sırası (yeşil,
+/// dokununca lig tablosu). Sıra 0 ise karo gizlenir.
 class ProfileStatsRow extends StatelessWidget {
-  const ProfileStatsRow({super.key, required this.stats});
+  const ProfileStatsRow({super.key, required this.stats, this.onRank});
 
   final ProfileStats stats;
+  final VoidCallback? onRank;
 
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
     final l = context.l10n;
+    final rank = stats.districtRank;
     final items = [
-      (stats.totalBuanEarned, l.profileStatBuan, p.purT),
-      (stats.eventsAttended, l.profileStatEvents, p.teal),
-      (stats.opportunitiesUsed, l.profileStatOpportunities, p.pinkT),
+      _StatTile(value: stats.totalBuanEarned, label: l.profileStatBuan, color: p.purT),
+      _StatTile(value: stats.eventsAttended, label: l.profileStatEvents, color: p.teal),
+      _StatTile(value: stats.opportunitiesUsed, label: l.profileStatOpportunities, color: p.pinkT),
+      if (rank > 0)
+        _StatTile(
+          value: rank,
+          valueText: l.profileStatRankValue(rank),
+          label: l.profileStatDistrictRank,
+          color: p.grnT,
+          semanticLabel: l.profileStatRankSemantics(rank),
+          onTap: onRank,
+        ),
     ];
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
@@ -29,12 +41,7 @@ class ProfileStatsRow extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            for (var i = 0; i < items.length; i++) ...[
-              if (i > 0) const SizedBox(width: 10),
-              Expanded(
-                child: _StatTile(value: items[i].$1, label: items[i].$2, color: items[i].$3),
-              ),
-            ],
+            for (var i = 0; i < items.length; i++) ...[if (i > 0) const SizedBox(width: 8), Expanded(child: items[i])],
           ],
         ),
       ),
@@ -43,37 +50,48 @@ class ProfileStatsRow extends StatelessWidget {
 }
 
 class _StatTile extends StatelessWidget {
-  const _StatTile({required this.value, required this.label, required this.color});
+  const _StatTile({required this.value, required this.label, required this.color, this.valueText, this.semanticLabel, this.onTap});
 
   final int value;
   final String label;
   final Color color;
 
+  /// Verilirse sayaç animasyonu yerine düz metin ("14.").
+  final String? valueText;
+  final String? semanticLabel;
+  final VoidCallback? onTap;
+
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
-    return MergeSemantics(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
-        decoration: BoxDecoration(color: p.sf, borderRadius: BorderRadius.circular(AppRadii.tile)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              child: CountUpText(
-                value: value,
-                style: AppTypography.number(22, color: color),
-              ),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: AppTypography.body(11, weight: FontWeight.w800, color: p.mut, height: 1.2),
-            ),
-          ],
-        ),
+    final style = AppTypography.number(22, color: color);
+    final tile = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 14),
+      decoration: BoxDecoration(color: p.sf, borderRadius: BorderRadius.circular(AppRadii.tile)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: valueText != null ? Text(valueText!, style: style) : CountUpText(value: value, style: style),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: AppTypography.body(11, weight: FontWeight.w800, color: p.mut, height: 1.2),
+          ),
+        ],
+      ),
+    );
+    if (onTap == null) return MergeSemantics(child: tile);
+    return Semantics(
+      button: true,
+      label: semanticLabel,
+      excludeSemantics: semanticLabel != null,
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(onTap: onTap, borderRadius: BorderRadius.circular(AppRadii.tile), child: tile),
       ),
     );
   }

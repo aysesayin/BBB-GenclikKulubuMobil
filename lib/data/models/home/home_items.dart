@@ -53,8 +53,8 @@ abstract class HomeBanner with _$HomeBanner {
     required String title,
     String? ctaLabel,
 
-    /// Zemin teması: buan · teal · green · night.
-    @Default('buan') String theme,
+    /// Vurgu tonu: buan (mor) · spin (sarı/CTA) · event (turkuaz-yeşil) · opportunity (pembe).
+    @Default('buan') String tone,
     required AppLink link,
   }) = _HomeBanner;
 

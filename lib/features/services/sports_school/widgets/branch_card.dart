@@ -14,17 +14,24 @@ class BranchCard extends StatelessWidget {
   final BranchTile tile;
   final VoidCallback? onTap;
 
-  @override
-  Widget build(BuildContext context) {
+  /// Kontenjan metni ve rengi ("12 yer" / "Son 3" / "DOLU"); Kolay Mod satırları da kullanır.
+  static (String, Color) quotaOf(BuildContext context, BranchTile tile) {
     final p = context.palette;
     final l = context.l10n;
     final left = tile.offer?.left ?? 0;
-    final (quota, color) = switch (tile.level) {
+    return switch (tile.level) {
       QuotaLevel.none => (l.svcQuotaNone, p.mut),
       QuotaLevel.full => (l.svcQuotaFull, p.pinkT),
       QuotaLevel.last => (l.svcQuotaLast('$left'), p.pinkT),
       QuotaLevel.plenty => (l.svcQuotaLeft('$left'), p.grnT),
     };
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.palette;
+    final l = context.l10n;
+    final (quota, color) = quotaOf(context, tile);
     return Semantics(
       button: true,
       enabled: onTap != null,

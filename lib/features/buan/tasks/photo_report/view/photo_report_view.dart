@@ -16,11 +16,14 @@ import '../widgets/photo_report_parts.dart';
 
 /// E12 · Çek Kazan (Güzellik / Sorun) ve Fikrin ile Kazan.
 class PhotoReportView extends StatelessWidget {
-  const PhotoReportView({super.key});
+  const PhotoReportView({super.key, this.initialTypeId});
+
+  /// Açılışta seçili tür id'si (ör. `idea` → Fikir sekmesi).
+  final String? initialTypeId;
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
-    create: (_) => PhotoReportViewModel(sl<PhotoReportRepository>(), locate: readCurrentLocation)..load(),
+    create: (_) => PhotoReportViewModel(sl<PhotoReportRepository>(), locate: readCurrentLocation, initialTypeId: initialTypeId)..load(),
     child: const _Body(),
   );
 }

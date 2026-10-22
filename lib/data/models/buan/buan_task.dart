@@ -45,6 +45,9 @@ abstract class BuanTask with _$BuanTask {
     /// "12 haftada 1" gibi sıklık açıklaması.
     String? frequency,
     @Default(<String>[]) List<String> rules,
+
+    /// "Nasıl yapılır" adımları (genel görev detayı) — panelden.
+    @Default(<String>[]) List<String> steps,
   }) = _BuanTask;
 
   factory BuanTask.fromJson(Map<String, dynamic> json) => _$BuanTaskFromJson(json);
@@ -64,4 +67,16 @@ abstract class BuanTaskGroup with _$BuanTaskGroup {
   }) = _BuanTaskGroup;
 
   factory BuanTaskGroup.fromJson(Map<String, dynamic> json) => _$BuanTaskGroupFromJson(json);
+}
+
+/// `POST /buan/tasks/{id}/complete` yanıtı: beyan/başvuru sonrası yeni durum.
+/// Puan sunucuda yüklenir; `awarded` yalnız anında onaylanan görevlerde dolu.
+@freezed
+abstract class TaskCompleteResult with _$TaskCompleteResult {
+  const factory TaskCompleteResult({
+    @JsonKey(unknownEnumValue: BuanTaskStatus.pending) @Default(BuanTaskStatus.pending) BuanTaskStatus status,
+    int? awarded,
+  }) = _TaskCompleteResult;
+
+  factory TaskCompleteResult.fromJson(Map<String, dynamic> json) => _$TaskCompleteResultFromJson(json);
 }

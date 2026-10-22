@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:bbb_genclik_kulubu_app/core/network/dio_client.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/interceptors/mock_interceptor.dart';
+import 'package:bbb_genclik_kulubu_app/data/models/buan/buan_task.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/buan_tasks/daily_spin.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/buan_tasks/photo_report.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/buan_tasks/quiz.dart';
@@ -35,6 +36,16 @@ void main() {
     expect(Json.list(_data('games.json'), Game.fromJson).map((g) => g.kind), [GameKind.quiz, GameKind.whereIsIt, GameKind.memory]);
     expect(Tournament.fromJson(Json.map(_data('games.tournament.current.json'))).rank, 37);
     expect(GameScoreResult.fromJson(Json.map(_data('games._.score.post.json'))).awarded, 80);
+    expect(TaskCompleteResult.fromJson(Json.map(_data('buan.tasks._.complete.post.json'))).status, BuanTaskStatus.pending);
+    final groups = Json.list(Json.map(_data('buan.tasks.json'))['groups'], BuanTaskGroup.fromJson);
+    final generic = [for (final g in groups) ...g.tasks].where(
+      (t) => const {BuanTaskType.follow, BuanTaskType.volunteer, BuanTaskType.biko, BuanTaskType.idea, BuanTaskType.useOpportunity}.contains(t.type),
+    );
+    expect(generic, isNotEmpty);
+    for (final t in generic) {
+      expect(t.rules, isNotEmpty, reason: t.id);
+      expect(t.steps, isNotEmpty, reason: t.id);
+    }
   });
 
   test('MockInterceptor aday dosyaları', () {
@@ -43,5 +54,6 @@ void main() {
     expect(MockInterceptor.candidates('/buan/quizzes/quiz-1/answers', 'POST'), contains('assets/mock/buan.quizzes._.answers.post.json'));
     expect(MockInterceptor.candidates('/games/game-hafiza/score', 'POST'), contains('assets/mock/games._.score.post.json'));
     expect(MockInterceptor.candidates('/photo-reports', 'POST'), contains('assets/mock/photo-reports.post.json'));
+    expect(MockInterceptor.candidates('/buan/tasks/tsk-follow/complete', 'POST'), contains('assets/mock/buan.tasks._.complete.post.json'));
   });
 }

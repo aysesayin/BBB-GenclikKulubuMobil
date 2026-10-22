@@ -72,6 +72,10 @@ abstract class HomeLeague with _$HomeLeague {
     /// Yükselme bölgesine ilerleme 0–1.
     @Default(0) double progress,
     @Default(0) int pointsToPromotion,
+
+    /// Yükselmeye yakın (sunucu hesaplar; ör. kalan ≤ 1000) → kart "Bugünün Görevleri"nin hemen altına taşınır.
+    // TODO(varsayım): Eşik (1000 BUAN) sunucuda; istemci yalnız bayrağı okur.
+    @Default(false) bool nearPromotion,
   }) = _HomeLeague;
 
   factory HomeLeague.fromJson(Map<String, dynamic> json) => _$HomeLeagueFromJson(json);

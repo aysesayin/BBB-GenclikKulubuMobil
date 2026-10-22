@@ -12,6 +12,9 @@ abstract class ProfileStats with _$ProfileStats {
     @Default(0) int totalBuanEarned,
     @Default(0) int eventsAttended,
     @Default(0) int opportunitiesUsed,
+
+    /// İlçe liderlik sıralaması (0 → bilinmiyor, karo gizlenir).
+    @Default(0) int districtRank,
     @Default(0) int badgeCount,
     @Default(<FeaturedBadge>[]) List<FeaturedBadge> featuredBadges,
 

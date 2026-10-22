@@ -2,10 +2,12 @@ import 'package:bbb_genclik_kulubu_app/core/network/api_result.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/app_exception.dart';
 import 'package:bbb_genclik_kulubu_app/core/router/routes.dart';
 import 'package:bbb_genclik_kulubu_app/core/theme/app_theme.dart';
+import 'package:bbb_genclik_kulubu_app/core/theme/ui_prefs_controller.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/auth/auth_requests.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/auth/otp_challenge.dart';
 import 'package:bbb_genclik_kulubu_app/features/auth/view/register_view.dart';
 import 'package:bbb_genclik_kulubu_app/features/auth/view_model/register_view_model.dart';
+import 'package:bbb_genclik_kulubu_app/features/onboarding/widgets/motion.dart';
 import 'package:bbb_genclik_kulubu_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -51,10 +53,11 @@ void main() {
     when(interests.saveHeld).thenAnswer((_) async => const Success(null));
   });
 
-  Future<AppLocalizations> pumpFlow(WidgetTester tester) async {
+  Future<AppLocalizations> pumpFlow(WidgetTester tester, {bool easy = false}) async {
     tester.view.physicalSize = const Size(393 * 3, 852 * 3);
     tester.view.devicePixelRatio = 3;
     addTearDown(tester.view.reset);
+    final prefs = await testPrefs(easy: easy);
     final router = GoRouter(
       initialLocation: Routes.register,
       routes: [
@@ -80,19 +83,22 @@ void main() {
       ],
     );
     await tester.pumpWidget(
-      MaterialApp.router(
-        theme: AppTheme.light,
-        locale: const Locale('tr'),
-        supportedLocales: AppLocalizations.supportedLocales,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        routerConfig: router,
-        // Döngüsel animasyonlar kapalı (hareketi azalt) → pumpAndSettle güvenli.
-        builder: (c, child) => MediaQuery(data: MediaQuery.of(c).copyWith(disableAnimations: true), child: child!),
+      withPrefs(
+        prefs,
+        MaterialApp.router(
+          theme: AppTheme.light,
+          locale: const Locale('tr'),
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          routerConfig: router,
+          // Döngüsel animasyonlar kapalı (hareketi azalt) → pumpAndSettle güvenli.
+          builder: (c, child) => MediaQuery(data: MediaQuery.of(c).copyWith(disableAnimations: true), child: child!),
+        ),
       ),
     );
     await tester.pumpAndSettle();
@@ -105,7 +111,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('kayıt akışı: TCKN → iletişim → OTP → acil durum → sözleşmeler → MERNİS → Zirve', (tester) async {
+  testWidgets('kayıt akışı (5 ekran): TCKN → telefon → OTP → sözleşmeler → MERNİS → Zirve', (tester) async {
     final l = await pumpFlow(tester);
     expect(find.text(l.authRegIdentityTitle), findsOneWidget);
 
@@ -121,26 +127,20 @@ void main() {
     expect(find.text(l.authTcknValid), findsOneWidget);
     await tapText(tester, l.commonContinue);
 
-    // İletişim
+    // Telefon (yalnız cep; e-posta profilden)
     expect(find.text(l.authRegContactTitle), findsOneWidget);
-    await tester.enterText(find.byType(TextField).at(0), '5324182790');
-    await tester.enterText(find.byType(TextField).at(1), 'ayse@ornek.com');
+    expect(find.byType(TextField), findsOneWidget);
+    await tester.enterText(find.byType(TextField).first, '5324182790');
     await tapText(tester, l.commonContinue);
     verify(() => auth.sendOtp('05324182790', resend: false)).called(1);
 
-    // OTP: yanlış → hata, doğru → acil durum
+    // OTP: yanlış → hata, doğru → sözleşmeler
     expect(find.text(l.authOtpSent('0532 *** ** 90')), findsOneWidget);
     await tester.enterText(find.byType(TextField).first, '000000');
     await tester.pumpAndSettle();
     expect(find.text(l.authOtpWrong), findsOneWidget);
     await tester.enterText(find.byType(TextField).first, '481926');
     await tester.pumpAndSettle();
-
-    // Acil durum
-    expect(find.text(l.authRegEmergencyTitle), findsOneWidget);
-    await tester.enterText(find.byType(TextField).at(0), 'Fatma Yılmaz');
-    await tester.enterText(find.byType(TextField).at(1), '05332014418');
-    await tapText(tester, l.commonContinue);
 
     // Sözleşmeler: 4 zorunlu onay olmadan buton pasif
     expect(find.text(l.authRegLegalTitle), findsOneWidget);
@@ -159,7 +159,8 @@ void main() {
     final req = verify(() => auth.register(captureAny())).captured.single as RegisterRequest;
     expect(req.tckn, '10000000146');
     expect(req.acceptedConsents, hasLength(4));
-    expect(req.emergencyContact.name, 'Fatma Yılmaz');
+    expect(req.email, isNull);
+    expect(req.emergencyContact, isNull);
     verify(
       () => session.signIn(
         accessToken: 'a',
@@ -185,5 +186,13 @@ void main() {
     await tester.tap(find.bySemanticsLabel(l.commonBack));
     await tester.pumpAndSettle();
     expect(find.text(l.authRegIdentityTitle), findsOneWidget);
+  });
+
+  testWidgets('Kolay Mod: dekoratif blob yok, 56 px dokunma hedefi', (tester) async {
+    final l = await pumpFlow(tester, easy: true);
+    expect(find.byType(MorphBlob), findsNothing);
+    final later = tester.widget<TextButton>(find.widgetWithText(TextButton, l.authRegLater));
+    expect(later.style?.minimumSize?.resolve({}), const Size(56, 56));
+    expect(tester.element(find.byType(RegisterBody)).read<UiPrefsController>().easyMode, isTrue);
   });
 }

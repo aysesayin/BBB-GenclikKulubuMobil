@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "data": {
+    "status": "pending",
+    "awarded": null
+  },
+  "message": "Beyanın alındı; panel onayından sonra BUAN yüklenecek.",
+  "errors": []
+}

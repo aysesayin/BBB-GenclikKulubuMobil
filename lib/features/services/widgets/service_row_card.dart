@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/widgets/widgets.dart';
 
 /// Hizmet satırı (havuz hizmeti, tenis ürünü): 48 px pastel ikon karosu + başlık + sağ içerik.
+/// Kolay Mod: 64 px karo ve daha büyük başlık.
 class ServiceRowCard extends StatelessWidget {
   const ServiceRowCard({
     super.key,
@@ -29,6 +31,7 @@ class ServiceRowCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
+    final easy = context.easyMode;
     return Semantics(
       button: true,
       label: semanticLabel,
@@ -43,13 +46,13 @@ class ServiceRowCard extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             child: Row(
               children: [
-                IconTile(icon: icon, color: tileColor, size: 48, radius: 16, iconSize: 24),
+                IconTile(icon: icon, color: tileColor, size: easy ? 64 : 48, radius: easy ? 20 : 16, iconSize: easy ? 30 : 24),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: AppTypography.body(15, weight: FontWeight.w900, color: p.ink)),
+                      Text(title, style: AppTypography.body(easy ? 17 : 15, weight: FontWeight.w900, color: p.ink)),
                       if (subtitle != null) ...[
                         const SizedBox(height: 2),
                         Text(subtitle!, style: AppTypography.body(12, color: p.mut)),

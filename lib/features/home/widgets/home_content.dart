@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/models/home/home_feed.dart';
 import '../view_model/home_view_model.dart';
 import 'home_banner_carousel.dart';
 import 'home_deals.dart';
+import 'home_easy_content.dart';
 import 'home_events.dart';
 import 'home_header.dart';
 import 'home_nearby_league.dart';
@@ -14,6 +16,7 @@ import 'home_stories.dart';
 import 'home_tasks.dart';
 
 /// B1 içerik: başlık + arama + paneldeki sırayla bloklar. Blob zemini sabit kalır.
+/// Kolay Modda [HomeEasyContent] çizilir.
 class HomeContent extends StatelessWidget {
   const HomeContent({super.key, required this.feed, required this.greeting, required this.offline, required this.onRefresh});
 
@@ -35,6 +38,7 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (context.easyMode) return HomeEasyContent(feed: feed, greeting: greeting, offline: offline, onRefresh: onRefresh);
     final pad = MediaQuery.paddingOf(context);
     return BlobBackground(
       child: RefreshIndicator(

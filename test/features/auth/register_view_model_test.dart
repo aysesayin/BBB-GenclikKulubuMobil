@@ -60,17 +60,11 @@ void main() {
   Future<RegisterViewModel> toAgreements({String? ref}) async {
     final vm = make(ref: ref)..setTckn('10000000146');
     await vm.next();
-    vm
-      ..setPhone('532 418 27 90')
-      ..setEmail('ayse@ornek.com');
+    vm.setPhone('532 418 27 90');
     await vm.next();
     vm.setOtp('481926');
     await Future<void>.delayed(Duration.zero);
     await Future<void>.delayed(Duration.zero);
-    vm
-      ..setEmergencyName('Fatma Yılmaz')
-      ..setEmergencyPhone('0533 201 44 18');
-    await vm.next();
     return vm;
   }
 
@@ -105,18 +99,17 @@ void main() {
     expect(vm.canContinue, isFalse);
   });
 
-  test('yanlış OTP → hata + sallanma; doğru OTP → acil durum', () async {
+  test('yanlış OTP → hata + sallanma; doğru OTP → sözleşmeler (acil durum adımı yok)', () async {
     final vm = make()..setTckn('10000000146');
     await vm.next();
     vm.setPhone('123');
     await vm.next();
     expect(vm.step, RegisterStep.contact);
     verifyNever(() => auth.sendOtp(any(), resend: any(named: 'resend')));
-    vm
-      ..setPhone('5324182790')
-      ..setEmail('ayse@ornek.com');
+    vm.setPhone('5324182790');
     await vm.next();
     expect(vm.step, RegisterStep.otp);
+    expect(vm.stopIndex, 2);
     expect(vm.maskedPhone, '0532 *** ** 90');
     expect(vm.resendLeft, 3);
     verify(() => auth.sendOtp('05324182790', resend: false)).called(1);
@@ -127,7 +120,11 @@ void main() {
     vm.setOtp('481926');
     await Future<void>.delayed(Duration.zero);
     await Future<void>.delayed(Duration.zero);
-    expect(vm.step, RegisterStep.emergency);
+    expect(vm.step, RegisterStep.agreements);
+    expect(vm.stopIndex, 3);
+    // Sözleşmelerden geri → telefon adımı (kod yeniden gönderilir).
+    expect(vm.back(), isTrue);
+    expect(vm.step, RegisterStep.contact);
     vm.dispose();
   });
 
@@ -150,7 +147,9 @@ void main() {
     expect(req.tckn, '10000000146');
     expect(req.birthDate, '2004-03-14');
     expect(req.phone, '05324182790');
-    expect(req.emergencyContact.phone, '05332014418');
+    // E-posta ve acil durum kişisi kayıtta gönderilmez; profilden tamamlanır.
+    expect(req.email, isNull);
+    expect(req.emergencyContact, isNull);
     expect(req.otpToken, 'otp-tok');
     expect(req.acceptedConsents, ['terms', 'privacy', 'kvkk', 'health']);
     expect(req.explicitConsent, isFalse);

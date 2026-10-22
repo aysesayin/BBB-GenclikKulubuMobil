@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/utils/formatters.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/models/events/event_item.dart';
 import '../../../l10n/l10n.dart';
@@ -86,11 +87,11 @@ class _Banner extends StatelessWidget {
             Positioned.fill(child: SvgArt(wave, fit: BoxFit.fill)),
             Positioned(
               right: 22,
-              top: 0,
-              bottom: 0,
-              child: Center(child: AppIcon(EventIcons.forKey(event.icon), size: 54, color: p.onTile, strokeWidth: 1.8)),
+              bottom: 12,
+              child: AppIcon(EventIcons.forKey(event.icon), size: 48, color: p.onTile, strokeWidth: 1.8),
             ),
             Positioned(left: 14, top: 14, child: TagBadge(label: event.categoryLabel, fontSize: 12)),
+            if (event.checkInBuan case final buan? when buan > 0) Positioned(right: 14, top: 14, child: _CheckInChip(buan: buan)),
             Positioned(
               left: 14,
               bottom: 14,
@@ -101,6 +102,36 @@ class _Banner extends StatelessWidget {
                 foreground: p.onTile,
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Kapak sağ üst: fırsat kartlarındaki indirim rozeti gibi çip — jeton + "Check-in'de +150".
+class _CheckInChip extends StatelessWidget {
+  const _CheckInChip({required this.buan});
+
+  final int buan;
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.palette;
+    final text = context.l10n.eventCheckInBadge(Fmt.number(buan));
+    return Semantics(
+      label: context.l10n.buanAmount(text),
+      excludeSemantics: true,
+      child: Container(
+        height: 26,
+        padding: const EdgeInsets.fromLTRB(6, 0, 10, 0),
+        decoration: BoxDecoration(color: p.paper.withValues(alpha: .92), borderRadius: BorderRadius.circular(13)),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const BuanCoin(size: 16),
+            const SizedBox(width: 5),
+            Text(text, maxLines: 1, softWrap: false, style: AppTypography.number(12, color: p.onTile)),
           ],
         ),
       ),

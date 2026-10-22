@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
@@ -5,229 +7,196 @@ import '../../../core/utils/formatters.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/models/buan/buan_wallet.dart';
 import '../../../l10n/l10n.dart';
+import 'buan_hero_parts.dart';
+import 'streak_strip.dart';
 
-/// E1 üst cüzdan: mor gradyan, BU'AN logosu, "Geçmiş", count-up bakiye, seviye kartı.
-class BuanHero extends StatelessWidget {
-  const BuanHero({super.key, required this.balance, required this.level, required this.onHistory});
+/// E1 üst cüzdan — kaydırmayla daralan başlık.
+/// Açıkken (ekranın ~%25'i): logo + "Geçmiş", count-up bakiye, seviye pill'i + tek satır 7 gün noktası.
+/// Kaydırınca 72 px'lik yalnız bakiye çubuğuna iner; altındaki sekmeler sabit kalır.
+class BuanHeroDelegate extends SliverPersistentHeaderDelegate {
+  const BuanHeroDelegate({
+    required this.balance,
+    required this.level,
+    required this.streak,
+    required this.onHistory,
+    required this.topPadding,
+    required this.screenHeight,
+  });
+
+  static const barHeight = 72.0;
+
+  /// Açık içeriğin (üst dolgu hariç) ihtiyaç duyduğu yükseklik.
+  static const _restContent = 150.0;
 
   final int balance;
   final BuanLevel level;
+  final BuanStreak streak;
+  final VoidCallback onHistory;
+  final double topPadding, screenHeight;
+
+  @override
+  double get minExtent => barHeight + topPadding;
+
+  @override
+  double get maxExtent => math.max(screenHeight * .25, topPadding + _restContent);
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final range = maxExtent - minExtent;
+    final t = range <= 0 ? 1.0 : (shrinkOffset / range).clamp(0.0, 1.0);
+    return BuanHeroSurface(
+      t: t,
+      height: maxExtent,
+      topPadding: topPadding,
+      balance: balance,
+      level: level,
+      streak: streak,
+      onHistory: onHistory,
+    );
+  }
+
+  @override
+  bool shouldRebuild(BuanHeroDelegate old) =>
+      old.balance != balance ||
+      old.level != level ||
+      old.streak != streak ||
+      old.topPadding != topPadding ||
+      old.screenHeight != screenHeight;
+}
+
+/// Hero yüzeyi: `t` 0 → açık, 1 → daralmış. Bağımsız widget olarak test edilebilir.
+class BuanHeroSurface extends StatelessWidget {
+  const BuanHeroSurface({
+    super.key,
+    required this.t,
+    required this.height,
+    required this.topPadding,
+    required this.balance,
+    required this.level,
+    required this.streak,
+    required this.onHistory,
+  });
+
+  final double t, height, topPadding;
+  final int balance;
+  final BuanLevel level;
+  final BuanStreak streak;
   final VoidCallback onHistory;
 
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
     final l = context.l10n;
-    return Semantics(
-      container: true,
-      label: l.buanHomeWalletLabel,
-      child: ClipRRect(
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
-        child: DecoratedBox(
-          decoration: BoxDecoration(gradient: p.buanGradient),
-          child: Stack(
-            children: [
-              Positioned(
-                right: -70,
-                top: -50,
-                child: SvgArt(
-                  '<svg viewBox="0 0 260 240"><path d="M140 10c70 0 115 50 110 115s-55 105-120 105S10 180 18 115 70 10 140 10z" '
-                  'fill="${p.coinMark.hex}" opacity=".3"/></svg>',
-                  width: 260,
-                  height: 240,
-                ),
+    final expandedOpacity = (1 - t * 1.7).clamp(0.0, 1.0);
+    final barOpacity = ((t - .55) / .45).clamp(0.0, 1.0);
+    return ClipRRect(
+      borderRadius: BorderRadius.vertical(bottom: Radius.circular(32 * (1 - t))),
+      child: DecoratedBox(
+        decoration: BoxDecoration(gradient: p.buanGradient),
+        child: Stack(
+          clipBehavior: Clip.hardEdge,
+          children: [
+            Positioned(
+              right: -70,
+              top: -50,
+              child: SvgArt(
+                '<svg viewBox="0 0 260 240"><path d="M140 10c70 0 115 50 110 115s-55 105-120 105S10 180 18 115 70 10 140 10z" '
+                'fill="${p.coinMark.hex}" opacity=".3"/></svg>',
+                width: 260,
+                height: 240,
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 8, 20, 22),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    _TopRow(onHistory: onHistory),
-                    const SizedBox(height: 14),
-                    Text(
-                      l.buanSlogan,
-                      style: AppTypography.body(13, weight: FontWeight.w800, color: p.onBuan.withValues(alpha: .9)),
+            ),
+            // Açık içerik: daralırken yeniden akmaz, kırpılır ve solar.
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 0,
+              height: height,
+              child: _Fade(
+                opacity: expandedOpacity,
+                child: Semantics(
+                  container: true,
+                  label: l.buanHomeWalletLabel,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(20, topPadding + 6, 20, 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        HeroTopRow(onHistory: onHistory),
+                        HeroBalance(balance: balance),
+                        Row(
+                          children: [
+                            HeroLevelPill(level: level),
+                            const Spacer(),
+                            Flexible(
+                              flex: 3,
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.centerRight,
+                                child: StreakDots(streak: streak),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    _Balance(balance: balance),
-                    const SizedBox(height: 12),
-                    _LevelCard(level: level),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _TopRow extends StatelessWidget {
-  const _TopRow({required this.onHistory});
-
-  final VoidCallback onHistory;
-
-  @override
-  Widget build(BuildContext context) {
-    final p = context.palette;
-    final l = context.l10n;
-    return Row(
-      children: [
-        Container(
-          width: 34,
-          height: 34,
-          decoration: BoxDecoration(color: p.paper, borderRadius: BorderRadius.circular(10)),
-          alignment: Alignment.center,
-          child: SvgArt(
-            '<svg viewBox="0 0 24 24"><path d="M7 4.5l13 7.5-13 7.5z" fill="${p.coinMark.hex}" stroke="${p.coinMark.hex}" '
-            'stroke-width="2" stroke-linejoin="round"/></svg>',
-            width: 20,
-            height: 20,
-          ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: Semantics(
-            header: true,
-            child: Text(l.buanHomeTitle, style: AppTypography.display(22, color: p.onBuan)),
-          ),
-        ),
-        Semantics(
-          button: true,
-          label: l.buanHomeHistorySemantics,
-          excludeSemantics: true,
-          child: Material(
-            color: p.paper.withValues(alpha: .16),
-            borderRadius: BorderRadius.circular(20),
-            child: InkWell(
-              onTap: onHistory,
-              borderRadius: BorderRadius.circular(20),
-              child: Container(
-                constraints: const BoxConstraints(minHeight: 44, minWidth: 44),
-                padding: const EdgeInsets.symmetric(horizontal: 14),
-                alignment: Alignment.center,
-                child: Text(
-                  l.buanHomeHistory,
-                  style: AppTypography.body(13, weight: FontWeight.w900, color: p.paper),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _Balance extends StatelessWidget {
-  const _Balance({required this.balance});
-
-  final int balance;
-
-  @override
-  Widget build(BuildContext context) {
-    final p = context.palette;
-    return Semantics(
-      liveRegion: true,
-      label: context.l10n.buanBalanceSemantics(Fmt.number(balance)),
-      excludeSemantics: true,
-      child: Row(
-        children: [
-          SvgArt(
-            '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="${p.paper.hex}"/>'
-            '<circle cx="12" cy="12" r="9" fill="${p.buanFill.hex}"/><path d="M9.8 8l6.4 4-6.4 4z" fill="${p.glow.hex}"/></svg>',
-            width: 44,
-            height: 44,
-          ),
-          const SizedBox(width: 10),
-          Flexible(
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.centerLeft,
-              child: CountUpText(
-                value: balance,
-                style: AppTypography.number(52, height: 1.05, color: p.onBuan),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _LevelCard extends StatelessWidget {
-  const _LevelCard({required this.level});
-
-  final BuanLevel level;
-
-  @override
-  Widget build(BuildContext context) {
-    final p = context.palette;
-    final l = context.l10n;
-    final soft = p.onBuan.withValues(alpha: .9);
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      decoration: BoxDecoration(color: p.paper.withValues(alpha: .12), borderRadius: BorderRadius.circular(20)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
-                decoration: BoxDecoration(color: p.cta, borderRadius: BorderRadius.circular(10)),
-                child: Text(
-                  l.buanLevelChip(level.level, level.name),
-                  style: AppTypography.body(13, weight: FontWeight.w900, color: p.onCta),
-                ),
-              ),
-              const Spacer(),
-              if (level.nextName != null)
-                Flexible(
-                  flex: 3,
-                  child: Text(
-                    l.buanLevelToNext(level.nextName!, Fmt.number(level.pointsToNext)),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.end,
-                    style: AppTypography.number(13, color: soft),
                   ),
                 ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Semantics(
-            label: l.buanLevelProgress,
-            child: AppProgressBar(
-              value: level.progress,
-              height: 10,
-              track: p.paper.withValues(alpha: .2),
-              gradient: LinearGradient(colors: [p.secondary, p.glow]),
+              ),
             ),
-          ),
-          if (level.tiers.isNotEmpty) ...[
-            const SizedBox(height: 8),
-            ExcludeSemantics(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  for (final t in level.tiers)
-                    Flexible(
-                      child: Text(
-                        t,
-                        maxLines: 1,
-                        overflow: TextOverflow.fade,
-                        softWrap: false,
-                        style: AppTypography.body(10, weight: FontWeight.w900, color: p.onBuan.withValues(alpha: .85)),
-                      ),
+            // Daralmış çubuk: yalnız bakiye.
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: BuanHeroDelegate.barHeight,
+              child: _Fade(
+                opacity: barOpacity,
+                child: Semantics(
+                  label: l.buanHeroCollapsedSemantics(Fmt.number(balance)),
+                  excludeSemantics: true,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        const BuanCoin(size: 28, ring: true),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            Fmt.number(balance),
+                            maxLines: 1,
+                            softWrap: false,
+                            style: AppTypography.number(26, height: 1, color: p.onBuan),
+                          ),
+                        ),
+                        Text(l.buanUnit, style: AppTypography.body(13, weight: FontWeight.w900, color: p.onBuan.withValues(alpha: .9))),
+                      ],
                     ),
-                ],
+                  ),
+                ),
               ),
             ),
           ],
-        ],
+        ),
       ),
+    );
+  }
+}
+
+/// Opaklık 0 iken dokunma ve erişilebilirlik ağacından da çıkar.
+class _Fade extends StatelessWidget {
+  const _Fade({required this.opacity, required this.child});
+
+  final double opacity;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (opacity <= 0) return const SizedBox.shrink();
+    return IgnorePointer(
+      ignoring: opacity < .5,
+      child: ExcludeSemantics(excluding: opacity < .5, child: Opacity(opacity: opacity, child: child)),
     );
   }
 }

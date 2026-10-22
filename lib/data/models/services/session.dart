@@ -90,10 +90,24 @@ abstract class SessionWeek with _$SessionWeek {
     /// Sepette kontenjan ayırma süresi (dk).
     @Default(5) int holdMinutes,
     @Default(ItemRules()) ItemRules rules,
+
+    /// Giriş yapan kullanıcının yaşı / cinsiyeti (uygunluk denetimi için).
+    /// TODO(varsayım): Gerçek kaynak `/users/me`; DioClient özel `meta` alanı aktarmadığından
+    /// mock'ta `data` içinde taşınır. null → yalnız katılımcı bilgisi kullanılır.
+    int? viewerAge,
+    @JsonKey(unknownEnumValue: Gender.unknown) @Default(Gender.unknown) Gender viewerGender,
     @Default(<Participant>[]) List<Participant> participants,
     @Default(<SessionDay>[]) List<SessionDay> days,
     @Default(<SessionSlot>[]) List<SessionSlot> slots,
   }) = _SessionWeek;
 
   factory SessionWeek.fromJson(Map<String, dynamic> json) => _$SessionWeekFromJson(json);
+}
+
+/// `POST /services/items/{id}/waitlist` yanıtı: bekleme listesindeki sıra.
+@freezed
+abstract class WaitlistResult with _$WaitlistResult {
+  const factory WaitlistResult({@Default(0) int position}) = _WaitlistResult;
+
+  factory WaitlistResult.fromJson(Map<String, dynamic> json) => _$WaitlistResultFromJson(json);
 }

@@ -45,10 +45,14 @@ class BuanViewModel extends LoadableViewModel<BuanHomeData> {
     );
   }
 
-  /// Görev kartının gideceği ekran; null → kurallar sheet'i açılır
-  /// (kilitli, tamamlanmış ya da uygulama içi akışı olmayan görevler).
-  static String? routeFor(BuanTask task) {
-    if (task.isLocked || task.isDone) return null;
+  /// Tüm bölümlerdeki görevler tek listede (Kolay Mod).
+  List<BuanTask> get allTasks => [for (final g in state.dataOrNull?.groups ?? const <BuanTaskGroup>[]) ...g.tasks];
+
+  /// Görev kartının gideceği ekran. Kilitli / tamamlanmış görevler ve kendi akışı
+  /// olmayan türler (Takip Et, Gönül Dostu, BİKO, Fikrin ile Kazan, Fırsat Kullan, bilinmeyen)
+  /// genel görev detayına (`Routes.task`) gider; orada durum ve kurallar gösterilir.
+  static String routeFor(BuanTask task) {
+    if (task.isLocked || task.isDone) return Routes.task(task.id);
     return switch (task.type) {
       BuanTaskType.watch => Routes.watchEarn,
       BuanTaskType.steps => Routes.steps,
@@ -57,14 +61,12 @@ class BuanViewModel extends LoadableViewModel<BuanHomeData> {
       BuanTaskType.photo => Routes.photoReport,
       BuanTaskType.spin => Routes.dailySpin,
       BuanTaskType.qr => Routes.qrScan,
-      // TODO(varsayım): Takip Et / Gönül Dostu / BİKO / Fikrin ile Kazan / Fırsat Kullan için
-      // uygulama içi akış tasarlanmadı; şimdilik kurallar sheet'i gösteriliyor.
       BuanTaskType.follow ||
       BuanTaskType.volunteer ||
       BuanTaskType.biko ||
       BuanTaskType.idea ||
       BuanTaskType.useOpportunity ||
-      BuanTaskType.unknown => null,
+      BuanTaskType.unknown => Routes.task(task.id),
     };
   }
 

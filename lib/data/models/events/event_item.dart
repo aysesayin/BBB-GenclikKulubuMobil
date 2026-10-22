@@ -34,6 +34,9 @@ abstract class EventItem with _$EventItem {
     /// Kart zemini: palette adı (tile1…tile6).
     @Default('tile4') String tone,
     @Default(false) bool waitlistOpen,
+
+    /// Check-in'de kazanılacak BUAN (kapak rozeti; null → rozet yok).
+    int? checkInBuan,
   }) = _EventItem;
 
   factory EventItem.fromJson(Map<String, dynamic> json) => _$EventItemFromJson(json);

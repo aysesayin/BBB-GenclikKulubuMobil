@@ -115,6 +115,16 @@ void main() {
       final f = _feed.copyWith(blocks: ['league', 'xyz', 'stories', 'league', 'deals', 'shortcuts']);
       expect(HomeViewModel.blocksOf(f), [HomeBlock.league, HomeBlock.stories, HomeBlock.shortcuts]);
     });
+
+    test('nearPromotion → lig kartı görevlerin hemen ardına; görev yoksa en başa', () {
+      const task = HomeTask(id: 't', title: 'Adım', link: AppLink(type: 'steps'));
+      final near = _feed.copyWith(league: const HomeLeague(tier: 'Gümüş', rank: 14, nearPromotion: true));
+      expect(HomeViewModel.blocksOf(near), [HomeBlock.league, HomeBlock.stories, HomeBlock.shortcuts]);
+      final withTasks = near.copyWith(tasks: const [task]);
+      expect(HomeViewModel.blocksOf(withTasks), [HomeBlock.stories, HomeBlock.tasks, HomeBlock.league, HomeBlock.shortcuts]);
+      final ordered = withTasks.copyWith(blocks: ['shortcuts', 'league', 'stories', 'tasks']);
+      expect(HomeViewModel.blocksOf(ordered), [HomeBlock.shortcuts, HomeBlock.stories, HomeBlock.tasks, HomeBlock.league]);
+    });
   });
 
   test('baş harfler Türkçe büyük harfle', () {
@@ -143,7 +153,18 @@ void main() {
     expect(feed.user?.firstName, 'Ayşe');
     expect(feed.wallet?.streak, 7);
     expect(feed.league?.rank, 14);
-    expect(HomeViewModel.blocksOf(feed), HomeBlock.values);
+    expect(feed.league?.nearPromotion, isTrue);
+    expect(feed.banners.map((b) => b.tone).toSet(), {'buan', 'event', 'opportunity', 'spin'});
+    expect(HomeViewModel.blocksOf(feed), [
+      HomeBlock.stories,
+      HomeBlock.tasks,
+      HomeBlock.league,
+      HomeBlock.banners,
+      HomeBlock.shortcuts,
+      HomeBlock.deals,
+      HomeBlock.events,
+      HomeBlock.nearby,
+    ]);
     for (final s in feed.shortcuts) {
       expect(routeForLink(s.link), isNotNull, reason: s.id);
     }

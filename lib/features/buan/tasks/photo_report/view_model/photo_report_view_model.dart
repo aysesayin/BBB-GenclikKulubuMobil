@@ -13,7 +13,10 @@ enum LocationStatus { none, loading, added, denied }
 /// E12 · Çek Kazan / Fikrin ile Kazan. Fotoğraf + tür + kategori + konum + not
 /// multipart gönderilir; BUAN moderasyon onayından sonra sunucuda verilir.
 class PhotoReportViewModel extends LoadableViewModel<List<PhotoReportType>> {
-  PhotoReportViewModel(this._repo, {required Future<GeoPoint?> Function() locate}) : _locate = locate;
+  PhotoReportViewModel(this._repo, {required Future<GeoPoint?> Function() locate, this.initialTypeId}) : _locate = locate;
+
+  /// Yüklenince bu id'li tür seçili başlar (ör. `idea`); yoksa ilk tür.
+  final String? initialTypeId;
 
   static const minIdeaLength = 10;
 
@@ -59,6 +62,10 @@ class PhotoReportViewModel extends LoadableViewModel<List<PhotoReportType>> {
   Future<void> load() async {
     final mine = _repo.mine();
     await super.load();
+    if (initialTypeId case final id?) {
+      final i = types.indexWhere((t) => t.id == id);
+      if (i >= 0) _typeIndex = i;
+    }
     _categoryId ??= type?.categories.firstOrNull?.id;
     if (await mine case Success(:final data)) _mine = data;
     notify();

@@ -58,7 +58,6 @@
   "cardTokenError": "Kod şu an alınamadı",
   "cardScanCta": "QR Okut",
   "cardAddToWallet": "Cüzdana ekle",
-  "cardWalletSoon": "Telefon cüzdanına ekleme çok yakında.",
   "cardGuestTitle": "Dijital kartın seni bekliyor",
   "cardGuestMessage": "Kayıt olunca kartın burada; merkezlerde QR’ını okut, etkinliklerde check-in yap, BUAN kazan.",
   "cardGuestCta": "Kartımı oluştur",
@@ -90,5 +89,36 @@
   "cardCameraDenied": "QR okutmak için kamera izni gerekiyor.",
   "cardCameraUnsupported": "Bu cihazda kamera kullanılamıyor. Galeriden bir QR görseli seçebilirsin.",
   "cardCameraError": "Kamera açılamadı.",
-  "cardOpenSettings": "Ayarları aç"
+  "cardOpenSettings": "Ayarları aç",
+  "cardShowAtGate": "Gişede göster",
+  "cardFlipSemantics": "Kartı çevir: {side}",
+  "@cardFlipSemantics": {
+    "placeholders": {
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "cardFlipFront": "ön yüz",
+  "cardFlipBack": "arka yüz, QR ve kod",
+  "cardFlipHint": "Çevirmek için dokun",
+  "cardBackTitle": "Check-in QR",
+  "cardTurnstileTitle": "Turnike modu",
+  "cardTurnstileHint": "QR’ı okuyucuya tut ya da kodu söyle",
+  "cardTurnstileAutoClose": "{minutes} dk sonra kendiliğinden kapanır",
+  "@cardTurnstileAutoClose": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "cardTurnstileSeconds": "{seconds} sn",
+  "@cardTurnstileSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  }
 }

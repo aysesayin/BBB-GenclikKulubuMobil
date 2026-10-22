@@ -3,10 +3,13 @@ import 'package:bbb_genclik_kulubu_app/core/network/api_result.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/app_exception.dart';
 import 'package:bbb_genclik_kulubu_app/core/router/routes.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/app/app_config.dart';
+import 'package:bbb_genclik_kulubu_app/data/models/auth/first_day_task.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/auth/interest_option.dart';
 import 'package:bbb_genclik_kulubu_app/features/onboarding/permission_gateway.dart';
+import 'package:bbb_genclik_kulubu_app/features/onboarding/view_model/first_day_view_model.dart';
 import 'package:bbb_genclik_kulubu_app/features/onboarding/view_model/interests_view_model.dart';
 import 'package:bbb_genclik_kulubu_app/features/onboarding/view_model/permissions_view_model.dart';
+import 'package:bbb_genclik_kulubu_app/features/onboarding/view_model/pre_permission_view_model.dart';
 import 'package:bbb_genclik_kulubu_app/features/onboarding/view_model/story_view_model.dart';
 import 'package:bbb_genclik_kulubu_app/features/onboarding/view_model/summit_view_model.dart';
 import 'package:bbb_genclik_kulubu_app/features/onboarding/view_model/welcome_view_model.dart';
@@ -26,16 +29,18 @@ void main() {
       when(auth.holdOnboardingBonus).thenAnswer((_) async {});
     });
 
-    test('ileri / geri sınırlar içinde kalır, son hikâyede bekler', () {
+    test('2 hikâye: ileri / geri sınırlar içinde kalır, son hikâyede bekler', () {
+      expect(StoryViewModel.count, 2);
       final vm = StoryViewModel(auth, stubApp());
       vm.prev();
       expect(vm.index, 0);
+      expect(vm.isLast, isFalse);
       vm.onSegmentDone();
-      vm.next();
-      expect(vm.index, 2);
+      expect(vm.index, 1);
       expect(vm.isLast, isTrue);
+      vm.next();
       vm.onSegmentDone();
-      expect(vm.index, 2);
+      expect(vm.index, 1);
     });
 
     test('coin dokunuşu bonusu bekletir ve devamı açar', () async {
@@ -49,16 +54,11 @@ void main() {
       verify(auth.holdOnboardingBonus).called(1);
     });
 
-    test('duraklatma ve kupon fırlatma; hikâye değişince kupon sıfırlanır', () {
+    test('duraklatma; hikâye değişince duraklatma kalkar', () {
       final vm = StoryViewModel(auth, stubApp())..setPaused(value: true);
       expect(vm.paused, isTrue);
-      vm
-        ..goTo(1)
-        ..flingCoupon(3);
+      vm.goTo(1);
       expect(vm.paused, isFalse);
-      expect(vm.flungCoupon, 3);
-      vm.next();
-      expect(vm.flungCoupon, isNull);
     });
   });
 
@@ -147,8 +147,16 @@ void main() {
     });
   });
 
+  group('PrePermissionViewModel', () {
+    test('Devam → izin destesi, Şimdi değil → İlk günün', () {
+      final vm = PrePermissionViewModel();
+      expect(vm.continueRoute, Routes.permissions);
+      expect(vm.skipRoute, Routes.firstDay);
+    });
+  });
+
   group('PermissionsViewModel', () {
-    test('kartlar sırayla geçilir, izin sayılır, bitince Keşfet', () async {
+    test('kartlar sırayla geçilir, izin sayılır, bitince İlk günün', () async {
       final gw = MockPermissionGateway();
       when(() => gw.request(any())).thenAnswer((i) async => i.positionalArguments.first == OnbPermission.location);
       final session = stubSession();
@@ -163,8 +171,75 @@ void main() {
       expect(vm.done, isTrue);
       expect(vm.granted, 1);
       verifyNever(() => gw.request(OnbPermission.notifications));
+      expect(await vm.finish(), Routes.firstDay);
+      verify(session.markOnboardingSeen).called(1);
+    });
+  });
+
+  group('FirstDayViewModel', () {
+    late MockAuthRepository auth;
+    late MockSession session;
+    final done = <String>{};
+
+    setUp(() {
+      done.clear();
+      auth = MockAuthRepository();
+      session = stubSession();
+      when(auth.firstDayTasks).thenAnswer((_) async => const Success(firstDayTasks));
+      when(() => auth.isFirstDayDone(any())).thenAnswer((i) => done.contains(i.positionalArguments.first));
+      when(() => auth.markFirstDayDone(any())).thenAnswer((i) async => done.add(i.positionalArguments.first as String));
+    });
+
+    test('3 görev yüklenir, toplam ödül 2.600', () async {
+      final vm = FirstDayViewModel(auth, session);
+      await vm.load();
+      expect(vm.state, isA<ViewSuccess<List<FirstDayTask>>>());
+      expect(vm.tasks, hasLength(3));
+      expect(vm.totalReward, 2600);
+      expect(vm.doneCount, 0);
+      expect(vm.allDone, isFalse);
+    });
+
+    test('satıra dokunmak görevi cihazda tamamlar ve hedef yolu döner', () async {
+      final vm = FirstDayViewModel(auth, session);
+      await vm.load();
+      var notified = 0;
+      vm.addListener(() => notified++);
+      expect(await vm.open(firstDayTasks[1]), Routes.qrScan);
+      verify(() => auth.markFirstDayDone('fd-qr-scan')).called(1);
+      expect(vm.isDone('fd-qr-scan'), isTrue);
+      expect(vm.doneCount, 1);
+      expect(notified, 1);
+      expect(await vm.open(firstDayTasks[0]), Routes.opportunities);
+      expect(await vm.open(firstDayTasks[2]), Routes.invite);
+      expect(vm.allDone, isTrue);
+      expect(await vm.open(const FirstDayTask(id: 'x', title: 'x')), Routes.home);
+    });
+
+    test('sekme kökleri go, diğerleri push', () {
+      expect(FirstDayViewModel.isTabRoute(Routes.opportunities), isTrue);
+      expect(FirstDayViewModel.isTabRoute(Routes.home), isTrue);
+      expect(FirstDayViewModel.isTabRoute(Routes.qrScan), isFalse);
+      expect(FirstDayViewModel.isTabRoute(Routes.invite), isFalse);
+    });
+
+    test('Keşfet\'e geç → onboarding kapanır', () async {
+      final vm = FirstDayViewModel(auth, session);
       expect(await vm.finish(), Routes.home);
       verify(session.markOnboardingSeen).called(1);
+    });
+
+    test('boş liste → boş durum; ağ hatası → hata durumu', () async {
+      when(auth.firstDayTasks).thenAnswer((_) async => const Success(<FirstDayTask>[]));
+      var vm = FirstDayViewModel(auth, session);
+      await vm.load();
+      expect(vm.state, isA<ViewEmpty<List<FirstDayTask>>>());
+      expect(vm.totalReward, 0);
+
+      when(auth.firstDayTasks).thenAnswer((_) async => const Failure(NetworkException()));
+      vm = FirstDayViewModel(auth, session);
+      await vm.load();
+      expect(vm.state, isA<ViewError<List<FirstDayTask>>>());
     });
   });
 }

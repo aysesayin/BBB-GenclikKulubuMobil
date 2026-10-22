@@ -220,5 +220,42 @@
         "type": "String"
       }
     }
-  }
+  },
+  "oppMetaLine": "{days} · {stock}",
+  "@oppMetaLine": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      },
+      "stock": {
+        "type": "String"
+      }
+    }
+  },
+  "oppCategorySelected": "{label}, seçili. Kaldırmak için tekrar dokun",
+  "@oppCategorySelected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "oppKeepAwakeHint": "Ekran kapanırsa kodu Fırsatlarım’dan tekrar açabilirsin",
+  "oppMarkUsed": "Kullandım",
+  "oppMarkUsedSemantics": "Demo: kodu kullanılmış işaretle ve puanla",
+  "oppUsedBadge": "Kullanıldı",
+  "oppRatingTitle": "Fırsat nasıldı?",
+  "oppRatingSubtitle": "Puanla, BUAN kazan",
+  "oppRatingStar": "{count} yıldız",
+  "@oppRatingStar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "oppRatingComment": "Yorum (isteğe bağlı)",
+  "oppRatingCommentHint": "Deneyimini kısaca anlat",
+  "oppRatingSubmit": "Gönder",
+  "oppRatingToast": "Fırsat Kullan Kazan"
 }

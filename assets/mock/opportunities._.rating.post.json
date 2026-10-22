@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "data": {
+    "opportunityId": "opp-extrempark",
+    "buanReward": 100,
+    "label": "Fırsat Kullan Kazan"
+  },
+  "message": "Teşekkürler! Değerlendirmen alındı.",
+  "errors": []
+}

@@ -10,89 +10,260 @@
   "buanTabLeague": "Lig",
   "buanTabBadges": "Rozet",
   "buanLevelChip": "Sv {level} · {name}",
-  "@buanLevelChip": {"placeholders": {"level": {"type": "int"}, "name": {"type": "String"}}},
-  "buanLevelToNext": "{name} seviyesine {amount}",
-  "@buanLevelToNext": {"placeholders": {"name": {"type": "String"}, "amount": {"type": "String"}}},
-  "buanLevelProgress": "Seviye ilerlemesi",
+  "@buanLevelChip": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "buanStreakLabel": "Günlük seri",
   "buanStreakTitle": "Serin {count} gün oldu",
-  "@buanStreakTitle": {"placeholders": {"count": {"type": "int"}}},
-  "buanStreakBonus": "{day}. günde +{amount} bonus",
-  "@buanStreakBonus": {"placeholders": {"day": {"type": "int"}, "amount": {"type": "String"}}},
+  "@buanStreakTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "buanStreakDayDone": "{day} tamamlandı",
-  "@buanStreakDayDone": {"placeholders": {"day": {"type": "String"}}},
+  "@buanStreakDayDone": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
   "buanStreakDayPending": "{day} bekliyor",
-  "@buanStreakDayPending": {"placeholders": {"day": {"type": "String"}}},
+  "@buanStreakDayPending": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
   "buanEarnStatusAvailable": "Yapılabilir",
   "buanEarnStatusPending": "Bekliyor",
   "buanEarnStatusDone": "Tamamlandı",
   "buanEarnStatusLocked": "Kilitli",
   "buanEarnAvailableIn": "{count, plural, =0{Bugün açılıyor} =1{Yarın} other{{count} gün sonra}}",
-  "@buanEarnAvailableIn": {"placeholders": {"count": {"type": "int"}}},
+  "@buanEarnAvailableIn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "buanEarnAgeMin": "{age} yaş ve üzeri",
-  "@buanEarnAgeMin": {"placeholders": {"age": {"type": "int"}}},
+  "@buanEarnAgeMin": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
   "buanEarnAgeMax": "{age} yaş ve altı",
-  "@buanEarnAgeMax": {"placeholders": {"age": {"type": "int"}}},
+  "@buanEarnAgeMax": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
   "buanEarnRange": "+{min}–{max}",
-  "@buanEarnRange": {"placeholders": {"min": {"type": "String"}, "max": {"type": "String"}}},
+  "@buanEarnRange": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
   "buanEarnRangeSemantics": "{min} ile {max} arası BUAN",
-  "@buanEarnRangeSemantics": {"placeholders": {"min": {"type": "String"}, "max": {"type": "String"}}},
+  "@buanEarnRangeSemantics": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
   "buanEarnCardSemantics": "{title}. {subtitle}. Durum: {status}",
-  "@buanEarnCardSemantics": {"placeholders": {"title": {"type": "String"}, "subtitle": {"type": "String"}, "status": {"type": "String"}}},
+  "@buanEarnCardSemantics": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "subtitle": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
   "buanEarnSheetRules": "Kurallar",
   "buanEarnSheetFrequency": "Sıklık: {value}",
-  "@buanEarnSheetFrequency": {"placeholders": {"value": {"type": "String"}}},
+  "@buanEarnSheetFrequency": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "buanEarnSheetLocked": "Şu an yapılamaz: {reason}",
-  "@buanEarnSheetLocked": {"placeholders": {"reason": {"type": "String"}}},
+  "@buanEarnSheetLocked": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
   "buanEarnSheetDone": "Bu görevi tamamladın, BUAN'ın hesabında.",
   "buanEarnSheetSoon": "Bu görev yakında uygulama içinden tamamlanabilecek. Şimdilik kuralları inceleyebilirsin.",
   "buanEarnSheetOpportunities": "Fırsatlara göz at",
-  "buanEarnSheetOk": "Tamam",
   "buanEarnEmptyTitle": "Şu an görev yok",
   "buanEarnEmptyMessage": "Yeni görevler gece 00:00'da yüklenir. Bu arada pazara göz at.",
   "buanMarketTitle": "BUAN Pazar",
   "buanMarketBigPrize": "BÜYÜK ÖDÜL",
   "buanMarketFirstNHero": "İlk {count} kişi · {left} yer kaldı",
-  "@buanMarketFirstNHero": {"placeholders": {"count": {"type": "int"}, "left": {"type": "int"}}},
+  "@buanMarketFirstNHero": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "left": {
+        "type": "int"
+      }
+    }
+  },
   "buanMarketFirstN": "İlk {count} kişi · {left} kaldı",
-  "@buanMarketFirstN": {"placeholders": {"count": {"type": "int"}, "left": {"type": "int"}}},
+  "@buanMarketFirstN": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "left": {
+        "type": "int"
+      }
+    }
+  },
   "buanMarketStock": "Stok {count}",
-  "@buanMarketStock": {"placeholders": {"count": {"type": "int"}}},
+  "@buanMarketStock": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "buanMarketPerPerson": "Kişi başı {count}",
-  "@buanMarketPerPerson": {"placeholders": {"count": {"type": "int"}}},
+  "@buanMarketPerPerson": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "buanMarketSoldOut": "Tükendi",
   "buanMarketAffordable": "Bakiyen yetiyor",
   "buanMarketCategories": "Ödül kategorileri",
   "buanMarketCardSemantics": "{title}, {price} BUAN, {note}",
-  "@buanMarketCardSemantics": {"placeholders": {"title": {"type": "String"}, "price": {"type": "String"}, "note": {"type": "String"}}},
+  "@buanMarketCardSemantics": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "price": {
+        "type": "String"
+      },
+      "note": {
+        "type": "String"
+      }
+    }
+  },
   "buanMarketNotAffordable": "bakiyen yetmiyor",
   "buanMarketEmptyTitle": "Bu filtrede ödül yok",
   "buanMarketEmptyMessage": "Filtreyi değiştir ya da görev yapıp biraz daha BUAN biriktir.",
   "buanMarketEmptyCta": "Filtreleri temizle",
   "buanRewardSeatsLeft": "{count} yer kaldı",
-  "@buanRewardSeatsLeft": {"placeholders": {"count": {"type": "int"}}},
+  "@buanRewardSeatsLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "buanRewardStockLeft": "{count} adet kaldı",
-  "@buanRewardStockLeft": {"placeholders": {"count": {"type": "int"}}},
+  "@buanRewardStockLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "buanRewardPerPerson": "{period, select, day{Kişi başı günde {count}} week{Kişi başı haftada {count}} month{Kişi başı ayda {count}} other{Kişi başı {count}}}",
-  "@buanRewardPerPerson": {"placeholders": {"period": {"type": "String"}, "count": {"type": "int"}}},
+  "@buanRewardPerPerson": {
+    "placeholders": {
+      "period": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "buanRewardPrice": "Ödül fiyatı",
   "buanRewardBalance": "Bakiyen",
   "buanRewardAfter": "Takastan sonra",
   "buanRewardRules": "Kurallar",
   "buanRewardCta": "BUAN ile Al",
   "buanRewardMissing": "{amount} BUAN eksik",
-  "@buanRewardMissing": {"placeholders": {"amount": {"type": "String"}}},
+  "@buanRewardMissing": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "buanRedeemTitle": "Takası onayla",
   "buanRedeemMessage": "Bakiyen {from} → {to} BUAN olacak. Bu işlem geri alınamaz.",
-  "@buanRedeemMessage": {"placeholders": {"from": {"type": "String"}, "to": {"type": "String"}}},
+  "@buanRedeemMessage": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
   "buanRedeemCancel": "Vazgeç",
   "buanRedeemConfirm": "Onayla",
   "buanRedeemSuccessTitle": "Ödülün hazır!",
   "buanRedeemDefaultInfo": "Kodunu ilgili noktada göster.",
   "buanRedeemCodeSemantics": "Ödül kodu {code}. Kopyalamak için dokun.",
-  "@buanRedeemCodeSemantics": {"placeholders": {"code": {"type": "String"}}},
+  "@buanRedeemCodeSemantics": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
   "buanRedeemRemaining": "Kalan bakiye: {amount} BUAN · Kod “Fırsatlarım”da",
-  "@buanRedeemRemaining": {"placeholders": {"amount": {"type": "String"}}},
+  "@buanRedeemRemaining": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "buanRedeemGoCodes": "Kodlarıma git",
   "buanRedeemBackToMarket": "Pazara dön",
   "buanLeagueTitle": "Haftalık Lig",
@@ -100,15 +271,66 @@
   "buanLeagueScopeDistrict": "İlçe",
   "buanLeagueScopeFriends": "Arkadaşlar",
   "buanLeagueCountdown": "{days}g {hours}s {minutes}d",
-  "@buanLeagueCountdown": {"placeholders": {"days": {"type": "int"}, "hours": {"type": "int"}, "minutes": {"type": "String"}}},
+  "@buanLeagueCountdown": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      },
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
   "buanLeagueCountdownSemantics": "Sezon bitimine {days} gün {hours} saat",
-  "@buanLeagueCountdownSemantics": {"placeholders": {"days": {"type": "int"}, "hours": {"type": "int"}}},
+  "@buanLeagueCountdownSemantics": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      },
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
   "buanLeagueRules": "{tier} Lig · ilk {up} {upTier} Lig'e yükselir, son {down} {downTier} Lig'e düşer",
-  "@buanLeagueRules": {"placeholders": {"tier": {"type": "String"}, "up": {"type": "int"}, "upTier": {"type": "String"}, "down": {"type": "int"}, "downTier": {"type": "String"}}},
+  "@buanLeagueRules": {
+    "placeholders": {
+      "tier": {
+        "type": "String"
+      },
+      "up": {
+        "type": "int"
+      },
+      "upTier": {
+        "type": "String"
+      },
+      "down": {
+        "type": "int"
+      },
+      "downTier": {
+        "type": "String"
+      }
+    }
+  },
   "buanLeagueTierOnly": "{tier} Lig",
-  "@buanLeagueTierOnly": {"placeholders": {"tier": {"type": "String"}}},
+  "@buanLeagueTierOnly": {
+    "placeholders": {
+      "tier": {
+        "type": "String"
+      }
+    }
+  },
   "buanLeagueDistrictCount": "· {count} ilçe",
-  "@buanLeagueDistrictCount": {"placeholders": {"count": {"type": "int"}}},
+  "@buanLeagueDistrictCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "buanLeagueDistrictPick": "İlçe seç",
   "buanLeaguePodium": "İlk üç",
   "buanLeagueZoneUp": "Yükselme bölgesi",
@@ -116,41 +338,171 @@
   "buanLeagueZoneDown": "Düşme bölgesi",
   "buanLeagueMe": "Sen",
   "buanLeagueMeName": "{name} (Sen)",
-  "@buanLeagueMeName": {"placeholders": {"name": {"type": "String"}}},
+  "@buanLeagueMeName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "buanLeagueToPromotion": "Yükselmeye {amount} BUAN",
-  "@buanLeagueToPromotion": {"placeholders": {"amount": {"type": "String"}}},
+  "@buanLeagueToPromotion": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "buanLeagueInPromotion": "Yükselme bölgesindesin",
   "buanLeagueRowSemantics": "{rank}. sıra, {name}, {points} BUAN",
-  "@buanLeagueRowSemantics": {"placeholders": {"rank": {"type": "int"}, "name": {"type": "String"}, "points": {"type": "String"}}},
+  "@buanLeagueRowSemantics": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      },
+      "points": {
+        "type": "String"
+      }
+    }
+  },
   "buanLeagueEmptyTitle": "Burada henüz kimse yok",
   "buanLeagueEmptyMessage": "Arkadaşlarını davet et, ligde birlikte yarışın.",
   "buanBadgesTitle": "Rozetler",
   "buanBadgesCount": "{earned} / {total}",
-  "@buanBadgesCount": {"placeholders": {"earned": {"type": "int"}, "total": {"type": "int"}}},
+  "@buanBadgesCount": {
+    "placeholders": {
+      "earned": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "buanBadgesProgress": "Rozet ilerlemesi: {earned} / {total}",
-  "@buanBadgesProgress": {"placeholders": {"earned": {"type": "int"}, "total": {"type": "int"}}},
+  "@buanBadgesProgress": {
+    "placeholders": {
+      "earned": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "buanBadgesLocked": "Kilitli · {condition}",
-  "@buanBadgesLocked": {"placeholders": {"condition": {"type": "String"}}},
+  "@buanBadgesLocked": {
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
   "buanBadgesEarnedSemantics": "{title}, kazanıldı. {detail}",
-  "@buanBadgesEarnedSemantics": {"placeholders": {"title": {"type": "String"}, "detail": {"type": "String"}}},
-  "buanBadgesLockedSemantics": "{title}, kilitli. {condition}",
-  "@buanBadgesLockedSemantics": {"placeholders": {"title": {"type": "String"}, "condition": {"type": "String"}}},
+  "@buanBadgesEarnedSemantics": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "detail": {
+        "type": "String"
+      }
+    }
+  },
+  "buanBadgesLockedSemantics": "{title}. Kilitli · {condition}",
+  "@buanBadgesLockedSemantics": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
   "buanBadgesEmptyTitle": "Rozetler yolda",
   "buanBadgesEmptyMessage": "Görev yaptıkça rozet koleksiyonun burada büyüyecek.",
   "buanHistoryTitle": "Geçmiş İşlemlerim",
   "buanHistoryMonthEarned": "{month} kazanç",
-  "@buanHistoryMonthEarned": {"placeholders": {"month": {"type": "String"}}},
+  "@buanHistoryMonthEarned": {
+    "placeholders": {
+      "month": {
+        "type": "String"
+      }
+    }
+  },
   "buanHistoryMonthSpent": "{month} harcama",
-  "@buanHistoryMonthSpent": {"placeholders": {"month": {"type": "String"}}},
+  "@buanHistoryMonthSpent": {
+    "placeholders": {
+      "month": {
+        "type": "String"
+      }
+    }
+  },
   "buanHistoryFilterEarn": "Kazanç",
   "buanHistoryFilterSpend": "Harcama",
   "buanHistoryToday": "Bugün",
   "buanHistoryYesterday": "Dün",
   "buanHistoryEarnSemantics": "Kazanç {amount} BUAN",
-  "@buanHistoryEarnSemantics": {"placeholders": {"amount": {"type": "String"}}},
+  "@buanHistoryEarnSemantics": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "buanHistorySpendSemantics": "Harcama {amount} BUAN",
-  "@buanHistorySpendSemantics": {"placeholders": {"amount": {"type": "String"}}},
+  "@buanHistorySpendSemantics": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "buanHistoryEmptyTitle": "Henüz işlem yok",
   "buanHistoryEmptyMessage": "Görev yaptıkça kazançların, takas yaptıkça harcamaların burada görünür.",
-  "buanHistoryEmptyCta": "Görevlere git"
+  "buanHistoryEmptyCta": "Görevlere git",
+  "buanStreakCompact": "Seri {count} gün",
+  "@buanStreakCompact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "buanHeroCollapsedSemantics": "BUAN bakiyesi {amount}",
+  "@buanHeroCollapsedSemantics": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "buanMarketMissing": "{amount} BUAN daha",
+  "@buanMarketMissing": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "buanEasyMoreLabel": "Diğer BUAN bölümleri",
+  "buanTaskDetailSteps": "Nasıl yapılır?",
+  "buanTaskDetailStatusLabel": "Durum",
+  "buanTaskPendingState": "Panel onayı bekleniyor",
+  "buanTaskPendingHint": "Beyanın panel tarafından kontrol edilir; onaylanınca BUAN hesabına yüklenir.",
+  "buanTaskFollowCta": "Takip ettim, beyan et",
+  "buanTaskFollowHint": "Resmî hesapları takip ettikten sonra beyan gönder.",
+  "buanTaskVolunteerCta": "Başvur",
+  "buanTaskBikoCta": "BİKO'ya git",
+  "buanTaskBikoHint": "Başvuru BİKO sitesinde yapılır; sonuç otomatik eşleşir.",
+  "buanTaskBikoFail": "BİKO sitesi açılamadı. Daha sonra tekrar dene.",
+  "buanTaskIdeaCta": "Fikrini gönder",
+  "buanTaskNotFoundTitle": "Görev bulunamadı",
+  "buanTaskNotFoundMessage": "Bu görev artık listede değil. Görevler gece 00:00'da yenilenir.",
+  "buanTaskDeclaredToast": "Beyanın alındı",
+  "buanTaskAppliedToast": "Başvurun alındı"
 }

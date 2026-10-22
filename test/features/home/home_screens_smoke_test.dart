@@ -6,7 +6,10 @@ import 'dart:io';
 import 'package:bbb_genclik_kulubu_app/core/di/locator.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/api_result.dart';
 import 'package:bbb_genclik_kulubu_app/core/network/app_exception.dart';
+import 'package:bbb_genclik_kulubu_app/core/storage/cache_store.dart';
 import 'package:bbb_genclik_kulubu_app/core/theme/app_theme.dart';
+import 'package:bbb_genclik_kulubu_app/core/theme/ui_prefs_controller.dart';
+import 'package:bbb_genclik_kulubu_app/core/widgets/widgets.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/home/home_feed.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/notifications/app_notification.dart';
 import 'package:bbb_genclik_kulubu_app/data/models/search/search_result.dart';
@@ -18,6 +21,7 @@ import 'package:bbb_genclik_kulubu_app/data/repositories/story_repository.dart';
 import 'package:bbb_genclik_kulubu_app/features/home/view/home_view.dart';
 import 'package:bbb_genclik_kulubu_app/features/home/view_model/home_view_model.dart';
 import 'package:bbb_genclik_kulubu_app/features/home/widgets/home_content.dart';
+import 'package:bbb_genclik_kulubu_app/features/home/widgets/home_easy_content.dart';
 import 'package:bbb_genclik_kulubu_app/features/home/widgets/home_skeleton.dart';
 import 'package:bbb_genclik_kulubu_app/features/notifications/view/notifications_view.dart';
 import 'package:bbb_genclik_kulubu_app/features/search/view/search_view.dart';
@@ -29,6 +33,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class _Home extends Mock implements HomeRepository {}
 
@@ -44,17 +50,23 @@ Map<String, dynamic> _data(String file) =>
 List<T> _items<T>(String file, T Function(Map<String, dynamic>) f) =>
     (_data(file)['items'] as List).map((e) => f(e as Map<String, dynamic>)).toList();
 
-Widget _app(Widget child, {required bool dark}) => MaterialApp(
-  theme: dark ? AppTheme.dark : AppTheme.light,
-  locale: const Locale('tr'),
-  supportedLocales: AppLocalizations.supportedLocales,
-  localizationsDelegates: const [
-    AppLocalizations.delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-  ],
-  home: Scaffold(body: child),
+late CacheStore _cache;
+
+/// Kolay Mod anahtarı: [easy] true → UiPrefsController açık (metin ölçeği uygulamada app.dart yapar).
+Widget _app(Widget child, {required bool dark, bool easy = false}) => ChangeNotifierProvider<UiPrefsController>(
+  create: (_) => UiPrefsController(_cache)..setEasyMode(easy),
+  child: MaterialApp(
+    theme: dark ? AppTheme.dark : AppTheme.light,
+    locale: const Locale('tr'),
+    supportedLocales: AppLocalizations.supportedLocales,
+    localizationsDelegates: const [
+      AppLocalizations.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+    ],
+    home: Scaffold(body: child),
+  ),
 );
 
 const _sizes = [Size(393, 852), Size(360, 800)];
@@ -75,6 +87,8 @@ void main() {
   final feed = HomeFeed.fromJson(_data('home.json'));
 
   setUpAll(() async {
+    SharedPreferences.setMockInitialValues({});
+    _cache = await CacheStore.create();
     await initializeDateFormatting('tr');
     // Gerçek yazı tipleri: taşma ölçümleri tasarımdakiyle aynı olsun (Ahem daha geniştir).
     for (final (family, weights) in [
@@ -118,6 +132,9 @@ void main() {
       );
       await tester.pump(const Duration(milliseconds: 300));
       expect(find.text('Ayşe'), findsOneWidget);
+      expect(find.byType(BuanBalanceChip), findsOneWidget);
+      expect(find.byType(StreakChip), findsNothing, reason: 'seri çipi başlıkta değil, BUAN sekmesinde');
+      expect(find.byType(HomeEasyContent), findsNothing);
       expect(find.text('Bugünün Görevleri'), findsOneWidget);
       expect(find.text('Haftalık Lig · Gümüş'), findsOneWidget);
       expect(find.text('Aşık Veysel GM · 650 m'), findsOneWidget);
@@ -137,6 +154,29 @@ void main() {
     await tester.pump(const Duration(milliseconds: 300));
     final ctx = tester.element(find.byType(HomeContent));
     expect(MediaQuery.textScalerOf(ctx).scale(10), closeTo(13.5, .01));
+  });
+
+  testWidgets('B1 Keşfet — Kolay Mod (393 ve 360): 4 büyük kısayol, dikey görevler, "Daha fazla"', (tester) async {
+    await _forEachVariant(tester, (dark) async {
+      tester.view.physicalSize = Size(tester.view.physicalSize.width, 2400);
+      await tester.pumpWidget(
+        _app(HomeContent(feed: feed, greeting: HomeGreeting.day, offline: false, onRefresh: () async {}), dark: dark, easy: true),
+      );
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(find.byType(HomeEasyContent), findsOneWidget);
+      for (final s in ['Fırsatlar', 'Kartım', 'Etkinlikler', 'Havuzlar']) {
+        expect(find.text(s), findsOneWidget);
+      }
+      expect(find.byType(HomeEasyTaskRow), findsNWidgets(3));
+      expect(find.byType(StreakChip), findsNothing);
+      expect(find.text('Haftalık Lig · Gümüş'), findsNothing, reason: '"Daha fazla" altında');
+      expect(find.text('Aşık Veysel GM · 650 m'), findsNothing, reason: 'Kolay Modda harita yok');
+      await tester.tap(find.text('Daha fazla'));
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(find.text('Daha az'), findsOneWidget);
+      expect(find.text('Haftalık Lig · Gümüş'), findsOneWidget);
+      expect(find.text('Sana Özel Fırsatlar'), findsOneWidget);
+    });
   });
 
   testWidgets('S1 skeleton', (tester) async {
@@ -167,6 +207,13 @@ void main() {
       await tester.pump(const Duration(milliseconds: 200));
       expect(find.text('FIRSATLAR'), findsOneWidget);
       expect(find.text('Tümü · 6'), findsOneWidget);
+      await tester.enterText(find.byType(TextField), 'Telefrik');
+      await tester.pump(const Duration(milliseconds: 300));
+      await tester.pump(const Duration(milliseconds: 200));
+      expect(find.text('Sonuç yok'), findsOneWidget);
+      expect(find.text('Bunu mu demek istedin?'), findsOneWidget);
+      expect(find.text('Teleferik'), findsOneWidget);
+      expect(find.text('#Konser'), findsOneWidget);
     });
   });
 

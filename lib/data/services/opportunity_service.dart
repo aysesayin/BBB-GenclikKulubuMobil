@@ -41,4 +41,11 @@ class OpportunityService {
   /// Cüzdan: tüm durumlar tek çağrıda (sayaçlar için); çevrimdışı da açılsın diye önbellekli.
   Future<ApiResult<List<WalletItem>>> mine() =>
       _client.get(ApiEndpoints.myOpportunities, parse: (d) => Json.list(d, WalletItem.fromJson), cacheKey: 'opportunities.mine');
+
+  // TODO(varsayım): puanlama gövdesi `{stars: 1..5, comment?: string}`; yanıt `{buanReward, label}`.
+  Future<ApiResult<RatingResult>> rate(String id, {required int stars, String? comment}) => _client.post(
+    ApiEndpoints.rateOpportunity(id),
+    body: {'stars': stars, if (comment != null && comment.isNotEmpty) 'comment': comment},
+    parse: (d) => RatingResult.fromJson(Json.map(d)),
+  );
 }

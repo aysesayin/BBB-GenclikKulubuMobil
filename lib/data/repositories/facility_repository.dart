@@ -9,6 +9,7 @@ abstract interface class FacilityRepository {
   Future<ApiResult<PoolCatalog>> pools();
   Future<ApiResult<List<ServiceItem>>> items(String facilityId);
   Future<ApiResult<SessionWeek>> sessions(String itemId, {required DateTime from, required DateTime to});
+  Future<ApiResult<WaitlistResult>> joinWaitlist(String itemId, {required String sessionId});
   Future<ApiResult<SportsCatalog>> sportsCatalog();
   Future<ApiResult<List<TennisProduct>>> tennisProducts();
 }
@@ -27,6 +28,10 @@ class FacilityRepositoryImpl implements FacilityRepository {
   @override
   Future<ApiResult<SessionWeek>> sessions(String itemId, {required DateTime from, required DateTime to}) =>
       _service.sessions(itemId, from: from, to: to);
+
+  @override
+  Future<ApiResult<WaitlistResult>> joinWaitlist(String itemId, {required String sessionId}) =>
+      _service.joinWaitlist(itemId, sessionId: sessionId);
 
   @override
   Future<ApiResult<SportsCatalog>> sportsCatalog() => _service.sportsCatalog();

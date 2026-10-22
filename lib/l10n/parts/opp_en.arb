@@ -64,5 +64,18 @@
   "oppWalletUsedEarned": "Used {date} · {amount} BUAN",
   "oppWalletExpiredOn": "Expired {date}",
   "oppWalletEmpty": "No codes here yet. Deals you grab will show up here.",
-  "oppDateLoc": "on {month, select, m1{Jan} m2{Feb} m3{Mar} m4{Apr} m5{May} m6{Jun} m7{Jul} m8{Aug} m9{Sep} m10{Oct} m11{Nov} m12{Dec} other{}} {day}"
+  "oppDateLoc": "on {month, select, m1{Jan} m2{Feb} m3{Mar} m4{Apr} m5{May} m6{Jun} m7{Jul} m8{Aug} m9{Sep} m10{Oct} m11{Nov} m12{Dec} other{}} {day}",
+  "oppMetaLine": "{days} · {stock}",
+  "oppCategorySelected": "{label}, selected. Tap again to clear",
+  "oppKeepAwakeHint": "If the screen turns off, reopen the code from My Opportunities",
+  "oppMarkUsed": "I used it",
+  "oppMarkUsedSemantics": "Demo: mark the code as used and rate",
+  "oppUsedBadge": "Used",
+  "oppRatingTitle": "How was the deal?",
+  "oppRatingSubtitle": "Rate it, earn BUAN",
+  "oppRatingStar": "{count} stars",
+  "oppRatingComment": "Comment (optional)",
+  "oppRatingCommentHint": "Tell us briefly how it went",
+  "oppRatingSubmit": "Send",
+  "oppRatingToast": "Use a Deal, Earn"
 }

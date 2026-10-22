@@ -43,7 +43,7 @@
             "tile": 6,
             "rules": [
               "Günde 1 kez çevirebilirsin.",
-              "Sonuç sunucuda belirlenir."
+              "Sonuç anında hesabına yüklenir."
             ],
             "pointsMax": 200,
             "frequency": "Günde 1"
@@ -81,7 +81,12 @@
               "Panel onayından sonra 250 BUAN yüklenir.",
               "Seçilen fikirlere ek bonus verilir."
             ],
-            "frequency": "Haftada 1"
+            "frequency": "Haftada 1",
+            "steps": [
+              "Fikir sekmesinde kategori seç.",
+              "Fikrini en az 10 karakterle yaz.",
+              "Gönder; panel değerlendirsin."
+            ]
           },
           {
             "id": "tsk-invite",
@@ -115,7 +120,12 @@
               "Gönüllülük başvurun panelde onaylanınca 5.000 BUAN yüklenir.",
               "Yalnız 1 kez kazanılır."
             ],
-            "frequency": "1 kez"
+            "frequency": "1 kez",
+            "steps": [
+              "Başvur butonuna dokun.",
+              "Gönüllülük ekibi seninle iletişime geçer.",
+              "Onaylanınca 5.000 BUAN hesabına yüklenir."
+            ]
           },
           {
             "id": "tsk-biko-staj",
@@ -129,7 +139,12 @@
               "Yalnız 1 kez kazanılır."
             ],
             "status": "done",
-            "frequency": "1 kez"
+            "frequency": "1 kez",
+            "steps": [
+              "BİKO sitesine git ve giriş yap.",
+              "Staj ilanına başvur.",
+              "Başvurun onaylanınca BUAN otomatik yüklenir."
+            ]
           },
           {
             "id": "tsk-biko-is",
@@ -143,7 +158,12 @@
               "Yalnız 1 kez kazanılır."
             ],
             "minAge": 18,
-            "frequency": "1 kez"
+            "frequency": "1 kez",
+            "steps": [
+              "BİKO sitesine git ve giriş yap.",
+              "İş ilanına başvur.",
+              "Başvurun onaylanınca BUAN otomatik yüklenir."
+            ]
           },
           {
             "id": "tsk-follow",
@@ -159,7 +179,12 @@
             "status": "locked",
             "lock": "limit",
             "availableAt": "2026-12-29T00:00:00",
-            "frequency": "12 haftada 1"
+            "frequency": "12 haftada 1",
+            "steps": [
+              "Resmî Instagram, X ve YouTube hesaplarını takip et.",
+              "“Takip ettim” beyanını gönder.",
+              "Panel kontrolünden sonra 1.500 BUAN yüklenir."
+            ]
           }
         ]
       },
@@ -203,7 +228,12 @@
               "Bir fırsatı kullandığında 100 BUAN kazanırsın.",
               "Her fırsat için 1 kez."
             ],
-            "frequency": "Fırsat başına 1"
+            "frequency": "Fırsat başına 1",
+            "steps": [
+              "Fırsatlar sekmesinden bir fırsat yakala.",
+              "Kodunu iş yerinde kullan.",
+              "Kullanım doğrulanınca 100 BUAN yüklenir."
+            ]
           }
         ]
       }

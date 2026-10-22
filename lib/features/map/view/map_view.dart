@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:go_router/go_router.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/base/view_state.dart';
@@ -24,6 +25,7 @@ import '../widgets/map_icons.dart';
 import '../widgets/map_preview_panel.dart';
 import '../widgets/map_top_bar.dart';
 import '../widgets/nearby_places_sheet.dart';
+import '../widgets/nearest_strip.dart';
 
 /// G3 · Harita (Keşfet sekmesi içinde). `?layer=events&cat=genclik-merkezi` ile açılabilir.
 class MapView extends StatelessWidget {
@@ -105,6 +107,11 @@ class _BodyState extends State<_Body> {
     });
   }
 
+  void _focus(MapPin pin) {
+    _vm.focusPin(pin);
+    _map.move(LatLng(pin.lat, pin.lng), math.max(_map.camera.zoom, 15));
+  }
+
   Color _colorOf(MapPin pin) {
     final p = context.palette;
     final fallback = switch (pin.layer) {
@@ -155,6 +162,7 @@ class _BodyState extends State<_Body> {
                   onNearby: () => NearbyPlacesSheet.show(context, knownLocation: vm.userLocation, location: MapView._location),
                   onLayer: vm.setLayer,
                   onCategory: vm.toggleCategory,
+                  showCategories: vm.showCategories,
                 ),
                 _StatusPill(vm: vm),
               ],
@@ -192,7 +200,13 @@ class _BodyState extends State<_Body> {
                   duration: context.reduceMotion ? Duration.zero : AppDurations.sheet,
                   transitionBuilder: (child, a) => SizeTransition(sizeFactor: a, axisAlignment: 1, child: child),
                   child: selected == null
-                      ? const SizedBox(width: double.infinity)
+                      ? NearestStrip(
+                          key: const ValueKey('nearest'),
+                          items: vm.nearestPlaces(),
+                          categoryLabelOf: (pin) => vm.categoryOf(pin)?.label ?? '',
+                          distanceOf: vm.distanceTo,
+                          onTap: _focus,
+                        )
                       : MapPreviewPanel(
                           key: ValueKey(selected.id),
                           pin: selected,

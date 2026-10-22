@@ -2,6 +2,7 @@ import '../../core/network/api_result.dart';
 import '../../core/storage/cache_store.dart';
 import '../models/auth/auth_requests.dart';
 import '../models/auth/auth_session.dart';
+import '../models/auth/first_day_task.dart';
 import '../models/auth/otp_challenge.dart';
 import '../services/auth_service.dart';
 
@@ -22,6 +23,11 @@ abstract interface class AuthRepository {
 
   /// Son başarılı kaydın yanıtı (Zirve ekranı kartı ve bonus dökümü için).
   AuthSession? get lastRegistration;
+
+  /// "İlk günün" görev listesi ve cihazda tutulan tamamlanma durumu.
+  Future<ApiResult<List<FirstDayTask>>> firstDayTasks();
+  bool isFirstDayDone(String taskId);
+  Future<void> markFirstDayDone(String taskId);
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -33,6 +39,7 @@ class AuthRepositoryImpl implements AuthRepository {
   String? _registerKey;
 
   static const _kBonus = 'pref.onboardingBonusHeld';
+  static const _kFirstDay = 'user.firstDay.';
 
   @override
   Future<ApiResult<AuthSession>> login(LoginRequest request) => _service.login(request);
@@ -79,4 +86,14 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   AuthSession? get lastRegistration => _lastRegistration;
+
+  @override
+  Future<ApiResult<List<FirstDayTask>>> firstDayTasks() => _service.firstDayTasks();
+
+  // TODO(varsayım): Görev tamamlanma durumu şimdilik cihazda (`user.firstDay.<id>`); sunucu /buan/tasks ile raporlayınca oradan okunacak.
+  @override
+  bool isFirstDayDone(String taskId) => _cache.readBool('$_kFirstDay$taskId') ?? false;
+
+  @override
+  Future<void> markFirstDayDone(String taskId) => _cache.writeBool('$_kFirstDay$taskId', value: true);
 }

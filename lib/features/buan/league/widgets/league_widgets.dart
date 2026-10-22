@@ -6,6 +6,7 @@ import '../../../../core/widgets/widgets.dart';
 import '../../../../data/models/buan/buan_league.dart';
 import '../../../../l10n/l10n.dart';
 import '../../widgets/buan_icons.dart';
+import '../../widgets/buan_ui.dart';
 import '../view_model/league_view_model.dart';
 
 /// İlk üç: 2 · 1 · 3 sıralı podyum.
@@ -57,8 +58,9 @@ class _Step extends StatelessWidget {
     final p = context.palette;
     final size = first ? 76.0 : 62.0;
     final pts = Fmt.number(entry.points);
+    final name = kvkkShortName(entry.name);
     return Semantics(
-      label: context.l10n.buanLeagueRowSemantics(entry.rank, entry.name, pts),
+      label: context.l10n.buanLeagueRowSemantics(entry.rank, name, pts),
       excludeSemantics: true,
       child: Column(
         children: [
@@ -75,7 +77,7 @@ class _Step extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           Text(
-            entry.name,
+            name,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: AppTypography.body(14, weight: FontWeight.w900, color: p.ink),
@@ -152,7 +154,7 @@ class LeagueRow extends StatelessWidget {
     final p = context.palette;
     final l = context.l10n;
     final av = [p.tile6, p.tile2, p.tile1, p.tile3, p.tile4, p.tile5][entry.rank % 6];
-    final name = entry.isMe ? l.buanLeagueMeName(entry.name) : entry.name;
+    final name = entry.isMe ? l.buanLeagueMeName(kvkkShortName(entry.name)) : kvkkShortName(entry.name);
     final pts = Fmt.number(entry.points);
     return Semantics(
       label: l.buanLeagueRowSemantics(entry.rank, name, pts),

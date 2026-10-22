@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/utils/haptics.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/models/opportunities/opportunity.dart';
 import '../../../l10n/l10n.dart';
+import 'easy_pill.dart';
 import 'opp_icons.dart';
 import 'opp_style.dart';
 
-/// Kategori karoları: 72 px sütun, 58 px karo; seçili → sticker (2,5 px ink çerçeve + 3/3 sert gölge).
+/// Kategori karoları (kullanım sırasına göre, "Tümü" yok): 72 px sütun, 58 px karo;
+/// seçili → sticker (2,5 px ink çerçeve + 3/3 sert gölge). Seçiliye tekrar dokunmak kaldırır.
+/// Kolay Mod: yatay kaydırma yerine 56 px çiplerden oluşan dikey sarmal.
 class CategoryStrip extends StatelessWidget {
   const CategoryStrip({super.key, required this.categories, required this.selected, required this.onSelect});
 
@@ -19,28 +23,53 @@ class CategoryStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.palette;
-    final all = (null, context.l10n.commonAll, AppIcons.grid, p.tile6);
-    final entries = [all, for (final c in categories) (c.id, c.label, OppIcons.byKey(c.icon), p.tone(c.tone))];
+    final l = context.l10n;
+    if (categories.isEmpty) return const SizedBox(height: 16);
+    if (context.easyMode) {
+      return Semantics(
+        label: l.oppCategoriesLabel,
+        container: true,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 4),
+          child: Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              for (final c in categories)
+                EasyPill(
+                  label: c.id == selected ? l.oppCategorySelected(c.label) : c.label,
+                  icon: OppIcons.byKey(c.icon),
+                  color: p.tone(c.tone),
+                  selected: c.id == selected,
+                  onTap: () => onSelect(c.id),
+                ),
+            ],
+          ),
+        ),
+      );
+    }
     return Semantics(
-      label: context.l10n.oppCategoriesLabel,
+      label: l.oppCategoriesLabel,
       container: true,
       child: SizedBox(
         height: 108,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 4),
-          itemCount: entries.length,
+          itemCount: categories.length,
           separatorBuilder: (_, _) => const SizedBox(width: 10),
           itemBuilder: (context, i) {
-            final (id, label, icon, color) = entries[i];
+            final c = categories[i];
+            final isSelected = c.id == selected;
             return _CategoryTile(
-              label: label,
-              icon: icon,
-              color: color,
-              selected: id == selected,
+              label: c.label,
+              semanticLabel: isSelected ? l.oppCategorySelected(c.label) : c.label,
+              icon: OppIcons.byKey(c.icon),
+              color: p.tone(c.tone),
+              selected: isSelected,
               onTap: () {
                 Haptics.selection();
-                onSelect(id);
+                onSelect(c.id);
               },
             );
           },
@@ -51,9 +80,16 @@ class CategoryStrip extends StatelessWidget {
 }
 
 class _CategoryTile extends StatelessWidget {
-  const _CategoryTile({required this.label, required this.icon, required this.color, required this.selected, required this.onTap});
+  const _CategoryTile({
+    required this.label,
+    required this.semanticLabel,
+    required this.icon,
+    required this.color,
+    required this.selected,
+    required this.onTap,
+  });
 
-  final String label, icon;
+  final String label, semanticLabel, icon;
   final Color color;
   final bool selected;
   final VoidCallback onTap;
@@ -64,7 +100,7 @@ class _CategoryTile extends StatelessWidget {
     return Semantics(
       button: true,
       selected: selected,
-      label: label,
+      label: semanticLabel,
       excludeSemantics: true,
       child: GestureDetector(
         onTap: onTap,
@@ -101,7 +137,7 @@ class _CategoryTile extends StatelessWidget {
   }
 }
 
-/// Filtre çipleri: Yakınımda · Yeni · Bitmek üzere · Favoriler.
+/// Filtre çipleri: Yakınımda · Yeni · Bitmek üzere · Favoriler. Kolay Mod: 56 px, sarmal.
 class FilterStrip extends StatelessWidget {
   const FilterStrip({super.key, required this.selected, required this.onToggle});
 
@@ -116,13 +152,29 @@ class FilterStrip extends StatelessWidget {
   };
 
   @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.only(top: 10, bottom: 6),
-    child: PillRow(
-      children: [
-        for (final f in OpportunityFilter.values)
-          FilterPill(label: context.l10n.filterLabel(f), icon: _icons[f], selected: selected == f, onTap: () => onToggle(f)),
-      ],
-    ),
-  );
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    if (context.easyMode) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 6),
+        child: Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: [
+            for (final f in OpportunityFilter.values)
+              EasyPill(label: l.filterLabel(f), icon: _icons[f], selected: selected == f, onTap: () => onToggle(f)),
+          ],
+        ),
+      );
+    }
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 6),
+      child: PillRow(
+        children: [
+          for (final f in OpportunityFilter.values)
+            FilterPill(label: l.filterLabel(f), icon: _icons[f], selected: selected == f, onTap: () => onToggle(f)),
+        ],
+      ),
+    );
+  }
 }

@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "fd-first-deal",
+      "title": "İlk fırsatını yakala",
+      "subtitle": "Sana özel indirimlerden birini cüzdanına ekle.",
+      "reward": 100,
+      "icon": "tag",
+      "route": "/firsatlar"
+    },
+    {
+      "id": "fd-qr-scan",
+      "title": "QR okut",
+      "subtitle": "Bir gençlik merkezinde kartını okut, check-in yap.",
+      "reward": 500,
+      "icon": "qr",
+      "route": "/qr-okut"
+    },
+    {
+      "id": "fd-invite",
+      "title": "Bir arkadaş davet et",
+      "subtitle": "Davet kodunu paylaş, arkadaşın kayıt olunca ikiniz de kazanın.",
+      "reward": 2000,
+      "icon": "gift",
+      "route": "/buan/davet"
+    }
+  ],
+  "message": null,
+  "errors": []
+}

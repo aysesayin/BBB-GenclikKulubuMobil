@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 
-/// Kayıt adımlarındaki iri giriş alanı: 14/900 etiket + 60–68 px kutu (r18–20),
+/// Kayıt adımlarındaki iri giriş alanı: 14/900 etiket (Kolay Mod: 16) + 60–68 px kutu (r18–20),
 /// Baloo 22–28 metin. Odakta turkuaz, hatada koyu kırmızı çerçeve + mesaj.
 class BigField extends StatefulWidget {
   const BigField({
@@ -65,11 +66,12 @@ class _BigFieldState extends State<BigField> {
     final p = context.palette;
     final err = widget.error;
     final border = err != null ? p.errorText : (_focus.hasFocus ? p.primary : p.line);
+    final labelSize = context.easyMode ? 16.0 : 14.0;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
-        ExcludeSemantics(child: Text(widget.label, style: AppTypography.body(14, weight: FontWeight.w900, color: p.mut))),
+        ExcludeSemantics(child: Text(widget.label, style: AppTypography.body(labelSize, weight: FontWeight.w900, color: p.mut))),
         const SizedBox(height: 8),
         AnimatedContainer(
           duration: AppDurations.fast,

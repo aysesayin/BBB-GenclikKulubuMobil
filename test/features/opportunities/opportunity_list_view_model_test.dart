@@ -82,6 +82,28 @@ void main() {
     verify(() => repo.list(category: 'cat-kitap', filter: null, page: 1)).called(1);
   });
 
+  test('kategoriler kullanım sırasına göre; seçiliye tekrar dokunmak kaldırır', () async {
+    when(() => repo.categories()).thenAnswer(
+      (_) async => const Success([
+        OpportunityCategory(id: 'cat-kitap', label: 'Kitap', usageRank: 5),
+        OpportunityCategory(id: 'cat-ulasim', label: 'Ulaşım', usageRank: 1),
+        OpportunityCategory(id: 'cat-yemek', label: 'Yemek', usageRank: 2),
+      ]),
+    );
+    final vm = build();
+    await vm.load();
+    await Future<void>.delayed(Duration.zero);
+    expect(vm.categories.map((c) => c.id), ['cat-ulasim', 'cat-yemek', 'cat-kitap']);
+
+    vm.selectCategory('cat-kitap');
+    await Future<void>.delayed(Duration.zero);
+    expect(vm.category, 'cat-kitap');
+    vm.selectCategory('cat-kitap');
+    await Future<void>.delayed(Duration.zero);
+    expect(vm.category, isNull, reason: 'tekrar dokunuş temizler');
+    expect(vm.visible, hasLength(4));
+  });
+
   test('favoriler boşsa isEmpty', () async {
     stubList([opp('a'), opp('b')], total: 2);
     final vm = build();

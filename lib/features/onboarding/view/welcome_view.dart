@@ -6,6 +6,7 @@ import '../../../core/di/locator.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/session/session_controller.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/ui_prefs_controller.dart';
 import '../../../core/utils/formatters.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/repositories/app_repository.dart';
@@ -14,7 +15,8 @@ import '../view_model/welcome_view_model.dart';
 import '../widgets/poster_title.dart';
 import '../widgets/welcome_parts.dart';
 
-/// A3 · Karşılama / karar ekranı.
+/// A3 · Karşılama / karar ekranı. Kolay Mod: marquee şeritleri yerine düz başlık,
+/// kinetik poster yerine sade Baloo başlık, nefes alan CTA yerine standart 56 px buton.
 class WelcomeView extends StatelessWidget {
   const WelcomeView({super.key, this.from});
 
@@ -37,11 +39,23 @@ class _Body extends StatelessWidget {
     final vm = context.read<WelcomeViewModel>();
     final pad = MediaQuery.paddingOf(context);
     final h = MediaQuery.sizeOf(context).height;
+    final easy = context.easyMode;
     return Scaffold(
       backgroundColor: p.bg,
       body: Stack(
         children: [
-          Positioned(left: 0, right: 0, top: pad.top - 8, child: WelcomeMarquee(tags: l.onbWelcomeTags.split('|'))),
+          if (easy)
+            Positioned(
+              left: 24,
+              right: 24,
+              top: pad.top + 32,
+              child: Semantics(
+                header: true,
+                child: Text(l.onbWelcomeEasyTitle, style: AppTypography.display(30, color: p.teal)),
+              ),
+            )
+          else
+            Positioned(left: 0, right: 0, top: pad.top - 8, child: WelcomeMarquee(tags: l.onbWelcomeTags.split('|'))),
           Positioned(
             left: 0,
             right: 0,
@@ -65,20 +79,26 @@ class _Body extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const Spacer(),
-                  PosterTitle(
-                    lines: [l.onbWelcomeLine1, l.onbWelcomeLine2],
-                    size: 92,
-                    highlight: p.teal,
-                    from: const Offset(0, 40),
-                    stagger: const Duration(milliseconds: 120),
-                  ),
+                  if (easy)
+                    Text('${l.onbWelcomeLine1} ${l.onbWelcomeLine2}', style: AppTypography.display(44, height: 1, color: p.ink))
+                  else
+                    PosterTitle(
+                      lines: [l.onbWelcomeLine1, l.onbWelcomeLine2],
+                      size: 92,
+                      highlight: p.teal,
+                      from: const Offset(0, 40),
+                      stagger: const Duration(milliseconds: 120),
+                    ),
                   const SizedBox(height: 18),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: WelcomeBonusPill(label: l.onbWelcomeBonus(Fmt.number(vm.bonus))),
                   ),
                   const SizedBox(height: 28),
-                  BreathingCta(label: l.onbWelcomeStart, onPressed: () => context.push(Routes.interests)),
+                  if (easy)
+                    AppButton(label: l.onbWelcomeStart, onPressed: () => context.push(Routes.interests))
+                  else
+                    BreathingCta(label: l.onbWelcomeStart, onPressed: () => context.push(Routes.interests)),
                   const SizedBox(height: 10),
                   AppButton(
                     label: l.onbWelcomeLogin,

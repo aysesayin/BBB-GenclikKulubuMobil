@@ -1,6 +1,7 @@
 import '../../core/network/api_result.dart';
 import '../models/profile/account_settings.dart';
 import '../models/profile/child_profile.dart';
+import '../models/profile/delete_request.dart';
 import '../models/profile/discount.dart';
 import '../models/profile/profile_stats.dart';
 import '../models/profile/user_profile.dart';
@@ -28,8 +29,8 @@ abstract interface class ProfileRepository {
 
   Future<ApiResult<void>> uploadAvatar({required String path, required String fileName});
 
-  /// KVKK hesap silme talebi.
-  Future<ApiResult<void>> requestDeletion({String? reason});
+  /// KVKK hesap silme talebi; makbuz (talep no + süreç bitiş tarihi) döner.
+  Future<ApiResult<DeleteRequestReceipt>> requestDeletion({String? reason});
   Future<ApiResult<void>> logout();
 }
 
@@ -86,7 +87,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       _service.uploadAvatar(path: path, fileName: fileName);
 
   @override
-  Future<ApiResult<void>> requestDeletion({String? reason}) => _service.requestDeletion(reason: reason);
+  Future<ApiResult<DeleteRequestReceipt>> requestDeletion({String? reason}) => _service.requestDeletion(reason: reason);
 
   @override
   Future<ApiResult<void>> logout() => _service.logout();

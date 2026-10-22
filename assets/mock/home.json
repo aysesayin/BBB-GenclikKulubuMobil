@@ -20,10 +20,10 @@
       { "id": "tsk-quiz", "title": "Cevapla Kazan", "subtitle": "Bu hafta 1 / 2", "points": 100, "progress": 0.5, "icon": "question", "accent": "pink", "link": { "type": "quiz" } }
     ],
     "banners": [
-      { "id": "bnr-teleferik", "kicker": "BUAN PAZAR", "title": "Teleferik + sucuk ekmek seni bekliyor", "ctaLabel": "8.000 BUAN ile al", "theme": "buan", "link": { "type": "reward", "id": "rwd-teleferik" } },
-      { "id": "bnr-kamp", "kicker": "ETKİNLİK", "title": "Gençlik Kampı kayıtları açıldı", "ctaLabel": "Yerini ayırt", "theme": "teal", "link": { "type": "event", "id": "evt-genclik-kampi" } },
-      { "id": "bnr-extrempark", "kicker": "FIRSAT", "title": "Extrempark'ta 1 alana 1 bedava", "ctaLabel": "Fırsatı yakala", "theme": "green", "link": { "type": "opportunity", "id": "opp-extrempark" } },
-      { "id": "bnr-sans", "kicker": "GÜNLÜK ŞANS", "title": "Çarkı çevir, BUAN kazan", "ctaLabel": "Hemen çevir", "theme": "night", "link": { "type": "dailySpin" } }
+      { "id": "bnr-teleferik", "kicker": "BUAN PAZAR", "title": "Teleferik + sucuk ekmek seni bekliyor", "ctaLabel": "8.000 BUAN ile al", "tone": "buan", "link": { "type": "reward", "id": "rwd-teleferik" } },
+      { "id": "bnr-kamp", "kicker": "ETKİNLİK", "title": "Gençlik Kampı kayıtları açıldı", "ctaLabel": "Yerini ayırt", "tone": "event", "link": { "type": "event", "id": "evt-genclik-kampi" } },
+      { "id": "bnr-extrempark", "kicker": "FIRSAT", "title": "Extrempark'ta 1 alana 1 bedava", "ctaLabel": "Fırsatı yakala", "tone": "opportunity", "link": { "type": "opportunity", "id": "opp-extrempark" } },
+      { "id": "bnr-sans", "kicker": "GÜNLÜK ŞANS", "title": "Çarkı çevir, BUAN kazan", "ctaLabel": "Hemen çevir", "tone": "spin", "link": { "type": "dailySpin" } }
     ],
     "shortcuts": [
       { "id": "sc-harita", "label": "Harita", "icon": "map", "tone": 2, "link": { "type": "map" } },
@@ -45,6 +45,6 @@
       { "id": "evt-kariyer-cv", "title": "Kariyer Atölyesi: İlk CV’n", "startsAt": "2026-10-21T19:00:00", "place": "Millet GSM", "capacity": 40, "filled": 12, "tone": 1 }
     ],
     "nearby": { "placeId": "plc-asik-veysel-gm", "label": "Aşık Veysel GM", "distanceMeters": 650, "moreCount": 6 },
-    "league": { "tier": "Gümüş", "rank": 14, "secondsLeft": 223200, "progress": 0.72, "pointsToPromotion": 820 }
+    "league": { "tier": "Gümüş", "rank": 14, "secondsLeft": 223200, "progress": 0.72, "pointsToPromotion": 820, "nearPromotion": true }
   }
 }

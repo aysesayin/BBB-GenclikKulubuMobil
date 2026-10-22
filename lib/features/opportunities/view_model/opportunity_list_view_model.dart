@@ -30,7 +30,7 @@ class OpportunityListViewModel extends BaseViewModel {
   List<OpportunityCategory> _categories = const [];
   List<OpportunityCategory> get categories => _categories;
 
-  /// null → "Tümü".
+  /// null → kategori filtresi yok (karo yeniden dokununca kalkar).
   String? _category;
   String? get category => _category;
 
@@ -120,9 +120,9 @@ class OpportunityListViewModel extends BaseViewModel {
     notify();
   }
 
+  /// Seçili karoya tekrar dokunmak kategoriyi kaldırır ("Tümü" karosu yok).
   void selectCategory(String? id) {
-    if (id == _category) return;
-    _category = id;
+    _category = id == _category ? null : id;
     load();
   }
 
@@ -166,7 +166,8 @@ class OpportunityListViewModel extends BaseViewModel {
     final r = await _repo.categories();
     if (isDisposed) return;
     if (r case Success(:final data)) {
-      _categories = data;
+      // En çok kullanılan önce (API `usageRank`, küçükten büyüğe).
+      _categories = [...data]..sort((a, b) => a.usageRank.compareTo(b.usageRank));
       notify();
     }
   }

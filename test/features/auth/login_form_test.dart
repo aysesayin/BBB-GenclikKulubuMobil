@@ -25,8 +25,9 @@ void main() {
     ).thenAnswer((_) async => calls++ == 0 ? const Failure(UnauthorizedException()) : const Success(demoSession));
     final vm = LoginViewModel(auth, stubSession(), bio);
     var success = false;
+    final prefs = await testPrefs();
     await tester.pumpWidget(
-      MaterialApp(
+      withPrefs(prefs, MaterialApp(
         theme: AppTheme.light,
         locale: const Locale('tr'),
         supportedLocales: AppLocalizations.supportedLocales,
@@ -47,7 +48,7 @@ void main() {
             ),
           ),
         ),
-      ),
+      )),
     );
     final l = AppLocalizations.of(tester.element(find.byType(LoginForm)));
     await tester.enterText(find.byType(TextField).at(0), '10000000146');

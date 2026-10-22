@@ -1,7 +1,19 @@
 {
   "@@locale": "tr",
   "authRegStop": "Durak {current} / {total} · {name}",
-  "@authRegStop": {"placeholders": {"current": {"type": "int"}, "total": {"type": "int"}, "name": {"type": "String"}}},
+  "@authRegStop": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "authStopTophane": "Tophane",
   "authStopUluCami": "Ulu Cami",
   "authStopKozahan": "Kozahan",
@@ -10,7 +22,13 @@
   "authRegLater": "Sonra",
   "authRegRoute": "Kayıt rotası",
   "authRegReferral": "Davet kodu: {code}",
-  "@authRegReferral": {"placeholders": {"code": {"type": "String"}}},
+  "@authRegReferral": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
   "authFieldRequired": "Bu alanı doldur.",
   "authRegIdentityTitle": "Seni tanıyalım",
   "authTcknLabel": "T.C. Kimlik No",
@@ -27,26 +45,40 @@
   "authPhoneHint": "05XX XXX XX XX",
   "authCountryCode": "+90",
   "authEmailLabel": "E-posta",
-  "authContactHint": "Doğrulama kodunu bu numaraya SMS ile göndereceğiz.",
+  "authContactHint": "Doğrulama kodunu bu numaraya SMS ile göndereceğiz. E-posta ve acil durum kişini sonra profilden ekleyebilirsin.",
   "authPhoneInvalid": "Geçerli bir cep telefonu gir (5XX XXX XX XX).",
   "authEmailInvalid": "E-posta adresini kontrol et.",
   "authRegOtpTitle": "Kodu gir",
   "authOtpSent": "{phone} numarasına 6 haneli kod gönderdik.",
-  "@authOtpSent": {"placeholders": {"phone": {"type": "String"}}},
+  "@authOtpSent": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
   "authOtpSemantics": "Doğrulama kodu, 6 hane",
   "authOtpWrong": "Kod yanlış, bir daha dene.",
   "authOtpOk": "Kod doğru!",
   "authOtpAutofill": "SMS’ten otomatik doldur · {code}",
-  "@authOtpAutofill": {"placeholders": {"code": {"type": "String"}}},
+  "@authOtpAutofill": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
   "authOtpResendIn": "Tekrar gönder ({time})",
-  "@authOtpResendIn": {"placeholders": {"time": {"type": "String"}}},
+  "@authOtpResendIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "authOtpResend": "Kodu tekrar gönder",
   "authOtpConfirm": "Kodu onayla",
   "authOtpVerified": "Doğrulandı",
-  "authRegEmergencyTitle": "Acil durumda kime haber verelim?",
-  "authEmergencySub": "Etkinlik ve kamplarda güvenliğin için.",
-  "authEmergencyName": "Ad soyad",
-  "authEmergencyPhone": "Telefon",
   "authRegLegalTitle": "Son bir adım",
   "authLegalTerms": "Kayıt Şartları",
   "authLegalPrivacy": "Gizlilik Sözleşmesi",
@@ -55,7 +87,13 @@
   "authLegalExplicit": "Açık Rıza Metni",
   "authLegalRead": "Oku",
   "authLegalReadSemantics": "{doc} metnini oku",
-  "@authLegalReadSemantics": {"placeholders": {"doc": {"type": "String"}}},
+  "@authLegalReadSemantics": {
+    "placeholders": {
+      "doc": {
+        "type": "String"
+      }
+    }
+  },
   "authLegalAllRequired": "Dördü de zorunlu.",
   "authExplicitTitle": "Açık Rıza",
   "authExplicitOptional": "· isteğe bağlı",
@@ -71,16 +109,35 @@
   "authSummitCta": "Zirveye çık",
   "authUnderAgeTitle": "Henüz 18 değilsin, sorun değil!",
   "authUnderAgeBody": "{min}–{max} yaşında üyelik için velinin onayı gerekiyor. Velinin telefonuna kısa bir onay bağlantısı gönderelim; onaylayınca hesabın açılır, {amount} BUAN’ın da seni bekler.",
-  "@authUnderAgeBody": {"placeholders": {"min": {"type": "int"}, "max": {"type": "int"}, "amount": {"type": "String"}}},
+  "@authUnderAgeBody": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
   "authParentPhone": "Velinin cep telefonu",
   "authParentSend": "Onay bağlantısı gönder",
   "authParentSent": "Onay bağlantısı gönderildi. Velin onaylayınca SMS ile haber vereceğiz.",
   "authGuestContinue": "Misafir olarak devam et →",
   "authTooYoungTitle": "Biraz daha zamanın var!",
   "authTooYoungBody": "Gençlik Kulübü üyeliği {min} yaşından itibaren. O zamana kadar misafir olarak gezebilirsin.",
-  "@authTooYoungBody": {"placeholders": {"min": {"type": "int"}}},
+  "@authTooYoungBody": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
   "authLoginLine1": "TEKRAR",
   "authLoginLine2": "HOŞ GELDİN!",
+  "authLoginEasyTitle": "Tekrar hoş geldin!",
   "authLoginForm": "Giriş formu",
   "authTabTckn": "TC Kimlik",
   "authTabPhone": "Telefon",
@@ -90,7 +147,13 @@
   "authHidePassword": "Şifreyi gizle",
   "authPasswordRequired": "Şifreni gir.",
   "authWrongPassword": "{count, plural, =0{Şifre hatalı. Deneme hakkın kalmadı.} other{Şifre hatalı. {count} deneme hakkın kaldı.}}",
-  "@authWrongPassword": {"placeholders": {"count": {"type": "int"}}},
+  "@authWrongPassword": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "authLocked": "Çok fazla hatalı deneme. Şifreni sıfırlayabilir ya da biraz sonra tekrar deneyebilirsin.",
   "authForgot": "Şifremi unuttum",
   "authForgotTitle": "Şifreni mi unuttun?",

@@ -33,6 +33,7 @@ void main() {
     expect(data.level.name, 'Kâşif');
     expect(data.streak.days, 7);
     expect(data.groups.map((g) => g.id), ['daily']);
+    expect(vm.allTasks.map((t) => t.type), [BuanTaskType.steps]);
     vm.dispose();
   });
 
@@ -67,15 +68,15 @@ void main() {
       expect(BuanViewModel.routeFor(task(BuanTaskType.qr)), Routes.qrScan);
     });
 
-    test('akışı olmayan türler sheet açar (null)', () {
-      for (final t in [BuanTaskType.follow, BuanTaskType.volunteer, BuanTaskType.biko, BuanTaskType.idea, BuanTaskType.useOpportunity]) {
-        expect(BuanViewModel.routeFor(task(t)), isNull, reason: t.name);
+    test('akışı olmayan türler genel görev detayına gider', () {
+      for (final t in [BuanTaskType.follow, BuanTaskType.volunteer, BuanTaskType.biko, BuanTaskType.idea, BuanTaskType.useOpportunity, BuanTaskType.unknown]) {
+        expect(BuanViewModel.routeFor(task(t, id: 'tsk-x')), Routes.task('tsk-x'), reason: t.name);
       }
     });
 
-    test('kilitli ve tamamlanmış görev ekrana gitmez', () {
-      expect(BuanViewModel.routeFor(task(BuanTaskType.watch, status: BuanTaskStatus.locked)), isNull);
-      expect(BuanViewModel.routeFor(task(BuanTaskType.watch, status: BuanTaskStatus.done)), isNull);
+    test('kilitli ve tamamlanmış görev kendi akışına değil detaya gider', () {
+      expect(BuanViewModel.routeFor(task(BuanTaskType.watch, status: BuanTaskStatus.locked, id: 'w')), Routes.task('w'));
+      expect(BuanViewModel.routeFor(task(BuanTaskType.watch, status: BuanTaskStatus.done, id: 'w')), Routes.task('w'));
       expect(BuanViewModel.routeFor(task(BuanTaskType.invite, status: BuanTaskStatus.pending)), Routes.invite);
     });
   });

@@ -48,8 +48,10 @@ abstract class RegisterRequest with _$RegisterRequest {
     /// `yyyy-MM-dd`
     required String birthDate,
     required String phone,
-    required String email,
-    required EmergencyContact emergencyContact,
+
+    /// E-posta ve acil durum kişisi kayıtta sorulmaz; profilden tamamlanır.
+    String? email,
+    EmergencyContact? emergencyContact,
 
     /// OTP doğrulamasından dönen tek kullanımlık jeton.
     required String otpToken,

@@ -190,11 +190,43 @@ class _PayBar extends StatelessWidget {
               Flexible(child: Text(l.svcSecurePayment, style: AppTypography.body(12, weight: FontWeight.w800, color: p.mut))),
             ],
           ),
+          const SizedBox(height: 6),
+          const _CardBrands(),
           const SizedBox(height: 8),
           if (vm.expired)
             AppButton(label: l.svcReselect, onPressed: onReselect)
           else
             AppButton(label: l.svcPayCta(SvcFmt.money(context, vm.total)), busy: vm.paying, onPressed: vm.canPay ? onPay : null),
+        ],
+      ),
+    );
+  }
+}
+
+/// "Sanal POS · 3D Secure" altındaki kabul edilen kart çipleri (metin; logo görseli yok).
+class _CardBrands extends StatelessWidget {
+  const _CardBrands();
+
+  @override
+  Widget build(BuildContext context) {
+    final p = context.palette;
+    final l = context.l10n;
+    final brands = l.svcCardBrands.split('|').where((b) => b.trim().isNotEmpty).toList();
+    return Semantics(
+      label: '${l.svcAcceptedCards}: ${brands.join(', ')}',
+      excludeSemantics: true,
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 6,
+        runSpacing: 4,
+        children: [
+          for (final b in brands)
+            Container(
+              height: 22,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(color: p.sf2, borderRadius: BorderRadius.circular(11), border: Border.all(color: p.line)),
+              child: Center(widthFactor: 1, child: Text(b.trim(), style: AppTypography.body(11, weight: FontWeight.w900, color: p.ink))),
+            ),
         ],
       ),
     );
